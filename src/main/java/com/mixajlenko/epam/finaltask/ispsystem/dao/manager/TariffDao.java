@@ -1,13 +1,15 @@
 package com.mixajlenko.epam.finaltask.ispsystem.dao.manager;
 
-import com.mixajlenko.epam.finaltask.ispsystem.connection.ConnectionFactory;
+import com.mixajlenko.epam.finaltask.ispsystem.dao.connection.ConnectionFactory;
 import com.mixajlenko.epam.finaltask.ispsystem.dao.ITariffDao;
+import com.mixajlenko.epam.finaltask.ispsystem.exception.DAOException;
 import com.mixajlenko.epam.finaltask.ispsystem.model.Tariff;
 import com.mixajlenko.epam.finaltask.ispsystem.dao.queries.SqlQueries;
 
 import javax.naming.NamingException;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -119,7 +121,7 @@ public class TariffDao implements ITariffDao {
             statement.executeUpdate();
             connection.commit();
         } catch (SQLException e) {
-            Logger.getLogger(ServicesDao.class.getName()).log(Level.WARNING, e.getMessage(), e);
+            Logger.getLogger(TariffDao.class.getName()).log(Level.WARNING, e.getMessage(), e);
             connection.rollback();
             return false;
         } finally {
@@ -129,12 +131,43 @@ public class TariffDao implements ITariffDao {
     }
 
     @Override
-    public boolean setServiceTariff(int serviceId, int tariffId) {
-        return false;
+    public boolean setServiceTariff(int serviceId, int tariffId) throws SQLException {
+        Connection connection = ConnectionFactory.getInstance().getConnection();
+        connection.setAutoCommit(false);
+        int id;
+        try (PreparedStatement statement = connection.prepareStatement(SqlQueries.INSERT_SERVICE_TARIFF.getConstant())) {
+            try (ResultSet resultSet = connection.createStatement().executeQuery(SqlQueries.COUNT_SERVICE_TARIFF_ROWS.getConstant())) {
+                resultSet.next();
+                id = resultSet.getInt(1) + 1;
+            }
+            statement.setInt(1, id);
+            statement.setInt(2, serviceId);
+            statement.setInt(3, getById(tariffId).getId());
+            statement.executeUpdate();
+            connection.commit();
+        } catch (NamingException e) {
+            Logger.getLogger(TariffDao.class.getName()).log(Level.WARNING, e.getMessage(), e);
+            connection.rollback();
+            return false;
+        }
+        return true;
     }
 
     @Override
-    public boolean getServiceTariff(int serviceId) {
-        return false;
+    public List<Tariff> getServiceTariff(int serviceId) throws SQLException {
+        Connection connection = ConnectionFactory.getInstance().getConnection();
+        List<Tariff> tariffs = new ArrayList<>();
+        try (PreparedStatement statement = connection.prepareStatement(SqlQueries.ALL_SERVICE_TARIFF.getConstant())) {
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    if (resultSet.getInt(2) == serviceId) {
+                        tariffs.add(getById(resultSet.getInt(3)));
+                    }
+                }
+            } catch (NamingException e) {
+                e.printStackTrace();
+            }
+        }
+        return tariffs;
     }
 }

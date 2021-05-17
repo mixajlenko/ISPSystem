@@ -1,6 +1,6 @@
 package com.mixajlenko.epam.finaltask.ispsystem.dao.manager;
 
-import com.mixajlenko.epam.finaltask.ispsystem.connection.ConnectionFactory;
+import com.mixajlenko.epam.finaltask.ispsystem.dao.connection.ConnectionFactory;
 import com.mixajlenko.epam.finaltask.ispsystem.dao.IServiceDao;
 import com.mixajlenko.epam.finaltask.ispsystem.dao.queries.SqlQueries;
 import com.mixajlenko.epam.finaltask.ispsystem.model.Service;

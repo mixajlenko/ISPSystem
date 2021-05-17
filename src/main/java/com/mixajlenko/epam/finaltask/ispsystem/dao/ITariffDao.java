@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface ITariffDao extends IEntityDAO<Integer, Tariff> {
 
-    boolean setServiceTariff(int serviceId, int tariffId);
+    boolean setServiceTariff(int serviceId, int tariffId) throws SQLException;
 
-    boolean getServiceTariff(int serviceId);
+    List<Tariff> getServiceTariff(int serviceId) throws SQLException;
 
 }

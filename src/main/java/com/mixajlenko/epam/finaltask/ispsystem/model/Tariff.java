@@ -72,9 +72,11 @@ public class Tariff extends Model {
 
     @Override
     public String toString() {
-        return
-                "Name: " + name + "\n" +
-                        "Description: " + description + "\n" +
-                        "Price: " + price + "\n" + "============";
+        return "Tariff{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                '}';
     }
 }

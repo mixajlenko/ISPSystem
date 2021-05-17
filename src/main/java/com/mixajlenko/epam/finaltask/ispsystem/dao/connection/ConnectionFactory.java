@@ -1,4 +1,4 @@
-package com.mixajlenko.epam.finaltask.ispsystem.connection;
+package com.mixajlenko.epam.finaltask.ispsystem.dao.connection;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -13,10 +13,8 @@ public class ConnectionFactory {
 
     private final Properties props = new Properties();
     private Connection connection;
-    private ConnectionFactory connectionFactory;
 
     public static ConnectionFactory getInstance() {
-
         return new ConnectionFactory();
     }
 

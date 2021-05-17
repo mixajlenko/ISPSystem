@@ -9,23 +9,26 @@ public class Account extends Model {
     private int status;
     private int wallet;
     private String password;
+    private int role;
 
     public Account() {
     }
 
-    public Account(int userId, int status, int wallet, String password) {
+    public Account(int userId, int status, int wallet, String password, int role) {
         this.userId = userId;
         this.status = status;
         this.wallet = wallet;
         this.password = password;
+        this.role = role;
     }
 
-    public Account(int id, int userId, int status, int wallet, String password) {
+    public Account(int id, int userId, int status, int wallet, String password, int role) {
         super(id);
         this.userId = userId;
         this.status = status;
         this.wallet = wallet;
         this.password = password;
+        this.role = role;
     }
 
     @Override
@@ -70,17 +73,25 @@ public class Account extends Model {
         this.password = password;
     }
 
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Account account = (Account) o;
-        return id == account.id && userId == account.userId && status == account.status && wallet == account.wallet && Objects.equals(password, account.password);
+        return id == account.id && userId == account.userId && status == account.status && wallet == account.wallet && role == account.role && Objects.equals(password, account.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, userId, status, wallet, password);
+        return Objects.hash(id, userId, status, wallet, password, role);
     }
 
     @Override
@@ -91,6 +102,7 @@ public class Account extends Model {
                 ", status=" + status +
                 ", wallet=" + wallet +
                 ", password='" + password + '\'' +
+                ", role=" + role +
                 '}';
     }
 }

@@ -1,11 +1,13 @@
 package com.mixajlenko.epam.finaltask.ispsystem.dao.manager;
 
-import com.mixajlenko.epam.finaltask.ispsystem.connection.ConnectionFactory;
 import com.mixajlenko.epam.finaltask.ispsystem.dao.IAccountDao;
 import com.mixajlenko.epam.finaltask.ispsystem.dao.queries.SqlQueries;
 import com.mixajlenko.epam.finaltask.ispsystem.model.Account;
+import com.mixajlenko.epam.finaltask.ispsystem.dao.connection.ConnectionFactory;
 
 import javax.naming.NamingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -140,7 +142,16 @@ public class AccountDao implements IAccountDao {
     }
 
     @Override
-    public boolean encryptPass(Account account) {
-        return false;
+    public boolean encryptPass(Account account) throws NoSuchAlgorithmException, SQLException, NamingException {
+        MessageDigest digest = MessageDigest.getInstance("SHA-256");
+        digest.update(account.getPassword().getBytes());
+        byte[] hash = digest.digest();
+        StringBuilder result = new StringBuilder();
+        for (byte aByte : hash) {
+            result.append(String.format("%02X", aByte));
+        }
+        account.setPassword(String.valueOf(result));
+        update(account);
+        return true;
     }
 }

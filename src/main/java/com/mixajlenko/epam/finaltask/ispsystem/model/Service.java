@@ -61,7 +61,10 @@ public class Service extends Model {
 
     @Override
     public String toString() {
-        return "Name: " + name + "\n" +
-                "Description: " + description + "\n" + "============";
+        return "Service{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 }
