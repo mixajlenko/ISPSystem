@@ -1,8 +1,8 @@
-package com.mixajlenko.epam.finaltask.ispsystem.model.dao.entity;
+package com.mixajlenko.epam.finaltask.ispsystem.model;
 
 import java.util.Objects;
 
-public class Service {
+public class Service extends Model {
 
     private int id;
     private String name;
@@ -12,7 +12,7 @@ public class Service {
     }
 
     public Service(int id, String name, String description) {
-        this.id = id;
+        super(id);
         this.name = name;
         this.description = description;
     }

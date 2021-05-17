@@ -1,13 +1,29 @@
-package com.mixajlenko.epam.finaltask.ispsystem.model.dao.entity;
+package com.mixajlenko.epam.finaltask.ispsystem.model;
 
 import java.util.Objects;
 
-public class Tariff {
+public class Tariff extends Model {
 
     private int id;
     private String name;
     private String description;
-    private double price;
+    private int price;
+
+    public Tariff() {
+    }
+
+    public Tariff(String name, String description, int price) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+    }
+
+    public Tariff(int id, String name, String description, int price) {
+        super(id);
+        this.name = name;
+        this.description = description;
+        this.price = price;
+    }
 
     public String getName() {
         return name;
@@ -37,7 +53,7 @@ public class Tariff {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 

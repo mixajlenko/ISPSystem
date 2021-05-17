@@ -1,13 +1,30 @@
-package com.mixajlenko.epam.finaltask.ispsystem.model.dao.entity;
+package com.mixajlenko.epam.finaltask.ispsystem.model;
 
 import java.util.Objects;
 
-public class User {
+public class User extends Model {
 
     private int id;
     private String name;
     private String phone;
     private String email;
+
+    public User() {
+    }
+
+    public User(String name, String phone, String email) {
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+    }
+
+    public User(int id, String name, String phone, String email) {
+        super(id);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+    }
+
 
     public int getId() {
         return id;
