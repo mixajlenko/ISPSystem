@@ -1,4 +1,4 @@
-package com.mixajlenko.epam.finaltask.ispsystem.model.dao.queries;
+package com.mixajlenko.epam.finaltask.ispsystem.dao.queries;
 
 public enum SqlQueries {
 
@@ -8,11 +8,15 @@ public enum SqlQueries {
 
     ALL_TARIFFS("SELECT * FROM \"TARIFF\""),
 
+    ALL_ACCOUNTS("SELECT * FROM \"ACCOUNT\""),
+
     COUNT_SERVICE_ROWS("SELECT count(id) FROM \"SERVICE\""),
 
     COUNT_USER_ROWS("SELECT count(id) FROM \"USER\""),
 
     COUNT_TARIFF_ROWS("SELECT count(id) FROM \"TARIFF\""),
+
+    COUNT_ACCOUNT_ROWS("SELECT count(id) FROM \"ACCOUNT\""),
 
     DELETE_FROM_SERVICE("DELETE FROM \"SERVICE\" WHERE ID = ?"),
 
@@ -20,7 +24,11 @@ public enum SqlQueries {
 
     DELETE_FROM_TARIFF("DELETE FROM \"TARIFF\" WHERE ID = ?"),
 
+    DELETE_FROM_ACCOUNT("DELETE FROM \"ACCOUNT\" WHERE ID = ?"),
+
     INSERT_SERVICE("INSERT INTO \"SERVICE\" VALUES (?,?,?)"),
+
+    INSERT_ACCOUNT("INSERT INTO \"ACCOUNT\" VALUES (?,?,?,?)"),
 
     INSERT_USER("INSERT INTO \"USER\" VALUES (?,?,?,?)"),
 
@@ -32,7 +40,10 @@ public enum SqlQueries {
 
     UPDATE_USER("UPDATE \"USER\" SET NAME = ?, PHONE = ?, EMAIL = ?  WHERE ID = ?"),
 
-    UPDATE_TARIFF("UPDATE \"TARIFF\" SET NAME = ?, DESCRIPTION = ?, PRICE = ? WHERE ID = ?");
+    UPDATE_TARIFF("UPDATE \"TARIFF\" SET NAME = ?, DESCRIPTION = ?, PRICE = ? WHERE ID = ?"),
+
+    UPDATE_ACCOUNT("UPDATE \"ACCOUNT\" SET ID_USER = ?, STATUS = ?, WALLET = ? WHERE ID = ?");
+
 
 //    ALL_USERS("SELECT * FROM USERS"),
 //
