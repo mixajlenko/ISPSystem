@@ -131,7 +131,7 @@ public class TariffDao implements ITariffDao {
     }
 
     @Override
-    public boolean setServiceTariff(int serviceId, int tariffId) throws SQLException {
+    public boolean setServiceTariff(int serviceId, int tariffId) throws SQLException, NamingException {
         Connection connection = ConnectionFactory.getInstance().getConnection();
         connection.setAutoCommit(false);
         int id;
@@ -154,7 +154,7 @@ public class TariffDao implements ITariffDao {
     }
 
     @Override
-    public List<Tariff> getServiceTariff(int serviceId) throws SQLException {
+    public List<Tariff> getServiceTariff(int serviceId) throws SQLException, NamingException {
         Connection connection = ConnectionFactory.getInstance().getConnection();
         List<Tariff> tariffs = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(SqlQueries.ALL_SERVICE_TARIFF.getConstant())) {

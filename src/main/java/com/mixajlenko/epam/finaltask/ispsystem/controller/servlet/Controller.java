@@ -1,9 +1,10 @@
 package com.mixajlenko.epam.finaltask.ispsystem.controller.servlet;
 
 import com.mixajlenko.epam.finaltask.ispsystem.controller.command.ICommand;
-import org.apache.log4j.Logger;
+import com.mixajlenko.epam.finaltask.ispsystem.controller.command.commandfactory.CommandFactory;
+import com.mixajlenko.epam.finaltask.ispsystem.controller.command.utils.CommandUtil;
+import com.mixajlenko.epam.finaltask.ispsystem.exception.NotFoundOperationException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,8 +13,27 @@ import java.io.IOException;
 
 
 public class Controller extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doPost(req, resp);
+    }
 
-//
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType ("text/html; charset=UTF-8");
+        req.setCharacterEncoding("UTF-8");
+        String path = req.getRequestURI();
+        path = path.substring(path.indexOf("view") - 1);
+        ICommand command = null;
+        try {
+            command = CommandFactory.getCommand(path);
+            command.execute(req, resp);
+        } catch (NotFoundOperationException e) {
+            CommandUtil.goToPage(req, resp, "/WEB-INF/view/errorPage.jsp");
+        }
+    }
+
+    //
 //	private static final Logger log = Logger.getLogger(Controller.class);
 //
 //	protected void doGet(HttpServletRequest request,

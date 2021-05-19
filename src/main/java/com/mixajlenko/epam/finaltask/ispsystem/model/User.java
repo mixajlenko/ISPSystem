@@ -5,27 +5,37 @@ import java.util.Objects;
 public class User extends Model {
 
     private int id;
-    private int role_id;
-    private String name;
+    private int roleId;
+    private String firstName;
+    private String secondName;
     private String phone;
     private String email;
 
     public User() {
     }
 
-    public User(String name, String phone, String email, int role_id) {
-        this.name = name;
+    public User(String firstName, String secondName, String phone, String email) {
+        this.firstName = firstName;
+        this.secondName = secondName;
         this.phone = phone;
         this.email = email;
-        this.role_id = role_id;
     }
 
-    public User(int id, String name, String phone, String email, int role_id) {
-        super(id);
-        this.name = name;
+    public User(String firstName, String secondName, String phone, String email, int roleId) {
+        this.firstName = firstName;
+        this.secondName = secondName;
         this.phone = phone;
         this.email = email;
-        this.role_id = role_id;
+        this.roleId = roleId;
+    }
+
+    public User(int id, String firstName, String secondName, String phone, String email, int roleId) {
+        super(id);
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.phone = phone;
+        this.email = email;
+        this.roleId = roleId;
     }
 
 
@@ -37,12 +47,20 @@ public class User extends Model {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getSecondName() {
+        return secondName;
+    }
+
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
     }
 
     public String getPhone() {
@@ -61,12 +79,12 @@ public class User extends Model {
         this.email = email;
     }
 
-    public int getRole_id() {
-        return role_id;
+    public int getRoleId() {
+        return roleId;
     }
 
-    public void setRole_id(int role_id) {
-        this.role_id = role_id;
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
     }
 
     @Override
@@ -74,20 +92,21 @@ public class User extends Model {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id == user.id && role_id == user.role_id && Objects.equals(name, user.name) && Objects.equals(phone, user.phone) && Objects.equals(email, user.email);
+        return id == user.id && roleId == user.roleId && Objects.equals(firstName, user.firstName) && Objects.equals(secondName, user.secondName) && Objects.equals(phone, user.phone) && Objects.equals(email, user.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, role_id, name, phone, email);
+        return Objects.hash(id, roleId, firstName, secondName, phone, email);
     }
 
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", role_id=" + role_id +
-                ", name='" + name + '\'' +
+                ", role_id=" + roleId +
+                ", firstName='" + firstName + '\'' +
+                ", secondName='" + secondName + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 '}';

@@ -12,7 +12,7 @@ public enum SqlQueries {
 
     ALL_SERVICE_TARIFF("SELECT * FROM \"SERVICE_TARIFF\""),
 
-    SELECT_USER_BY_NAME("SELECT * FROM \"USER\" WHERE NAME = ?"),
+    SELECT_USER_BY_NAME("SELECT * FROM \"USER\" WHERE FIRSTNAME = ?"),
 
     SELECT_USER_BY_EMAIL("SELECT * FROM \"USER\" WHERE EMAIL = ?"),
 
@@ -40,9 +40,9 @@ public enum SqlQueries {
 
     INSERT_SERVICE("INSERT INTO \"SERVICE\" VALUES (?,?,?)"),
 
-    INSERT_ACCOUNT("INSERT INTO \"ACCOUNT\" VALUES (?,?,?,?)"),
+    INSERT_ACCOUNT("INSERT INTO \"ACCOUNT\"(user_id, status, wallet, password, role) VALUES (?,?,?,?,?)"),
 
-    INSERT_USER("INSERT INTO \"USER\" VALUES (?,?,?,?,?)"),
+    INSERT_USER("INSERT INTO \"USER\"(\"firstName\",\"secondName\", phone, email, role_id) VALUES (?,?,?,?,?)"),
 
     INSERT_TARIFF("INSERT INTO \"TARIFF\" VALUES (?,?,?,?)"),
 
@@ -54,11 +54,11 @@ public enum SqlQueries {
 
     UPDATE_SERVICE("UPDATE \"SERVICE\" SET NAME = ?, DESCRIPTION = ? WHERE ID = ?"),
 
-    UPDATE_USER("UPDATE \"USER\" SET NAME = ?, PHONE = ?, EMAIL = ?, role_id = ?  WHERE ID = ?"),
+    UPDATE_USER("UPDATE \"USER\" SET FIRSTNAME = ?, SECONDNAME = ?, PHONE = ?, EMAIL = ?, role_id = ?  WHERE ID = ?"),
 
     UPDATE_TARIFF("UPDATE \"TARIFF\" SET NAME = ?, DESCRIPTION = ?, PRICE = ? WHERE ID = ?"),
 
-    UPDATE_ACCOUNT("UPDATE \"ACCOUNT\" SET ID_USER = ?, STATUS = ?, WALLET = ? WHERE ID = ?");
+    UPDATE_ACCOUNT("UPDATE \"ACCOUNT\" SET ID_USER = ?, STATUS = ?, WALLET = ?, ROLE = ? WHERE ID = ?");
 
 
 //    ALL_USERS("SELECT * FROM USERS"),

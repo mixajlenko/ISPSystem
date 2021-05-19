@@ -2,13 +2,14 @@ package com.mixajlenko.epam.finaltask.ispsystem.dao;
 
 import com.mixajlenko.epam.finaltask.ispsystem.model.Tariff;
 
+import javax.naming.NamingException;
 import java.sql.SQLException;
 import java.util.List;
 
 public interface ITariffDao extends IEntityDAO<Integer, Tariff> {
 
-    boolean setServiceTariff(int serviceId, int tariffId) throws SQLException;
+    boolean setServiceTariff(int serviceId, int tariffId) throws SQLException, NamingException;
 
-    List<Tariff> getServiceTariff(int serviceId) throws SQLException;
+    List<Tariff> getServiceTariff(int serviceId) throws SQLException, NamingException;
 
 }

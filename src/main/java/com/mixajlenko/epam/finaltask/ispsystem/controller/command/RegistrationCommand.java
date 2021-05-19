@@ -1,58 +1,88 @@
 package com.mixajlenko.epam.finaltask.ispsystem.controller.command;
 
-import com.mixajlenko.epam.finaltask.ispsystem.dao.IAccountDao;
-import com.mixajlenko.epam.finaltask.ispsystem.dao.IUserDao;
-import com.mixajlenko.epam.finaltask.ispsystem.dao.factory.DaoFactory;
+import com.mixajlenko.epam.finaltask.ispsystem.controller.command.utils.CommandUtil;
+import com.mixajlenko.epam.finaltask.ispsystem.controller.command.utils.ValidationData;
+import com.mixajlenko.epam.finaltask.ispsystem.exception.NotFoundUserException;
+import com.mixajlenko.epam.finaltask.ispsystem.exception.ServiceException;
+import com.mixajlenko.epam.finaltask.ispsystem.exception.WrongDataException;
 import com.mixajlenko.epam.finaltask.ispsystem.model.Account;
 import com.mixajlenko.epam.finaltask.ispsystem.model.User;
+import com.mixajlenko.epam.finaltask.ispsystem.service.IAccountService;
+import com.mixajlenko.epam.finaltask.ispsystem.service.UserService;
+import com.mixajlenko.epam.finaltask.ispsystem.service.factory.ServiceFactory;
+import org.apache.log4j.Logger;
 
 import javax.naming.NamingException;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Objects;
 
 public class RegistrationCommand implements ICommand {
+
+    private static Logger logger = Logger.getLogger(RegistrationCommand.class);
+
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) {
 
-//        DaoFactory daoFactory = DaoFactory.getInstance();
-//
-//        String name = request.getParameter("name");
-//        String phone = request.getParameter("phone");
-//        String email = request.getParameter("email");
-//        String password = request.getParameter("password");
-//
-//        //Add validators and exceptions
-//
-//        IUserDao userDao = daoFactory.getUserDao();
-//        IAccountDao accountDao = daoFactory.getAccountDao();
-//        User user = new User(name, phone, email);
-//        try {
-//            userDao.add(user);
-//        } catch (SQLException | NamingException throwables) {
-//            throwables.printStackTrace();
-//        }
-//
-//        Account account = new Account(user.getId(), 2, 0, password);
-//
-//        try {
-//            accountDao.add(account);
-//        } catch (SQLException | NamingException throwables) {
-//            throwables.printStackTrace();
-//        }
-//
-//        request.getSession().setAttribute("user", user);
-//
-////        String page = CommandUtil.getUserPageByRole(user.getAccessLevel());
-//
-//        RequestDispatcher requestDispatcher = request.getRequestDispatcher("src/main/webapp/WEB-INF/views/homePage.jsp");
-//        try {
-//            requestDispatcher.forward(request, response);
-//        } catch (ServletException | IOException e) {
-//            e.printStackTrace();
-//        }
+        logger.info("Start execution registration");
+
+        ServiceFactory factory = ServiceFactory.getInstance();
+
+        String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
+        String password = request.getParameter("password");
+
+        logger.info("email =" + email);
+        logger.info("phone =" + phone);
+        logger.info("password =" + password);
+
+        try {
+
+            if (Objects.isNull(email) && Objects.isNull(password)) {
+                logger.info("error1");
+                throw new WrongDataException();
+            }
+
+            if (!ValidationData.isEmailValid(email) || !ValidationData.isPasswordValid(password)) {
+                logger.info("error2");
+                throw new WrongDataException();
+            }
+
+            UserService userService = factory.getUserService();
+            IAccountService accountService = factory.getAccountService();
+
+            String fName = request.getParameter("firstName");
+            String sName = request.getParameter("secondName");
+
+            logger.info("fName =" + fName);
+            logger.info("sName =" + sName);
+
+            User user = new User(fName, sName, phone, email);
+
+            logger.info(user.toString());
+            user.setRoleId(1);
+            userService.add(user);
+            Account account = new Account(userService.getUserByEmail(email).getId(),0,0,password,user.getRoleId());
+            accountService.add(account);
+            user = userService.getByLoginAndPass(email, password);
+
+            request.getSession().setAttribute("user", user);
+
+            String page = CommandUtil.getUserPageByRole(1);
+
+            CommandUtil.goToPage(request, response, page);
+
+        } catch (ServiceException e) {
+            request.setAttribute("notFound", true);
+            CommandUtil.goToPage(request, response, "/WEB-INF/view/registration.jsp");
+        } catch (WrongDataException e) {
+            request.setAttribute("wrongData", false);
+            CommandUtil.goToPage(request, response, "/WEB-INF/view/registration.jsp");
+        } catch (NotFoundUserException e) {
+            logger.error("Not found user");
+        } catch (SQLException | NamingException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }

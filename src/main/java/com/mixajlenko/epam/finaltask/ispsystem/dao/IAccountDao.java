@@ -10,4 +10,6 @@ public interface IAccountDao extends IEntityDAO<Integer, Account> {
 
     boolean encryptPass(Account account) throws NoSuchAlgorithmException, SQLException, NamingException;
 
+    Account getUserId(int id) throws NamingException, SQLException;
+
 }

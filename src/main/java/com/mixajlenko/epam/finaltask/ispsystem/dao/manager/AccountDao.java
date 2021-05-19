@@ -29,6 +29,7 @@ public class AccountDao implements IAccountDao {
                         account.setUserId(rs.getInt(2));
                         account.setStatus(rs.getInt(3));
                         account.setStatus(rs.getInt(4));
+                        account.setRole(rs.getInt(5));
                     }
                 }
             }
@@ -52,6 +53,7 @@ public class AccountDao implements IAccountDao {
                     account.setUserId(rs.getInt(2));
                     account.setStatus(rs.getInt(3));
                     account.setWallet(rs.getInt(4));
+                    account.setWallet(rs.getInt(5));
                     accounts.add(account);
                 }
             }
@@ -73,6 +75,7 @@ public class AccountDao implements IAccountDao {
             statement.setInt(2, entity.getUserId());
             statement.setInt(3, entity.getStatus());
             statement.setInt(4, entity.getWallet());
+            statement.setInt(5, entity.getRole());
             statement.executeUpdate();
             connection.commit();
         } catch (SQLException e) {
@@ -107,28 +110,29 @@ public class AccountDao implements IAccountDao {
     public boolean add(Account entity) throws SQLException, NamingException {
         Connection connection = ConnectionFactory.getInstance().getConnection();
         connection.setAutoCommit(false);
-        try (PreparedStatement statement = connection.prepareStatement(SqlQueries.INSERT_SERVICE.getConstant());
+        try (PreparedStatement statement = connection.prepareStatement(SqlQueries.INSERT_ACCOUNT.getConstant());
              ResultSet ids = connection.createStatement().executeQuery(SqlQueries.COUNT_ACCOUNT_ROWS.getConstant())) {
-            int maxId = 1;
-            int ddd = 0;
-            while (ids.next()) {
-                maxId = ids.getInt(1);
-            }
-            for (int i = 1; i <= maxId; i++) {
-                if (getById(i) == null) {
-                    entity.setId(i);
-                    break;
-                } else {
-                    ddd = i;
-                }
-            }
-            if (ddd == maxId) {
-                entity.setId(maxId + 1);
-            }
-            statement.setInt(1, entity.getId());
-            statement.setInt(2, entity.getUserId());
-            statement.setInt(3, entity.getStatus());
-            statement.setInt(4, entity.getWallet());
+//            int maxId = 1;
+//            int ddd = 0;
+//            while (ids.next()) {
+//                maxId = ids.getInt(1);
+//            }
+//            for (int i = 1; i <= maxId; i++) {
+//                if (getById(i) == null) {
+//                    entity.setId(i);
+//                    break;
+//                } else {
+//                    ddd = i;
+//                }
+//            }
+//            if (ddd == maxId) {
+//                entity.setId(maxId + 1);
+//            }
+            statement.setInt(1, entity.getUserId());
+            statement.setInt(2, entity.getStatus());
+            statement.setInt(3, entity.getWallet());
+            statement.setString(4, entity.getPassword());
+            statement.setInt(5, entity.getRole());
             statement.executeUpdate();
             connection.commit();
         } catch (SQLException e) {
@@ -153,5 +157,30 @@ public class AccountDao implements IAccountDao {
         account.setPassword(String.valueOf(result));
         update(account);
         return true;
+    }
+
+    @Override
+    public Account getUserId(int id) throws NamingException, SQLException {
+        Account account = null;
+        Connection connection = ConnectionFactory.getInstance().getConnection();
+        try (Statement statement = connection.createStatement()) {
+            try (ResultSet rs = statement.executeQuery(SqlQueries.ALL_ACCOUNTS.getConstant())) {
+                while (rs.next()) {
+                    if (rs.getInt(2) == id) {
+                        account = new Account();
+                        account.setId(rs.getInt(1));
+                        account.setUserId(rs.getInt(2));
+                        account.setStatus(rs.getInt(3));
+                        account.setWallet(rs.getInt(4));
+                        account.setPassword(rs.getString(5));
+                        account.setRole(rs.getInt(6));
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(ServicesDao.class.getName()).log(Level.WARNING, e.getMessage(), e);
+            connection.rollback();
+        }
+        return account;
     }
 }

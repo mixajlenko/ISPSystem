@@ -2,9 +2,7 @@ package com.mixajlenko.epam.finaltask.ispsystem.dao.manager;
 
 import com.mixajlenko.epam.finaltask.ispsystem.dao.connection.ConnectionFactory;
 import com.mixajlenko.epam.finaltask.ispsystem.dao.IUserDao;
-import com.mixajlenko.epam.finaltask.ispsystem.exception.DAOException;
 import com.mixajlenko.epam.finaltask.ispsystem.model.Service;
-import com.mixajlenko.epam.finaltask.ispsystem.model.Tariff;
 import com.mixajlenko.epam.finaltask.ispsystem.model.User;
 import com.mixajlenko.epam.finaltask.ispsystem.dao.queries.SqlQueries;
 
@@ -29,10 +27,11 @@ public class UserDao implements IUserDao {
                     if (rs.getInt(1) == id) {
                         user = new User();
                         user.setId(id);
-                        user.setName(rs.getString(2));
+                        user.setFirstName(rs.getString(2));
+                        user.setSecondName(rs.getString(6));
                         user.setPhone(rs.getString(3));
                         user.setEmail(rs.getString(4));
-                        user.setRole_id(rs.getInt(5));
+                        user.setRoleId(rs.getInt(5));
                     }
                 }
             }
@@ -53,10 +52,11 @@ public class UserDao implements IUserDao {
                 while (rs.next()) {
                     User user = new User();
                     user.setId(rs.getInt(1));
-                    user.setName(rs.getString(2));
+                    user.setFirstName(rs.getString(2));
+                    user.setSecondName(rs.getString(6));
                     user.setPhone(rs.getString(3));
                     user.setEmail(rs.getString(4));
-                    user.setRole_id(rs.getInt(5));
+                    user.setRoleId(rs.getInt(5));
                     users.add(user);
                 }
             }
@@ -74,11 +74,12 @@ public class UserDao implements IUserDao {
         Connection connection = ConnectionFactory.getInstance().getConnection();
         connection.setAutoCommit(false);
         try (PreparedStatement statement = connection.prepareStatement(SqlQueries.UPDATE_USER.getConstant())) {
-            statement.setString(1, entity.getName());
-            statement.setString(2, entity.getPhone());
-            statement.setString(3, entity.getEmail());
-            statement.setInt(4, entity.getRole_id());
-            statement.setInt(5, entity.getId());
+            statement.setString(1, entity.getFirstName());
+            statement.setString(2, entity.getSecondName());
+            statement.setString(3, entity.getPhone());
+            statement.setString(4, entity.getEmail());
+            statement.setInt(5, entity.getRoleId());
+            statement.setInt(6, entity.getId());
             statement.executeUpdate();
             connection.commit();
         } catch (SQLException e) {
@@ -115,27 +116,27 @@ public class UserDao implements IUserDao {
         connection.setAutoCommit(false);
         try (PreparedStatement statement = connection.prepareStatement(SqlQueries.INSERT_USER.getConstant());
              ResultSet ids = connection.createStatement().executeQuery(SqlQueries.COUNT_USER_ROWS.getConstant())) {
-            int maxId = 1;
-            int ddd = 0;
-            while (ids.next()) {
-                maxId = ids.getInt(1);
-            }
-            for (int i = 1; i <= maxId; i++) {
-                if (getById(i) == null) {
-                    entity.setId(i);
-                    break;
-                } else {
-                    ddd = i;
-                }
-            }
-            if (ddd == maxId) {
-                entity.setId(maxId + 1);
-            }
-            statement.setInt(1, entity.getId());
-            statement.setString(2, entity.getName());
+//            int maxId = 1;
+//            int ddd = 0;
+//            while (ids.next()) {
+//                maxId = ids.getInt(1);
+//            }
+//            for (int i = 1; i <= maxId; i++) {
+//                if (getById(i) == null) {
+//                    entity.setId(i);
+//                    break;
+//                } else {
+//                    ddd = i;
+//                }
+//            }
+//            if (ddd == maxId) {
+//                entity.setId(maxId + 1);
+//            }
+            statement.setString(1, entity.getFirstName());
+            statement.setString(2, entity.getSecondName());
             statement.setString(3, entity.getPhone());
             statement.setString(4, entity.getEmail());
-            statement.setInt(5, entity.getRole_id());
+            statement.setInt(5, entity.getRoleId());
             statement.executeUpdate();
             connection.commit();
         } catch (SQLException e) {
@@ -149,7 +150,7 @@ public class UserDao implements IUserDao {
     }
 
     @Override
-    public boolean setUserService(User user, int servicePlanId) throws SQLException {
+    public boolean setUserService(User user, int servicePlanId) throws SQLException, NamingException {
         Connection connection = ConnectionFactory.getInstance().getConnection();
         connection.setAutoCommit(false);
         int id;
@@ -173,7 +174,7 @@ public class UserDao implements IUserDao {
     }
 
     @Override
-    public List<Service> getUserService(int userId) {
+    public List<Service> getUserService(int userId) throws NamingException, SQLException {
         Connection connection = ConnectionFactory.getInstance().getConnection();
         List<Service> services = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(SqlQueries.ALL_SERVICE_TARIFF.getConstant())) {
@@ -195,7 +196,7 @@ public class UserDao implements IUserDao {
     }
 
     @Override
-    public User getUserByName(String name) {
+    public User getUserByName(String name) throws NamingException, SQLException {
         User user = null;
         int id;
         Connection connection = ConnectionFactory.getInstance().getConnection();
@@ -205,10 +206,11 @@ public class UserDao implements IUserDao {
                 resultSet.next();
                 user = new User();
                 user.setId(resultSet.getInt(1));
-                user.setName(resultSet.getString(2));
+                user.setFirstName(resultSet.getString(2));
+                user.setSecondName(resultSet.getString(6));
                 user.setPhone(resultSet.getString(3));
                 user.setEmail(resultSet.getString(4));
-                user.setRole_id(resultSet.getInt(5));
+                user.setRoleId(resultSet.getInt(5));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -217,7 +219,7 @@ public class UserDao implements IUserDao {
     }
 
     @Override
-    public User getUserByEmail(String email) {
+    public User getUserByEmail(String email) throws NamingException, SQLException {
         User user = null;
         Connection connection = ConnectionFactory.getInstance().getConnection();
         try (PreparedStatement statement = connection.prepareStatement(SqlQueries.SELECT_USER_BY_EMAIL.getConstant())) {
@@ -226,37 +228,15 @@ public class UserDao implements IUserDao {
                 resultSet.next();
                 user = new User();
                 user.setId(resultSet.getInt(1));
-                user.setName(resultSet.getString(2));
+                user.setFirstName(resultSet.getString(2));
+                user.setSecondName(resultSet.getString(6));
                 user.setPhone(resultSet.getString(3));
                 user.setEmail(resultSet.getString(4));
-                user.setRole_id(resultSet.getInt(5));
+                user.setRoleId(resultSet.getInt(5));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
         return user;
     }
-
-//    @Override
-//    public List<User> getUserByStatus(int statusId) {
-//        List<User> users = new ArrayList<>();
-//        User user;
-//        Connection connection = ConnectionFactory.getInstance().getConnection();
-//        try (PreparedStatement statement = connection.prepareStatement(SqlQueries.SELECT_USER_BY_STATUS.getConstant())) {
-//            statement.setInt(1, statusId);
-//            try (ResultSet resultSet = statement.executeQuery()) {
-//                resultSet.next();
-//                user = new User();
-//                user.setId(resultSet.getInt(1));
-//                user.setName(resultSet.getString(2));
-//                user.setPhone(resultSet.getString(3));
-//                user.setEmail(resultSet.getString(4));
-//                user.setRole_id(resultSet.getInt(5));
-//                users.add(user);
-//            }
-//        } catch (SQLException throwables) {
-//            return Collections.emptyList();
-//        }
-//        return users;
-//    }
 }

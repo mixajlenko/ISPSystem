@@ -1,4 +1,11 @@
 package com.mixajlenko.epam.finaltask.ispsystem.controller.command;
 
-public class LogoutCommand {
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class LogoutCommand implements ICommand{
+    @Override
+    public void execute(HttpServletRequest request, HttpServletResponse response) {
+
+    }
 }
