@@ -103,27 +103,9 @@ public class ServicesDao implements IServiceDao {
     public boolean add(Service entity) throws SQLException, NamingException {
         Connection connection = ConnectionFactory.getInstance().getConnection();
         connection.setAutoCommit(false);
-        try (PreparedStatement statement = connection.prepareStatement(SqlQueries.INSERT_SERVICE.getConstant());
-             ResultSet ids = connection.createStatement().executeQuery(SqlQueries.COUNT_SERVICE_ROWS.getConstant())) {
-            int maxId = 1;
-            int ddd = 0;
-            while (ids.next()) {
-                maxId = ids.getInt(1);
-            }
-            for (int i = 1; i <= maxId; i++) {
-                if (getById(i) == null) {
-                    entity.setId(i);
-                    break;
-                } else {
-                    ddd = i;
-                }
-            }
-            if (ddd == maxId) {
-                entity.setId(maxId + 1);
-            }
-            statement.setInt(1, entity.getId());
-            statement.setString(2, entity.getName());
-            statement.setString(3, entity.getDescription());
+        try (PreparedStatement statement = connection.prepareStatement(SqlQueries.INSERT_SERVICE.getConstant())) {
+            statement.setString(1, entity.getName());
+            statement.setString(2, entity.getDescription());
             statement.executeUpdate();
             connection.commit();
         } catch (SQLException e) {

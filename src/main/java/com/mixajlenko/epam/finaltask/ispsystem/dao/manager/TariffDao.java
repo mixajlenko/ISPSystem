@@ -2,14 +2,12 @@ package com.mixajlenko.epam.finaltask.ispsystem.dao.manager;
 
 import com.mixajlenko.epam.finaltask.ispsystem.dao.connection.ConnectionFactory;
 import com.mixajlenko.epam.finaltask.ispsystem.dao.ITariffDao;
-import com.mixajlenko.epam.finaltask.ispsystem.exception.DAOException;
 import com.mixajlenko.epam.finaltask.ispsystem.model.Tariff;
 import com.mixajlenko.epam.finaltask.ispsystem.dao.queries.SqlQueries;
 
 import javax.naming.NamingException;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -102,22 +100,10 @@ public class TariffDao implements ITariffDao {
     public boolean add(Tariff entity) throws SQLException, NamingException {
         Connection connection = ConnectionFactory.getInstance().getConnection();
         connection.setAutoCommit(false);
-        try (PreparedStatement statement = connection.prepareStatement(SqlQueries.INSERT_TARIFF.getConstant());
-             ResultSet ids = connection.createStatement().executeQuery(SqlQueries.COUNT_TARIFF_ROWS.getConstant())) {
-            int maxId = 1;
-            while (ids.next()) {
-                maxId = ids.getInt(1);
-            }
-            for (int i = 1; i < maxId; i++) {
-                if (getById(i) == null) {
-                    entity.setId(i);
-                    break;
-                }
-            }
-            statement.setInt(1, entity.getId());
-            statement.setString(2, entity.getName());
-            statement.setString(3, entity.getDescription());
-            statement.setDouble(4, entity.getPrice());
+        try (PreparedStatement statement = connection.prepareStatement(SqlQueries.INSERT_TARIFF.getConstant())) {
+            statement.setString(1, entity.getName());
+            statement.setString(2, entity.getDescription());
+            statement.setDouble(3, entity.getPrice());
             statement.executeUpdate();
             connection.commit();
         } catch (SQLException e) {

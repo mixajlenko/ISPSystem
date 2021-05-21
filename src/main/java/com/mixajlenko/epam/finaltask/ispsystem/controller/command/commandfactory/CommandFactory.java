@@ -1,30 +1,31 @@
 package com.mixajlenko.epam.finaltask.ispsystem.controller.command.commandfactory;
 
-import com.mixajlenko.epam.finaltask.ispsystem.controller.command.ICommand;
-import com.mixajlenko.epam.finaltask.ispsystem.controller.command.LoginCommand;
-import com.mixajlenko.epam.finaltask.ispsystem.controller.command.LogoutCommand;
-import com.mixajlenko.epam.finaltask.ispsystem.controller.command.RegistrationCommand;
+import com.mixajlenko.epam.finaltask.ispsystem.controller.command.*;
+import com.mixajlenko.epam.finaltask.ispsystem.controller.command.utils.CommandUtil;
 import com.mixajlenko.epam.finaltask.ispsystem.controller.command.utils.Operation;
 import com.mixajlenko.epam.finaltask.ispsystem.exception.NotFoundOperationException;
+import org.apache.log4j.Logger;
 
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class CommandFactory {
-
+    private static Logger logger = Logger.getLogger(CommandFactory.class);
     private static final Map<String, ICommand> allKnownCommandMap = new HashMap<>();
 
     static {
         allKnownCommandMap.put(Operation.LOGIN, new LoginCommand());
         allKnownCommandMap.put(Operation.REGISTRATION, new RegistrationCommand());
         allKnownCommandMap.put(Operation.LOGOUT, new LogoutCommand());
+        allKnownCommandMap.put(Operation.ADMIN_MENU, new AdminMenuCommand());
+        allKnownCommandMap.put(Operation.CLIENT_MENU, new ClientMenuCommand());
     }
 
 
     public static ICommand getCommand(String url) throws NotFoundOperationException {
         ICommand command = allKnownCommandMap.get(url);
-
+        logger.info(url);
         if (command == null) {
             throw new NotFoundOperationException();
         }

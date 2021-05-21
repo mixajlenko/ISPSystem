@@ -10,11 +10,12 @@ import com.mixajlenko.epam.finaltask.ispsystem.model.User;
 import com.mixajlenko.epam.finaltask.ispsystem.service.IAccountService;
 import com.mixajlenko.epam.finaltask.ispsystem.service.UserService;
 import com.mixajlenko.epam.finaltask.ispsystem.service.factory.ServiceFactory;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import javax.naming.NamingException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
 import java.sql.SQLException;
 import java.util.Objects;
 
@@ -63,7 +64,7 @@ public class RegistrationCommand implements ICommand {
             logger.info(user.toString());
             user.setRoleId(1);
             userService.add(user);
-            Account account = new Account(userService.getUserByEmail(email).getId(),0,0,password,user.getRoleId());
+            Account account = new Account(userService.getUserByEmail(email).getId(), 0, 0, password, user.getRoleId());
             accountService.add(account);
             user = userService.getByLoginAndPass(email, password);
 

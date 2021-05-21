@@ -38,13 +38,13 @@ public enum SqlQueries {
 
     DELETE_FROM_ACCOUNT("DELETE FROM \"ACCOUNT\" WHERE ID = ?"),
 
-    INSERT_SERVICE("INSERT INTO \"SERVICE\" VALUES (?,?,?)"),
+    INSERT_SERVICE("INSERT INTO \"SERVICE\" VALUES (?,?)"),
 
     INSERT_ACCOUNT("INSERT INTO \"ACCOUNT\"(user_id, status, wallet, password, role) VALUES (?,?,?,?,?)"),
 
     INSERT_USER("INSERT INTO \"USER\"(\"firstName\",\"secondName\", phone, email, role_id) VALUES (?,?,?,?,?)"),
 
-    INSERT_TARIFF("INSERT INTO \"TARIFF\" VALUES (?,?,?,?)"),
+    INSERT_TARIFF("INSERT INTO \"TARIFF\" VALUES (?,?,?)"),
 
     INSERT_SERVICE_TARIFF("INSERT INTO \"SERVICE_TARIFF\" VALUES(?,?,?)"),
 

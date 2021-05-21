@@ -24,7 +24,7 @@ public class AccountServiceImpl implements IAccountService {
     public Account getById(Integer id) throws SQLException, NamingException {
         Account account;
         try {
-           account = accountDao.getById(id);
+            account = accountDao.getById(id);
             logger.info("Account founded");
             return account;
         } catch (DataBaseException e) {

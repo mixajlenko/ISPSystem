@@ -110,24 +110,7 @@ public class AccountDao implements IAccountDao {
     public boolean add(Account entity) throws SQLException, NamingException {
         Connection connection = ConnectionFactory.getInstance().getConnection();
         connection.setAutoCommit(false);
-        try (PreparedStatement statement = connection.prepareStatement(SqlQueries.INSERT_ACCOUNT.getConstant());
-             ResultSet ids = connection.createStatement().executeQuery(SqlQueries.COUNT_ACCOUNT_ROWS.getConstant())) {
-//            int maxId = 1;
-//            int ddd = 0;
-//            while (ids.next()) {
-//                maxId = ids.getInt(1);
-//            }
-//            for (int i = 1; i <= maxId; i++) {
-//                if (getById(i) == null) {
-//                    entity.setId(i);
-//                    break;
-//                } else {
-//                    ddd = i;
-//                }
-//            }
-//            if (ddd == maxId) {
-//                entity.setId(maxId + 1);
-//            }
+        try (PreparedStatement statement = connection.prepareStatement(SqlQueries.INSERT_ACCOUNT.getConstant())) {
             statement.setInt(1, entity.getUserId());
             statement.setInt(2, entity.getStatus());
             statement.setInt(3, entity.getWallet());

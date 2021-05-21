@@ -114,24 +114,7 @@ public class UserDao implements IUserDao {
     public boolean add(User entity) throws SQLException, NamingException {
         Connection connection = ConnectionFactory.getInstance().getConnection();
         connection.setAutoCommit(false);
-        try (PreparedStatement statement = connection.prepareStatement(SqlQueries.INSERT_USER.getConstant());
-             ResultSet ids = connection.createStatement().executeQuery(SqlQueries.COUNT_USER_ROWS.getConstant())) {
-//            int maxId = 1;
-//            int ddd = 0;
-//            while (ids.next()) {
-//                maxId = ids.getInt(1);
-//            }
-//            for (int i = 1; i <= maxId; i++) {
-//                if (getById(i) == null) {
-//                    entity.setId(i);
-//                    break;
-//                } else {
-//                    ddd = i;
-//                }
-//            }
-//            if (ddd == maxId) {
-//                entity.setId(maxId + 1);
-//            }
+        try (PreparedStatement statement = connection.prepareStatement(SqlQueries.INSERT_USER.getConstant())) {
             statement.setString(1, entity.getFirstName());
             statement.setString(2, entity.getSecondName());
             statement.setString(3, entity.getPhone());
@@ -159,7 +142,7 @@ public class UserDao implements IUserDao {
                 resultSet.next();
                 id = resultSet.getInt(1) + 1;
             }
-            statement.setInt(1,id);
+            statement.setInt(1, id);
             statement.setInt(2, getById(user.getId()).getId());
             statement.setInt(3, servicePlanId);
             statement.setDate(4, Date.valueOf(LocalDate.now()));
@@ -198,7 +181,6 @@ public class UserDao implements IUserDao {
     @Override
     public User getUserByName(String name) throws NamingException, SQLException {
         User user = null;
-        int id;
         Connection connection = ConnectionFactory.getInstance().getConnection();
         try (PreparedStatement statement = connection.prepareStatement(SqlQueries.SELECT_USER_BY_NAME.getConstant())) {
             statement.setString(1, name);

@@ -11,25 +11,6 @@ import java.sql.SQLException;
 
 public class ConnectionFactory {
 
-//    private final Properties props = new Properties();
-//    private Connection connection;
-//
-//    public static ConnectionFactory getInstance() {
-//        return new ConnectionFactory();
-//    }
-//
-//    public Connection getConnection() {
-//        try (InputStream is = new FileInputStream("src/main/resources/app.properties")) {
-//            props.load(is);
-//            if (connection == null) {
-//                connection = DriverManager.getConnection(props.getProperty("db.url"), props.getProperty("db.user"),
-//                        props.getProperty("db.password"));
-//            }
-//        } catch (SQLException | IOException throwables) {
-//            throwables.printStackTrace();
-//        }
-//        return connection;
-//    }
     private static ConnectionFactory pool;
     private final DataSource dataSource;
 

@@ -74,7 +74,7 @@ public class UserServiceImpl implements UserService {
         try {
             User user = userDao.getUserByEmail(email);
             return user;
-        } catch (DataBaseException e){
+        } catch (DataBaseException e) {
             throw new ServiceException(e);
         }
     }
