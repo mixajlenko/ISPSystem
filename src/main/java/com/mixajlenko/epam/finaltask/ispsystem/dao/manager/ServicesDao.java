@@ -9,11 +9,12 @@ import javax.naming.NamingException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
+import org.apache.log4j.Logger;
 
 public class ServicesDao implements IServiceDao {
+
+    private static Logger logger = Logger.getLogger(ServicesDao.class);
 
     @Override
     public Service getById(Integer id) throws SQLException, NamingException {
@@ -31,8 +32,9 @@ public class ServicesDao implements IServiceDao {
                 }
             }
         } catch (SQLException e) {
-            Logger.getLogger(ServicesDao.class.getName()).log(Level.WARNING, e.getMessage(), e);
             connection.rollback();
+        } finally {
+            connection.close();
         }
         return service;
     }
@@ -53,10 +55,10 @@ public class ServicesDao implements IServiceDao {
                 }
             }
         } catch (SQLException e) {
-            Logger.getLogger(ServicesDao.class.getName()).log(Level.WARNING, e.getMessage(), e);
             connection.rollback();
         } finally {
             connection.setAutoCommit(true);
+            connection.close();
         }
         return images;
     }
@@ -72,11 +74,11 @@ public class ServicesDao implements IServiceDao {
             statement.executeUpdate();
             connection.commit();
         } catch (SQLException e) {
-            Logger.getLogger(ServicesDao.class.getName()).log(Level.WARNING, e.getMessage(), e);
             connection.rollback();
             return false;
         } finally {
             connection.setAutoCommit(true);
+            connection.close();
         }
         return true;
     }
@@ -90,11 +92,11 @@ public class ServicesDao implements IServiceDao {
             statement.executeUpdate();
             connection.commit();
         } catch (SQLException e) {
-            Logger.getLogger(ServicesDao.class.getName()).log(Level.WARNING, e.getMessage(), e);
             connection.rollback();
             return false;
         } finally {
             connection.setAutoCommit(true);
+            connection.close();
         }
         return true;
     }
@@ -109,12 +111,35 @@ public class ServicesDao implements IServiceDao {
             statement.executeUpdate();
             connection.commit();
         } catch (SQLException e) {
-            Logger.getLogger(ServicesDao.class.getName()).log(Level.WARNING, e.getMessage(), e);
             connection.rollback();
             return false;
         } finally {
             connection.setAutoCommit(true);
+            connection.close();
         }
         return true;
+    }
+
+    @Override
+    public Service getByName(String name) throws NamingException, SQLException {
+        Service service = null;
+        Connection connection = ConnectionFactory.getInstance().getConnection();
+        try (Statement statement = connection.createStatement()) {
+            try (ResultSet rs = statement.executeQuery(SqlQueries.ALL_SERVICE.getConstant())) {
+                while (rs.next()) {
+                    if (rs.getString(2).equals(name)) {
+                        service = new Service();
+                        service.setId(rs.getInt(1));
+                        service.setName(rs.getString(2));
+                        service.setDescription(rs.getString(3));
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            connection.rollback();
+        } finally {
+            connection.close();
+        }
+        return service;
     }
 }

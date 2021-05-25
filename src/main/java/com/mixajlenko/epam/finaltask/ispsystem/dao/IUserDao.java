@@ -17,4 +17,6 @@ public interface IUserDao extends IEntityDAO<Integer, User> {
 
     User getUserByEmail(String email) throws NamingException, SQLException;
 
+    List<User> getAllUsers() throws NamingException, SQLException;
+
 }

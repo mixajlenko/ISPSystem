@@ -1,5 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <head>
     <title>ISPAdmin: Services</title>
@@ -18,26 +17,9 @@
         </div>
         <div class="u-border-1 u-border-grey-75 u-container-style u-group u-white u-group-2">
             <div class="u-container-layout u-container-layout-2">
-                <h2 class="u-align-center u-text u-text-3">Services</h2>
+                <h2 class="u-align-center u-text u-text-3">Clients</h2>
                 <div class="u-align-center u-form u-form-1">
-                    <table border="1">
-                        <tr>
-                            <td>id</td>
-                            <td>name</td>
-                            <td>description</td>
-                            <td>price</td>
-                            <td>update</td>
-                        </tr>
-                    <c:forEach items="${tariffs}" var="item">
-                        <tr>
-                            <td>${item.id}</td>
-                            <td>${item.name}</td>
-                            <td>${item.description}</td>
-                            <td>${item.price}</td>
-                            <td><a href="${pageContext.request.contextPath}/view/admin/manageTariff?id=${item.id}&name=${item.name}&description=${item.description}&price=${item.price}">update</a></td>
-                        </tr>
-                    </c:forEach>
-                    </table>
+                    <p>USERS</p>
                 </div>
             </div>
         </div>

@@ -9,10 +9,11 @@ import javax.naming.NamingException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 public class TariffDao implements ITariffDao {
+
+    private static Logger logger = Logger.getLogger(TariffDao.class);
 
     @Override
     public Tariff getById(Integer id) throws SQLException, NamingException {
@@ -31,8 +32,9 @@ public class TariffDao implements ITariffDao {
                 }
             }
         } catch (SQLException e) {
-            Logger.getLogger(ServicesDao.class.getName()).log(Level.WARNING, e.getMessage(), e);
             connection.rollback();
+        } finally {
+            connection.close();
         }
         return tariff;
     }
@@ -49,10 +51,10 @@ public class TariffDao implements ITariffDao {
                 }
             }
         } catch (SQLException e) {
-            Logger.getLogger(ServicesDao.class.getName()).log(Level.WARNING, e.getMessage(), e);
             connection.rollback();
         } finally {
             connection.setAutoCommit(true);
+            connection.close();
         }
         return tariffs;
     }
@@ -64,16 +66,16 @@ public class TariffDao implements ITariffDao {
         try (PreparedStatement statement = connection.prepareStatement(SqlQueries.UPDATE_TARIFF.getConstant())) {
             statement.setString(1, entity.getName());
             statement.setString(2, entity.getDescription());
-            statement.setDouble(3, entity.getPrice());
+            statement.setInt(3, entity.getPrice());
             statement.setInt(4, entity.getId());
             statement.executeUpdate();
             connection.commit();
         } catch (SQLException e) {
-            Logger.getLogger(ServicesDao.class.getName()).log(Level.WARNING, e.getMessage(), e);
             connection.rollback();
             return false;
         } finally {
             connection.setAutoCommit(true);
+            connection.close();
         }
         return true;
     }
@@ -87,11 +89,11 @@ public class TariffDao implements ITariffDao {
             statement.executeUpdate();
             connection.commit();
         } catch (SQLException e) {
-            Logger.getLogger(ServicesDao.class.getName()).log(Level.WARNING, e.getMessage(), e);
             connection.rollback();
             return false;
         } finally {
             connection.setAutoCommit(true);
+            connection.close();
         }
         return true;
     }
@@ -107,11 +109,11 @@ public class TariffDao implements ITariffDao {
             statement.executeUpdate();
             connection.commit();
         } catch (SQLException e) {
-            Logger.getLogger(TariffDao.class.getName()).log(Level.WARNING, e.getMessage(), e);
             connection.rollback();
             return false;
         } finally {
             connection.setAutoCommit(true);
+            connection.close();
         }
         return true;
     }
@@ -132,9 +134,10 @@ public class TariffDao implements ITariffDao {
             statement.executeUpdate();
             connection.commit();
         } catch (NamingException e) {
-            Logger.getLogger(TariffDao.class.getName()).log(Level.WARNING, e.getMessage(), e);
             connection.rollback();
             return false;
+        } finally {
+            connection.close();
         }
         return true;
     }
@@ -152,8 +155,11 @@ public class TariffDao implements ITariffDao {
                 }
             } catch (NamingException e) {
                 e.printStackTrace();
+            } finally {
+                connection.close();
             }
         }
         return tariffs;
     }
+
 }

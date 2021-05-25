@@ -11,16 +11,17 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 public class AccountDao implements IAccountDao {
+
+    private static Logger logger = Logger.getLogger(AccountDao.class);
 
     @Override
     public Account getById(Integer id) throws SQLException, NamingException {
         Account account = null;
-        Connection connection = ConnectionFactory.getInstance().getConnection();
-        try (Statement statement = connection.createStatement()) {
+        try (Connection connection = ConnectionFactory.getInstance().getConnection();
+             Statement statement = connection.createStatement()) {
             try (ResultSet rs = statement.executeQuery(SqlQueries.ALL_ACCOUNTS.getConstant())) {
                 while (rs.next()) {
                     if (rs.getInt(1) == id) {
@@ -28,14 +29,12 @@ public class AccountDao implements IAccountDao {
                         account.setId(id);
                         account.setUserId(rs.getInt(2));
                         account.setStatus(rs.getInt(3));
-                        account.setStatus(rs.getInt(4));
-                        account.setRole(rs.getInt(5));
+                        account.setWallet(rs.getInt(4));
+                        account.setPassword(rs.getString(5));
+                        account.setRole(rs.getInt(6));
                     }
                 }
             }
-        } catch (SQLException e) {
-            Logger.getLogger(ServicesDao.class.getName()).log(Level.WARNING, e.getMessage(), e);
-            connection.rollback();
         }
         return account;
     }
@@ -43,9 +42,8 @@ public class AccountDao implements IAccountDao {
     @Override
     public List<Account> getAll() throws SQLException, NamingException {
         List<Account> accounts = new ArrayList<>();
-        Connection connection = ConnectionFactory.getInstance().getConnection();
-        connection.setAutoCommit(false);
-        try (PreparedStatement ps = connection.prepareStatement(SqlQueries.ALL_ACCOUNTS.getConstant())) {
+        try (Connection connection = ConnectionFactory.getInstance().getConnection();
+             PreparedStatement ps = connection.prepareStatement(SqlQueries.ALL_ACCOUNTS.getConstant())) {
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     Account account = new Account();
@@ -53,15 +51,11 @@ public class AccountDao implements IAccountDao {
                     account.setUserId(rs.getInt(2));
                     account.setStatus(rs.getInt(3));
                     account.setWallet(rs.getInt(4));
-                    account.setWallet(rs.getInt(5));
+                    account.setPassword(rs.getString(5));
+                    account.setRole(rs.getInt(6));
                     accounts.add(account);
                 }
             }
-        } catch (SQLException e) {
-            Logger.getLogger(ServicesDao.class.getName()).log(Level.WARNING, e.getMessage(), e);
-            connection.rollback();
-        } finally {
-            connection.setAutoCommit(true);
         }
         return accounts;
     }
@@ -79,12 +73,13 @@ public class AccountDao implements IAccountDao {
             statement.executeUpdate();
             connection.commit();
         } catch (SQLException e) {
-            Logger.getLogger(ServicesDao.class.getName()).log(Level.WARNING, e.getMessage(), e);
             connection.rollback();
             return false;
         } finally {
             connection.setAutoCommit(true);
+            connection.close();
         }
+
         return true;
     }
 
@@ -97,11 +92,11 @@ public class AccountDao implements IAccountDao {
             statement.executeUpdate();
             connection.commit();
         } catch (SQLException e) {
-            Logger.getLogger(ServicesDao.class.getName()).log(Level.WARNING, e.getMessage(), e);
             connection.rollback();
             return false;
         } finally {
             connection.setAutoCommit(true);
+            connection.close();
         }
         return true;
     }
@@ -119,11 +114,11 @@ public class AccountDao implements IAccountDao {
             statement.executeUpdate();
             connection.commit();
         } catch (SQLException e) {
-            Logger.getLogger(ServicesDao.class.getName()).log(Level.WARNING, e.getMessage(), e);
             connection.rollback();
             return false;
         } finally {
             connection.setAutoCommit(true);
+            connection.close();
         }
         return true;
     }
@@ -139,14 +134,15 @@ public class AccountDao implements IAccountDao {
         }
         account.setPassword(String.valueOf(result));
         update(account);
+
         return true;
     }
 
     @Override
     public Account getUserId(int id) throws NamingException, SQLException {
         Account account = null;
-        Connection connection = ConnectionFactory.getInstance().getConnection();
-        try (Statement statement = connection.createStatement()) {
+        try (Connection connection = ConnectionFactory.getInstance().getConnection();
+             Statement statement = connection.createStatement()) {
             try (ResultSet rs = statement.executeQuery(SqlQueries.ALL_ACCOUNTS.getConstant())) {
                 while (rs.next()) {
                     if (rs.getInt(2) == id) {
@@ -160,9 +156,6 @@ public class AccountDao implements IAccountDao {
                     }
                 }
             }
-        } catch (SQLException e) {
-            Logger.getLogger(ServicesDao.class.getName()).log(Level.WARNING, e.getMessage(), e);
-            connection.rollback();
         }
         return account;
     }

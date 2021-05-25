@@ -14,7 +14,6 @@ import com.mixajlenko.epam.finaltask.ispsystem.service.UserService;
 
 import org.apache.log4j.Logger;
 
-
 import javax.naming.NamingException;
 import java.sql.SQLException;
 import java.util.List;
@@ -29,39 +28,67 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public User getById(Integer id) {
-        return null;
-    }
-
-    @Override
-    public boolean add(User entity) throws SQLException, NamingException {
+    public List<User> getAll() throws SQLException, NamingException {
         try {
-            userDao.add(entity);
-            logger.info("User was added");
-            return true;
+            return userDao.getAll();
         } catch (DataBaseException e) {
             throw new ServiceException(e);
         }
     }
 
     @Override
-    public User update(User entity) {
-        return null;
+    public User getById(Integer id) throws SQLException, NamingException {
+        try {
+            return userDao.getById(id);
+        } catch (DataBaseException e) {
+            throw new ServiceException(e);
+        }
     }
 
     @Override
-    public boolean delete(Integer id) {
-        return false;
+    public boolean add(User entity) throws SQLException, NamingException {
+        try {
+            return userDao.add(entity);
+        } catch (DataBaseException e) {
+            throw new ServiceException(e);
+        }
     }
 
     @Override
-    public boolean setUserService(User user, int servicePlanId) throws SQLException {
-        return false;
+    public User update(User entity) throws SQLException, NamingException {
+        try {
+            userDao.update(entity);
+            return entity;
+        } catch (DataBaseException e) {
+            throw new ServiceException(e);
+        }
     }
 
     @Override
-    public List<Service> getUserService(int userId) {
-        return null;
+    public boolean delete(Integer id) throws SQLException, NamingException {
+        try {
+            return userDao.delete(id);
+        } catch (DataBaseException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public boolean setUserService(User user, int servicePlanId) throws SQLException, NamingException {
+        try {
+            return userDao.setUserService(user, servicePlanId);
+        } catch (DataBaseException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public List<Service> getUserService(int userId) throws SQLException, NamingException {
+        try {
+            return userDao.getUserService(userId);
+        } catch (DataBaseException e) {
+            throw new ServiceException(e);
+        }
     }
 
     @Override
@@ -72,8 +99,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserByEmail(String email) throws SQLException, NamingException {
         try {
-            User user = userDao.getUserByEmail(email);
-            return user;
+            return userDao.getUserByEmail(email);
         } catch (DataBaseException e) {
             throw new ServiceException(e);
         }

@@ -1,5 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <head>
     <title>ISPAdmin: Services</title>
@@ -20,24 +19,22 @@
             <div class="u-container-layout u-container-layout-2">
                 <h2 class="u-align-center u-text u-text-3">Services</h2>
                 <div class="u-align-center u-form u-form-1">
-                    <table border="1">
-                        <tr>
-                            <td>id</td>
-                            <td>name</td>
-                            <td>description</td>
-                            <td>price</td>
-                            <td>update</td>
-                        </tr>
-                    <c:forEach items="${tariffs}" var="item">
-                        <tr>
-                            <td>${item.id}</td>
-                            <td>${item.name}</td>
-                            <td>${item.description}</td>
-                            <td>${item.price}</td>
-                            <td><a href="${pageContext.request.contextPath}/view/admin/manageTariff?id=${item.id}&name=${item.name}&description=${item.description}&price=${item.price}">update</a></td>
-                        </tr>
-                    </c:forEach>
-                    </table>
+                    <form method="post" action="${pageContext.request.contextPath}/view/admin/manageTariff">
+                        <input type="hidden" name="id" value="${id}">
+                        <input type="text" name="id" value="${id}">
+                        <br>
+                        name:<br>
+                        <input type="text" name="name" value="${name}">
+                        <br>
+                        description:<br>
+                        <input type="text" name="description" value="${description}">
+                        <br>
+                        price:<br>
+                        <input type="text" name="price" value="${price}">
+                        <br>
+                        <br>
+                        <input type="submit" value="submit">
+                    </form>
                 </div>
             </div>
         </div>

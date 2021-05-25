@@ -6,7 +6,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
-
 import java.io.IOException;
 
 public abstract class CommandUtil {

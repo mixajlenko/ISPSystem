@@ -10,9 +10,9 @@ import java.util.List;
 
 public interface UserService extends ItemService<Integer, User> {
 
-    boolean setUserService(User user, int servicePlanId) throws SQLException;
+    boolean setUserService(User user, int servicePlanId) throws SQLException, NamingException;
 
-    List<Service> getUserService(int userId);
+    List<Service> getUserService(int userId) throws SQLException, NamingException;
 
     User getUserByName(String name);
 

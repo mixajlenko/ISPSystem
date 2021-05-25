@@ -13,7 +13,6 @@ import org.apache.log4j.Logger;
 
 import java.io.IOException;
 
-
 public class Controller extends HttpServlet {
     private static Logger logger = Logger.getLogger(Controller.class);
 

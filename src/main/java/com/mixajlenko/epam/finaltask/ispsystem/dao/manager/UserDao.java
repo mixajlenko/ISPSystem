@@ -12,10 +12,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 public class UserDao implements IUserDao {
+
+    private static Logger logger = Logger.getLogger(UserDao.class);
 
     @Override
     public User getById(Integer id) throws SQLException, NamingException {
@@ -36,8 +37,9 @@ public class UserDao implements IUserDao {
                 }
             }
         } catch (SQLException e) {
-            Logger.getLogger(ServicesDao.class.getName()).log(Level.WARNING, e.getMessage(), e);
             connection.rollback();
+        } finally {
+            connection.close();
         }
         return user;
     }
@@ -61,10 +63,10 @@ public class UserDao implements IUserDao {
                 }
             }
         } catch (SQLException e) {
-            Logger.getLogger(ServicesDao.class.getName()).log(Level.WARNING, e.getMessage(), e);
             connection.rollback();
         } finally {
             connection.setAutoCommit(true);
+            connection.close();
         }
         return users;
     }
@@ -83,11 +85,11 @@ public class UserDao implements IUserDao {
             statement.executeUpdate();
             connection.commit();
         } catch (SQLException e) {
-            Logger.getLogger(ServicesDao.class.getName()).log(Level.WARNING, e.getMessage(), e);
             connection.rollback();
             return false;
         } finally {
             connection.setAutoCommit(true);
+            connection.close();
         }
         return true;
     }
@@ -101,11 +103,11 @@ public class UserDao implements IUserDao {
             statement.executeUpdate();
             connection.commit();
         } catch (SQLException e) {
-            Logger.getLogger(ServicesDao.class.getName()).log(Level.WARNING, e.getMessage(), e);
             connection.rollback();
             return false;
         } finally {
             connection.setAutoCommit(true);
+            connection.close();
         }
         return true;
     }
@@ -123,11 +125,11 @@ public class UserDao implements IUserDao {
             statement.executeUpdate();
             connection.commit();
         } catch (SQLException e) {
-            Logger.getLogger(ServicesDao.class.getName()).log(Level.WARNING, e.getMessage(), e);
             connection.rollback();
             return false;
         } finally {
             connection.setAutoCommit(true);
+            connection.close();
         }
         return true;
     }
@@ -149,9 +151,10 @@ public class UserDao implements IUserDao {
             statement.executeUpdate();
             connection.commit();
         } catch (NamingException e) {
-            Logger.getLogger(TariffDao.class.getName()).log(Level.WARNING, e.getMessage(), e);
             connection.rollback();
             return false;
+        } finally {
+            connection.close();
         }
         return true;
     }
@@ -174,6 +177,8 @@ public class UserDao implements IUserDao {
             }
         } catch (SQLException e) {
             return Collections.emptyList();
+        } finally {
+            connection.close();
         }
         return services;
     }
@@ -196,6 +201,8 @@ public class UserDao implements IUserDao {
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        } finally {
+            connection.close();
         }
         return user;
     }
@@ -218,7 +225,33 @@ public class UserDao implements IUserDao {
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        } finally {
+            connection.close();
         }
         return user;
+    }
+
+    @Override
+    public List<User> getAllUsers() throws NamingException, SQLException {
+        List<User> users = new ArrayList<>();
+        User user;
+        try (Connection connection = ConnectionFactory.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(SqlQueries.ALL_USERS.getConstant())) {
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    user = new User();
+                    user.setId(resultSet.getInt(1));
+                    user.setFirstName(resultSet.getString(2));
+                    user.setSecondName(resultSet.getString(6));
+                    user.setPhone(resultSet.getString(3));
+                    user.setEmail(resultSet.getString(4));
+                    user.setRoleId(resultSet.getInt(5));
+                    users.add(user);
+                }
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return users;
     }
 }

@@ -6,27 +6,35 @@ import com.mixajlenko.epam.finaltask.ispsystem.dao.factory.DaoFactory;
 import com.mixajlenko.epam.finaltask.ispsystem.exception.DataBaseException;
 import com.mixajlenko.epam.finaltask.ispsystem.exception.ServiceException;
 import com.mixajlenko.epam.finaltask.ispsystem.model.Account;
-import com.mixajlenko.epam.finaltask.ispsystem.model.User;
+
 import com.mixajlenko.epam.finaltask.ispsystem.service.IAccountService;
 import org.apache.log4j.Logger;
 
 import javax.naming.NamingException;
 import java.sql.SQLException;
+import java.util.List;
 
 public class AccountServiceImpl implements IAccountService {
 
-    private static Logger logger = Logger.getLogger(UserServiceImpl.class);
+    private static Logger logger = Logger.getLogger(AccountServiceImpl.class);
 
     private final DaoFactory daoFactory = DaoFactory.getInstance();
     private IAccountDao accountDao = daoFactory.getAccountDao();
 
     @Override
-    public Account getById(Integer id) throws SQLException, NamingException {
-        Account account;
+    public List<Account> getAll() throws SQLException, NamingException {
         try {
-            account = accountDao.getById(id);
+            return accountDao.getAll();
+        } catch (DataBaseException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public Account getById(Integer id) throws SQLException, NamingException {
+        try {
             logger.info("Account founded");
-            return account;
+            return accountDao.getById(id);
         } catch (DataBaseException e) {
             throw new ServiceException(e);
         }
@@ -44,24 +52,43 @@ public class AccountServiceImpl implements IAccountService {
     }
 
     @Override
-    public Account update(Account entity) {
-        return null;
+    public Account update(Account entity) throws SQLException, NamingException {
+        try {
+            accountDao.update(entity);
+            return entity;
+        } catch (DataBaseException e) {
+            throw new ServiceException(e);
+        }
     }
 
     @Override
-    public boolean delete(Integer id) {
-        return false;
+    public boolean delete(Integer id) throws SQLException, NamingException {
+        try {
+            accountDao.delete(id);
+            return true;
+        } catch (DataBaseException e) {
+            throw new ServiceException(e);
+        }
     }
 
     @Override
     public Account getUserId(int id) throws SQLException, NamingException {
-        Account account;
         try {
-            account = accountDao.getUserId(id);
             logger.info("Account founded");
-            return account;
+            return accountDao.getUserId(id);
         } catch (DataBaseException e) {
             throw new ServiceException(e);
         }
+    }
+
+    @Override
+    public int blockedAccounts(List<Account> accounts) {
+        logger.info("get blockedAccounts");
+        int result = 0;
+        for (Account account : accounts) {
+            if (account.getStatus() == 0)
+                result++;
+        }
+        return result;
     }
 }

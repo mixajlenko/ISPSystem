@@ -1,7 +1,6 @@
 package com.mixajlenko.epam.finaltask.ispsystem.controller.command.commandfactory;
 
 import com.mixajlenko.epam.finaltask.ispsystem.controller.command.*;
-import com.mixajlenko.epam.finaltask.ispsystem.controller.command.utils.CommandUtil;
 import com.mixajlenko.epam.finaltask.ispsystem.controller.command.utils.Operation;
 import com.mixajlenko.epam.finaltask.ispsystem.exception.NotFoundOperationException;
 import org.apache.log4j.Logger;
@@ -19,7 +18,15 @@ public class CommandFactory {
         allKnownCommandMap.put(Operation.REGISTRATION, new RegistrationCommand());
         allKnownCommandMap.put(Operation.LOGOUT, new LogoutCommand());
         allKnownCommandMap.put(Operation.ADMIN_MENU, new AdminMenuCommand());
+        allKnownCommandMap.put(Operation.ADMIN_SERVICES, new AdminServiceCommand());
         allKnownCommandMap.put(Operation.CLIENT_MENU, new ClientMenuCommand());
+        allKnownCommandMap.put(Operation.ADMIN_MANAGE_PLAN, new ManagePlanCommand());
+        allKnownCommandMap.put(Operation.CHANGE_PASS, new ChangePassCommand());
+        allKnownCommandMap.put(Operation.CLIENT_SERVICES, new ClientServiceCommand());
+        allKnownCommandMap.put(Operation.PAYMENT_SYSTEM_PAGE, new PaymentSysCommand());
+        allKnownCommandMap.put(Operation.SUPPORT_PAGE, new SupportCommand());
+        allKnownCommandMap.put(Operation.ADMIN_USERS, new AdminUserCommand());
+        allKnownCommandMap.put(Operation.ADMIN_MANAGE_TARIFF, new AdminManageTariffCommand());
     }
 
 

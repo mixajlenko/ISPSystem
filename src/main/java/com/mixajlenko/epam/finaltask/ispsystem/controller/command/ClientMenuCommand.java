@@ -11,11 +11,6 @@ public class ClientMenuCommand implements ICommand {
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) {
-        User user = (User) req.getSession().getAttribute("user");
-        logger.info("in page client");
-        if (user.getRoleId() == 0) {
-            String page = CommandUtil.getUserPageByRole(0);
-            CommandUtil.goToPage(req, resp, page);
-        }
+        CommandUtil.goToPage(req, resp, "/WEB-INF/view/client/mainPageUser.jsp");
     }
 }
