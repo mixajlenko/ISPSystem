@@ -21,12 +21,13 @@ public class CommandFactory {
         allKnownCommandMap.put(Operation.ADMIN_SERVICES, new AdminServiceCommand());
         allKnownCommandMap.put(Operation.CLIENT_MENU, new ClientMenuCommand());
         allKnownCommandMap.put(Operation.ADMIN_MANAGE_PLAN, new ManagePlanCommand());
-        allKnownCommandMap.put(Operation.CHANGE_PASS, new ChangePassCommand());
+        allKnownCommandMap.put(Operation.CLIENT_MANAGE_PROFILE, new ClientManageProfileCommand());
         allKnownCommandMap.put(Operation.CLIENT_SERVICES, new ClientServiceCommand());
         allKnownCommandMap.put(Operation.PAYMENT_SYSTEM_PAGE, new PaymentSysCommand());
         allKnownCommandMap.put(Operation.SUPPORT_PAGE, new SupportCommand());
         allKnownCommandMap.put(Operation.ADMIN_USERS, new AdminUserCommand());
-        allKnownCommandMap.put(Operation.ADMIN_MANAGE_TARIFF, new AdminManageTariffCommand());
+        allKnownCommandMap.put(Operation.ADMIN_MANAGE_TARIFF, new AdminAddTariffCommand());
+        allKnownCommandMap.put(Operation.ADMIN_MANAGE_USER, new AdminRegistrationUserCommand());
     }
 
 

@@ -13,17 +13,15 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import javax.naming.NamingException;
-
 import java.sql.SQLException;
 import java.util.Objects;
 
-public class RegistrationCommand implements ICommand {
+public class AdminRegistrationUserCommand implements ICommand{
 
-    private static Logger logger = Logger.getLogger(RegistrationCommand.class);
+    private static Logger logger = Logger.getLogger(AdminRegistrationUserCommand.class);
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) {
-
         logger.info("Start execution registration");
 
         ServiceFactory factory = ServiceFactory.getInstance();
@@ -31,7 +29,7 @@ public class RegistrationCommand implements ICommand {
         String email = request.getParameter("email");
         String phone = request.getParameter("phone");
         String password = request.getParameter("password");
-        String role = request.getParameter("admin");
+
 
         logger.info("email =" + email);
         logger.info("phone =" + phone);
@@ -51,32 +49,23 @@ public class RegistrationCommand implements ICommand {
 
             IUserService IUserService = factory.getUserService();
 
-            String fName = request.getParameter("firstName");
-            String sName = request.getParameter("secondName");
+            String fName = request.getParameter("fName");
+            String sName = request.getParameter("sName");
 
-            logger.info("fName =" + fName);
-            logger.info("sName =" + sName);
-
-            User user = new User(fName, sName, phone, email, 0, 0, password);
+            User user = new User(fName, sName, phone, email, 0,0,password);
 
             logger.info(user.toString());
             user.setRole(1);
             IUserService.add(user);
 
-            user = IUserService.getByLoginAndPass(email, password);
-
-            request.getSession().setAttribute("user", user);
-
-            String page = CommandUtil.getUserPageByRole(1);
-
-            CommandUtil.goToPage(request, response, page);
+            CommandUtil.goToPage(request, response, "/view/admin/userPageAdmin");
 
         } catch (ServiceException e) {
             request.setAttribute("notFound", true);
-            CommandUtil.goToPage(request, response, "/WEB-INF/view/registration.jsp");
+            CommandUtil.goToPage(request, response, "/WEB-INF/view/admin/manageUsers.jsp");
         } catch (WrongDataException e) {
             request.setAttribute("wrongData", false);
-            CommandUtil.goToPage(request, response, "/WEB-INF/view/registration.jsp");
+            CommandUtil.goToPage(request, response, "/WEB-INF/view/admin/manageUsers.jsp");
         } catch (NotFoundUserException e) {
             logger.error("Not found user");
         } catch (SQLException | NamingException throwables) {

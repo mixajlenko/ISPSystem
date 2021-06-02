@@ -37,8 +37,7 @@ public class TariffServiceImpl implements ITariffService {
     @Override
     public boolean add(Tariff entity) throws SQLException, NamingException {
         try {
-            tariffDao.add(entity);
-            return true;
+            return tariffDao.add(entity);
         } catch (DataBaseException e) {
             throw new ServiceException(e);
         }
@@ -78,6 +77,15 @@ public class TariffServiceImpl implements ITariffService {
     public List<Tariff> getServiceTariff(int serviceId) throws SQLException, NamingException {
         try {
             return tariffDao.getServiceTariff(serviceId);
+        } catch (DataBaseException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public Tariff getByName(String name) throws SQLException, NamingException {
+        try {
+            return tariffDao.getByName(name);
         } catch (DataBaseException e) {
             throw new ServiceException(e);
         }

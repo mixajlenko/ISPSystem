@@ -19,6 +19,8 @@ public abstract class DaoFactory {
 
     public abstract IUserDao getUserDao();
 
-    public abstract IAccountDao getAccountDao();
+    public abstract IPaymentsDao getPaymentDao();
+
+    public abstract IUserTariffDao getUserTariffDao();
 
 }

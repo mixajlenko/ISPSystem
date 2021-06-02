@@ -6,11 +6,21 @@ public enum SqlQueries {
 
     ALL_USERS("SELECT * FROM \"USER\""),
 
+    ALL_PAYMENTS("SELECT * FROM \"PAYMENT\""),
+
     ALL_TARIFFS("SELECT * FROM \"TARIFF\""),
 
     ALL_ACCOUNTS("SELECT * FROM \"ACCOUNT\""),
 
     ALL_SERVICE_TARIFF("SELECT * FROM \"SERVICE_TARIFF\""),
+
+    ALL_USER_TARIFF("SELECT * FROM \"USERS_PLAN\""),
+
+    ALL_USER_TARIFF_BY_ID("SELECT * FROM \"USERS_PLAN\" WHERE ID = ?"),
+
+    ALL_USER_TARIFF_BY_USER_ID("SELECT * FROM \"USERS_PLAN\" WHERE USER_ID = ?"),
+
+    ALL_USER_TARIFF_BY_TARIFF_ID_USER_ID("SELECT * FROM \"USERS_PLAN\" WHERE TARIFF_ID = ? AND USER_ID = ?"),
 
     SELECT_USER_BY_NAME("SELECT * FROM \"USER\" WHERE FIRSTNAME = ?"),
 
@@ -34,6 +44,10 @@ public enum SqlQueries {
 
     DELETE_FROM_USER("DELETE FROM \"USER\" WHERE ID = ?"),
 
+    DELETE_FROM_USER_PLAN("DELETE FROM \"USERS_PLAN\" WHERE ID = ?"),
+
+    DELETE_FROM_PAYMENT("DELETE FROM \"PAYMENT\" WHERE ID = ?"),
+
     DELETE_FROM_TARIFF("DELETE FROM \"TARIFF\" WHERE ID = ?"),
 
     DELETE_FROM_ACCOUNT("DELETE FROM \"ACCOUNT\" WHERE ID = ?"),
@@ -42,38 +56,35 @@ public enum SqlQueries {
 
     INSERT_ACCOUNT("INSERT INTO \"ACCOUNT\"(user_id, status, wallet, password, role) VALUES (?,?,?,?,?)"),
 
-    INSERT_USER("INSERT INTO \"USER\"(\"firstName\",\"secondName\", phone, email, role_id) VALUES (?,?,?,?,?)"),
+    INSERT_USER("INSERT INTO \"USER\"(\"firstName\", phone, email, \"secondName\", wallet, status, password, role)  VALUES (?,?,?,?,?,?,?,?)"),
 
-    INSERT_TARIFF("INSERT INTO \"TARIFF\" VALUES (?,?,?)"),
+    INSERT_TARIFF("INSERT INTO \"TARIFF\"(name, description, price) VALUES (?,?,?)"),
 
-    INSERT_SERVICE_TARIFF("INSERT INTO \"SERVICE_TARIFF\" VALUES(?,?,?)"),
+    INSERT_PAYMENT("INSERT INTO \"PAYMENT\"(user_id, bill, status, balance, date) VALUES (?,?,?,?,?)"),
 
-    INSERT_USERS_PLAN("INSERT INTO \"USERS_PLAN\" VALUES(?,?,?,?)"),
+    INSERT_SERVICE_TARIFF("INSERT INTO \"SERVICE_TARIFF\"(service_id, tariff_id) VALUES(?,?)"),
+
+    INSERT_USERS_PLAN("INSERT INTO \"USERS_PLAN\"(user_id, tariff_id, \"subDate\", status, next_bill) VALUES(?,?,?,?,?)"),
 
     MAX_ID_SERVICE("SELECT MAX(ID) FROM \"SERVICE\""),
 
     UPDATE_SERVICE("UPDATE \"SERVICE\" SET NAME = ?, DESCRIPTION = ? WHERE ID = ?"),
 
-    UPDATE_USER("UPDATE \"USER\" SET FIRSTNAME = ?, SECONDNAME = ?, PHONE = ?, EMAIL = ?, role_id = ?  WHERE ID = ?"),
+    UPDATE_USER("UPDATE \"USER\" SET \"firstName\" = ?, \"secondName\" = ?, PHONE = ?, EMAIL = ?, WALLET = ?, ROLE = ?, STATUS = ?, PASSWORD = ?  WHERE ID = ?"),
+
+    UPDATE_PAYMENT("update \"PAYMENT\" set bill = ?, status = ?, balance = ?, date = ? where id = ?"),
+
+    UPDATE_PAYMENT_BY_USER_ID("update \"PAYMENT\" set bill = ?, status = ?, balance = ?, date = ? where user_id = ?"),
 
     UPDATE_TARIFF("UPDATE \"TARIFF\" SET NAME = ?, DESCRIPTION = ?, PRICE = ? WHERE ID = ?"),
 
-    UPDATE_ACCOUNT("UPDATE \"ACCOUNT\" SET ID_USER = ?, STATUS = ?, WALLET = ?, ROLE = ? WHERE ID = ?");
+    UPDATE_USER_TARIFF("UPDATE \"USERS_PLAN\" SET USER_ID = ?, TARIFF_ID = ?, \"subDate\" = ?, STATUS = ?, NEXT_BILL = ? WHERE ID = ?"),
 
+    UPDATE_USER_TARIFF_BY_TARIFF_ID("UPDATE \"USERS_PLAN\" SET USER_ID = ?, SET TARIFF_ID = ?, SET SUB_DATE = ?, SET STATUS = ?, NEXT_BILL = ? WHERE TARIFF_ID = ?"),
 
-//    ALL_USERS("SELECT * FROM USERS"),
-//
-//    ALL_TEAMS("SELECT * FROM TEAMS"),
-//
-//
-//    INSERT_TEAM("INSERT INTO TEAMS VALUES (?,?)"),
-//
-//    INSERT_USER_TEAMS("INSERT INTO USERS_TEAMS VALUES (?,?)"),
-//
-//
-//    MAX_ID_TEAM("SELECT MAX(ID) FROM TEAMS"),
-//
-//    FIND("SELECT ID, NAME FROM TEAMS WHERE ID IN (SELECT TEAM_ID FROM USERS_TEAMS WHERE USER_ID = ?)");
+    UPDATE_ACCOUNT("UPDATE \"ACCOUNT\" SET ID_USER = ?, STATUS = ?, WALLET = ?, ROLE = ? WHERE ID = ?"),
+
+    GET_PAYMENTS_BY_USER_ID("SELECT * FROM \"PAYMENT\" WHERE user_id = ?");
 
     private final String constant;
 

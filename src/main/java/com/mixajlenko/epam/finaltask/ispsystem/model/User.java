@@ -1,41 +1,54 @@
 package com.mixajlenko.epam.finaltask.ispsystem.model;
 
+import java.util.Comparator;
 import java.util.Objects;
 
 public class User extends Model {
 
     private int id;
-    private int roleId;
     private String firstName;
     private String secondName;
     private String phone;
     private String email;
+    private int status;
+    private int wallet;
+    private String password;
+    private int role;
 
     public User() {
     }
 
-    public User(String firstName, String secondName, String phone, String email) {
+    public User(String firstName, String secondName, String phone, String email, int status, int wallet, String password, int roleId) {
         this.firstName = firstName;
         this.secondName = secondName;
         this.phone = phone;
         this.email = email;
+        this.status = status;
+        this.wallet = wallet;
+        this.password = password;
+        this.role = roleId;
     }
 
-    public User(String firstName, String secondName, String phone, String email, int roleId) {
+    public User(String firstName, String secondName, String phone, String email, int status, int wallet, String password) {
         this.firstName = firstName;
         this.secondName = secondName;
         this.phone = phone;
         this.email = email;
-        this.roleId = roleId;
+        this.status = status;
+        this.wallet = wallet;
+        this.password = password;
     }
 
-    public User(int id, String firstName, String secondName, String phone, String email, int roleId) {
+    public User(int id, String firstName, String secondName, String phone, String email, int status, int wallet, String password, int roleId) {
         super(id);
         this.firstName = firstName;
         this.secondName = secondName;
         this.phone = phone;
         this.email = email;
-        this.roleId = roleId;
+        this.status = status;
+        this.wallet = wallet;
+        this.password = password;
+        this.role = roleId;
     }
 
 
@@ -79,12 +92,36 @@ public class User extends Model {
         this.email = email;
     }
 
-    public int getRoleId() {
-        return roleId;
+    public int getStatus() {
+        return status;
     }
 
-    public void setRoleId(int roleId) {
-        this.roleId = roleId;
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public int getWallet() {
+        return wallet;
+    }
+
+    public void setWallet(int wallet) {
+        this.wallet = wallet;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
     }
 
     @Override
@@ -92,23 +129,47 @@ public class User extends Model {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id == user.id && roleId == user.roleId && Objects.equals(firstName, user.firstName) && Objects.equals(secondName, user.secondName) && Objects.equals(phone, user.phone) && Objects.equals(email, user.email);
+        return id == user.id && status == user.status && wallet == user.wallet && role == user.role && Objects.equals(firstName, user.firstName) && Objects.equals(secondName, user.secondName) && Objects.equals(phone, user.phone) && Objects.equals(email, user.email) && Objects.equals(password, user.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, roleId, firstName, secondName, phone, email);
+        return Objects.hash(id, firstName, secondName, phone, email, status, wallet, password, role);
     }
 
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", role_id=" + roleId +
                 ", firstName='" + firstName + '\'' +
                 ", secondName='" + secondName + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
+                ", status=" + status +
+                ", wallet=" + wallet +
+                ", password='" + password + '\'' +
+                ", role=" + role +
                 '}';
+    }
+
+    public static class FirstNameComparator implements Comparator<User> {
+        @Override
+        public int compare(User p1, User p2) {
+            return p1.getFirstName().compareTo(p2.getFirstName());
+        }
+    }
+
+    public static class SecondNameComparator implements Comparator<User> {
+        @Override
+        public int compare(User p1, User p2) {
+            return p1.getSecondName().compareTo(p2.getSecondName());
+        }
+    }
+
+    public static class PhoneComparator implements Comparator<User> {
+        @Override
+        public int compare(User p1, User p2) {
+            return p1.getPhone().compareTo(p2.getPhone());
+        }
     }
 }

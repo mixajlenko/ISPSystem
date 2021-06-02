@@ -1,5 +1,6 @@
 package com.mixajlenko.epam.finaltask.ispsystem.model;
 
+import java.util.Comparator;
 import java.util.Objects;
 
 public class Tariff extends Model {
@@ -78,5 +79,26 @@ public class Tariff extends Model {
                 ", description='" + description + '\'' +
                 ", price=" + price +
                 '}';
+    }
+
+    public static class NameComparator implements Comparator<Tariff> {
+        @Override
+        public int compare(Tariff p1, Tariff p2) {
+            return p1.getName().compareTo(p2.getName());
+        }
+    }
+
+    public static class NameReverseComparator implements Comparator<Tariff> {
+        @Override
+        public int compare(Tariff p1, Tariff p2) {
+            return p2.getName().compareTo(p1.getName());
+        }
+    }
+
+    public static class PriceComparator implements Comparator<Tariff> {
+        @Override
+        public int compare(Tariff p1, Tariff p2) {
+            return Integer.compare(p1.getPrice(), p2.getPrice());
+        }
     }
 }

@@ -12,4 +12,6 @@ public interface ITariffService extends ItemService<Integer, Tariff> {
 
     List<Tariff> getServiceTariff(int serviceId) throws SQLException, NamingException;
 
+    Tariff getByName(String name) throws SQLException, NamingException;
+
 }

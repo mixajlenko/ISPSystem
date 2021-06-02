@@ -1,8 +1,8 @@
 package com.mixajlenko.epam.finaltask.ispsystem.controller.command;
 
 import com.mixajlenko.epam.finaltask.ispsystem.controller.command.utils.CommandUtil;
-import com.mixajlenko.epam.finaltask.ispsystem.model.Account;
-import com.mixajlenko.epam.finaltask.ispsystem.service.IAccountService;
+import com.mixajlenko.epam.finaltask.ispsystem.model.User;
+import com.mixajlenko.epam.finaltask.ispsystem.service.IUserService;
 import com.mixajlenko.epam.finaltask.ispsystem.service.factory.ServiceFactory;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -20,11 +20,11 @@ public class AdminMenuCommand implements ICommand {
     public void execute(HttpServletRequest req, HttpServletResponse resp) {
         ServiceFactory factory = ServiceFactory.getInstance();
         try {
-            IAccountService accountService = factory.getAccountService();
-            List<Account> accounts = accountService.getAll();
-            req.setAttribute("blocked", accountService.blockedAccounts(accounts));
-            req.setAttribute("active", accounts.size() - accountService.blockedAccounts(accounts));
-            req.setAttribute("users", accounts.size());
+            IUserService userService = factory.getUserService();
+            List<User> users = userService.getAll();
+            req.setAttribute("blocked", userService.blockedAccounts(users));
+            req.setAttribute("active", users.size() - userService.blockedAccounts(users));
+            req.setAttribute("users", users.size());
         } catch (NamingException | SQLException e) {
             e.printStackTrace();
         }

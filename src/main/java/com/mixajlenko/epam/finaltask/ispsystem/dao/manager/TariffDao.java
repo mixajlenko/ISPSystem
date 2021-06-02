@@ -8,7 +8,9 @@ import com.mixajlenko.epam.finaltask.ispsystem.dao.queries.SqlQueries;
 import javax.naming.NamingException;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+
 import org.apache.log4j.Logger;
 
 public class TariffDao implements ITariffDao {
@@ -122,15 +124,9 @@ public class TariffDao implements ITariffDao {
     public boolean setServiceTariff(int serviceId, int tariffId) throws SQLException, NamingException {
         Connection connection = ConnectionFactory.getInstance().getConnection();
         connection.setAutoCommit(false);
-        int id;
         try (PreparedStatement statement = connection.prepareStatement(SqlQueries.INSERT_SERVICE_TARIFF.getConstant())) {
-            try (ResultSet resultSet = connection.createStatement().executeQuery(SqlQueries.COUNT_SERVICE_TARIFF_ROWS.getConstant())) {
-                resultSet.next();
-                id = resultSet.getInt(1) + 1;
-            }
-            statement.setInt(1, id);
-            statement.setInt(2, serviceId);
-            statement.setInt(3, getById(tariffId).getId());
+            statement.setInt(1, serviceId);
+            statement.setInt(2, getById(tariffId).getId());
             statement.executeUpdate();
             connection.commit();
         } catch (NamingException e) {
@@ -161,5 +157,32 @@ public class TariffDao implements ITariffDao {
         }
         return tariffs;
     }
+
+    @Override
+    public Tariff getByName(String name) throws NamingException, SQLException {
+        Tariff tariff = null;
+        Connection connection = ConnectionFactory.getInstance().getConnection();
+        try (Statement statement = connection.createStatement()) {
+            try (ResultSet rs = statement.executeQuery(SqlQueries.ALL_TARIFFS.getConstant())) {
+                while (rs.next()) {
+                    if (rs.getString(2).equals(name)) {
+                        tariff = new Tariff();
+                        tariff.setId(rs.getInt(1));
+                        tariff.setName(rs.getString(2));
+                        tariff.setDescription(rs.getString(3));
+                        tariff.setPrice(rs.getInt(4));
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            connection.rollback();
+        } finally {
+            connection.close();
+        }
+        return tariff;
+    }
+
+
+
 
 }

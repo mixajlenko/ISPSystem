@@ -1,8 +1,11 @@
 package com.mixajlenko.epam.finaltask.ispsystem.dao.manager;
 
+import com.mixajlenko.epam.finaltask.ispsystem.controller.command.utils.CommandUtil;
 import com.mixajlenko.epam.finaltask.ispsystem.dao.connection.ConnectionFactory;
 import com.mixajlenko.epam.finaltask.ispsystem.dao.IUserDao;
+import com.mixajlenko.epam.finaltask.ispsystem.model.Payment;
 import com.mixajlenko.epam.finaltask.ispsystem.model.Service;
+import com.mixajlenko.epam.finaltask.ispsystem.model.Tariff;
 import com.mixajlenko.epam.finaltask.ispsystem.model.User;
 import com.mixajlenko.epam.finaltask.ispsystem.dao.queries.SqlQueries;
 
@@ -12,6 +15,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
 import org.apache.log4j.Logger;
 
 public class UserDao implements IUserDao {
@@ -29,10 +33,13 @@ public class UserDao implements IUserDao {
                         user = new User();
                         user.setId(id);
                         user.setFirstName(rs.getString(2));
-                        user.setSecondName(rs.getString(6));
+                        user.setSecondName(rs.getString(5));
                         user.setPhone(rs.getString(3));
                         user.setEmail(rs.getString(4));
-                        user.setRoleId(rs.getInt(5));
+                        user.setRole(rs.getInt(9));
+                        user.setWallet(rs.getInt(6));
+                        user.setStatus(rs.getInt(7));
+                        user.setPassword(rs.getString(8));
                     }
                 }
             }
@@ -55,10 +62,13 @@ public class UserDao implements IUserDao {
                     User user = new User();
                     user.setId(rs.getInt(1));
                     user.setFirstName(rs.getString(2));
-                    user.setSecondName(rs.getString(6));
+                    user.setSecondName(rs.getString(5));
                     user.setPhone(rs.getString(3));
                     user.setEmail(rs.getString(4));
-                    user.setRoleId(rs.getInt(5));
+                    user.setRole(rs.getInt(9));
+                    user.setWallet(rs.getInt(6));
+                    user.setStatus(rs.getInt(7));
+                    user.setPassword(rs.getString(8));
                     users.add(user);
                 }
             }
@@ -80,8 +90,11 @@ public class UserDao implements IUserDao {
             statement.setString(2, entity.getSecondName());
             statement.setString(3, entity.getPhone());
             statement.setString(4, entity.getEmail());
-            statement.setInt(5, entity.getRoleId());
-            statement.setInt(6, entity.getId());
+            statement.setInt(5, entity.getWallet());
+            statement.setInt(6, entity.getRole());
+            statement.setInt(7, entity.getStatus());
+            statement.setString(8, entity.getPassword());
+            statement.setInt(9, entity.getId());
             statement.executeUpdate();
             connection.commit();
         } catch (SQLException e) {
@@ -118,10 +131,13 @@ public class UserDao implements IUserDao {
         connection.setAutoCommit(false);
         try (PreparedStatement statement = connection.prepareStatement(SqlQueries.INSERT_USER.getConstant())) {
             statement.setString(1, entity.getFirstName());
-            statement.setString(2, entity.getSecondName());
-            statement.setString(3, entity.getPhone());
-            statement.setString(4, entity.getEmail());
-            statement.setInt(5, entity.getRoleId());
+            statement.setString(4, entity.getSecondName());
+            statement.setString(2, entity.getPhone());
+            statement.setString(3, entity.getEmail());
+            statement.setInt(5, entity.getWallet());
+            statement.setInt(6, entity.getStatus());
+            statement.setString(7, entity.getPassword());
+            statement.setInt(8, entity.getRole());
             statement.executeUpdate();
             connection.commit();
         } catch (SQLException e) {
@@ -135,74 +151,25 @@ public class UserDao implements IUserDao {
     }
 
     @Override
-    public boolean setUserService(User user, int servicePlanId) throws SQLException, NamingException {
-        Connection connection = ConnectionFactory.getInstance().getConnection();
-        connection.setAutoCommit(false);
-        int id;
-        try (PreparedStatement statement = connection.prepareStatement(SqlQueries.INSERT_USERS_PLAN.getConstant())) {
-            try (ResultSet resultSet = connection.createStatement().executeQuery(SqlQueries.COUNT_USERS_PLAN_ROWS.getConstant())) {
-                resultSet.next();
-                id = resultSet.getInt(1) + 1;
-            }
-            statement.setInt(1, id);
-            statement.setInt(2, getById(user.getId()).getId());
-            statement.setInt(3, servicePlanId);
-            statement.setDate(4, Date.valueOf(LocalDate.now()));
-            statement.executeUpdate();
-            connection.commit();
-        } catch (NamingException e) {
-            connection.rollback();
-            return false;
-        } finally {
-            connection.close();
-        }
-        return true;
-    }
-
-    @Override
-    public List<Service> getUserService(int userId) throws NamingException, SQLException {
-        Connection connection = ConnectionFactory.getInstance().getConnection();
-        List<Service> services = new ArrayList<>();
-        try (PreparedStatement statement = connection.prepareStatement(SqlQueries.ALL_SERVICE_TARIFF.getConstant())) {
-            try (ResultSet resultSet = statement.executeQuery()) {
-                Service service = new Service();
-                while (resultSet.next()) {
-                    if (resultSet.getInt(2) == userId) {
-                        service.setId(resultSet.getInt(1));
-                        service.setName(resultSet.getString(2));
-                        service.setDescription(resultSet.getString(3));
-                        services.add(service);
-                    }
-                }
-            }
-        } catch (SQLException e) {
-            return Collections.emptyList();
-        } finally {
-            connection.close();
-        }
-        return services;
-    }
-
-    @Override
     public User getUserByName(String name) throws NamingException, SQLException {
         User user = null;
-        Connection connection = ConnectionFactory.getInstance().getConnection();
-        try (PreparedStatement statement = connection.prepareStatement(SqlQueries.SELECT_USER_BY_NAME.getConstant())) {
+        try (Connection connection = ConnectionFactory.getInstance().getConnection(); PreparedStatement statement = connection.prepareStatement(SqlQueries.SELECT_USER_BY_NAME.getConstant())) {
             statement.setString(1, name);
             try (ResultSet resultSet = statement.executeQuery()) {
                 resultSet.next();
                 user = new User();
                 user.setId(resultSet.getInt(1));
                 user.setFirstName(resultSet.getString(2));
-                user.setSecondName(resultSet.getString(6));
+                user.setSecondName(resultSet.getString(5));
                 user.setPhone(resultSet.getString(3));
                 user.setEmail(resultSet.getString(4));
-                user.setRoleId(resultSet.getInt(5));
+                user.setRole(resultSet.getInt(9));
+                user.setWallet(resultSet.getInt(6));
+                user.setStatus(resultSet.getInt(7));
+                user.setPassword(resultSet.getString(8));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-        } finally {
-            connection.close();
         }
         return user;
     }
@@ -210,48 +177,25 @@ public class UserDao implements IUserDao {
     @Override
     public User getUserByEmail(String email) throws NamingException, SQLException {
         User user = null;
-        Connection connection = ConnectionFactory.getInstance().getConnection();
-        try (PreparedStatement statement = connection.prepareStatement(SqlQueries.SELECT_USER_BY_EMAIL.getConstant())) {
+        try (Connection connection = ConnectionFactory.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(SqlQueries.SELECT_USER_BY_EMAIL.getConstant())) {
             statement.setString(1, email);
             try (ResultSet resultSet = statement.executeQuery()) {
                 resultSet.next();
                 user = new User();
                 user.setId(resultSet.getInt(1));
                 user.setFirstName(resultSet.getString(2));
-                user.setSecondName(resultSet.getString(6));
+                user.setSecondName(resultSet.getString(5));
                 user.setPhone(resultSet.getString(3));
                 user.setEmail(resultSet.getString(4));
-                user.setRoleId(resultSet.getInt(5));
+                user.setRole(resultSet.getInt(9));
+                user.setWallet(resultSet.getInt(6));
+                user.setStatus(resultSet.getInt(7));
+                user.setPassword(resultSet.getString(8));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-        } finally {
-            connection.close();
         }
         return user;
-    }
-
-    @Override
-    public List<User> getAllUsers() throws NamingException, SQLException {
-        List<User> users = new ArrayList<>();
-        User user;
-        try (Connection connection = ConnectionFactory.getInstance().getConnection();
-             PreparedStatement statement = connection.prepareStatement(SqlQueries.ALL_USERS.getConstant())) {
-            try (ResultSet resultSet = statement.executeQuery()) {
-                while (resultSet.next()) {
-                    user = new User();
-                    user.setId(resultSet.getInt(1));
-                    user.setFirstName(resultSet.getString(2));
-                    user.setSecondName(resultSet.getString(6));
-                    user.setPhone(resultSet.getString(3));
-                    user.setEmail(resultSet.getString(4));
-                    user.setRoleId(resultSet.getInt(5));
-                    users.add(user);
-                }
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return users;
     }
 }

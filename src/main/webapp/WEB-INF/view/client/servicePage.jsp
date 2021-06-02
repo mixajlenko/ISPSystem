@@ -1,59 +1,143 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
+<html lang="java">
+
 <head>
-    <title>ServicesUser</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/nicepage.css" media="screen">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/template.css" media="screen">
+    <title>ISPManager: Services</title>
+
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/style.css" media="screen">
 </head>
-<body class="u-body">
-<section class="u-align-center u-clearfix u-hidden-md u-hidden-sm u-hidden-xs u-section-1" id="sec-be76">
-    <div class="u-clearfix u-sheet u-sheet-1">
-        <div class="u-container-style u-gradient u-group u-hidden-md u-hidden-sm u-hidden-xs u-group-1">
-            <div class="u-container-layout u-valign-middle-xl u-container-layout-1">
-                <h1 class="u-align-left u-text u-text-default u-text-1">ISPManager</h1>
-                <p class="u-text u-text-default u-text-2">Date/Time: <span id="datetime"></span></p>
-                <script src="${pageContext.request.contextPath}/js/time.js"></script>
+
+<body style="zoom: 80%">
+<div id="home"></div>
+<div class="ournet-inter-area">
+    <header id="header" class="header-area">
+
+        <div class="logoBlock">
+            <p id="pageLogo">ISPManager</p>
+            <div class="mainmenu">
+                <ul class="topChange" style="overflow: visible">
+                    <li><a class="btn"
+                           href="${pageContext.request.contextPath}/view/client/mainPageUser">Main page</a></li>
+                    <li><a class="btn"
+                           href="${pageContext.request.contextPath}/view/client/servicePage">Services<i
+                            class="fa fa-angle-down"></i></a>
+                        <ul class="subChange" style="overflow: visible">
+                            <c:forEach items="${services}" var="item" varStatus="status">
+                                <li>
+                                    <a href="${pageContext.request.contextPath}/view/client/servicePage?item=${item.name}&serviceId=${item.id}">${item.name}</a>
+                                </li>
+                            </c:forEach>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a class="btn"
+                           href="${pageContext.request.contextPath}/view/client/paymentSystemPage">Payments</a></li>
+                    <li><a class="btn"
+                           href="#">Manage profile<i class="fa fa-angle-down"></i></a>
+                        <ul class="subChange" id="profChange">
+                            <li><a href="${pageContext.request.contextPath}/view/client/profile?change=name">Name</a>
+                            </li>
+                            <li><a href="${pageContext.request.contextPath}/view/client/profile?change=email">Email</a>
+                            </li>
+                            <li><a href="${pageContext.request.contextPath}/view/client/profile?change=phone">Phone</a>
+                            </li>
+                            <li><a href="${pageContext.request.contextPath}/view/client/profile?change=password">Password</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a class="btn" href="${pageContext.request.contextPath}/view/client/supportPage">Support</a>
+                    </li>
+                    <li><a class="logOutBtn" href="${pageContext.request.contextPath}/view/logout">Log
+                        Out</a></li>
+                </ul>
             </div>
         </div>
-        <%--        <div class="u-border-1 u-border-grey-75 u-container-style u-group u-white u-group-2">--%>
-        <%--            <div class="u-container-layout u-container-layout-2">--%>
-        <%--                <h2 class="u-align-center u-text u-text-4">Services</h2>--%>
-        <%--                <h5 class="u-align-center u-text u-text-5">Available services</h5>--%>
-        <%--                <p class="u-align-left u-text u-text-6">service 1</p>--%>
-        <%--                <p class="u-align-left u-text u-text-7">add</p>--%>
-        <%--                <p class="u-align-left u-text u-text-8">service 2<br>--%>
-        <%--                </p>--%>
-        <%--                <p class="u-align-left u-text u-text-9">add</p>--%>
-        <%--            </div>--%>
-        <%--        </div>--%>
-        <div class="u-border-1 u-border-grey-75 u-container-style u-group u-white u-group-2">
-            <div class="u-container-layout u-container-layout-2">
-                <h2 class="u-align-center u-text ">Services</h2>
-                <p class="u-align-left u-text u-text-6">service 1</p>
-                <p class="u-align-left u-text u-text-7">add</p>
-                <p class="u-align-left u-text u-text-8">service 2<br>
-                </p>
-                <p class="u-align-left u-text u-text-9">add</p>
-            </div>
-        </div>
-        <div class="u-border-1 u-border-grey-75 u-container-style u-group u-hidden-md u-hidden-sm u-hidden-xs u-white u-group-3">
-            <div class="u-container-layout u-valign-top u-container-layout-3">
-                <a href="${pageContext.request.contextPath}/view/client/mainPageUser"
-                   class="u-border-0 u-btn u-button-style u-none u-text-palette-5-dark-1 u-btn-2">Main page</a>
-                <a href="${pageContext.request.contextPath}/view/client/servicePage"
-                   class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-5-dark-1 u-btn-2">Services</a>
-                <a href="${pageContext.request.contextPath}/view/client/paymentSystemPage"
-                   class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-5-dark-1 u-btn-3">Wallet</a>
-                <a href="${pageContext.request.contextPath}/view/client/changePassPage"
-                   class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-5-dark-1 u-btn-4">New
-                    password</a>
-                <a href="${pageContext.request.contextPath}/view/client/supportPage"
-                   class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-5-dark-1 u-btn-5">Support</a>
-                <a href="${pageContext.request.contextPath}/view/logout"
-                   class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-5-dark-1 u-btn-6">Log
-                    Out</a>
+        <div id="time"><span id="datetime"></span></div>
+    </header>
+    <!-- Slider area Start -->
+    <div class="slider-area">
+        <div class="slider-bg text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="slidertext">
+                            <h1>Services</h1>
+                        </div>
+                    </div>
+                    <div class="plansBlock">
+                        <div class="plansList singePlan">
+                            <h4>Complex plan</h4>
+                            <c:forEach var="complexTariff" items="${complex}" varStatus="status">
+                                <c:if test="${complexTariff.id == 1}">
+                                    <a class="plan" href="${pageContext.request.contextPath}/view/client/servicePage"
+                                       onclick="return confirm('TEST1')"><p class="planText">${complexTariff.name}</p>
+                                    </a>
+                                </c:if>
+                                <c:if test="${complexTariff.id == 2}">
+                                    <a class="plan" href="${pageContext.request.contextPath}/view/client/servicePage"
+                                       onclick="return confirm('TEST2')"><p class="planText">${complexTariff.name}</p>
+                                    </a>
+                                </c:if>
+                                <c:if test="${complexTariff.id == 3}">
+                                    <a class="plan" href="${pageContext.request.contextPath}/view/client/servicePage"
+                                       onclick="return confirm('TEST3')"><p class="planText">${complexTariff.name}</p>
+                                    </a>
+                                </c:if>
+                            </c:forEach>
+                        </div>
+                        <div class="plansList singePlan">
+                            <h4>Single plan</h4>
+                            <c:forEach items="${services}" var="item" varStatus="status">
+                                <a class="btn" id="serv" href="${pageContext.request.contextPath}/view/client/servicePage?item=${item.name}&serviceId=${item.id}">${item.name}</a>
+                            </c:forEach>
+                        </div>
+                        <c:choose>
+                        <c:when test="${showTariffs}">
+                        <div class="serviceBlock">
+                            <div class="mainmenuSort">
+                                <ul class="topSort">
+                                    <li><a class="btnSort">Sort ><i class="fa fa-angle-down"></i></a>
+                                        <ul class="subSort">
+                                            <li><a href="${pageContext.request.contextPath}/view/client/servicePage?item=${item}&serviceId=${paramId}&sort=name">A-Z</a></li>
+                                            <li><a href="${pageContext.request.contextPath}/view/client/servicePage?item=${item}&serviceId=${paramId}&sort=nameR">Z-A</a></li>
+                                            <li><a href="${pageContext.request.contextPath}/view/client/servicePage?item=${item}&serviceId=${paramId}&sort=price">Price</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <table class="tableService sortable">
+                                <thead>
+                                <tr>
+                                    <th class="sorttable_alpha">Name</th>
+                                    <th class="sorttable_alpha">Description</th>
+                                    <th class="sorttable_numeric">Price</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach items="${tariffs}" var="item">
+                                    <tr class="highlight">
+                                        <td>${item.name}</td>
+                                        <td><div id="descDiv">${item.description}</div></td>
+                                        <td>${item.price}</td>
+                                        <td id="endTd"><a class="updateButton" id="subscribeButton" href="${pageContext.request.contextPath}/view/client/servicePage?tariffId=${item.id}" onclick="return confirm('Confirm ${item.name} subscription?')">Subscribe</a></td>
+                                    </tr>
+                                </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    </c:when>
+                    </c:choose>
+                </div>
             </div>
         </div>
     </div>
-</section>
+</div>
+</div>
+<script src="${pageContext.request.contextPath}/styles/js/time.js"></script>
+<script src="${pageContext.request.contextPath}/styles/js/jquery-3.2.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/styles/js/rowLight.js"></script>
+<script src="${pageContext.request.contextPath}/styles/js/sorttable.js"></script>
 </body>
 </html>

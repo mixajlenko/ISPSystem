@@ -1,23 +1,18 @@
 package com.mixajlenko.epam.finaltask.ispsystem.service.factory;
 
-import com.mixajlenko.epam.finaltask.ispsystem.service.IAccountService;
-import com.mixajlenko.epam.finaltask.ispsystem.service.IServiceService;
-import com.mixajlenko.epam.finaltask.ispsystem.service.ITariffService;
-import com.mixajlenko.epam.finaltask.ispsystem.service.UserService;
-import com.mixajlenko.epam.finaltask.ispsystem.service.impl.AccountServiceImpl;
-import com.mixajlenko.epam.finaltask.ispsystem.service.impl.ServiceServiceImpl;
-import com.mixajlenko.epam.finaltask.ispsystem.service.impl.TariffServiceImpl;
-import com.mixajlenko.epam.finaltask.ispsystem.service.impl.UserServiceImpl;
+import com.mixajlenko.epam.finaltask.ispsystem.service.*;
+import com.mixajlenko.epam.finaltask.ispsystem.service.impl.*;
 import org.apache.log4j.Logger;
 
 public class ServiceFactory {
 
     private static Logger logger = Logger.getLogger(ServiceFactory.class);
 
-    private UserService userService = new UserServiceImpl();
-    private IAccountService accountService = new AccountServiceImpl();
+    private IUserService IUserService = new UserServiceImpl();
     private IServiceService serviceService = new ServiceServiceImpl();
     private ITariffService tariffService = new TariffServiceImpl();
+    private IPaymentService paymentService = new PaymentServiceImpl();
+    private IUserTariffService userTariffService = new UserTariffService();
 
     private static ServiceFactory instance;
 
@@ -33,14 +28,19 @@ public class ServiceFactory {
 
     }
 
-    public UserService getUserService() {
-        logger.info("Get UserService");
-        return userService;
+    public IUserTariffService getUserTariffService() {
+        logger.info("Get UserTariffService");
+        return userTariffService;
     }
 
-    public IAccountService getAccountService() {
-        logger.info("Get AccountService");
-        return accountService;
+    public IPaymentService getPaymentService() {
+        logger.info("Get PaymentService");
+        return paymentService;
+    }
+
+    public IUserService getUserService() {
+        logger.info("Get UserService");
+        return IUserService;
     }
 
     public IServiceService getServiceService() {
