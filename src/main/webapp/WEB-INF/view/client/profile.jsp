@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/style.css" media="screen">
 </head>
 
-<body style="zoom: 80%">
+<body style="zoom: 70%">
 <div id="home"></div>
 <div class="ournet-inter-area">
     <header id="header" class="header-area">
@@ -75,7 +75,7 @@
                                 <c:when test="${nameChange}">
                                     <div class="editNameForm">
                                         <form class="editFormChild" method="post"
-                                              action="${pageContext.request.contextPath}/view/client/profile">
+                                              action="${pageContext.request.contextPath}/view/client/profile?change=name">
                                             <p>
                                                 <label>
                                                     <input class="profileEditorFields" type="text" required
@@ -102,7 +102,7 @@
                                 <c:when test="${phoneChange}">
                                     <div class="editPhoneForm">
                                         <form class="editFormChild" method="post"
-                                              action="${pageContext.request.contextPath}/view/client/profile">
+                                              action="${pageContext.request.contextPath}/view/client/profile?change=phone">
                                             <p>
                                                 <label>
                                                     <input class="profileEditorFields" type="text" required
@@ -121,7 +121,7 @@
                                 <c:when test="${emailChange}">
                                     <div class="editEmailForm">
                                         <form class="editFormChild" method="post"
-                                              action="${pageContext.request.contextPath}/view/client/profile">
+                                              action="${pageContext.request.contextPath}/view/client/profile?change=email">
                                             <p>
                                                 <label>
                                                     <input class="profileEditorFields" type="email" required
@@ -140,7 +140,7 @@
                                 <c:when test="${passChange}">
                                     <div class="editPassForm">
                                         <form class="editFormChild" method="post"
-                                              action="${pageContext.request.contextPath}/view/client/profile">
+                                              action="${pageContext.request.contextPath}/view/client/profile?change=password">
                                             <p>
                                                 <label>
                                                     <input class="profileEditorFields" type="password" required

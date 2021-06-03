@@ -1,0 +1,27 @@
+package com.mixajlenko.finaltask.ispsystem.dao.factory;
+
+import com.mixajlenko.finaltask.ispsystem.dao.*;
+import com.mixajlenko.finaltask.ispsystem.dao.*;
+
+public abstract class DaoFactory {
+
+    private static DaoFactory instance;
+
+    public static DaoFactory getInstance() {
+        if (instance == null) {
+            instance = new DatabaseDaoFactory();
+        }
+        return instance;
+    }
+
+    public abstract IServiceDao getServiceDao();
+
+    public abstract ITariffDao getTariffDao();
+
+    public abstract IUserDao getUserDao();
+
+    public abstract IPaymentsDao getPaymentDao();
+
+    public abstract IUserTariffDao getUserTariffDao();
+
+}

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/style.css" media="screen">
 </head>
 
-<body style="zoom: 80%">
+<body style="zoom: 70%">
 <div id="home"></div>
 <div class="ournet-inter-area">
     <header id="header" class="header-area">
@@ -93,15 +93,24 @@
                                         <th class="sorttable_numeric">Status</th>
                                         <th class="sorttable_numeric">Bill</th>
                                         <th class="sorttable_numeric">Balance</th>
+                                        <th class="sorttable_alpha">Type</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <c:forEach items="${paymentHistory}" var="item" varStatus="status">
                                         <tr class="highlight">
                                             <td>${item.date}</td>
-                                            <td>${item.status}</td>
+                                            <td>
+                                            <c:if test="${item.status == 0}">
+                                                <p class="activeStatus">Accepted</p>
+                                            </c:if>
+                                            <c:if test="${item.status == 1}">
+                                                <p class="stoppedStatus">Declined</p>
+                                            </c:if>
+                                                </td>
                                             <td>${item.bill}</td>
                                             <td>${item.balance}</td>
+                                            <td>${item.type}</td>
                                         </tr>
                                     </c:forEach>
                                     </tbody>

@@ -15,7 +15,7 @@
 
     <servlet>
         <servlet-name>Controller</servlet-name>
-        <servlet-class>com.mixajlenko.epam.finaltask.ispsystem.controller.servlet.Controller</servlet-class>
+        <servlet-class>com.mixajlenko.finaltask.ispsystem.controller.servlet.Controller</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Controller</servlet-name>

@@ -39,7 +39,7 @@ body {
     color: #313b58
 }
 
-.bodyChild{
+.bodyChild {
 }
 
 img {
@@ -396,6 +396,17 @@ input.tariff1 {
 #submitBtn:hover {
     color: white;
     background-color: #a59e9e;
+}
+
+.mainPageBtn {
+    color: #262240;
+    padding: 5px 15px 5px 15px;
+    border-radius: 11px;
+    background-color: rgba(216, 216, 216, 0.4);
+}
+
+.mainPageBtn:hover {
+    background-color: #d8d8d8;
 }
 
 .tableTariffs#payment {
@@ -767,7 +778,7 @@ input.tariff1 {
     padding: 20px 0 0 0;
 }
 
-.btn#payBtn{
+.btn#payBtn {
     padding: 5px 40px 5px 40px;
     margin-bottom: 25px;
 }
@@ -931,7 +942,7 @@ input.tariff1 {
 }
 
 .serviceBlock {
-    display: grid;
+    display: block;
     align-items: center;
     border: 2px solid #171717;
     background: #ffffff;
@@ -945,8 +956,19 @@ input.tariff1 {
     margin: 20px auto 30px auto
 }
 
-.serviceBlock#clientMainPage{
-    width: fit-content;
+.serviceBlock#clientMainPageBlock1 {
+    width: 20%;
+    height: fit-content;
+    margin: 20px;
+    text-align: left;
+}
+.serviceBlock#clientMainPageBlock2 {
+    width: 70%;
+    margin: 20px;
+}
+
+.mainPageBlocks{
+    display: flex;
 }
 
 
@@ -954,16 +976,21 @@ input.tariff1 {
     width: 70%;
 }
 
-.userInfoTable td{
+.userInfoTable td {
     border: 1px solid;
     border-radius: 11px;
 }
 
-#stoppedStatus{
+.stoppedStatus {
     color: red;
 }
 
-#activeStatus{
+.boldFont{
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.activeStatus {
     color: #4dd001;
 }
 
@@ -975,6 +1002,11 @@ input.tariff1 {
 .tableService {
     border: none;
     margin: initial;
+    width: 100%;
+}
+
+.tableService#subService{
+    margin: 5% 0 0 0;
 }
 
 #descDiv {
@@ -985,7 +1017,7 @@ input.tariff1 {
     width: 600px;
 }
 
-.pay{
+.pay {
     border: 1px solid;
     margin: 0 0 20px 0px;
     padding: 15px 15px 0px 15px;
@@ -1137,8 +1169,13 @@ input.tariff1 {
     font-size: 16px;
 }
 
+#moreBtn:hover{
+    color: black;
+    font-size: 17px;
+}
+
 .updateButton:hover {
-    font-size: 20px;
+    font-size: 17px;
     color: green;
 }
 
@@ -1150,6 +1187,7 @@ input.tariff1 {
     font-size: 16px;
     color: black;
 }
+
 .updateButton#subscribeButton:hover {
     font-size: 17px;
     color: white;
@@ -1157,12 +1195,13 @@ input.tariff1 {
 
 }
 
-#endTd{
+#endTd {
     width: 10%;
     background-color: white;
     padding: 0
 }
-.endTdUserInfo{
+
+.endTdUserInfo {
     max-width: fit-content;
     background-color: white;
     padding: 0
@@ -1170,7 +1209,7 @@ input.tariff1 {
 
 
 .deleteButton:hover {
-    font-size: 20px;
+    font-size: 17px;
     color: red;
 }
 

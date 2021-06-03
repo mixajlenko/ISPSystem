@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/style.css" media="screen">
 </head>
 
-<body style="zoom: 80%">
+<body style="zoom: 70%">
 <div id="home"></div>
 <div class="ournet-inter-area">
     <header id="header" class="header-area">
