@@ -300,13 +300,27 @@ header#header.sticky-header {
     background-color: #cfcbcb;
 }
 
+
+
 .slider-bg {
     box-sizing: border-box;
     padding-bottom: 50px;
+    background-size: cover;
     margin: 0 15px 0 15px;
+    background-position: center;
+    border-radius: 10px;
+    box-shadow: 2px 2px 8px 0 rgb(128 128 128);
+}
+
+.slider-bgLogin {
+    background-color: #cfcbcb;
+    box-sizing: border-box;
+    padding-bottom: 50px;
     background-size: cover;
     background-position: center;
     border-radius: 10px;
+    width: 50%;
+    margin: auto;
     box-shadow: 2px 2px 8px 0 rgb(128 128 128);
 }
 
@@ -563,6 +577,7 @@ input.tariff1 {
 }
 
 .topChange {
+    margin: 30px 0 0 0;
 }
 
 .mainmenu ul li {
@@ -775,7 +790,7 @@ input.tariff1 {
 }
 
 #pageLogo {
-    padding: 20px 0 0 0;
+    margin: 58px 0 0px 0px;
 }
 
 .btn#payBtn {
@@ -889,6 +904,23 @@ input.tariff1 {
     margin-right: 0;
 }
 
+
+.localRegistrationBlock{
+    border: 2px solid;
+    border-radius: 11px;
+    background-color: #cfcbcb;
+    padding: 5px 15px 5px 15px;
+}
+
+.localRegistrationBlock.localization{
+    font-size: 16px;
+    border: 2px solid;
+    border-radius: 11px;
+    background-color: #cfcbcb;
+    padding: 5px 15px 5px 15px;
+    width: 100px;
+}
+
 .submenu {
     position: absolute;
     top: 100%;
@@ -899,6 +931,23 @@ input.tariff1 {
     -moz-transition: 0.5s ease-in-out;
     -o-transition: 0.5s ease-in-out;
     transition: 0.5s ease-in-out;
+}
+
+.loginBtn{
+    color: #3b3663;
+    border-radius: 11px;
+    padding: 15px 20px 15px 20px;
+    transition: 0.5s ease-in-out;
+    margin: 0;
+}
+
+.loginBtn:hover{
+    background-color: white;
+}
+
+.profileEditorFields.loginField{
+    width: 70%;
+    margin: auto;
 }
 
 
@@ -939,6 +988,10 @@ input.tariff1 {
     /* margin: auto; */
     padding: 3%;
     margin: 20px auto 30px auto
+}
+
+.tableTariffs#registerForm{
+    width: 60%;
 }
 
 .serviceBlock {
@@ -1157,6 +1210,10 @@ input.tariff1 {
     font-size: 16px;
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
+}
+
+.editProfileBtn#loginSubmitBtn{
+    padding: 10px 30px 10px 30px;
 }
 
 .updateButton {

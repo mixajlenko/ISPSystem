@@ -25,7 +25,6 @@ public class LoginCommand implements ICommand {
         logger.info("Start execution login");
         ServiceFactory factory = ServiceFactory.getInstance();
 
-
         String login = req.getParameter("login");
         String password = req.getParameter("password");
         if (Objects.nonNull(login) && Objects.nonNull(password)) {
@@ -43,9 +42,6 @@ public class LoginCommand implements ICommand {
                 CommandUtil.goToPage(req, resp, page);
             } catch (NotFoundUserException e) {
                 req.setAttribute("notFound", true);
-                CommandUtil.goToPage(req, resp, "/");
-            } catch (WrongDataException e) {
-                req.setAttribute("wrongData", true);
                 CommandUtil.goToPage(req, resp, "/");
             } catch (SQLException | NamingException throwables) {
                 throwables.printStackTrace();

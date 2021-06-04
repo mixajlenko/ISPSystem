@@ -1,9 +1,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<c:set var="language" value="${not empty param.language ? param.language : pageContext.request.locale}"
+       scope="application"/>
+<fmt:setLocale value="${language}"/>
+<fmt:setBundle basename="text"/>
+
 <!DOCTYPE html>
 <html lang="java">
 
 <head>
-    <title>ISPAdmin: Tariffs</title>
+    <title><fmt:message key="iSPAdmin4"/></title>
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/style.css" media="screen">
 </head>
@@ -14,17 +21,28 @@
     <header id="header" class="header-area">
 
         <div class="logoBlock">
+            <div style="font-size: 16px; text-align: end;">
+                <a class="loginBtn" href="${pageContext.request.contextPath}/view/language/admin/managePlan?language=RU">
+                    RU
+                </a>
+                <a class="loginBtn" href="${pageContext.request.contextPath}/view/language/admin/managePlan?language=EN">
+                    EN
+                </a>
+            </div>
             <p id="pageLogo">ISPAdmin</p>
             <div class="mainmenu">
                 <ul>
                     <li><a class="scroll-animite btn"
-                           href="${pageContext.request.contextPath}/view/admin/mainPageAdmin">Main page</a></li>
+                           href="${pageContext.request.contextPath}/view/admin/mainPageAdmin"><fmt:message
+                            key="mainPage"/></a></li>
                     <li><a class="scroll-animite btn"
-                           href="${pageContext.request.contextPath}/view/admin/servicePageAdmin">Services</a></li>
+                           href="${pageContext.request.contextPath}/view/admin/servicePageAdmin"><fmt:message
+                            key="services"/></a></li>
                     <li><a class="scroll-animite btn"
-                           href="${pageContext.request.contextPath}/view/admin/userPageAdmin">Clients</a></li>
-                    <li><a class="scroll-animite logOutBtn" href="${pageContext.request.contextPath}/view/logout">Log
-                        Out</a></li>
+                           href="${pageContext.request.contextPath}/view/admin/userPageAdmin"><fmt:message
+                            key="clients"/></a></li>
+                    <li><a class="scroll-animite logOutBtn"
+                           href="${pageContext.request.contextPath}/view/logout"><fmt:message key="logout"/></a></li>
                 </ul>
             </div>
         </div>
@@ -40,9 +58,9 @@
                     <c:if test="${commandInterface}">
                         <div class="col-lg-12">
                             <div class="slidertext">
-                                <h1>Tariffs</h1>
+                                <h1><fmt:message key="tariffs"/></h1>
                                 <br>
-                                <p>Update tariff</p>
+                                <p><fmt:message key="updateTariff"/></p>
                             </div>
                         </div>
                         <div class="newTariff">
@@ -51,36 +69,36 @@
                                 <p>
                                     <label>
                                         <input class="tariff1" type="text" value="${param.get("name")}" required
-                                               placeholder="name"
+                                               placeholder="<fmt:message key="tariffName"/>"
                                                name="name">
                                     </label>
                                 </p>
                                 <p>
                                     <label>
                                         <input class="tariff1" type="text" value="${param.get("description")}" required
-                                               placeholder="description"
+                                               placeholder="<fmt:message key="tariffDescription"/>"
                                                name="description">
                                     </label>
                                 </p>
                                 <p>
                                     <label>
                                         <input class="tariff1" type="text" value="${param.get("price")}" required
-                                               placeholder="price"
+                                               placeholder="<fmt:message key="tariffPrice"/>"
                                                name="price">
                                     </label>
                                 </p>
                                 <input id="submitBtn" type="submit"
-                                       onclick="return confirm('Are you sure you want to delete this item?')"
-                                       value="Update">
+                                       onclick="return confirm('<fmt:message key="updateConfirm"/>')"
+                                       value="<fmt:message key="update"/>">
                             </form>
                         </div>
                     </c:if>
                     <c:if test="${!commandInterface}">
                         <div class="col-lg-12">
                             <div class="slidertext">
-                                <h1>Tariffs</h1>
+                                <h1><fmt:message key="tariffs"/></h1>
                                 <br>
-                                <p>Manage, delete or add tariff</p>
+                                <p><fmt:message key="infoTariff"/></p>
                             </div>
                         </div>
                         <div class="tableTariffs">
@@ -88,11 +106,11 @@
                                 <thead>
                                 <tr>
                                     <th class="sorttable_numeric">id</th>
-                                    <th class="sorttable_alpha">Name</th>
-                                    <th class="sorttable_alpha">Description</th>
-                                    <th class="sorttable_numeric">Price</th>
-                                    <th>Edit</th>
-                                    <th>Delete</th>
+                                    <th class="sorttable_alpha"><fmt:message key="tariffName"/></th>
+                                    <th class="sorttable_alpha"><fmt:message key="tariffDescription"/></th>
+                                    <th class="sorttable_numeric"><fmt:message key="tariffPrice"/></th>
+                                    <th><fmt:message key="edit"/></th>
+                                    <th><fmt:message key="delete"/></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -104,12 +122,14 @@
                                         <td>${item.price}</td>
                                         <td>
                                             <a class="updateButton"
-                                               href="${pageContext.request.contextPath}/view/admin/managePlan?id=${item.id}&param=${param.get("param")}&name=${item.name}&description=${item.description}&price=${item.price}&command=update">Update</a>
+                                               href="${pageContext.request.contextPath}/view/admin/managePlan?id=${item.id}&param=${param.get("param")}&name=${item.name}&description=${item.description}&price=${item.price}&command=update"><fmt:message
+                                                    key="update"/></a>
                                         </td>
                                         <td>
                                             <a class="deleteButton"
                                                href="${pageContext.request.contextPath}/view/admin/managePlan?command=delete&id=${item.id}&param=${param.get('param')}"
-                                               onclick="return confirm('Are you sure you want to delete this item?')">Delete</a>
+                                               onclick="return confirm('<fmt:message
+                                                       key="deleteConfirm"/>')"><fmt:message key="delete"/></a>
                                         </td>
                                     </tr>
                                 </c:forEach>
@@ -119,7 +139,7 @@
                             <br>
                             <form class="w3-container" align="center" method="post"
                                   action="${pageContext.request.contextPath}/view/admin/addTariff?param=${param.get('param')}">
-                                <input class="btn btnAdd" type="submit" name="add" value="Add new">
+                                <input class="btn btnAdd" type="submit" name="add" value="<fmt:message key="addNew"/>">
                             </form>
                         </div>
                     </c:if>

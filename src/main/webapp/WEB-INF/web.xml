@@ -13,6 +13,16 @@
         <res-auth>Container</res-auth>
     </resource-ref>
 
+    <filter>
+        <filter-name>LanguageFilter</filter-name>
+        <filter-class>com.mixajlenko.finaltask.ispsystem.controller.filter.LanguageFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>LanguageFilter</filter-name>
+        <url-pattern>/view/language/*</url-pattern>
+    </filter-mapping>
+
     <servlet>
         <servlet-name>Controller</servlet-name>
         <servlet-class>com.mixajlenko.finaltask.ispsystem.controller.servlet.Controller</servlet-class>

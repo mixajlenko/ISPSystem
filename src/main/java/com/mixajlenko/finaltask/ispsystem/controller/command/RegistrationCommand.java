@@ -29,23 +29,14 @@ public class RegistrationCommand implements ICommand {
         ServiceFactory factory = ServiceFactory.getInstance();
 
         String email = request.getParameter("email");
-        String phone = request.getParameter("phone");
         String password = request.getParameter("password");
-        String role = request.getParameter("admin");
-
-        logger.info("email =" + email);
-        logger.info("phone =" + phone);
-        logger.info("password =" + password);
+        String phone = request.getParameter("phone");
 
         try {
-
             if (Objects.isNull(email) && Objects.isNull(password)) {
-                logger.info("error1");
                 throw new WrongDataException();
             }
-
             if (!ValidationData.isEmailValid(email) || !ValidationData.isPasswordValid(password)) {
-                logger.info("error2");
                 throw new WrongDataException();
             }
 
@@ -54,23 +45,15 @@ public class RegistrationCommand implements ICommand {
             String fName = request.getParameter("firstName");
             String sName = request.getParameter("secondName");
 
-            logger.info("fName =" + fName);
-            logger.info("sName =" + sName);
+            User user = new User(fName, sName, phone, email, 0, 0, password, 1);
 
-            User user = new User(fName, sName, phone, email, 0, 0, password);
-
-            logger.info(user.toString());
-            user.setRole(1);
             IUserService.add(user);
 
-            user = IUserService.getByLoginAndPass(email, password);
-
-            request.getSession().setAttribute("user", user);
-
-            String page = CommandUtil.getUserPageByRole(1);
+//            user = IUserService.getByLoginAndPass(email, password);
+//            request.getSession().setAttribute("user", user);
+//            String page = CommandUtil.getUserPageByRole(1);
 
             CommandUtil.goToPage(request, response, "/");
-
         } catch (ServiceException e) {
             request.setAttribute("notFound", true);
             CommandUtil.goToPage(request, response, "/WEB-INF/view/registration.jsp");

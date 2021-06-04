@@ -1,9 +1,16 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<c:set var="language" value="${not empty param.language ? param.language : pageContext.request.locale}"
+       scope="application"/>
+<fmt:setLocale value="${language}"/>
+<fmt:setBundle basename="text"/>
+
 <!DOCTYPE html>
 <html lang="java">
 
 <head>
-    <title>ISPManager: Main page</title>
+    <title><fmt:message key="iSPManager5"/></title>
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/style.css" media="screen">
 </head>
@@ -14,13 +21,23 @@
     <header id="header" class="header-area">
 
         <div class="logoBlock">
+            <div style="font-size: 16px; text-align: end;">
+                <a class="loginBtn" href="${pageContext.request.contextPath}/view/language/client/supportPage?language=RU">
+                    RU
+                </a>
+                <a class="loginBtn" href="${pageContext.request.contextPath}/view/language/client/supportPage?language=EN">
+                    EN
+                </a>
+            </div>
             <p id="pageLogo">ISPManager</p>
             <div class="mainmenu">
                 <ul class="topChange">
                     <li><a class="btn"
-                           href="${pageContext.request.contextPath}/view/client/mainPageUser">Main page</a></li>
+                           href="${pageContext.request.contextPath}/view/client/mainPageUser"><fmt:message
+                            key="mainPage"/></a></li>
                     <li><a class="btn"
-                           href="${pageContext.request.contextPath}/view/client/servicePage">Services<i
+                           href="${pageContext.request.contextPath}/view/client/servicePage"><fmt:message
+                            key="services"/><i
                             class="fa fa-angle-down"></i></a>
                         <ul class="subChange">
                             <c:forEach items="${services}" var="item" varStatus="status">
@@ -28,28 +45,37 @@
                                     <a href="${pageContext.request.contextPath}/view/client/servicePage?item=${item.name}&serviceId=${item.id}">${item.name}</a>
                                 </li>
                             </c:forEach>
-                            </li>
                         </ul>
                     </li>
                     <li><a class="btn"
-                           href="${pageContext.request.contextPath}/view/client/paymentSystemPage">Payments</a></li>
+                           href="${pageContext.request.contextPath}/view/client/paymentSystemPage"><fmt:message
+                            key="payments"/></a></li>
                     <li><a class="btn"
-                           href="#">Manage profile<i class="fa fa-angle-down"></i></a>
+                           href="#"><fmt:message key="manageProfile"/><i class="fa fa-angle-down"></i></a>
                         <ul class="subChange" id="profChange">
-                            <li><a href="${pageContext.request.contextPath}/view/client/profile?change=name">Name</a>
+                            <li>
+                                <a href="${pageContext.request.contextPath}/view/client/profile?change=name"><fmt:message
+                                        key="name"/></a>
                             </li>
-                            <li><a href="${pageContext.request.contextPath}/view/client/profile?change=email">Email</a>
+                            <li>
+                                <a href="${pageContext.request.contextPath}/view/client/profile?change=email"><fmt:message
+                                        key="manageEmail"/></a>
                             </li>
-                            <li><a href="${pageContext.request.contextPath}/view/client/profile?change=phone">Phone</a>
+                            <li>
+                                <a href="${pageContext.request.contextPath}/view/client/profile?change=phone"><fmt:message
+                                        key="phone"/></a>
                             </li>
-                            <li><a href="${pageContext.request.contextPath}/view/client/profile?change=password">Password</a>
+                            <li>
+                                <a href="${pageContext.request.contextPath}/view/client/profile?change=password"><fmt:message
+                                        key="password"/></a>
                             </li>
                         </ul>
                     </li>
-                    <li><a class="btn" href="${pageContext.request.contextPath}/view/client/supportPage">Support</a>
+                    <li><a class="btn" href="${pageContext.request.contextPath}/view/client/supportPage"><fmt:message
+                            key="support"/></a>
                     </li>
-                    <li><a class="logOutBtn" href="${pageContext.request.contextPath}/view/logout">Log
-                        Out</a></li>
+                    <li><a class="logOutBtn" href="${pageContext.request.contextPath}/view/logout"><fmt:message
+                            key="logout"/></a></li>
                 </ul>
             </div>
         </div>

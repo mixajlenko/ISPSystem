@@ -14,6 +14,7 @@ import org.apache.log4j.Logger;
 import javax.naming.NamingException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class UserServiceImpl implements IUserService {
@@ -89,7 +90,8 @@ public class UserServiceImpl implements IUserService {
     @Override
     public User getByLoginAndPass(String login, String password) throws SQLException, NamingException {
         User user = userDao.getUserByEmail(login);
-        if (!user.getPassword().equals(password)) {
+        System.out.println(user);
+        if (Objects.isNull(user)) {
             throw new NotFoundUserException();
         }
         return user;

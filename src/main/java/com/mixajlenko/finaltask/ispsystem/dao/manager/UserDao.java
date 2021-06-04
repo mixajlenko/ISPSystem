@@ -175,20 +175,21 @@ public class UserDao implements IUserDao {
              PreparedStatement statement = connection.prepareStatement(SqlQueries.SELECT_USER_BY_EMAIL.getConstant())) {
             statement.setString(1, email);
             try (ResultSet resultSet = statement.executeQuery()) {
-                resultSet.next();
-                user = new User();
-                user.setId(resultSet.getInt(1));
-                user.setFirstName(resultSet.getString(2));
-                user.setSecondName(resultSet.getString(5));
-                user.setPhone(resultSet.getString(3));
-                user.setEmail(resultSet.getString(4));
-                user.setRole(resultSet.getInt(9));
-                user.setWallet(resultSet.getInt(6));
-                user.setStatus(resultSet.getInt(7));
-                user.setPassword(resultSet.getString(8));
+                while (resultSet.next()) {
+                    user = new User();
+                    user.setId(resultSet.getInt(1));
+                    user.setFirstName(resultSet.getString(2));
+                    user.setSecondName(resultSet.getString(5));
+                    user.setPhone(resultSet.getString(3));
+                    user.setEmail(resultSet.getString(4));
+                    user.setRole(resultSet.getInt(9));
+                    user.setWallet(resultSet.getInt(6));
+                    user.setStatus(resultSet.getInt(7));
+                    user.setPassword(resultSet.getString(8));
+                }
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
         }
         return user;
     }

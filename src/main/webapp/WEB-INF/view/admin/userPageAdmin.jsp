@@ -1,9 +1,16 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<c:set var="language" value="${not empty param.language ? param.language : pageContext.request.locale}"
+       scope="application"/>
+<fmt:setLocale value="${language}"/>
+<fmt:setBundle basename="text"/>
+
 <!DOCTYPE html>
 <html lang="java">
 
 <head>
-    <title>ISPAdmin: Clients</title>
+    <title><fmt:message key="iSPAdmin6"/></title>
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/style.css" media="screen">
 </head>
@@ -14,17 +21,24 @@
     <header id="header" class="header-area">
 
         <div class="logoBlock">
+            <div style="font-size: 16px; text-align: end;">
+                <a class="loginBtn" href="${pageContext.request.contextPath}/view/language/admin/userPageAdmin?language=RU">
+                    RU
+                </a>
+                <a class="loginBtn" href="${pageContext.request.contextPath}/view/language/admin/userPageAdmin?language=EN">
+                    EN
+                </a>
+            </div>
             <p id="pageLogo">ISPAdmin</p>
             <div class="mainmenu">
                 <ul>
                     <li><a class="scroll-animite btn"
-                           href="${pageContext.request.contextPath}/view/admin/mainPageAdmin">Main page</a></li>
+                           href="${pageContext.request.contextPath}/view/admin/mainPageAdmin"><fmt:message key="mainPage"/></a></li>
                     <li><a class="scroll-animite btn"
-                           href="${pageContext.request.contextPath}/view/admin/servicePageAdmin">Services</a></li>
+                           href="${pageContext.request.contextPath}/view/admin/servicePageAdmin"><fmt:message key="services"/></a></li>
                     <li><a class="scroll-animite btn"
-                           href="${pageContext.request.contextPath}/view/admin/userPageAdmin">Clients</a></li>
-                    <li><a class="scroll-animite logOutBtn" href="${pageContext.request.contextPath}/view/logout">Log
-                        Out</a></li>
+                           href="${pageContext.request.contextPath}/view/admin/userPageAdmin"><fmt:message key="clients"/></a></li>
+                    <li><a class="scroll-animite logOutBtn" href="${pageContext.request.contextPath}/view/logout"><fmt:message key="logout"/></a></li>
                 </ul>
             </div>
         </div>
@@ -37,9 +51,9 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="slidertext">
-                            <h1>Clients</h1>
+                            <h1><fmt:message key="clients"/></h1>
                             <br>
-                            <p>Manage, delete or register new clients</p>
+                            <p><fmt:message key="clientsPageInfo"/></p>
                         </div>
                     </div>
                     <div class="tableTariffs" id="clientsTable">
@@ -48,15 +62,15 @@
                                 <thead>
                                 <tr>
                                     <th class="sorttable_numeric">id</th>
-                                    <th class="sorttable_alpha">First Name</th>
-                                    <th class="sorttable_alpha">Second Name</th>
-                                    <th class="sorttable_numeric">Phone</th>
-                                    <th class="sorttable_alpha">Email</th>
-                                    <th class="sorttable_numeric">Wallet</th>
-                                    <th class="sorttable_numeric">Status</th>
-                                    <th>Set status</th>
-                                    <th>Delete</th>
-                                    <th>More Info</th>
+                                    <th class="sorttable_alpha"><fmt:message key="placeholderFirstName"/></th>
+                                    <th class="sorttable_alpha"><fmt:message key="placeholderSecondName"/></th>
+                                    <th class="sorttable_numeric"><fmt:message key="phone"/></th>
+                                    <th class="sorttable_alpha"><fmt:message key="placeholderEmail"/></th>
+                                    <th class="sorttable_numeric"><fmt:message key="wallet"/></th>
+                                    <th class="sorttable_numeric"><fmt:message key="status"/></th>
+                                    <th><fmt:message key="setStatus"/></th>
+                                    <th><fmt:message key="delete"/></th>
+                                    <th><fmt:message key="moreInfo"/></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -72,23 +86,23 @@
                                         <c:if test="${item.status == 1}">
                                             <td><a class="deleteButton"
                                                    href="${pageContext.request.contextPath}/view/admin/userPageAdmin?command=block&Uid=${item.id}"
-                                                   onclick="return confirm('Are you sure you want to block this client?')">Block</a>
+                                                   onclick="return confirm('<fmt:message key="blockClientConfirm"/>')"><fmt:message key="block"/></a>
                                             </td>
                                         </c:if>
                                         <c:if test="${item.status == 0}">
                                             <td><a class="updateButton"
                                                    href="${pageContext.request.contextPath}/view/admin/userPageAdmin?command=unlock&Uid=${item.id}"
-                                                   onclick="return confirm('Are you sure you want to unlock client?')">Unlock</a>
+                                                   onclick="return confirm('<fmt:message key="unblockClientConfirm"/>')"><fmt:message key="unblock"/></a>
                                             </td>
                                         </c:if>
                                         <td>
                                             <a class="deleteButton"
                                                href="${pageContext.request.contextPath}/view/admin/userPageAdmin?command=delete&Uid=${item.id}"
-                                               onclick="return confirm('Are you sure you want to delete client?')">Delete</a>
+                                               onclick="return confirm('<fmt:message key="deleteClientConfirm"/>')"><fmt:message key="delete"/></a>
                                         </td>
                                         <td>
                                             <a class="deleteButton" id="moreBtn"
-                                               href="${pageContext.request.contextPath}/view/admin/userPageAdmin?command=more&Uid=${item.id}">More</a>
+                                               href="${pageContext.request.contextPath}/view/admin/userPageAdmin?command=more&Uid=${item.id}"><fmt:message key="more"/></a>
                                         </td>
                                     </tr>
                                 </c:forEach>
@@ -98,18 +112,18 @@
                             <br>
                             <form class="w3-container" align="center" method="post"
                                   action="${pageContext.request.contextPath}/view/admin/manageUsers">
-                                <input class="btn btnAdd" type="submit" name="add" value="Register client">
+                                <input class="btn btnAdd" type="submit" name="add" value="<fmt:message key="registerClient"/>">
                             </form>
                         </c:if>
                         <c:if test="${moreInfo}">
-                            <h4>Client tariffs</h4>
+                            <h4><fmt:message key="clientTariffs"/></h4>
                             <br>
                             <table class="tableService" id="subService">
                                 <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Status</th>
-                                    <th>Next Bill</th>
+                                    <th><fmt:message key="name"/></th>
+                                    <th><fmt:message key="status"/></th>
+                                    <th><fmt:message key="nextBill"/></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -118,10 +132,10 @@
                                         <td><p>${item.key.name}</p></td>
                                         <td>
                                             <c:if test="${item.value.status == 0}">
-                                                <p class="stoppedStatus">Stopped</p>
+                                                <p class="stoppedStatus"><fmt:message key="stopped"/></p>
                                             </c:if>
                                             <c:if test="${item.value.status == 1}">
-                                                <p class="activeStatus">Active</p>
+                                                <p class="activeStatus"><fmt:message key="active"/></p>
                                             </c:if>
                                         </td>
                                         <td>
@@ -132,18 +146,18 @@
                                             <c:if test="${item.value.status == 0}">
                                                 <a class="updateButton"
                                                    href="${pageContext.request.contextPath}/view/admin/userPageAdmin?command=more&operation=Activate&Uid=${param.get("Uid")}&Tid=${item.key.id}"
-                                                   onclick="return confirm('Activate ${item.key.name} for user?')">Activate</a>
+                                                   onclick="return confirm('<fmt:message key="active"/> ${item.key.name} <fmt:message key="activateTariffConfirm"/>')"><fmt:message key="activate"/></a>
                                             </c:if>
                                             <c:if test="${item.value.status == 1}">
                                                 <a class="deleteButton"
                                                    href="${pageContext.request.contextPath}/view/admin/userPageAdmin?command=more&operation=Deactivate&Uid=${param.get("Uid")}&Tid=${item.key.id}"
-                                                   onclick="return confirm('Stop ${item.key.name} for user?')">Deactivate</a>
+                                                   onclick="return confirm('<fmt:message key="deactivate"/> ${item.key.name} <fmt:message key="activateTariffConfirm"/>')"><fmt:message key="deactivate"/></a>
                                             </c:if>
                                         </td>
                                         <td class="endTdUserInfo">
                                             <a class="deleteButton"
                                                href="${pageContext.request.contextPath}/view/admin/userPageAdmin?command=more&operation=Unsubscribe&Uid=${param.get("Uid")}&Tid=${item.key.id}"
-                                               onclick="return confirm('Do you confirm unsubscribe from ${item.key.name} service?')">Unsubscribe</a>
+                                               onclick="return confirm('<fmt:message key="unsubscribeConfirm"/> ${item.key.name} <fmt:message key="payConfirm3"/>')"><fmt:message key="unsubscribe"/></a>
                                         </td>
                                     </tr>
                                 </c:forEach>
