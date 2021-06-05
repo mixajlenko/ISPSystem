@@ -15,7 +15,7 @@ public class ConnectionFactory {
 
     public ConnectionFactory() throws NamingException {
         Context initialContext = new InitialContext();
-        dataSource = (DataSource) initialContext.lookup("java:comp/env/jdbc/ISPManager");
+        dataSource = (DataSource) initialContext.lookup("java:comp/env/jdbc/d6h02davsb03gm");
     }
 
     public static synchronized ConnectionFactory getInstance() throws NamingException {

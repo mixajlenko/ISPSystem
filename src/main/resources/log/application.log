@@ -43636,3 +43636,22 @@ Stacktrace:
 17:32:30,504  INFO http-nio-8080-exec-9 Controller:doPost:38 - /view/registration
 17:32:30,504  INFO http-nio-8080-exec-9 RegistrationCommand:execute:27 - Start execution registration
 17:32:30,513  INFO http-nio-8080-exec-9 ServiceFactory:getUserService:44 - Get UserService
+17:57:25,369  INFO http-nio-8080-exec-6 Controller:doPost:34 - /view/registration
+17:57:25,431  INFO http-nio-8080-exec-6 CommandFactory:getCommand:37 - /view/registration
+17:57:25,432  INFO http-nio-8080-exec-6 Controller:doPost:38 - /view/registration
+17:57:25,432  INFO http-nio-8080-exec-6 RegistrationCommand:execute:27 - Start execution registration
+17:57:25,443  INFO http-nio-8080-exec-6 ServiceFactory:getInstance:23 - Create ServiceFactory
+17:57:25,475  INFO http-nio-8080-exec-6 DatabaseDaoFactory:getUserDao:34 - Get UserDao
+17:57:25,477  INFO http-nio-8080-exec-6 DatabaseDaoFactory:getServiceDao:22 - Get ServiceDao
+17:57:25,479  INFO http-nio-8080-exec-6 DatabaseDaoFactory:getTariffDao:28 - Get TariffDao
+17:57:25,481  INFO http-nio-8080-exec-6 DatabaseDaoFactory:getPaymentDao:40 - Get PaymentDao
+17:57:25,483  INFO http-nio-8080-exec-6 DatabaseDaoFactory:getUserTariffDao:46 - Get UserTariffDao
+17:57:25,484  INFO http-nio-8080-exec-6 DatabaseDaoFactory:getTariffDao:28 - Get TariffDao
+17:57:25,484  INFO http-nio-8080-exec-6 DatabaseDaoFactory:getUserDao:34 - Get UserDao
+17:57:25,486  INFO http-nio-8080-exec-6 CommandUtil:goToPage:24 - go to page start
+17:57:25,487  INFO http-nio-8080-exec-6 CommandUtil:goToPage:26 - /WEB-INF/view/registration.jsp
+17:57:35,209  INFO http-nio-8080-exec-10 Controller:doPost:34 - /view/registration
+17:57:35,209  INFO http-nio-8080-exec-10 CommandFactory:getCommand:37 - /view/registration
+17:57:35,215  INFO http-nio-8080-exec-10 Controller:doPost:38 - /view/registration
+17:57:35,215  INFO http-nio-8080-exec-10 RegistrationCommand:execute:27 - Start execution registration
+17:57:35,224  INFO http-nio-8080-exec-10 ServiceFactory:getUserService:44 - Get UserService
