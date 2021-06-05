@@ -8,6 +8,8 @@
 <fmt:setBundle basename="text"/>
 
 <html>
+<meta charset="utf-8">
+
 <head>
     <title><fmt:message key="registration"/></title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/style.css" media="screen">

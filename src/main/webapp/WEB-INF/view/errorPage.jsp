@@ -8,6 +8,8 @@
 <fmt:setBundle basename="text"/>
 
 <html>
+<meta charset="utf-8">
+
 <head>
     <title>404</title>
 </head>

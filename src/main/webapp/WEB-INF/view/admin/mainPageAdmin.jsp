@@ -9,7 +9,7 @@
 
 <!DOCTYPE html>
 <html lang="java">
-
+<meta charset="utf-8">
 <head>
     <title><fmt:message key="iSPAdmin5"/></title>
 

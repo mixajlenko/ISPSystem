@@ -8,6 +8,7 @@
 
 <!DOCTYPE html>
 <html lang="java">
+<meta charset="utf-8">
 
 <head>
     <title><fmt:message key="iSPManager4"/></title>
