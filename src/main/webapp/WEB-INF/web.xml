@@ -23,6 +23,26 @@
         <url-pattern>/view/language/*</url-pattern>
     </filter-mapping>
 
+    <filter>
+        <filter-name>AuthorizationFilter</filter-name>
+        <filter-class>com.mixajlenko.finaltask.ispsystem.controller.filter.AuthorizationFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>AuthorizationFilter</filter-name>
+        <url-pattern>/view/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>RoleFilter</filter-name>
+        <filter-class>com.mixajlenko.finaltask.ispsystem.controller.filter.RoleFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>RoleFilter</filter-name>
+        <url-pattern>/view/admin/*</url-pattern>
+    </filter-mapping>
+
     <servlet>
         <servlet-name>Controller</servlet-name>
         <servlet-class>com.mixajlenko.finaltask.ispsystem.controller.servlet.Controller</servlet-class>

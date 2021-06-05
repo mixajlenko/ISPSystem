@@ -169,21 +169,17 @@
                                                     key="more"/></a>
                                         </td>
                                         <td class="endTdUserInfo" style="width: 50px">
+<%--                                            <a class="deleteButton"--%>
+<%--                                               href="${pageContext.request.contextPath}/view/client/paymentSystemPage?command=payForTariff&id=${item.key.id}&price=${item.key.price}"><fmt:message key="pay1"/>--%>
+<%--                                            </a>--%>
                                             <a class="deleteButton"
-                                               href="${pageContext.request.contextPath}/view/client/paymentSystemPage?command=payForTariff&id=${item.key.id}&price=${item.key.price}"
-                                               onclick="return confirm('<fmt:message
-                                                       key="payConfirm1"/> ${item.key.price} USD <fmt:message
-                                                       key="payConfirm2"/> ${item.key.name} <fmt:message
-                                                       key="payConfirm3"/>')"><fmt:message
-                                                    key="pay"/></a>
+                                               href="${pageContext.request.contextPath}/view/client/paymentSystemPage?command=payForTariff&id=${item.key.id}&price=${item.key.price}"><fmt:message
+                                                    key="pay1"/></a>
                                         </td>
                                         <td class="endTdUserInfo" style="width: 50px">
                                             <a class="deleteButton"
                                                href="${pageContext.request.contextPath}/view/client/mainPageUser?command=unsubscribe&id=${item.key.id}"
-                                               onclick="return confirm('<fmt:message
-                                                       key="unsubscribeConfirm"/> ${item.key.name} <fmt:message
-                                                       key="payConfirm3"/>')"><fmt:message
-                                                    key="unsubscribe"/></a>
+                                               onclick="return confirm('<fmt:message key="unsubscribeConfirm"/> ${item.key.name} <fmt:message key="payConfirm3"/>')"><fmt:message key="unsubscribe"/></a>
                                         </td>
                                     </tr>
                                 </c:forEach>

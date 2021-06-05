@@ -1,20 +1,24 @@
 package com.mixajlenko.finaltask.ispsystem.controller.filter;
 
+
+import com.mixajlenko.finaltask.ispsystem.model.Role;
+import com.mixajlenko.finaltask.ispsystem.model.User;
 //import jakarta.servlet.*;
 import javax.servlet.*;
 import org.apache.log4j.Logger;
 
 //import jakarta.servlet.http.HttpServletRequest;
 //import jakarta.servlet.http.HttpServletResponse;
+//import jakarta.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Objects;
 
+public class RoleFilter implements Filter {
 
-public class LanguageFilter implements Filter {
-
-    private static Logger logger = Logger.getLogger(LanguageFilter.class);
+    private static Logger logger = Logger.getLogger(RoleFilter.class);
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -25,30 +29,24 @@ public class LanguageFilter implements Filter {
     public void doFilter(ServletRequest servletRequest,
                          ServletResponse servletResponse,
                          FilterChain filterChain) throws IOException, ServletException {
-        logger.info("TEST");
+
         final HttpServletRequest req = (HttpServletRequest) servletRequest;
         final HttpServletResponse resp = (HttpServletResponse) servletResponse;
+        final HttpSession session = req.getSession(false);
 
-        String path = req.getRequestURI();
-        path = path.replaceAll("language/", "");
-        if (path.equals("/view//")) {
-            path = "/";
+        User user = (User) session.getAttribute("user");
+
+
+        if (Objects.nonNull(user)) {
+            int accessLevel = user.getRole();
+            if (accessLevel == Role.ADMIN.getAccessLevel()) {
+                filterChain.doFilter(req, resp);
+            } else {
+                req.getRequestDispatcher("/view/client/mainPageUser").forward(req, resp);
+            }
+        } else {
+            req.getRequestDispatcher("/").forward(req, resp);
         }
-
-        logger.info("uri" + req.getRequestURI());
-        logger.info("path" + path);
-
-        String language = req.getParameter("language");
-        boolean isEnglish = language.equals("EN");
-        boolean isRussian = language.equals("RU");
-
-        if (isEnglish) {
-            req.getSession().setAttribute("language", "en-EN");
-        } else if (isRussian) {
-            req.getSession().setAttribute("language", "ru-RU");
-        }
-
-        req.getRequestDispatcher(path).forward(req, resp);
     }
 
     @Override

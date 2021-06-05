@@ -109,13 +109,11 @@
                                         <label>
                                             <input style="border-radius: 11px; font-size: 16px;" type="text" required
                                                    placeholder="0 USD"
-                                                   name="<fmt:message
-                            key="amount"/>">
+                                                   name="amount">
                                         </label>
                                     </p>
                                     <input class="btn" id="payBtn" type="submit"
-                                           value="Pay" name="<fmt:message
-                            key="pay"/>">
+                                           value="<fmt:message key="pay1"/>" name="pay">
                                 </form>
                             </div>
 

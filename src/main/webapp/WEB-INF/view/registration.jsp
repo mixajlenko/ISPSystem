@@ -26,7 +26,6 @@
 
                     <form class="w3-container" align="center" method="post"
                           action="${pageContext.request.contextPath}/view/registration">
-
                         <p>
                             <label>
                                 <input class="profileEditorFields loginField" type="text" required placeholder="<fmt:message key="name"/>"
@@ -66,6 +65,11 @@
                         <c:if test="${requestScope.wrongData}">
                             <div class="w3-container">
                                 <fmt:message key="incorrectEmailOrPass"/>
+                            </div>
+                        </c:if>
+                        <c:if test="${requestScope.existUser}">
+                            <div class="w3-container">
+                                <p>User is already exist</p>
                             </div>
                         </c:if>
                     </form>

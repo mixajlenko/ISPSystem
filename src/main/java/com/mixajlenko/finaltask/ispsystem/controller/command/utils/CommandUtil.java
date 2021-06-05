@@ -1,9 +1,14 @@
 package com.mixajlenko.finaltask.ispsystem.controller.command.utils;
 
-import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+//import jakarta.servlet.RequestDispatcher;
+//import jakarta.servlet.ServletException;
+//import jakarta.servlet.http.HttpServletRequest;
+//import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
@@ -54,6 +59,10 @@ public abstract class CommandUtil {
         cal.add(Calendar.DATE, 30);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         return Date.valueOf(sdf.format(cal.getTime()));
+    }
+
+    public String hashPass(){
+        return "";
     }
 
 }
