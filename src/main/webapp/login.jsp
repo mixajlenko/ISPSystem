@@ -10,7 +10,7 @@
 <meta charset="utf-8">
 
 <head>
-    <title><fmt:message key="title"/></title>
+    <title><fmt:message key="authorizationTitle"/></title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/style.css" media="screen">
 </head>
 <body>
@@ -20,7 +20,7 @@
         <div class="container">
             <div class="row">
                 <div class="slidertext">
-                    <h3><fmt:message key="title"/></h3>
+                    <h3><fmt:message key="authorization"/></h3>
                 </div>
                 <div class="tableTariffs">
                     <div class="localRegistrationBlock">
