@@ -44627,3 +44627,71 @@ Stacktrace:
 17:26:46,979  INFO http-nio-8080-exec-10 LogoutCommand:execute:17 - logout
 17:26:46,979  INFO http-nio-8080-exec-10 CommandUtil:goToPage:27 - go to page start
 17:26:46,981  INFO http-nio-8080-exec-10 CommandUtil:goToPage:29 - /login.jsp
+17:50:39,083  INFO http-nio-8080-exec-4 Controller:doPost:34 - /view/login
+17:50:39,150  INFO http-nio-8080-exec-4 CommandFactory:getCommand:36 - /view/login
+17:50:39,150  INFO http-nio-8080-exec-4 Controller:doPost:38 - /view/login
+17:50:39,151  INFO http-nio-8080-exec-4 LoginCommand:execute:27 - Start execution login
+17:50:39,161  INFO http-nio-8080-exec-4 ServiceFactory:getInstance:23 - Create ServiceFactory
+17:50:39,186  INFO http-nio-8080-exec-4 DatabaseDaoFactory:getUserDao:34 - Get UserDao
+17:50:39,188  INFO http-nio-8080-exec-4 DatabaseDaoFactory:getServiceDao:22 - Get ServiceDao
+17:50:39,190  INFO http-nio-8080-exec-4 DatabaseDaoFactory:getTariffDao:28 - Get TariffDao
+17:50:39,192  INFO http-nio-8080-exec-4 DatabaseDaoFactory:getPaymentDao:40 - Get PaymentDao
+17:50:39,194  INFO http-nio-8080-exec-4 DatabaseDaoFactory:getUserTariffDao:46 - Get UserTariffDao
+17:50:39,195  INFO http-nio-8080-exec-4 DatabaseDaoFactory:getTariffDao:28 - Get TariffDao
+17:50:39,195  INFO http-nio-8080-exec-4 DatabaseDaoFactory:getUserDao:34 - Get UserDao
+17:50:39,195  INFO http-nio-8080-exec-4 ServiceFactory:getUserService:44 - Get UserService
+17:50:39,195  INFO http-nio-8080-exec-4 ServiceFactory:getServiceService:49 - Get ServiceService
+17:50:41,261  INFO http-nio-8080-exec-4 CommandUtil:getUserPageByRole:39 - user by role
+17:50:41,261  INFO http-nio-8080-exec-4 CommandUtil:getUserPageByRole:49 - /view/admin/mainPageAdmin
+17:50:41,262  INFO http-nio-8080-exec-4 CommandUtil:goToPage:27 - go to page start
+17:50:41,264  INFO http-nio-8080-exec-4 CommandUtil:goToPage:29 - /view/admin/mainPageAdmin
+17:50:41,269  INFO http-nio-8080-exec-4 Controller:doPost:34 - /view/admin/mainPageAdmin
+17:50:41,269  INFO http-nio-8080-exec-4 CommandFactory:getCommand:36 - /view/admin/mainPageAdmin
+17:50:41,270  INFO http-nio-8080-exec-4 Controller:doPost:38 - /view/admin/mainPageAdmin
+17:50:41,270  INFO http-nio-8080-exec-4 ServiceFactory:getUserService:44 - Get UserService
+17:50:41,455  INFO http-nio-8080-exec-4 UserServiceImpl:blockedAccounts:109 - get blockedAccounts
+17:50:41,456  INFO http-nio-8080-exec-4 UserServiceImpl:blockedAccounts:109 - get blockedAccounts
+17:50:41,457  INFO http-nio-8080-exec-4 AdminMenuCommand:execute:34 - in page admin
+17:50:41,457  INFO http-nio-8080-exec-4 CommandUtil:goToPage:27 - go to page start
+17:50:41,458  INFO http-nio-8080-exec-4 CommandUtil:goToPage:29 - /WEB-INF/view/admin/mainPageAdmin.jsp
+18:02:11,512  INFO http-nio-8080-exec-5 Controller:doPost:34 - /view/login
+18:02:11,580  INFO http-nio-8080-exec-5 CommandFactory:getCommand:36 - /view/login
+18:02:11,581  INFO http-nio-8080-exec-5 Controller:doPost:38 - /view/login
+18:02:11,581  INFO http-nio-8080-exec-5 LoginCommand:execute:27 - Start execution login
+18:02:11,595  INFO http-nio-8080-exec-5 ServiceFactory:getInstance:23 - Create ServiceFactory
+18:02:11,627  INFO http-nio-8080-exec-5 DatabaseDaoFactory:getUserDao:34 - Get UserDao
+18:02:11,629  INFO http-nio-8080-exec-5 DatabaseDaoFactory:getServiceDao:22 - Get ServiceDao
+18:02:11,631  INFO http-nio-8080-exec-5 DatabaseDaoFactory:getTariffDao:28 - Get TariffDao
+18:02:11,634  INFO http-nio-8080-exec-5 DatabaseDaoFactory:getPaymentDao:40 - Get PaymentDao
+18:02:11,639  INFO http-nio-8080-exec-5 DatabaseDaoFactory:getUserTariffDao:46 - Get UserTariffDao
+18:02:11,639  INFO http-nio-8080-exec-5 DatabaseDaoFactory:getTariffDao:28 - Get TariffDao
+18:02:11,639  INFO http-nio-8080-exec-5 DatabaseDaoFactory:getUserDao:34 - Get UserDao
+18:02:11,640  INFO http-nio-8080-exec-5 ServiceFactory:getUserService:44 - Get UserService
+18:02:11,640  INFO http-nio-8080-exec-5 ServiceFactory:getServiceService:49 - Get ServiceService
+18:03:36,311  INFO http-nio-8080-exec-6 Controller:doPost:34 - /view/login
+18:03:36,368  INFO http-nio-8080-exec-6 CommandFactory:getCommand:36 - /view/login
+18:03:36,368  INFO http-nio-8080-exec-6 Controller:doPost:38 - /view/login
+18:03:36,368  INFO http-nio-8080-exec-6 LoginCommand:execute:27 - Start execution login
+18:03:36,379  INFO http-nio-8080-exec-6 ServiceFactory:getInstance:23 - Create ServiceFactory
+18:03:36,404  INFO http-nio-8080-exec-6 DatabaseDaoFactory:getUserDao:34 - Get UserDao
+18:03:36,405  INFO http-nio-8080-exec-6 DatabaseDaoFactory:getServiceDao:22 - Get ServiceDao
+18:03:36,407  INFO http-nio-8080-exec-6 DatabaseDaoFactory:getTariffDao:28 - Get TariffDao
+18:03:36,410  INFO http-nio-8080-exec-6 DatabaseDaoFactory:getPaymentDao:40 - Get PaymentDao
+18:03:36,412  INFO http-nio-8080-exec-6 DatabaseDaoFactory:getUserTariffDao:46 - Get UserTariffDao
+18:03:36,412  INFO http-nio-8080-exec-6 DatabaseDaoFactory:getTariffDao:28 - Get TariffDao
+18:03:36,413  INFO http-nio-8080-exec-6 DatabaseDaoFactory:getUserDao:34 - Get UserDao
+18:03:36,413  INFO http-nio-8080-exec-6 ServiceFactory:getUserService:44 - Get UserService
+18:03:36,414  INFO http-nio-8080-exec-6 ServiceFactory:getServiceService:49 - Get ServiceService
+18:03:38,903  INFO http-nio-8080-exec-6 CommandUtil:getUserPageByRole:39 - user by role
+18:03:38,903  INFO http-nio-8080-exec-6 CommandUtil:getUserPageByRole:49 - /view/admin/mainPageAdmin
+18:03:38,904  INFO http-nio-8080-exec-6 CommandUtil:goToPage:27 - go to page start
+18:03:38,906  INFO http-nio-8080-exec-6 CommandUtil:goToPage:29 - /view/admin/mainPageAdmin
+18:03:38,912  INFO http-nio-8080-exec-6 Controller:doPost:34 - /view/admin/mainPageAdmin
+18:03:38,912  INFO http-nio-8080-exec-6 CommandFactory:getCommand:36 - /view/admin/mainPageAdmin
+18:03:38,912  INFO http-nio-8080-exec-6 Controller:doPost:38 - /view/admin/mainPageAdmin
+18:03:38,913  INFO http-nio-8080-exec-6 ServiceFactory:getUserService:44 - Get UserService
+18:03:39,576  INFO http-nio-8080-exec-6 UserServiceImpl:blockedAccounts:109 - get blockedAccounts
+18:03:39,577  INFO http-nio-8080-exec-6 UserServiceImpl:blockedAccounts:109 - get blockedAccounts
+18:03:39,577  INFO http-nio-8080-exec-6 AdminMenuCommand:execute:34 - in page admin
+18:03:39,577  INFO http-nio-8080-exec-6 CommandUtil:goToPage:27 - go to page start
+18:03:39,578  INFO http-nio-8080-exec-6 CommandUtil:goToPage:29 - /WEB-INF/view/admin/mainPageAdmin.jsp
