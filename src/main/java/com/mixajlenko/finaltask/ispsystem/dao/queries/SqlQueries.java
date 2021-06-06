@@ -10,8 +10,6 @@ public enum SqlQueries {
 
     ALL_TARIFFS("SELECT * FROM \"TARIFF\""),
 
-    ALL_ACCOUNTS("SELECT * FROM \"ACCOUNT\""),
-
     ALL_SERVICE_TARIFF("SELECT * FROM \"SERVICE_TARIFF\""),
 
     ALL_USER_TARIFF("SELECT * FROM \"USERS_PLAN\""),
@@ -28,18 +26,6 @@ public enum SqlQueries {
 
     SELECT_USER_BY_STATUS("SELECT * FROM \"USER\" WHERE STATUS = ?"),
 
-    COUNT_SERVICE_ROWS("SELECT count(id) FROM \"SERVICE\""),
-
-    COUNT_USER_ROWS("SELECT count(id) FROM \"USER\""),
-
-    COUNT_TARIFF_ROWS("SELECT count(id) FROM \"TARIFF\""),
-
-    COUNT_ACCOUNT_ROWS("SELECT count(id) FROM \"ACCOUNT\""),
-
-    COUNT_SERVICE_TARIFF_ROWS("SELECT count(id) FROM \"SERVICE_TARIFF\""),
-
-    COUNT_USERS_PLAN_ROWS("SELECT count(id) FROM \"USERS_PLAN\""),
-
     DELETE_FROM_SERVICE("DELETE FROM \"SERVICE\" WHERE ID = ?"),
 
     DELETE_FROM_USER("DELETE FROM \"USER\" WHERE ID = ?"),
@@ -50,13 +36,9 @@ public enum SqlQueries {
 
     DELETE_FROM_TARIFF("DELETE FROM \"TARIFF\" WHERE ID = ?"),
 
-    DELETE_FROM_ACCOUNT("DELETE FROM \"ACCOUNT\" WHERE ID = ?"),
-
     DELETE_FROM_USER_PLAN_BY_USER_ID_TARIFF_ID("DELETE FROM \"USERS_PLAN\" WHERE USER_ID = ? AND TARIFF_ID = ?"),
 
     INSERT_SERVICE("INSERT INTO \"SERVICE\" VALUES (?,?)"),
-
-    INSERT_ACCOUNT("INSERT INTO \"ACCOUNT\"(user_id, status, wallet, password, role) VALUES (?,?,?,?,?)"),
 
     INSERT_USER("INSERT INTO \"USER\"(\"firstName\", phone, email, \"secondName\", wallet, status, password, role)  VALUES (?,?,?,?,?,?,?,?)"),
 
@@ -83,8 +65,6 @@ public enum SqlQueries {
     UPDATE_USER_TARIFF("UPDATE \"USERS_PLAN\" SET USER_ID = ?, TARIFF_ID = ?, \"subDate\" = ?, STATUS = ?, \"nextBill\" = ? WHERE ID = ?"),
 
     UPDATE_USER_TARIFF_BY_TARIFF_ID("UPDATE \"USERS_PLAN\" SET USER_ID = ?, SET TARIFF_ID = ?, SET SUB_DATE = ?, SET STATUS = ?, \"nextBill\" = ? WHERE TARIFF_ID = ?"),
-
-    UPDATE_ACCOUNT("UPDATE \"ACCOUNT\" SET ID_USER = ?, STATUS = ?, WALLET = ?, ROLE = ? WHERE ID = ?"),
 
     GET_PAYMENTS_BY_USER_ID("SELECT * FROM \"PAYMENT\" WHERE user_id = ?");
 

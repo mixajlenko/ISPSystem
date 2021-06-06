@@ -4,6 +4,7 @@ package com.mixajlenko.finaltask.ispsystem.controller.command.utils;
 //import jakarta.servlet.ServletException;
 //import jakarta.servlet.http.HttpServletRequest;
 //import jakarta.servlet.http.HttpServletResponse;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -61,7 +64,23 @@ public abstract class CommandUtil {
         return Date.valueOf(sdf.format(cal.getTime()));
     }
 
-    public String hashPass(){
+    public static String encrypt(String pass) {
+        try {
+            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+
+            messageDigest.update(pass.getBytes());
+
+            byte[] digest = messageDigest.digest();
+            StringBuilder stringBuilder = new StringBuilder();
+
+            for (byte theByte : digest) {
+                stringBuilder.append(String.format("%02x", theByte & 0xff));
+            }
+            return stringBuilder.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            logger.info(e.getMessage());
+        }
         return "";
     }
 

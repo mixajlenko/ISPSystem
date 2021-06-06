@@ -151,29 +151,6 @@ public class UserTariffDao implements IUserTariffDao {
         return userTariffs;
     }
 
-//    @Override
-//    public List<Tariff> getUserTariffList(int userId) throws NamingException, SQLException {
-//        Connection connection = ConnectionFactory.getInstance().getConnection();
-//        List<Tariff> userTariffs = new ArrayList<>();
-//        try (PreparedStatement statement = connection.prepareStatement(SqlQueries.ALL_USER_TARIFF.getConstant())) {
-//            try (ResultSet resultSet = statement.executeQuery()) {
-//                while (resultSet.next()) {
-//                    Tariff tariff = new Tariff();
-//                    tariff.setId(resultSet.getInt(1));
-//                    tariff.setName(resultSet.getString(2));
-//                    tariff.setDescription(resultSet.getString(3));
-//                    tariff.setPrice(resultSet.getInt(4));
-//                    userTariffs.add(tariff);
-//                }
-//            }
-//        } catch (SQLException e) {
-//            return Collections.emptyList();
-//        } finally {
-//            connection.close();
-//        }
-//        return userTariffs;
-//    }
-
     @Override
     public UserTariff getUserTariffByUserId(int userId) throws NamingException, SQLException {
         UserTariff userTariff = null;

@@ -1,5 +1,6 @@
 package com.mixajlenko.finaltask.ispsystem.service.impl;
 
+import com.mixajlenko.finaltask.ispsystem.controller.command.utils.CommandUtil;
 import com.mixajlenko.finaltask.ispsystem.dao.IUserDao;
 import com.mixajlenko.finaltask.ispsystem.dao.factory.DaoFactory;
 
@@ -89,9 +90,15 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public User getByLoginAndPass(String login, String password) throws SQLException, NamingException {
+
         User user = userDao.getUserByEmail(login);
-        System.out.println(user);
         if (Objects.isNull(user)) {
+            logger.info("LOGIN");
+            throw new NotFoundUserException();
+        }
+
+        if(!password.equals(user.getPassword())){
+            logger.info("PASSWORD");
             throw new NotFoundUserException();
         }
         return user;

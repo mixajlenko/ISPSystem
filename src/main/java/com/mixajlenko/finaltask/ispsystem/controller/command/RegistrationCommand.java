@@ -31,7 +31,6 @@ public class RegistrationCommand implements ICommand {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String phone = request.getParameter("phone");
-        String role = request.getParameter("role");
 
         try {
             if (Objects.isNull(email) && Objects.isNull(password)) {
@@ -49,7 +48,7 @@ public class RegistrationCommand implements ICommand {
             String fName = request.getParameter("firstName");
             String sName = request.getParameter("secondName");
 
-            User user = new User(fName, sName, phone, email, 0, 0, password, 1);
+            User user = new User(fName, sName, phone, email, 0, 0, CommandUtil.encrypt(password), 1);
 
             userService.add(user);
             if(user.getRole()==0){

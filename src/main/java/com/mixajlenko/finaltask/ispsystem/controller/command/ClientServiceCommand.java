@@ -54,7 +54,6 @@ public class ClientServiceCommand implements ICommand {
                 request.setAttribute("showTariffs", true);
             }
 
-
             List<Service> services = serviceService.getAll();
             List<Tariff> complex = new ArrayList<>();
             complex.add(tariffService.getById(1));

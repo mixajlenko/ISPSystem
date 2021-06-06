@@ -14,6 +14,4 @@ public interface ITariffDao extends IEntityDAO<Integer, Tariff> {
 
     Tariff getByName(String name) throws NamingException, SQLException;
 
-
-
 }

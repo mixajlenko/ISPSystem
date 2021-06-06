@@ -44,7 +44,6 @@ public class ClientManageProfileCommand implements ICommand {
             }
             User user = userService.getUserByEmail(String.valueOf(request.getSession().getAttribute("login1")));
 
-
             String firstName = request.getParameter("fName");
             String secondName = request.getParameter("lName");
             String nameAction = request.getParameter("changeName");
@@ -76,12 +75,11 @@ public class ClientManageProfileCommand implements ICommand {
             if (Objects.nonNull(oldPass)
                     && Objects.nonNull(newPass)
                     && Objects.nonNull(passAction)
-                    && oldPass.equals(user.getPassword())
+                    && CommandUtil.encrypt(oldPass).equals(user.getPassword())
                     && ValidationData.isPasswordValid(newPass)) {
-                user.setPassword(newPass);
+                user.setPassword(CommandUtil.encrypt(newPass));
                 userService.update(user);
             }
-
 
             request.setAttribute("firstName", user.getFirstName());
             request.setAttribute("lastName", user.getSecondName());

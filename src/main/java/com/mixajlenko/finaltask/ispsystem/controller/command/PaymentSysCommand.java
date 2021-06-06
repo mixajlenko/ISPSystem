@@ -34,7 +34,6 @@ public class PaymentSysCommand implements ICommand {
 
             IUserService userService = serviceFactory.getUserService();
             IPaymentService paymentService = serviceFactory.getPaymentService();
-            ITariffService tariffService = serviceFactory.getTariffService();
             IUserTariffService userTariffService = serviceFactory.getUserTariffService();
 
             User user = userService.getUserByEmail(String.valueOf(request.getSession().getAttribute("login1")));
@@ -44,7 +43,6 @@ public class PaymentSysCommand implements ICommand {
             String payForTariff = request.getParameter("command");
             String tariffId = request.getParameter("id");
             String tariffPrice = request.getParameter("price");
-
 
             if (Objects.nonNull(payForTariff) && payForTariff.equals("payForTariff") && Objects.nonNull(tariffId) && Objects.nonNull(tariffPrice)) {
 
@@ -80,7 +78,7 @@ public class PaymentSysCommand implements ICommand {
             }
 
             List<Payment> payments = paymentService.getAll().stream().filter(p -> p.getUserId() == user.getId()).collect(Collectors.toList());
-            System.out.println(payments);
+
             request.setAttribute("paymentHistory", payments);
             request.setAttribute("fund", user.getWallet());
             CommandUtil.goToPage(request, response, "/WEB-INF/view/client/paymentSystemPage.jsp");

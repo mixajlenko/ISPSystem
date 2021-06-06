@@ -44036,3 +44036,594 @@ Stacktrace:
 19:15:45,118  INFO http-nio-8080-exec-2 ServiceFactory:getTariffService:54 - Get Tariff Service
 19:15:48,037  INFO http-nio-8080-exec-2 CommandUtil:goToPage:24 - go to page start
 19:15:48,038  INFO http-nio-8080-exec-2 CommandUtil:goToPage:26 - /WEB-INF/view/client/mainPageUser.jsp
+19:55:31,700  INFO http-nio-8080-exec-6 LanguageFilter:doFilter:28 - TEST
+19:55:31,712  INFO http-nio-8080-exec-6 LanguageFilter:doFilter:38 - uri/view/language//
+19:55:31,712  INFO http-nio-8080-exec-6 LanguageFilter:doFilter:39 - path/
+19:55:32,708  INFO http-nio-8080-exec-7 LanguageFilter:doFilter:28 - TEST
+19:55:32,708  INFO http-nio-8080-exec-7 LanguageFilter:doFilter:38 - uri/view/language//
+19:55:32,709  INFO http-nio-8080-exec-7 LanguageFilter:doFilter:39 - path/
+19:55:33,594  INFO http-nio-8080-exec-8 LanguageFilter:doFilter:28 - TEST
+19:55:33,594  INFO http-nio-8080-exec-8 LanguageFilter:doFilter:38 - uri/view/language//
+19:55:33,594  INFO http-nio-8080-exec-8 LanguageFilter:doFilter:39 - path/
+19:55:34,143  INFO http-nio-8080-exec-9 LanguageFilter:doFilter:28 - TEST
+19:55:34,143  INFO http-nio-8080-exec-9 LanguageFilter:doFilter:38 - uri/view/language//
+19:55:34,143  INFO http-nio-8080-exec-9 LanguageFilter:doFilter:39 - path/
+19:55:34,936  INFO http-nio-8080-exec-10 LanguageFilter:doFilter:28 - TEST
+19:55:34,937  INFO http-nio-8080-exec-10 LanguageFilter:doFilter:38 - uri/view/language//
+19:55:34,938  INFO http-nio-8080-exec-10 LanguageFilter:doFilter:39 - path/
+19:55:35,461  INFO http-nio-8080-exec-1 LanguageFilter:doFilter:28 - TEST
+19:55:35,463  INFO http-nio-8080-exec-1 LanguageFilter:doFilter:38 - uri/view/language//
+19:55:35,463  INFO http-nio-8080-exec-1 LanguageFilter:doFilter:39 - path/
+19:55:35,965  INFO http-nio-8080-exec-2 LanguageFilter:doFilter:28 - TEST
+19:55:35,965  INFO http-nio-8080-exec-2 LanguageFilter:doFilter:38 - uri/view/language//
+19:55:35,966  INFO http-nio-8080-exec-2 LanguageFilter:doFilter:39 - path/
+19:55:36,493  INFO http-nio-8080-exec-4 LanguageFilter:doFilter:28 - TEST
+19:55:36,494  INFO http-nio-8080-exec-4 LanguageFilter:doFilter:38 - uri/view/language//
+19:55:36,494  INFO http-nio-8080-exec-4 LanguageFilter:doFilter:39 - path/
+19:55:36,912  INFO http-nio-8080-exec-6 LanguageFilter:doFilter:28 - TEST
+19:55:36,912  INFO http-nio-8080-exec-6 LanguageFilter:doFilter:38 - uri/view/language//
+19:55:36,913  INFO http-nio-8080-exec-6 LanguageFilter:doFilter:39 - path/
+19:55:37,362  INFO http-nio-8080-exec-7 LanguageFilter:doFilter:28 - TEST
+19:55:37,363  INFO http-nio-8080-exec-7 LanguageFilter:doFilter:38 - uri/view/language//
+19:55:37,363  INFO http-nio-8080-exec-7 LanguageFilter:doFilter:39 - path/
+19:55:37,774  INFO http-nio-8080-exec-8 LanguageFilter:doFilter:28 - TEST
+19:55:37,775  INFO http-nio-8080-exec-8 LanguageFilter:doFilter:38 - uri/view/language//
+19:55:37,775  INFO http-nio-8080-exec-8 LanguageFilter:doFilter:39 - path/
+19:55:38,231  INFO http-nio-8080-exec-9 LanguageFilter:doFilter:28 - TEST
+19:55:38,231  INFO http-nio-8080-exec-9 LanguageFilter:doFilter:38 - uri/view/language//
+19:55:38,232  INFO http-nio-8080-exec-9 LanguageFilter:doFilter:39 - path/
+19:55:38,659  INFO http-nio-8080-exec-10 LanguageFilter:doFilter:28 - TEST
+19:55:38,659  INFO http-nio-8080-exec-10 LanguageFilter:doFilter:38 - uri/view/language//
+19:55:38,659  INFO http-nio-8080-exec-10 LanguageFilter:doFilter:39 - path/
+19:56:49,234  INFO http-nio-8080-exec-3 LanguageFilter:doFilter:28 - TEST
+19:56:49,234  INFO http-nio-8080-exec-3 LanguageFilter:doFilter:38 - uri/view/language//
+19:56:49,234  INFO http-nio-8080-exec-3 LanguageFilter:doFilter:39 - path/
+20:00:38,100  INFO http-nio-8080-exec-6 LanguageFilter:doFilter:28 - TEST
+20:00:38,106  INFO http-nio-8080-exec-6 LanguageFilter:doFilter:38 - uri/view/language//
+20:00:38,106  INFO http-nio-8080-exec-6 LanguageFilter:doFilter:39 - path/
+20:00:39,256  INFO http-nio-8080-exec-7 LanguageFilter:doFilter:28 - TEST
+20:00:39,257  INFO http-nio-8080-exec-7 LanguageFilter:doFilter:38 - uri/view/language//
+20:00:39,257  INFO http-nio-8080-exec-7 LanguageFilter:doFilter:39 - path/
+02:25:07,536  INFO main ServiceFactory:getInstance:23 - Create ServiceFactory
+02:25:07,575  INFO main DatabaseDaoFactory:getUserDao:34 - Get UserDao
+02:25:07,577  INFO main DatabaseDaoFactory:getServiceDao:22 - Get ServiceDao
+02:25:07,590  INFO main DatabaseDaoFactory:getTariffDao:28 - Get TariffDao
+02:25:07,593  INFO main DatabaseDaoFactory:getPaymentDao:40 - Get PaymentDao
+02:25:07,597  INFO main DatabaseDaoFactory:getUserTariffDao:46 - Get UserTariffDao
+02:25:07,598  INFO main DatabaseDaoFactory:getTariffDao:28 - Get TariffDao
+02:25:07,598  INFO main DatabaseDaoFactory:getUserDao:34 - Get UserDao
+02:25:07,598  INFO main ServiceFactory:getPaymentService:39 - Get PaymentService
+02:25:07,674  INFO main ServiceFactory:getPaymentService:39 - Get PaymentService
+02:25:07,694  INFO main ServiceFactory:getPaymentService:39 - Get PaymentService
+02:25:07,706  INFO main ServiceFactory:getPaymentService:39 - Get PaymentService
+02:25:07,718  INFO main ServiceFactory:getPaymentService:39 - Get PaymentService
+02:25:07,727  INFO main ServiceFactory:getPaymentService:39 - Get PaymentService
+02:28:47,531  INFO main ServiceFactory:getInstance:23 - Create ServiceFactory
+02:28:47,621  INFO main DatabaseDaoFactory:getUserDao:34 - Get UserDao
+02:28:47,625  INFO main DatabaseDaoFactory:getServiceDao:22 - Get ServiceDao
+02:28:47,628  INFO main DatabaseDaoFactory:getTariffDao:28 - Get TariffDao
+02:28:47,630  INFO main DatabaseDaoFactory:getPaymentDao:40 - Get PaymentDao
+02:28:47,632  INFO main DatabaseDaoFactory:getUserTariffDao:46 - Get UserTariffDao
+02:28:47,633  INFO main DatabaseDaoFactory:getTariffDao:28 - Get TariffDao
+02:28:47,634  INFO main DatabaseDaoFactory:getUserDao:34 - Get UserDao
+02:28:47,635  INFO main ServiceFactory:getPaymentService:39 - Get PaymentService
+02:28:47,713  INFO main ServiceFactory:getPaymentService:39 - Get PaymentService
+02:28:47,727  INFO main ServiceFactory:getPaymentService:39 - Get PaymentService
+02:28:47,738  INFO main ServiceFactory:getPaymentService:39 - Get PaymentService
+02:28:47,745  INFO main ServiceFactory:getPaymentService:39 - Get PaymentService
+02:28:47,756  INFO main ServiceFactory:getPaymentService:39 - Get PaymentService
+02:31:15,481  INFO main ServiceFactory:getInstance:23 - Create ServiceFactory
+02:31:15,512  INFO main DatabaseDaoFactory:getUserDao:34 - Get UserDao
+02:31:15,514  INFO main DatabaseDaoFactory:getServiceDao:22 - Get ServiceDao
+02:31:15,515  INFO main DatabaseDaoFactory:getTariffDao:28 - Get TariffDao
+02:31:15,517  INFO main DatabaseDaoFactory:getPaymentDao:40 - Get PaymentDao
+02:31:15,519  INFO main DatabaseDaoFactory:getUserTariffDao:46 - Get UserTariffDao
+02:31:15,519  INFO main DatabaseDaoFactory:getTariffDao:28 - Get TariffDao
+02:31:15,520  INFO main DatabaseDaoFactory:getUserDao:34 - Get UserDao
+02:31:15,520  INFO main ServiceFactory:getPaymentService:39 - Get PaymentService
+02:31:15,554  INFO main ServiceFactory:getPaymentService:39 - Get PaymentService
+02:31:15,562  INFO main ServiceFactory:getPaymentService:39 - Get PaymentService
+02:31:15,567  INFO main ServiceFactory:getPaymentService:39 - Get PaymentService
+02:31:15,574  INFO main ServiceFactory:getPaymentService:39 - Get PaymentService
+02:31:15,581  INFO main ServiceFactory:getPaymentService:39 - Get PaymentService
+02:49:38,922  INFO main ServiceFactory:getInstance:23 - Create ServiceFactory
+02:49:38,959  INFO main DatabaseDaoFactory:getUserDao:34 - Get UserDao
+02:49:38,960  INFO main DatabaseDaoFactory:getServiceDao:22 - Get ServiceDao
+02:49:38,963  INFO main DatabaseDaoFactory:getTariffDao:28 - Get TariffDao
+02:49:38,972  INFO main DatabaseDaoFactory:getPaymentDao:40 - Get PaymentDao
+02:49:38,977  INFO main DatabaseDaoFactory:getUserTariffDao:46 - Get UserTariffDao
+02:49:38,977  INFO main DatabaseDaoFactory:getTariffDao:28 - Get TariffDao
+02:49:38,977  INFO main DatabaseDaoFactory:getUserDao:34 - Get UserDao
+02:49:38,978  INFO main ServiceFactory:getPaymentService:39 - Get PaymentService
+02:49:39,046  INFO main ServiceFactory:getPaymentService:39 - Get PaymentService
+02:49:39,067  INFO main ServiceFactory:getPaymentService:39 - Get PaymentService
+02:49:39,083  INFO main ServiceFactory:getPaymentService:39 - Get PaymentService
+02:49:39,089  INFO main ServiceFactory:getPaymentService:39 - Get PaymentService
+02:49:39,101  INFO main ServiceFactory:getPaymentService:39 - Get PaymentService
+02:50:06,428  INFO main ServiceFactory:getInstance:23 - Create ServiceFactory
+02:50:06,454  INFO main DatabaseDaoFactory:getUserDao:34 - Get UserDao
+02:50:06,455  INFO main DatabaseDaoFactory:getServiceDao:22 - Get ServiceDao
+02:50:06,457  INFO main DatabaseDaoFactory:getTariffDao:28 - Get TariffDao
+02:50:06,458  INFO main DatabaseDaoFactory:getPaymentDao:40 - Get PaymentDao
+02:50:06,460  INFO main DatabaseDaoFactory:getUserTariffDao:46 - Get UserTariffDao
+02:50:06,460  INFO main DatabaseDaoFactory:getTariffDao:28 - Get TariffDao
+02:50:06,460  INFO main DatabaseDaoFactory:getUserDao:34 - Get UserDao
+02:50:06,461  INFO main ServiceFactory:getPaymentService:39 - Get PaymentService
+02:50:06,494  INFO main ServiceFactory:getPaymentService:39 - Get PaymentService
+02:50:06,499  INFO main ServiceFactory:getPaymentService:39 - Get PaymentService
+02:50:06,507  INFO main ServiceFactory:getPaymentService:39 - Get PaymentService
+02:50:06,528  INFO main ServiceFactory:getPaymentService:39 - Get PaymentService
+02:50:06,538  INFO main ServiceFactory:getPaymentService:39 - Get PaymentService
+02:50:44,727  INFO main ServiceFactory:getInstance:23 - Create ServiceFactory
+02:50:44,761  INFO main DatabaseDaoFactory:getUserDao:34 - Get UserDao
+02:50:44,765  INFO main DatabaseDaoFactory:getServiceDao:22 - Get ServiceDao
+02:50:44,772  INFO main DatabaseDaoFactory:getTariffDao:28 - Get TariffDao
+02:50:44,774  INFO main DatabaseDaoFactory:getPaymentDao:40 - Get PaymentDao
+02:50:44,778  INFO main DatabaseDaoFactory:getUserTariffDao:46 - Get UserTariffDao
+02:50:44,779  INFO main DatabaseDaoFactory:getTariffDao:28 - Get TariffDao
+02:50:44,780  INFO main DatabaseDaoFactory:getUserDao:34 - Get UserDao
+02:50:44,781  INFO main ServiceFactory:getPaymentService:39 - Get PaymentService
+02:50:44,893  INFO main ServiceFactory:getPaymentService:39 - Get PaymentService
+02:50:44,910  INFO main ServiceFactory:getPaymentService:39 - Get PaymentService
+02:50:44,921  INFO main ServiceFactory:getPaymentService:39 - Get PaymentService
+02:50:44,936  INFO main ServiceFactory:getPaymentService:39 - Get PaymentService
+02:50:44,944  INFO main ServiceFactory:getPaymentService:39 - Get PaymentService
+03:27:33,908  INFO http-nio-8080-exec-7 Controller:doPost:34 - /view/registration
+03:27:33,975  INFO http-nio-8080-exec-7 CommandFactory:getCommand:37 - /view/registration
+03:27:33,975  INFO http-nio-8080-exec-7 Controller:doPost:38 - /view/registration
+03:27:33,976  INFO http-nio-8080-exec-7 RegistrationCommand:execute:27 - Start execution registration
+03:27:33,987  INFO http-nio-8080-exec-7 ServiceFactory:getInstance:23 - Create ServiceFactory
+03:27:34,019  INFO http-nio-8080-exec-7 DatabaseDaoFactory:getUserDao:34 - Get UserDao
+03:27:34,021  INFO http-nio-8080-exec-7 DatabaseDaoFactory:getServiceDao:22 - Get ServiceDao
+03:27:34,023  INFO http-nio-8080-exec-7 DatabaseDaoFactory:getTariffDao:28 - Get TariffDao
+03:27:34,026  INFO http-nio-8080-exec-7 DatabaseDaoFactory:getPaymentDao:40 - Get PaymentDao
+03:27:34,029  INFO http-nio-8080-exec-7 DatabaseDaoFactory:getUserTariffDao:46 - Get UserTariffDao
+03:27:34,030  INFO http-nio-8080-exec-7 DatabaseDaoFactory:getTariffDao:28 - Get TariffDao
+03:27:34,030  INFO http-nio-8080-exec-7 DatabaseDaoFactory:getUserDao:34 - Get UserDao
+03:27:34,033  INFO http-nio-8080-exec-7 CommandUtil:goToPage:27 - go to page start
+03:27:34,036  INFO http-nio-8080-exec-7 CommandUtil:goToPage:29 - /WEB-INF/view/registration.jsp
+03:28:03,556  INFO http-nio-8080-exec-10 Controller:doPost:34 - /view/registration
+03:28:03,558  INFO http-nio-8080-exec-10 CommandFactory:getCommand:37 - /view/registration
+03:28:03,560  INFO http-nio-8080-exec-10 Controller:doPost:38 - /view/registration
+03:28:03,560  INFO http-nio-8080-exec-10 RegistrationCommand:execute:27 - Start execution registration
+03:28:03,566  INFO http-nio-8080-exec-10 ServiceFactory:getUserService:44 - Get UserService
+03:28:06,146  INFO http-nio-8080-exec-10 CommandUtil:goToPage:27 - go to page start
+03:28:06,149  INFO http-nio-8080-exec-10 CommandUtil:goToPage:29 - /
+03:28:33,215  INFO http-nio-8080-exec-3 Controller:doPost:34 - /view/login
+03:28:33,215  INFO http-nio-8080-exec-3 CommandFactory:getCommand:37 - /view/login
+03:28:33,216  INFO http-nio-8080-exec-3 Controller:doPost:38 - /view/login
+03:28:33,217  INFO http-nio-8080-exec-3 LoginCommand:execute:27 - Start execution login
+03:28:33,218  INFO http-nio-8080-exec-3 ServiceFactory:getUserService:44 - Get UserService
+03:28:33,219  INFO http-nio-8080-exec-3 ServiceFactory:getServiceService:49 - Get ServiceService
+03:28:34,454  INFO http-nio-8080-exec-3 CommandUtil:goToPage:27 - go to page start
+03:28:34,455  INFO http-nio-8080-exec-3 CommandUtil:goToPage:29 - /
+03:29:31,743  INFO http-nio-8080-exec-6 Controller:doPost:34 - /view/login
+03:29:31,743  INFO http-nio-8080-exec-6 CommandFactory:getCommand:37 - /view/login
+03:29:31,744  INFO http-nio-8080-exec-6 Controller:doPost:38 - /view/login
+03:29:31,745  INFO http-nio-8080-exec-6 LoginCommand:execute:27 - Start execution login
+03:29:31,748  INFO http-nio-8080-exec-6 ServiceFactory:getUserService:44 - Get UserService
+03:29:31,748  INFO http-nio-8080-exec-6 ServiceFactory:getServiceService:49 - Get ServiceService
+03:29:32,997  INFO http-nio-8080-exec-6 CommandUtil:goToPage:27 - go to page start
+03:29:32,998  INFO http-nio-8080-exec-6 CommandUtil:goToPage:29 - /
+03:29:37,433  INFO http-nio-8080-exec-8 Controller:doPost:34 - /view/registration
+03:29:37,433  INFO http-nio-8080-exec-8 CommandFactory:getCommand:37 - /view/registration
+03:29:37,436  INFO http-nio-8080-exec-8 Controller:doPost:38 - /view/registration
+03:29:37,436  INFO http-nio-8080-exec-8 RegistrationCommand:execute:27 - Start execution registration
+03:29:37,436  INFO http-nio-8080-exec-8 CommandUtil:goToPage:27 - go to page start
+03:29:37,437  INFO http-nio-8080-exec-8 CommandUtil:goToPage:29 - /WEB-INF/view/registration.jsp
+03:30:03,101  INFO http-nio-8080-exec-2 Controller:doPost:34 - /view/registration
+03:30:03,102  INFO http-nio-8080-exec-2 CommandFactory:getCommand:37 - /view/registration
+03:30:03,103  INFO http-nio-8080-exec-2 Controller:doPost:38 - /view/registration
+03:30:03,104  INFO http-nio-8080-exec-2 RegistrationCommand:execute:27 - Start execution registration
+03:30:03,104  INFO http-nio-8080-exec-2 ServiceFactory:getUserService:44 - Get UserService
+03:30:04,319  INFO http-nio-8080-exec-2 CommandUtil:goToPage:27 - go to page start
+03:30:04,321  INFO http-nio-8080-exec-2 CommandUtil:goToPage:29 - /
+03:30:25,303  INFO http-nio-8080-exec-6 Controller:doPost:34 - /view/login
+03:30:25,303  INFO http-nio-8080-exec-6 CommandFactory:getCommand:37 - /view/login
+03:30:25,304  INFO http-nio-8080-exec-6 Controller:doPost:38 - /view/login
+03:30:25,305  INFO http-nio-8080-exec-6 LoginCommand:execute:27 - Start execution login
+03:30:25,306  INFO http-nio-8080-exec-6 ServiceFactory:getUserService:44 - Get UserService
+03:30:25,308  INFO http-nio-8080-exec-6 ServiceFactory:getServiceService:49 - Get ServiceService
+03:30:26,476  INFO http-nio-8080-exec-6 CommandUtil:goToPage:27 - go to page start
+03:30:26,478  INFO http-nio-8080-exec-6 CommandUtil:goToPage:29 - /
+03:34:06,348  INFO http-nio-8080-exec-3 Controller:doPost:34 - /view/login
+03:34:06,407  INFO http-nio-8080-exec-3 CommandFactory:getCommand:37 - /view/login
+03:34:06,408  INFO http-nio-8080-exec-3 Controller:doPost:38 - /view/login
+03:34:06,408  INFO http-nio-8080-exec-3 LoginCommand:execute:27 - Start execution login
+03:34:06,417  INFO http-nio-8080-exec-3 ServiceFactory:getInstance:23 - Create ServiceFactory
+03:34:06,443  INFO http-nio-8080-exec-3 DatabaseDaoFactory:getUserDao:34 - Get UserDao
+03:34:06,445  INFO http-nio-8080-exec-3 DatabaseDaoFactory:getServiceDao:22 - Get ServiceDao
+03:34:06,447  INFO http-nio-8080-exec-3 DatabaseDaoFactory:getTariffDao:28 - Get TariffDao
+03:34:06,451  INFO http-nio-8080-exec-3 DatabaseDaoFactory:getPaymentDao:40 - Get PaymentDao
+03:34:06,454  INFO http-nio-8080-exec-3 DatabaseDaoFactory:getUserTariffDao:46 - Get UserTariffDao
+03:34:06,454  INFO http-nio-8080-exec-3 DatabaseDaoFactory:getTariffDao:28 - Get TariffDao
+03:34:06,455  INFO http-nio-8080-exec-3 DatabaseDaoFactory:getUserDao:34 - Get UserDao
+03:34:06,455  INFO http-nio-8080-exec-3 ServiceFactory:getUserService:44 - Get UserService
+03:34:06,455  INFO http-nio-8080-exec-3 ServiceFactory:getServiceService:49 - Get ServiceService
+03:34:08,308  INFO http-nio-8080-exec-3 UserServiceImpl:getByLoginAndPass:99 - PASSWORD
+03:34:08,308  INFO http-nio-8080-exec-3 CommandUtil:goToPage:27 - go to page start
+03:34:08,309  INFO http-nio-8080-exec-3 CommandUtil:goToPage:29 - /
+03:34:30,407  INFO http-nio-8080-exec-9 Controller:doPost:34 - /view/login
+03:34:30,408  INFO http-nio-8080-exec-9 CommandFactory:getCommand:37 - /view/login
+03:34:30,410  INFO http-nio-8080-exec-9 Controller:doPost:38 - /view/login
+03:34:30,411  INFO http-nio-8080-exec-9 LoginCommand:execute:27 - Start execution login
+03:34:30,412  INFO http-nio-8080-exec-9 ServiceFactory:getUserService:44 - Get UserService
+03:34:30,412  INFO http-nio-8080-exec-9 ServiceFactory:getServiceService:49 - Get ServiceService
+03:34:31,587  INFO http-nio-8080-exec-9 CommandUtil:getUserPageByRole:39 - user by role
+03:34:31,587  INFO http-nio-8080-exec-9 CommandUtil:getUserPageByRole:49 - /view/client/mainPageUser
+03:34:31,587  INFO http-nio-8080-exec-9 CommandUtil:goToPage:27 - go to page start
+03:34:31,587  INFO http-nio-8080-exec-9 CommandUtil:goToPage:29 - /view/client/mainPageUser
+03:34:31,588  INFO http-nio-8080-exec-9 Controller:doPost:34 - /view/client/mainPageUser
+03:34:31,588  INFO http-nio-8080-exec-9 CommandFactory:getCommand:37 - /view/client/mainPageUser
+03:34:31,588  INFO http-nio-8080-exec-9 Controller:doPost:38 - /view/client/mainPageUser
+03:34:31,588  INFO http-nio-8080-exec-9 ServiceFactory:getUserTariffService:34 - Get UserTariffService
+03:34:31,588  INFO http-nio-8080-exec-9 ServiceFactory:getUserService:44 - Get UserService
+03:34:31,588  INFO http-nio-8080-exec-9 ServiceFactory:getTariffService:54 - Get Tariff Service
+03:34:34,414  INFO http-nio-8080-exec-9 CommandUtil:goToPage:27 - go to page start
+03:34:34,415  INFO http-nio-8080-exec-9 CommandUtil:goToPage:29 - /WEB-INF/view/client/mainPageUser.jsp
+03:34:53,287  INFO http-nio-8080-exec-11 Controller:doPost:34 - /view/logout
+03:34:53,288  INFO http-nio-8080-exec-11 CommandFactory:getCommand:37 - /view/logout
+03:34:53,288  INFO http-nio-8080-exec-11 Controller:doPost:38 - /view/logout
+03:34:53,288  INFO http-nio-8080-exec-11 LogoutCommand:execute:17 - logout
+03:34:53,289  INFO http-nio-8080-exec-11 CommandUtil:goToPage:27 - go to page start
+03:34:53,289  INFO http-nio-8080-exec-11 CommandUtil:goToPage:29 - /login.jsp
+03:36:16,720  INFO http-nio-8080-exec-5 Controller:doPost:34 - /view/login
+03:36:16,788  INFO http-nio-8080-exec-5 CommandFactory:getCommand:37 - /view/login
+03:36:16,788  INFO http-nio-8080-exec-5 Controller:doPost:38 - /view/login
+03:36:16,789  INFO http-nio-8080-exec-5 LoginCommand:execute:27 - Start execution login
+03:36:16,797  INFO http-nio-8080-exec-5 ServiceFactory:getInstance:23 - Create ServiceFactory
+03:36:16,829  INFO http-nio-8080-exec-5 DatabaseDaoFactory:getUserDao:34 - Get UserDao
+03:36:16,831  INFO http-nio-8080-exec-5 DatabaseDaoFactory:getServiceDao:22 - Get ServiceDao
+03:36:16,835  INFO http-nio-8080-exec-5 DatabaseDaoFactory:getTariffDao:28 - Get TariffDao
+03:36:16,837  INFO http-nio-8080-exec-5 DatabaseDaoFactory:getPaymentDao:40 - Get PaymentDao
+03:36:16,840  INFO http-nio-8080-exec-5 DatabaseDaoFactory:getUserTariffDao:46 - Get UserTariffDao
+03:36:16,840  INFO http-nio-8080-exec-5 DatabaseDaoFactory:getTariffDao:28 - Get TariffDao
+03:36:16,840  INFO http-nio-8080-exec-5 DatabaseDaoFactory:getUserDao:34 - Get UserDao
+03:36:16,840  INFO http-nio-8080-exec-5 ServiceFactory:getUserService:44 - Get UserService
+03:36:16,841  INFO http-nio-8080-exec-5 ServiceFactory:getServiceService:49 - Get ServiceService
+03:36:18,719  INFO http-nio-8080-exec-5 UserServiceImpl:getByLoginAndPass:101 - PASSWORD
+03:36:18,719  INFO http-nio-8080-exec-5 CommandUtil:goToPage:27 - go to page start
+03:36:18,720  INFO http-nio-8080-exec-5 CommandUtil:goToPage:29 - /
+03:37:33,301  INFO http-nio-8080-exec-12 Controller:doPost:34 - /view/login
+03:37:33,395  INFO http-nio-8080-exec-12 CommandFactory:getCommand:37 - /view/login
+03:37:33,395  INFO http-nio-8080-exec-12 Controller:doPost:38 - /view/login
+03:37:33,396  INFO http-nio-8080-exec-12 LoginCommand:execute:27 - Start execution login
+03:37:33,410  INFO http-nio-8080-exec-12 ServiceFactory:getInstance:23 - Create ServiceFactory
+03:37:33,439  INFO http-nio-8080-exec-12 DatabaseDaoFactory:getUserDao:34 - Get UserDao
+03:37:33,442  INFO http-nio-8080-exec-12 DatabaseDaoFactory:getServiceDao:22 - Get ServiceDao
+03:37:33,444  INFO http-nio-8080-exec-12 DatabaseDaoFactory:getTariffDao:28 - Get TariffDao
+03:37:33,445  INFO http-nio-8080-exec-12 DatabaseDaoFactory:getPaymentDao:40 - Get PaymentDao
+03:37:33,448  INFO http-nio-8080-exec-12 DatabaseDaoFactory:getUserTariffDao:46 - Get UserTariffDao
+03:37:33,449  INFO http-nio-8080-exec-12 DatabaseDaoFactory:getTariffDao:28 - Get TariffDao
+03:37:33,449  INFO http-nio-8080-exec-12 DatabaseDaoFactory:getUserDao:34 - Get UserDao
+03:37:33,449  INFO http-nio-8080-exec-12 ServiceFactory:getUserService:44 - Get UserService
+03:37:33,450  INFO http-nio-8080-exec-12 ServiceFactory:getServiceService:49 - Get ServiceService
+03:37:35,324  INFO http-nio-8080-exec-12 UserServiceImpl:getByLoginAndPass:103 - PASSWORD
+03:37:35,325  INFO http-nio-8080-exec-12 CommandUtil:goToPage:27 - go to page start
+03:37:35,326  INFO http-nio-8080-exec-12 CommandUtil:goToPage:29 - /
+03:38:37,799  INFO http-nio-8080-exec-19 Controller:doPost:34 - /view/login
+03:38:37,895  INFO http-nio-8080-exec-19 CommandFactory:getCommand:37 - /view/login
+03:38:37,896  INFO http-nio-8080-exec-19 Controller:doPost:38 - /view/login
+03:38:37,896  INFO http-nio-8080-exec-19 LoginCommand:execute:27 - Start execution login
+03:38:37,941  INFO http-nio-8080-exec-19 ServiceFactory:getInstance:23 - Create ServiceFactory
+03:38:38,047  INFO http-nio-8080-exec-19 DatabaseDaoFactory:getUserDao:34 - Get UserDao
+03:38:38,053  INFO http-nio-8080-exec-19 DatabaseDaoFactory:getServiceDao:22 - Get ServiceDao
+03:38:38,055  INFO http-nio-8080-exec-19 DatabaseDaoFactory:getTariffDao:28 - Get TariffDao
+03:38:38,057  INFO http-nio-8080-exec-19 DatabaseDaoFactory:getPaymentDao:40 - Get PaymentDao
+03:38:38,060  INFO http-nio-8080-exec-19 DatabaseDaoFactory:getUserTariffDao:46 - Get UserTariffDao
+03:38:38,060  INFO http-nio-8080-exec-19 DatabaseDaoFactory:getTariffDao:28 - Get TariffDao
+03:38:38,060  INFO http-nio-8080-exec-19 DatabaseDaoFactory:getUserDao:34 - Get UserDao
+03:38:38,060  INFO http-nio-8080-exec-19 ServiceFactory:getUserService:44 - Get UserService
+03:38:38,060  INFO http-nio-8080-exec-19 ServiceFactory:getServiceService:49 - Get ServiceService
+03:38:39,965  INFO http-nio-8080-exec-19 UserServiceImpl:getByLoginAndPass:103 - PASSWORD
+03:38:39,965  INFO http-nio-8080-exec-19 CommandUtil:goToPage:27 - go to page start
+03:38:39,966  INFO http-nio-8080-exec-19 CommandUtil:goToPage:29 - /
+03:38:50,301  INFO http-nio-8080-exec-20 Controller:doPost:34 - /view/login
+03:38:50,301  INFO http-nio-8080-exec-20 CommandFactory:getCommand:37 - /view/login
+03:38:50,302  INFO http-nio-8080-exec-20 Controller:doPost:38 - /view/login
+03:38:50,302  INFO http-nio-8080-exec-20 LoginCommand:execute:27 - Start execution login
+03:38:50,303  INFO http-nio-8080-exec-20 ServiceFactory:getUserService:44 - Get UserService
+03:38:50,303  INFO http-nio-8080-exec-20 ServiceFactory:getServiceService:49 - Get ServiceService
+03:38:51,516  INFO http-nio-8080-exec-20 UserServiceImpl:getByLoginAndPass:103 - PASSWORD
+03:38:51,516  INFO http-nio-8080-exec-20 CommandUtil:goToPage:27 - go to page start
+03:38:51,518  INFO http-nio-8080-exec-20 CommandUtil:goToPage:29 - /
+03:42:04,663  INFO http-nio-8080-exec-24 Controller:doPost:34 - /view/login
+03:42:04,870  INFO http-nio-8080-exec-24 CommandFactory:getCommand:37 - /view/login
+03:42:04,871  INFO http-nio-8080-exec-24 Controller:doPost:38 - /view/login
+03:42:04,871  INFO http-nio-8080-exec-24 LoginCommand:execute:27 - Start execution login
+03:42:04,886  INFO http-nio-8080-exec-24 ServiceFactory:getInstance:23 - Create ServiceFactory
+03:42:04,926  INFO http-nio-8080-exec-24 DatabaseDaoFactory:getUserDao:34 - Get UserDao
+03:42:04,928  INFO http-nio-8080-exec-24 DatabaseDaoFactory:getServiceDao:22 - Get ServiceDao
+03:42:04,931  INFO http-nio-8080-exec-24 DatabaseDaoFactory:getTariffDao:28 - Get TariffDao
+03:42:04,932  INFO http-nio-8080-exec-24 DatabaseDaoFactory:getPaymentDao:40 - Get PaymentDao
+03:42:04,934  INFO http-nio-8080-exec-24 DatabaseDaoFactory:getUserTariffDao:46 - Get UserTariffDao
+03:42:04,934  INFO http-nio-8080-exec-24 DatabaseDaoFactory:getTariffDao:28 - Get TariffDao
+03:42:04,934  INFO http-nio-8080-exec-24 DatabaseDaoFactory:getUserDao:34 - Get UserDao
+03:42:04,935  INFO http-nio-8080-exec-24 ServiceFactory:getUserService:44 - Get UserService
+03:42:04,935  INFO http-nio-8080-exec-24 ServiceFactory:getServiceService:49 - Get ServiceService
+03:42:06,834  INFO http-nio-8080-exec-24 CommandUtil:getUserPageByRole:39 - user by role
+03:42:06,835  INFO http-nio-8080-exec-24 CommandUtil:getUserPageByRole:49 - /view/client/mainPageUser
+03:42:06,835  INFO http-nio-8080-exec-24 CommandUtil:goToPage:27 - go to page start
+03:42:06,835  INFO http-nio-8080-exec-24 CommandUtil:goToPage:29 - /view/client/mainPageUser
+03:42:06,835  INFO http-nio-8080-exec-24 Controller:doPost:34 - /view/client/mainPageUser
+03:42:06,835  INFO http-nio-8080-exec-24 CommandFactory:getCommand:37 - /view/client/mainPageUser
+03:42:06,836  INFO http-nio-8080-exec-24 Controller:doPost:38 - /view/client/mainPageUser
+03:42:06,836  INFO http-nio-8080-exec-24 ServiceFactory:getUserTariffService:34 - Get UserTariffService
+03:42:06,836  INFO http-nio-8080-exec-24 ServiceFactory:getUserService:44 - Get UserService
+03:42:06,837  INFO http-nio-8080-exec-24 ServiceFactory:getTariffService:54 - Get Tariff Service
+03:42:08,546  INFO http-nio-8080-exec-24 CommandUtil:goToPage:27 - go to page start
+03:42:08,546  INFO http-nio-8080-exec-24 CommandUtil:goToPage:29 - /WEB-INF/view/client/mainPageUser.jsp
+03:42:28,825  INFO http-nio-8080-exec-27 Controller:doPost:34 - /view/client/paymentSystemPage
+03:42:28,825  INFO http-nio-8080-exec-27 CommandFactory:getCommand:37 - /view/client/paymentSystemPage
+03:42:28,826  INFO http-nio-8080-exec-27 Controller:doPost:38 - /view/client/paymentSystemPage
+03:42:28,826  INFO http-nio-8080-exec-27 ServiceFactory:getUserService:44 - Get UserService
+03:42:28,827  INFO http-nio-8080-exec-27 ServiceFactory:getPaymentService:39 - Get PaymentService
+03:42:28,827  INFO http-nio-8080-exec-27 ServiceFactory:getTariffService:54 - Get Tariff Service
+03:42:28,827  INFO http-nio-8080-exec-27 ServiceFactory:getUserTariffService:34 - Get UserTariffService
+03:42:29,993  INFO http-nio-8080-exec-27 CommandUtil:goToPage:27 - go to page start
+03:42:29,993  INFO http-nio-8080-exec-27 CommandUtil:goToPage:29 - /WEB-INF/view/client/paymentSystemPage.jsp
+03:42:33,032  INFO http-nio-8080-exec-29 Controller:doPost:34 - /view/client/paymentSystemPage
+03:42:33,032  INFO http-nio-8080-exec-29 CommandFactory:getCommand:37 - /view/client/paymentSystemPage
+03:42:33,032  INFO http-nio-8080-exec-29 Controller:doPost:38 - /view/client/paymentSystemPage
+03:42:33,037  INFO http-nio-8080-exec-29 ServiceFactory:getUserService:44 - Get UserService
+03:42:33,037  INFO http-nio-8080-exec-29 ServiceFactory:getPaymentService:39 - Get PaymentService
+03:42:33,037  INFO http-nio-8080-exec-29 ServiceFactory:getTariffService:54 - Get Tariff Service
+03:42:33,037  INFO http-nio-8080-exec-29 ServiceFactory:getUserTariffService:34 - Get UserTariffService
+03:42:35,082  INFO http-nio-8080-exec-22 Controller:doPost:34 - /view/client/paymentSystemPage
+03:42:35,082  INFO http-nio-8080-exec-22 CommandFactory:getCommand:37 - /view/client/paymentSystemPage
+03:42:35,082  INFO http-nio-8080-exec-22 Controller:doPost:38 - /view/client/paymentSystemPage
+03:42:35,082  INFO http-nio-8080-exec-22 ServiceFactory:getUserService:44 - Get UserService
+03:42:35,083  INFO http-nio-8080-exec-22 ServiceFactory:getPaymentService:39 - Get PaymentService
+03:42:35,083  INFO http-nio-8080-exec-22 ServiceFactory:getTariffService:54 - Get Tariff Service
+03:42:35,087  INFO http-nio-8080-exec-22 ServiceFactory:getUserTariffService:34 - Get UserTariffService
+03:42:36,670  INFO http-nio-8080-exec-29 CommandUtil:goToPage:27 - go to page start
+03:42:36,671  INFO http-nio-8080-exec-29 CommandUtil:goToPage:29 - /WEB-INF/view/client/paymentSystemPage.jsp
+03:42:38,739  INFO http-nio-8080-exec-22 CommandUtil:goToPage:27 - go to page start
+03:42:38,739  INFO http-nio-8080-exec-22 CommandUtil:goToPage:29 - /WEB-INF/view/client/paymentSystemPage.jsp
+03:42:45,853  INFO http-nio-8080-exec-17 Controller:doPost:34 - /view/client/paymentSystemPage
+03:42:45,855  INFO http-nio-8080-exec-17 CommandFactory:getCommand:37 - /view/client/paymentSystemPage
+03:42:45,855  INFO http-nio-8080-exec-17 Controller:doPost:38 - /view/client/paymentSystemPage
+03:42:45,855  INFO http-nio-8080-exec-17 ServiceFactory:getUserService:44 - Get UserService
+03:42:45,855  INFO http-nio-8080-exec-17 ServiceFactory:getPaymentService:39 - Get PaymentService
+03:42:45,856  INFO http-nio-8080-exec-17 ServiceFactory:getTariffService:54 - Get Tariff Service
+03:42:45,856  INFO http-nio-8080-exec-17 ServiceFactory:getUserTariffService:34 - Get UserTariffService
+03:42:49,527  INFO http-nio-8080-exec-17 CommandUtil:goToPage:27 - go to page start
+03:42:49,527  INFO http-nio-8080-exec-17 CommandUtil:goToPage:29 - /WEB-INF/view/client/paymentSystemPage.jsp
+03:42:52,110  INFO http-nio-8080-exec-32 Controller:doPost:34 - /view/client/paymentSystemPage
+03:42:52,110  INFO http-nio-8080-exec-32 CommandFactory:getCommand:37 - /view/client/paymentSystemPage
+03:42:52,110  INFO http-nio-8080-exec-32 Controller:doPost:38 - /view/client/paymentSystemPage
+03:42:52,111  INFO http-nio-8080-exec-32 ServiceFactory:getUserService:44 - Get UserService
+03:42:52,111  INFO http-nio-8080-exec-32 ServiceFactory:getPaymentService:39 - Get PaymentService
+03:42:52,111  INFO http-nio-8080-exec-32 ServiceFactory:getTariffService:54 - Get Tariff Service
+03:42:52,111  INFO http-nio-8080-exec-32 ServiceFactory:getUserTariffService:34 - Get UserTariffService
+03:42:55,728  INFO http-nio-8080-exec-32 CommandUtil:goToPage:27 - go to page start
+03:42:55,728  INFO http-nio-8080-exec-32 CommandUtil:goToPage:29 - /WEB-INF/view/client/paymentSystemPage.jsp
+03:43:07,682  INFO http-nio-8080-exec-34 Controller:doPost:34 - /view/logout
+03:43:07,684  INFO http-nio-8080-exec-34 CommandFactory:getCommand:37 - /view/logout
+03:43:07,685  INFO http-nio-8080-exec-34 Controller:doPost:38 - /view/logout
+03:43:07,686  INFO http-nio-8080-exec-34 LogoutCommand:execute:17 - logout
+03:43:07,687  INFO http-nio-8080-exec-34 CommandUtil:goToPage:27 - go to page start
+03:43:07,688  INFO http-nio-8080-exec-34 CommandUtil:goToPage:29 - /login.jsp
+03:43:14,237  INFO http-nio-8080-exec-37 Controller:doPost:34 - /view/login
+03:43:14,237  INFO http-nio-8080-exec-37 CommandFactory:getCommand:37 - /view/login
+03:43:14,239  INFO http-nio-8080-exec-37 Controller:doPost:38 - /view/login
+03:43:14,239  INFO http-nio-8080-exec-37 LoginCommand:execute:27 - Start execution login
+03:43:14,244  INFO http-nio-8080-exec-37 ServiceFactory:getUserService:44 - Get UserService
+03:43:14,245  INFO http-nio-8080-exec-37 ServiceFactory:getServiceService:49 - Get ServiceService
+03:43:15,431  INFO http-nio-8080-exec-37 UserServiceImpl:getByLoginAndPass:101 - PASSWORD
+03:43:15,432  INFO http-nio-8080-exec-37 CommandUtil:goToPage:27 - go to page start
+03:43:15,433  INFO http-nio-8080-exec-37 CommandUtil:goToPage:29 - /
+03:43:44,285  INFO http-nio-8080-exec-31 Controller:doPost:34 - /view/login
+03:43:44,285  INFO http-nio-8080-exec-31 CommandFactory:getCommand:37 - /view/login
+03:43:44,285  INFO http-nio-8080-exec-31 Controller:doPost:38 - /view/login
+03:43:44,290  INFO http-nio-8080-exec-31 LoginCommand:execute:27 - Start execution login
+03:43:44,292  INFO http-nio-8080-exec-31 ServiceFactory:getUserService:44 - Get UserService
+03:43:44,293  INFO http-nio-8080-exec-31 ServiceFactory:getServiceService:49 - Get ServiceService
+03:43:45,458  INFO http-nio-8080-exec-31 UserServiceImpl:getByLoginAndPass:96 - LOGIN
+03:43:45,458  INFO http-nio-8080-exec-31 CommandUtil:goToPage:27 - go to page start
+03:43:45,460  INFO http-nio-8080-exec-31 CommandUtil:goToPage:29 - /
+03:43:54,471  INFO http-nio-8080-exec-39 Controller:doPost:34 - /view/login
+03:43:54,472  INFO http-nio-8080-exec-39 CommandFactory:getCommand:37 - /view/login
+03:43:54,474  INFO http-nio-8080-exec-39 Controller:doPost:38 - /view/login
+03:43:54,475  INFO http-nio-8080-exec-39 LoginCommand:execute:27 - Start execution login
+03:43:54,475  INFO http-nio-8080-exec-39 ServiceFactory:getUserService:44 - Get UserService
+03:43:54,475  INFO http-nio-8080-exec-39 ServiceFactory:getServiceService:49 - Get ServiceService
+03:43:55,643  INFO http-nio-8080-exec-39 CommandUtil:getUserPageByRole:39 - user by role
+03:43:55,644  INFO http-nio-8080-exec-39 CommandUtil:getUserPageByRole:49 - /view/client/mainPageUser
+03:43:55,644  INFO http-nio-8080-exec-39 CommandUtil:goToPage:27 - go to page start
+03:43:55,644  INFO http-nio-8080-exec-39 CommandUtil:goToPage:29 - /view/client/mainPageUser
+03:43:55,644  INFO http-nio-8080-exec-39 Controller:doPost:34 - /view/client/mainPageUser
+03:43:55,645  INFO http-nio-8080-exec-39 CommandFactory:getCommand:37 - /view/client/mainPageUser
+03:43:55,645  INFO http-nio-8080-exec-39 Controller:doPost:38 - /view/client/mainPageUser
+03:43:55,645  INFO http-nio-8080-exec-39 ServiceFactory:getUserTariffService:34 - Get UserTariffService
+03:43:55,645  INFO http-nio-8080-exec-39 ServiceFactory:getUserService:44 - Get UserService
+03:43:55,645  INFO http-nio-8080-exec-39 ServiceFactory:getTariffService:54 - Get Tariff Service
+03:43:57,290  INFO http-nio-8080-exec-39 CommandUtil:goToPage:27 - go to page start
+03:43:57,291  INFO http-nio-8080-exec-39 CommandUtil:goToPage:29 - /WEB-INF/view/client/mainPageUser.jsp
+03:44:01,202  INFO http-nio-8080-exec-36 Controller:doPost:34 - /view/client/profile
+03:44:01,202  INFO http-nio-8080-exec-36 CommandFactory:getCommand:37 - /view/client/profile
+03:44:01,202  INFO http-nio-8080-exec-36 Controller:doPost:38 - /view/client/profile
+03:44:01,204  INFO http-nio-8080-exec-36 ServiceFactory:getUserService:44 - Get UserService
+03:44:01,752  INFO http-nio-8080-exec-36 CommandUtil:goToPage:27 - go to page start
+03:44:01,753  INFO http-nio-8080-exec-36 CommandUtil:goToPage:29 - /WEB-INF/view/client/profile.jsp
+03:46:21,158  INFO http-nio-8080-exec-39 Controller:doPost:34 - /view/login
+03:46:21,230  INFO http-nio-8080-exec-39 CommandFactory:getCommand:37 - /view/login
+03:46:21,230  INFO http-nio-8080-exec-39 Controller:doPost:38 - /view/login
+03:46:21,230  INFO http-nio-8080-exec-39 LoginCommand:execute:27 - Start execution login
+03:46:21,238  INFO http-nio-8080-exec-39 ServiceFactory:getInstance:23 - Create ServiceFactory
+03:46:21,265  INFO http-nio-8080-exec-39 DatabaseDaoFactory:getUserDao:34 - Get UserDao
+03:46:21,268  INFO http-nio-8080-exec-39 DatabaseDaoFactory:getServiceDao:22 - Get ServiceDao
+03:46:21,269  INFO http-nio-8080-exec-39 DatabaseDaoFactory:getTariffDao:28 - Get TariffDao
+03:46:21,272  INFO http-nio-8080-exec-39 DatabaseDaoFactory:getPaymentDao:40 - Get PaymentDao
+03:46:21,275  INFO http-nio-8080-exec-39 DatabaseDaoFactory:getUserTariffDao:46 - Get UserTariffDao
+03:46:21,276  INFO http-nio-8080-exec-39 DatabaseDaoFactory:getTariffDao:28 - Get TariffDao
+03:46:21,276  INFO http-nio-8080-exec-39 DatabaseDaoFactory:getUserDao:34 - Get UserDao
+03:46:21,276  INFO http-nio-8080-exec-39 ServiceFactory:getUserService:44 - Get UserService
+03:46:21,277  INFO http-nio-8080-exec-39 ServiceFactory:getServiceService:49 - Get ServiceService
+03:46:23,079  INFO http-nio-8080-exec-39 CommandUtil:getUserPageByRole:39 - user by role
+03:46:23,080  INFO http-nio-8080-exec-39 CommandUtil:getUserPageByRole:49 - /view/client/mainPageUser
+03:46:23,080  INFO http-nio-8080-exec-39 CommandUtil:goToPage:27 - go to page start
+03:46:23,080  INFO http-nio-8080-exec-39 CommandUtil:goToPage:29 - /view/client/mainPageUser
+03:46:23,080  INFO http-nio-8080-exec-39 Controller:doPost:34 - /view/client/mainPageUser
+03:46:23,080  INFO http-nio-8080-exec-39 CommandFactory:getCommand:37 - /view/client/mainPageUser
+03:46:23,080  INFO http-nio-8080-exec-39 Controller:doPost:38 - /view/client/mainPageUser
+03:46:23,081  INFO http-nio-8080-exec-39 ServiceFactory:getUserTariffService:34 - Get UserTariffService
+03:46:23,081  INFO http-nio-8080-exec-39 ServiceFactory:getUserService:44 - Get UserService
+03:46:23,081  INFO http-nio-8080-exec-39 ServiceFactory:getTariffService:54 - Get Tariff Service
+03:46:24,753  INFO http-nio-8080-exec-39 CommandUtil:goToPage:27 - go to page start
+03:46:24,753  INFO http-nio-8080-exec-39 CommandUtil:goToPage:29 - /WEB-INF/view/client/mainPageUser.jsp
+03:46:30,136  INFO http-nio-8080-exec-38 Controller:doPost:34 - /view/client/profile
+03:46:30,137  INFO http-nio-8080-exec-38 CommandFactory:getCommand:37 - /view/client/profile
+03:46:30,137  INFO http-nio-8080-exec-38 Controller:doPost:38 - /view/client/profile
+03:46:30,139  INFO http-nio-8080-exec-38 ServiceFactory:getUserService:44 - Get UserService
+03:46:30,696  INFO http-nio-8080-exec-38 CommandUtil:goToPage:27 - go to page start
+03:46:30,697  INFO http-nio-8080-exec-38 CommandUtil:goToPage:29 - /WEB-INF/view/client/profile.jsp
+03:46:59,323  INFO http-nio-8080-exec-40 Controller:doPost:34 - /view/client/profile
+03:46:59,323  INFO http-nio-8080-exec-40 CommandFactory:getCommand:37 - /view/client/profile
+03:46:59,324  INFO http-nio-8080-exec-40 Controller:doPost:38 - /view/client/profile
+03:46:59,324  INFO http-nio-8080-exec-40 ServiceFactory:getUserService:44 - Get UserService
+03:46:59,872  INFO http-nio-8080-exec-40 CommandUtil:goToPage:27 - go to page start
+03:46:59,872  INFO http-nio-8080-exec-40 CommandUtil:goToPage:29 - /WEB-INF/view/client/profile.jsp
+03:50:30,661  INFO http-nio-8080-exec-48 Controller:doPost:34 - /view/login
+03:50:30,735  INFO http-nio-8080-exec-48 CommandFactory:getCommand:37 - /view/login
+03:50:30,735  INFO http-nio-8080-exec-48 Controller:doPost:38 - /view/login
+03:50:30,735  INFO http-nio-8080-exec-48 LoginCommand:execute:27 - Start execution login
+03:50:30,750  INFO http-nio-8080-exec-48 ServiceFactory:getInstance:23 - Create ServiceFactory
+03:50:30,785  INFO http-nio-8080-exec-48 DatabaseDaoFactory:getUserDao:34 - Get UserDao
+03:50:30,787  INFO http-nio-8080-exec-48 DatabaseDaoFactory:getServiceDao:22 - Get ServiceDao
+03:50:30,789  INFO http-nio-8080-exec-48 DatabaseDaoFactory:getTariffDao:28 - Get TariffDao
+03:50:30,792  INFO http-nio-8080-exec-48 DatabaseDaoFactory:getPaymentDao:40 - Get PaymentDao
+03:50:30,794  INFO http-nio-8080-exec-48 DatabaseDaoFactory:getUserTariffDao:46 - Get UserTariffDao
+03:50:30,794  INFO http-nio-8080-exec-48 DatabaseDaoFactory:getTariffDao:28 - Get TariffDao
+03:50:30,795  INFO http-nio-8080-exec-48 DatabaseDaoFactory:getUserDao:34 - Get UserDao
+03:50:30,795  INFO http-nio-8080-exec-48 ServiceFactory:getUserService:44 - Get UserService
+03:50:30,796  INFO http-nio-8080-exec-48 ServiceFactory:getServiceService:49 - Get ServiceService
+03:50:32,676  INFO http-nio-8080-exec-48 CommandUtil:getUserPageByRole:39 - user by role
+03:50:32,676  INFO http-nio-8080-exec-48 CommandUtil:getUserPageByRole:49 - /view/client/mainPageUser
+03:50:32,676  INFO http-nio-8080-exec-48 CommandUtil:goToPage:27 - go to page start
+03:50:32,676  INFO http-nio-8080-exec-48 CommandUtil:goToPage:29 - /view/client/mainPageUser
+03:50:32,676  INFO http-nio-8080-exec-48 Controller:doPost:34 - /view/client/mainPageUser
+03:50:32,677  INFO http-nio-8080-exec-48 CommandFactory:getCommand:37 - /view/client/mainPageUser
+03:50:32,677  INFO http-nio-8080-exec-48 Controller:doPost:38 - /view/client/mainPageUser
+03:50:32,678  INFO http-nio-8080-exec-48 ServiceFactory:getUserTariffService:34 - Get UserTariffService
+03:50:32,678  INFO http-nio-8080-exec-48 ServiceFactory:getUserService:44 - Get UserService
+03:50:32,678  INFO http-nio-8080-exec-48 ServiceFactory:getTariffService:54 - Get Tariff Service
+03:50:34,387  INFO http-nio-8080-exec-48 CommandUtil:goToPage:27 - go to page start
+03:50:34,388  INFO http-nio-8080-exec-48 CommandUtil:goToPage:29 - /WEB-INF/view/client/mainPageUser.jsp
+03:50:51,863  INFO http-nio-8080-exec-47 Controller:doPost:34 - /view/client/profile
+03:50:51,868  INFO http-nio-8080-exec-47 CommandFactory:getCommand:37 - /view/client/profile
+03:50:51,868  INFO http-nio-8080-exec-47 Controller:doPost:38 - /view/client/profile
+03:50:51,869  INFO http-nio-8080-exec-47 ServiceFactory:getUserService:44 - Get UserService
+03:50:52,459  INFO http-nio-8080-exec-47 CommandUtil:goToPage:27 - go to page start
+03:50:52,459  INFO http-nio-8080-exec-47 CommandUtil:goToPage:29 - /WEB-INF/view/client/profile.jsp
+03:51:02,445  INFO http-nio-8080-exec-51 Controller:doPost:34 - /view/client/profile
+03:51:02,447  INFO http-nio-8080-exec-51 CommandFactory:getCommand:37 - /view/client/profile
+03:51:02,447  INFO http-nio-8080-exec-51 Controller:doPost:38 - /view/client/profile
+03:51:02,448  INFO http-nio-8080-exec-51 ServiceFactory:getUserService:44 - Get UserService
+03:51:03,028  INFO http-nio-8080-exec-51 CommandUtil:goToPage:27 - go to page start
+03:51:03,029  INFO http-nio-8080-exec-51 CommandUtil:goToPage:29 - /WEB-INF/view/client/profile.jsp
+03:53:44,622  INFO http-nio-8080-exec-6 Controller:doPost:34 - /view/login
+03:53:44,740  INFO http-nio-8080-exec-6 CommandFactory:getCommand:37 - /view/login
+03:53:44,741  INFO http-nio-8080-exec-6 Controller:doPost:38 - /view/login
+03:53:44,741  INFO http-nio-8080-exec-6 LoginCommand:execute:27 - Start execution login
+03:53:44,750  INFO http-nio-8080-exec-6 ServiceFactory:getInstance:23 - Create ServiceFactory
+03:53:44,778  INFO http-nio-8080-exec-6 DatabaseDaoFactory:getUserDao:34 - Get UserDao
+03:53:44,780  INFO http-nio-8080-exec-6 DatabaseDaoFactory:getServiceDao:22 - Get ServiceDao
+03:53:44,783  INFO http-nio-8080-exec-6 DatabaseDaoFactory:getTariffDao:28 - Get TariffDao
+03:53:44,785  INFO http-nio-8080-exec-6 DatabaseDaoFactory:getPaymentDao:40 - Get PaymentDao
+03:53:44,787  INFO http-nio-8080-exec-6 DatabaseDaoFactory:getUserTariffDao:46 - Get UserTariffDao
+03:53:44,788  INFO http-nio-8080-exec-6 DatabaseDaoFactory:getTariffDao:28 - Get TariffDao
+03:53:44,788  INFO http-nio-8080-exec-6 DatabaseDaoFactory:getUserDao:34 - Get UserDao
+03:53:44,788  INFO http-nio-8080-exec-6 ServiceFactory:getUserService:44 - Get UserService
+03:53:44,788  INFO http-nio-8080-exec-6 ServiceFactory:getServiceService:49 - Get ServiceService
+03:53:47,255  INFO http-nio-8080-exec-6 CommandUtil:getUserPageByRole:39 - user by role
+03:53:47,256  INFO http-nio-8080-exec-6 CommandUtil:getUserPageByRole:49 - /view/client/mainPageUser
+03:53:47,257  INFO http-nio-8080-exec-6 CommandUtil:goToPage:27 - go to page start
+03:53:47,260  INFO http-nio-8080-exec-6 CommandUtil:goToPage:29 - /view/client/mainPageUser
+03:53:47,268  INFO http-nio-8080-exec-6 Controller:doPost:34 - /view/client/mainPageUser
+03:53:47,268  INFO http-nio-8080-exec-6 CommandFactory:getCommand:37 - /view/client/mainPageUser
+03:53:47,268  INFO http-nio-8080-exec-6 Controller:doPost:38 - /view/client/mainPageUser
+03:53:47,269  INFO http-nio-8080-exec-6 ServiceFactory:getUserTariffService:34 - Get UserTariffService
+03:53:47,269  INFO http-nio-8080-exec-6 ServiceFactory:getUserService:44 - Get UserService
+03:53:47,269  INFO http-nio-8080-exec-6 ServiceFactory:getTariffService:54 - Get Tariff Service
+03:53:49,010  INFO http-nio-8080-exec-6 CommandUtil:goToPage:27 - go to page start
+03:53:49,010  INFO http-nio-8080-exec-6 CommandUtil:goToPage:29 - /WEB-INF/view/client/mainPageUser.jsp
+03:53:52,540  INFO http-nio-8080-exec-7 Controller:doPost:34 - /view/client/profile
+03:53:52,542  INFO http-nio-8080-exec-7 CommandFactory:getCommand:37 - /view/client/profile
+03:53:52,542  INFO http-nio-8080-exec-7 Controller:doPost:38 - /view/client/profile
+03:53:52,542  INFO http-nio-8080-exec-7 ServiceFactory:getUserService:44 - Get UserService
+03:53:59,538  INFO http-nio-8080-exec-7 CommandUtil:goToPage:27 - go to page start
+03:53:59,539  INFO http-nio-8080-exec-7 CommandUtil:goToPage:29 - /WEB-INF/view/client/profile.jsp
+03:54:16,508  INFO http-nio-8080-exec-10 Controller:doPost:34 - /view/client/profile
+03:54:16,509  INFO http-nio-8080-exec-10 CommandFactory:getCommand:37 - /view/client/profile
+03:54:16,511  INFO http-nio-8080-exec-10 Controller:doPost:38 - /view/client/profile
+03:54:16,515  INFO http-nio-8080-exec-10 ServiceFactory:getUserService:44 - Get UserService
+03:56:08,674  INFO http-nio-8080-exec-10 CommandUtil:goToPage:27 - go to page start
+03:56:08,675  INFO http-nio-8080-exec-10 CommandUtil:goToPage:29 - /WEB-INF/view/client/profile.jsp
+03:57:23,259  INFO http-nio-8080-exec-6 Controller:doPost:34 - /view/login
+03:57:23,318  INFO http-nio-8080-exec-6 CommandFactory:getCommand:37 - /view/login
+03:57:23,319  INFO http-nio-8080-exec-6 Controller:doPost:38 - /view/login
+03:57:23,319  INFO http-nio-8080-exec-6 LoginCommand:execute:27 - Start execution login
+03:57:23,328  INFO http-nio-8080-exec-6 ServiceFactory:getInstance:23 - Create ServiceFactory
+03:57:23,356  INFO http-nio-8080-exec-6 DatabaseDaoFactory:getUserDao:34 - Get UserDao
+03:57:23,358  INFO http-nio-8080-exec-6 DatabaseDaoFactory:getServiceDao:22 - Get ServiceDao
+03:57:23,360  INFO http-nio-8080-exec-6 DatabaseDaoFactory:getTariffDao:28 - Get TariffDao
+03:57:23,362  INFO http-nio-8080-exec-6 DatabaseDaoFactory:getPaymentDao:40 - Get PaymentDao
+03:57:23,364  INFO http-nio-8080-exec-6 DatabaseDaoFactory:getUserTariffDao:46 - Get UserTariffDao
+03:57:23,365  INFO http-nio-8080-exec-6 DatabaseDaoFactory:getTariffDao:28 - Get TariffDao
+03:57:23,365  INFO http-nio-8080-exec-6 DatabaseDaoFactory:getUserDao:34 - Get UserDao
+03:57:23,365  INFO http-nio-8080-exec-6 ServiceFactory:getUserService:44 - Get UserService
+03:57:23,365  INFO http-nio-8080-exec-6 ServiceFactory:getServiceService:49 - Get ServiceService
+03:57:25,547  INFO http-nio-8080-exec-6 UserServiceImpl:getByLoginAndPass:101 - PASSWORD
+03:57:25,548  INFO http-nio-8080-exec-6 CommandUtil:goToPage:27 - go to page start
+03:57:25,552  INFO http-nio-8080-exec-6 CommandUtil:goToPage:29 - /
+03:57:35,345  INFO http-nio-8080-exec-9 Controller:doPost:34 - /view/login
+03:57:35,346  INFO http-nio-8080-exec-9 CommandFactory:getCommand:37 - /view/login
+03:57:35,346  INFO http-nio-8080-exec-9 Controller:doPost:38 - /view/login
+03:57:35,346  INFO http-nio-8080-exec-9 LoginCommand:execute:27 - Start execution login
+03:57:35,348  INFO http-nio-8080-exec-9 ServiceFactory:getUserService:44 - Get UserService
+03:57:35,349  INFO http-nio-8080-exec-9 ServiceFactory:getServiceService:49 - Get ServiceService
+03:57:36,540  INFO http-nio-8080-exec-9 CommandUtil:getUserPageByRole:39 - user by role
+03:57:36,541  INFO http-nio-8080-exec-9 CommandUtil:getUserPageByRole:49 - /view/client/mainPageUser
+03:57:36,541  INFO http-nio-8080-exec-9 CommandUtil:goToPage:27 - go to page start
+03:57:36,541  INFO http-nio-8080-exec-9 CommandUtil:goToPage:29 - /view/client/mainPageUser
+03:57:36,542  INFO http-nio-8080-exec-9 Controller:doPost:34 - /view/client/mainPageUser
+03:57:36,542  INFO http-nio-8080-exec-9 CommandFactory:getCommand:37 - /view/client/mainPageUser
+03:57:36,542  INFO http-nio-8080-exec-9 Controller:doPost:38 - /view/client/mainPageUser
+03:57:36,542  INFO http-nio-8080-exec-9 ServiceFactory:getUserTariffService:34 - Get UserTariffService
+03:57:36,543  INFO http-nio-8080-exec-9 ServiceFactory:getUserService:44 - Get UserService
+03:57:36,543  INFO http-nio-8080-exec-9 ServiceFactory:getTariffService:54 - Get Tariff Service
+03:57:38,232  INFO http-nio-8080-exec-9 CommandUtil:goToPage:27 - go to page start
+03:57:38,233  INFO http-nio-8080-exec-9 CommandUtil:goToPage:29 - /WEB-INF/view/client/mainPageUser.jsp
+17:26:40,068  INFO http-nio-8080-exec-7 Controller:doPost:34 - /view/login
+17:26:40,139  INFO http-nio-8080-exec-7 CommandFactory:getCommand:36 - /view/login
+17:26:40,139  INFO http-nio-8080-exec-7 Controller:doPost:38 - /view/login
+17:26:40,140  INFO http-nio-8080-exec-7 LoginCommand:execute:27 - Start execution login
+17:26:40,150  INFO http-nio-8080-exec-7 ServiceFactory:getInstance:23 - Create ServiceFactory
+17:26:40,176  INFO http-nio-8080-exec-7 DatabaseDaoFactory:getUserDao:34 - Get UserDao
+17:26:40,178  INFO http-nio-8080-exec-7 DatabaseDaoFactory:getServiceDao:22 - Get ServiceDao
+17:26:40,180  INFO http-nio-8080-exec-7 DatabaseDaoFactory:getTariffDao:28 - Get TariffDao
+17:26:40,181  INFO http-nio-8080-exec-7 DatabaseDaoFactory:getPaymentDao:40 - Get PaymentDao
+17:26:40,184  INFO http-nio-8080-exec-7 DatabaseDaoFactory:getUserTariffDao:46 - Get UserTariffDao
+17:26:40,184  INFO http-nio-8080-exec-7 DatabaseDaoFactory:getTariffDao:28 - Get TariffDao
+17:26:40,185  INFO http-nio-8080-exec-7 DatabaseDaoFactory:getUserDao:34 - Get UserDao
+17:26:40,186  INFO http-nio-8080-exec-7 ServiceFactory:getUserService:44 - Get UserService
+17:26:40,186  INFO http-nio-8080-exec-7 ServiceFactory:getServiceService:49 - Get ServiceService
+17:26:42,750  INFO http-nio-8080-exec-7 CommandUtil:getUserPageByRole:39 - user by role
+17:26:42,750  INFO http-nio-8080-exec-7 CommandUtil:getUserPageByRole:49 - /view/client/mainPageUser
+17:26:42,752  INFO http-nio-8080-exec-7 CommandUtil:goToPage:27 - go to page start
+17:26:42,754  INFO http-nio-8080-exec-7 CommandUtil:goToPage:29 - /view/client/mainPageUser
+17:26:42,760  INFO http-nio-8080-exec-7 Controller:doPost:34 - /view/client/mainPageUser
+17:26:42,761  INFO http-nio-8080-exec-7 CommandFactory:getCommand:36 - /view/client/mainPageUser
+17:26:42,761  INFO http-nio-8080-exec-7 Controller:doPost:38 - /view/client/mainPageUser
+17:26:42,761  INFO http-nio-8080-exec-7 ServiceFactory:getUserTariffService:34 - Get UserTariffService
+17:26:42,762  INFO http-nio-8080-exec-7 ServiceFactory:getUserService:44 - Get UserService
+17:26:42,762  INFO http-nio-8080-exec-7 ServiceFactory:getTariffService:54 - Get Tariff Service
+17:26:43,243  INFO http-nio-8080-exec-7 CommandUtil:goToPage:27 - go to page start
+17:26:43,244  INFO http-nio-8080-exec-7 CommandUtil:goToPage:29 - /WEB-INF/view/client/mainPageUser.jsp
+17:26:46,977  INFO http-nio-8080-exec-10 Controller:doPost:34 - /view/logout
+17:26:46,978  INFO http-nio-8080-exec-10 CommandFactory:getCommand:36 - /view/logout
+17:26:46,978  INFO http-nio-8080-exec-10 Controller:doPost:38 - /view/logout
+17:26:46,979  INFO http-nio-8080-exec-10 LogoutCommand:execute:17 - logout
+17:26:46,979  INFO http-nio-8080-exec-10 CommandUtil:goToPage:27 - go to page start
+17:26:46,981  INFO http-nio-8080-exec-10 CommandUtil:goToPage:29 - /login.jsp

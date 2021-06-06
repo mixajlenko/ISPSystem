@@ -20,7 +20,7 @@
         <div class="container">
             <div class="row">
                 <div class="slidertext">
-                    <h3><fmt:message key="authorization"/></h3>
+                    <h3><fmt:message key="authorizationTitle"/></h3>
                 </div>
                 <div class="tableTariffs">
                     <div class="localRegistrationBlock">

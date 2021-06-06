@@ -35,7 +35,7 @@ public class LoginCommand implements ICommand {
 
             try {
                 List<Service> services = serviceService.getAll();
-                User user = userService.getByLoginAndPass(login, password);
+                User user = userService.getByLoginAndPass(login, CommandUtil.encrypt(password));
                 req.getSession().setAttribute("user", user);
                 req.getSession().setAttribute("login1", login);
                 req.getSession().setAttribute("services", services);

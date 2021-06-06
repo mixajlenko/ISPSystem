@@ -59,7 +59,6 @@ public class AdminUserCommand implements ICommand {
                         break;
                     case "unlock":
                         user.setStatus(1);
-                        System.out.println(user);
                         userService.update(user);
                         break;
                     case "block":

@@ -32,7 +32,7 @@ public class Controller extends HttpServlet {
         String path = req.getRequestURI();
         path = path.substring(path.indexOf("view") - 1);
         logger.info(path);
-        ICommand command = null;
+        ICommand command;
         try {
             command = CommandFactory.getCommand(path);
             logger.info(path);

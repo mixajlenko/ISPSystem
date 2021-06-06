@@ -29,12 +29,6 @@ public class AdminAddTariffCommand implements ICommand {
         String description = request.getParameter("description");
         String price = request.getParameter("price");
         String serviceId = request.getParameter("param");
-
-
-        System.out.println(name);
-        System.out.println(description);
-        System.out.println(price);
-        System.out.println(serviceId);
         try {
 
             if (Objects.isNull(name) && Objects.isNull(description) && Objects.isNull(price)) {
@@ -44,15 +38,8 @@ public class AdminAddTariffCommand implements ICommand {
 
             ITariffService tariffService = factory.getTariffService();
 
-            Tariff tariff = new Tariff(name, description, Integer.parseInt(price));
-            System.out.println(tariff);
-
-            boolean test = tariffService.add(tariff);
-            System.out.println(test);
-
             int id = tariffService.getByName(name).getId();
-            System.out.println(id);
-            System.out.println(serviceId);
+
             tariffService.setServiceTariff(Integer.parseInt(serviceId), id);
             CommandUtil.goToPage(request, response, "/view/admin/managePlan?param="+serviceId);
 

@@ -10,8 +10,6 @@ public interface IUserTariffDao extends IEntityDAO<Integer, UserTariff>{
 
     List<UserTariff> getAllUserTariffInfoByUserId(int userId) throws NamingException, SQLException;
 
-//    List<Tariff> getUserTariffList(int userId) throws NamingException, SQLException;
-
     UserTariff getUserTariffByUserId(int userId) throws NamingException, SQLException;
 
     UserTariff getUserTariffByTariffIdUserId(int tariffId, int userId) throws NamingException, SQLException;

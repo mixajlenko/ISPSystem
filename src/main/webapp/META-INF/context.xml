@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Context>
+    <Resource name="jdbc/d6h02davsb03gm" auth="Container"
+              type="javax.sql.DataSource"
+              username="cruvadoiktrlmm"
+              password="37d74a543444c5244a3d99b138332f75d91a822850815ac67bc1dfb5b87af438"
+              driverClassName="org.postgresql.Driver"
+              url="jdbc:postgresql://ec2-54-217-195-234.eu-west-1.compute.amazonaws.com:5432/d6h02davsb03gm?sslmode=require"/>
+</Context>
