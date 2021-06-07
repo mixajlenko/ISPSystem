@@ -17,4 +17,5 @@ public interface Operation {
     String CLIENT_MANAGE_PROFILE = "/view/client/profile";
     String SUPPORT_PAGE = "/view/client/supportPage";
     String PAYMENT_SYSTEM_PAGE = "/view/client/paymentSystemPage";
+    String DOWNLOAD_SERVICES = "/view/client/downloadServices";
 }

@@ -28,6 +28,7 @@ public class CommandFactory {
         allKnownCommandMap.put(Operation.ADMIN_USERS, new AdminUserCommand());
         allKnownCommandMap.put(Operation.ADMIN_MANAGE_TARIFF, new AdminAddTariffCommand());
         allKnownCommandMap.put(Operation.ADMIN_MANAGE_USER, new AdminRegistrationUserCommand());
+        allKnownCommandMap.put(Operation.DOWNLOAD_SERVICES, new DownloadServiceCommand());
     }
 
 

@@ -27,7 +27,7 @@ public class ConnectionFactory {
 
     private static ConnectionFactory instance = null;
 
-    public static ConnectionFactory getInstance() {
+    public static synchronized ConnectionFactory getInstance() {
         if (instance == null)
             instance = new ConnectionFactory();
         return instance;

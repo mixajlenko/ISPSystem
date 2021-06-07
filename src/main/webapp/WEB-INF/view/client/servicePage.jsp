@@ -23,10 +23,12 @@
 
         <div class="logoBlock">
             <div style="font-size: 16px; text-align: end;">
-                <a class="loginBtn" href="${pageContext.request.contextPath}/view/language/client/servicePage?language=RU">
+                <a class="loginBtn"
+                   href="${pageContext.request.contextPath}/view/language/client/servicePage?language=RU">
                     RU
                 </a>
-                <a class="loginBtn" href="${pageContext.request.contextPath}/view/language/client/servicePage?language=EN">
+                <a class="loginBtn"
+                   href="${pageContext.request.contextPath}/view/language/client/servicePage?language=EN">
                     EN
                 </a>
             </div>
@@ -123,21 +125,32 @@
                                    href="${pageContext.request.contextPath}/view/client/servicePage?item=${item.name}&serviceId=${item.id}">${item.name}</a>
                             </c:forEach>
                         </div>
+                        <div>
+                            Download all:
+                            <a href="${pageContext.request.contextPath}/view/client/downloadServices?format=pdf&serviceName=All">PDF</a>
+                            <a href="${pageContext.request.contextPath}/view/client/downloadServices?format=txt&serviceName=All">TXT</a>
+                            <a href="${pageContext.request.contextPath}/view/client/downloadServices?format=docx&serviceName=All">DOCX</a>
+                            <a href="${pageContext.request.contextPath}/view/client/downloadServices?format=csv&serviceName=All">CSV</a>
+                        </div>
                         <c:choose>
                         <c:when test="${showTariffs}">
                         <div class="serviceBlock">
                             <div class="mainmenuSort">
                                 <ul class="topSort">
-                                    <li><a class="btnSort"><fmt:message key="sort"/> ><i class="fa fa-angle-down"></i></a>
+                                    <li><a class="btnSort"><fmt:message key="sort"/> ><i
+                                            class="fa fa-angle-down"></i></a>
                                         <ul class="subSort">
                                             <li>
-                                                <a href="${pageContext.request.contextPath}/view/client/servicePage?item=${item}&serviceId=${paramId}&sort=name"><fmt:message key="az"/></a>
+                                                <a href="${pageContext.request.contextPath}/view/client/servicePage?item=${item}&serviceId=${paramId}&sort=name"><fmt:message
+                                                        key="az"/></a>
                                             </li>
                                             <li>
-                                                <a href="${pageContext.request.contextPath}/view/client/servicePage?item=${item}&serviceId=${paramId}&sort=nameR"><fmt:message key="za"/></a>
+                                                <a href="${pageContext.request.contextPath}/view/client/servicePage?item=${item}&serviceId=${paramId}&sort=nameR"><fmt:message
+                                                        key="za"/></a>
                                             </li>
                                             <li>
-                                                <a href="${pageContext.request.contextPath}/view/client/servicePage?item=${item}&serviceId=${paramId}&sort=price"><fmt:message key="tariffPrice"/></a>
+                                                <a href="${pageContext.request.contextPath}/view/client/servicePage?item=${item}&serviceId=${paramId}&sort=price"><fmt:message
+                                                        key="tariffPrice"/></a>
                                             </li>
                                         </ul>
                                     </li>
@@ -161,10 +174,18 @@
                                         <td>${item.price}</td>
                                         <td id="endTd"><a class="updateButton" id="subscribeButton"
                                                           href="${pageContext.request.contextPath}/view/client/servicePage?tariffId=${item.id}"
-                                                          onclick="return confirm('<fmt:message key="subscribeSubmit1"/> ${item.name} <fmt:message key="subscribeSubmit2"/>')"><fmt:message key="subscribe"/></a>
+                                                          onclick="return confirm('
+                                                              <fmt:message key="subscribeSubmit1"/> ${item.name}
+                                                              <fmt:message key="subscribeSubmit2"/>')"><fmt:message
+                                                key="subscribe"/></a>
                                         </td>
                                     </tr>
                                 </c:forEach>
+                                Download:
+                                <a href="${pageContext.request.contextPath}/view/client/downloadServices?format=pdf&serviceId=${param.get("serviceId")}&serviceName=${param.get("item")}">PDF</a>
+                                <a href="${pageContext.request.contextPath}/view/client/downloadServices?format=txt&serviceId=${param.get("serviceId")}&serviceName=${param.get("item")}">TXT</a>
+                                <a href="${pageContext.request.contextPath}/view/client/downloadServices?format=docx&serviceId=${param.get("serviceId")}&serviceName=${param.get("item")}">DOCX</a>
+                                <a href="${pageContext.request.contextPath}/view/client/downloadServices?format=csv&serviceId=${param.get("serviceId")}&serviceName=${param.get("item")}">CSV</a>
                                 </tbody>
                             </table>
                         </div>
@@ -175,7 +196,6 @@
             </div>
         </div>
     </div>
-</div>
 </div>
 <script src="${pageContext.request.contextPath}/styles/js/time.js"></script>
 <script src="${pageContext.request.contextPath}/styles/js/jquery-3.2.1.min.js"></script>
