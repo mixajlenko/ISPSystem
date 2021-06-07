@@ -13,6 +13,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 public class ServicesDao implements IServiceDao {
+    /* TODO fix code duplicates */
 
     private static Logger logger = Logger.getLogger(ServicesDao.class);
 

@@ -12,6 +12,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class PaymentsDao implements IPaymentsDao {
+    /* TODO fix code duplicates */
 
     @Override
     public Payment getById(Integer id) throws SQLException, NamingException {

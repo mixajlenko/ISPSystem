@@ -14,6 +14,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class UserTariffDao implements IUserTariffDao {
+    /* TODO fix code duplicates */
 
     @Override
     public UserTariff getById(Integer id) throws SQLException, NamingException {
