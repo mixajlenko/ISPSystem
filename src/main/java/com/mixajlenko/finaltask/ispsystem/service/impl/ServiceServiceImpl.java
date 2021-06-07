@@ -45,10 +45,10 @@ public class ServiceServiceImpl implements IServiceService {
     }
 
     @Override
-    public Service update(Service entity) throws SQLException, NamingException {
+    public boolean update(Service entity) throws SQLException, NamingException {
         try {
-            serviceDao.update(entity);
-            return entity;
+            ;
+            return serviceDao.update(entity);
         } catch (DataBaseException e) {
             throw new ServiceException(e);
         }

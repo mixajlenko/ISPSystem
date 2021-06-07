@@ -47,10 +47,10 @@ public class PaymentServiceImpl implements IPaymentService {
     }
 
     @Override
-    public Payment update(Payment entity) throws SQLException, NamingException {
+    public boolean update(Payment entity) throws SQLException, NamingException {
         try {
-            paymentsDao.update(entity);
-            return entity;
+            ;
+            return paymentsDao.update(entity);
         } catch (DataBaseException e) {
             throw new ServiceException(e);
         }

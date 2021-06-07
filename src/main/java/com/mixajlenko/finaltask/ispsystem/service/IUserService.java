@@ -9,8 +9,6 @@ import java.util.List;
 
 public interface IUserService extends ItemService<Integer, User> {
 
-    User getUserByName(String name);
-
     User getUserByEmail(String email) throws SQLException, NamingException;
 
     User getByLoginAndPass(String login, String password) throws SQLException, NamingException;

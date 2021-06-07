@@ -14,7 +14,7 @@ public interface ItemService<K, T extends Model> {
 
     boolean add(T entity) throws SQLException, NamingException;
 
-    T update(T entity) throws SQLException, NamingException;
+    boolean update(T entity) throws SQLException, NamingException;
 
     boolean delete(K id) throws SQLException, NamingException;
 

@@ -3,8 +3,6 @@ package com.mixajlenko.finaltask.ispsystem.dao.factory;
 import com.mixajlenko.finaltask.ispsystem.dao.*;
 import com.mixajlenko.finaltask.ispsystem.dao.manager.*;
 
-import com.mixajlenko.finaltask.ispsystem.dao.*;
-import com.mixajlenko.finaltask.ispsystem.dao.manager.*;
 import org.apache.log4j.Logger;
 
 public class DatabaseDaoFactory extends DaoFactory {

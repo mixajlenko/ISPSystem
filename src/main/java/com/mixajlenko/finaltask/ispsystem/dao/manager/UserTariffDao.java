@@ -54,6 +54,7 @@ public class UserTariffDao implements IUserTariffDao {
                     userTariff.setStatus(resultSet.getInt(4));
                     userTariff.setNextBill(resultSet.getDate(5));
                     userTariff.setSubDate(resultSet.getDate(6));
+                    userTariffs.add(userTariff);
                 }
             }
         } catch (SQLException e) {

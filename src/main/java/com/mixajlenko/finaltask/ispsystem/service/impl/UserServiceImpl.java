@@ -56,10 +56,10 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public User update(User entity) throws SQLException, NamingException {
+    public boolean update(User entity) throws SQLException, NamingException {
         try {
-            userDao.update(entity);
-            return entity;
+            ;
+            return userDao.update(entity);
         } catch (DataBaseException e) {
             throw new ServiceException(e);
         }
@@ -72,11 +72,6 @@ public class UserServiceImpl implements IUserService {
         } catch (DataBaseException e) {
             throw new ServiceException(e);
         }
-    }
-
-    @Override
-    public User getUserByName(String name) {
-        return null;
     }
 
     @Override

@@ -56,10 +56,9 @@ public class UserTariffService implements IUserTariffService {
     }
 
     @Override
-    public UserTariff update(UserTariff entity) throws SQLException, NamingException {
+    public boolean update(UserTariff entity) throws SQLException, NamingException {
         try {
-            userTariffDao.update(entity);
-            return entity;
+            return userTariffDao.update(entity);
         } catch (DataBaseException e) {
             throw new ServiceException(e);
         }
