@@ -17,26 +17,21 @@ public class PaymentsDao implements IPaymentsDao {
     @Override
     public Payment getById(Integer id) throws SQLException, NamingException {
         Payment payment = null;
-        Connection connection = ConnectionFactory.getInstance().getConnection();
-        try (Statement statement = connection.createStatement()) {
-            try (ResultSet rs = statement.executeQuery(SqlQueries.ALL_PAYMENTS.getConstant())) {
-                while (rs.next()) {
-                    if (rs.getInt(1) == id) {
-                        payment = new Payment();
-                        payment.setId(id);
-                        payment.setUserId(rs.getInt(2));
-                        payment.setBill(rs.getInt(3));
-                        payment.setStatus(rs.getInt(4));
-                        payment.setBalance(rs.getInt(5));
-                        payment.setType(rs.getString(6));
-                        payment.setDate(rs.getDate(7));
-                    }
+        try (Connection connection = ConnectionFactory.getInstance().getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet rs = statement.executeQuery(SqlQueries.ALL_PAYMENTS.getConstant())) {
+            while (rs.next()) {
+                if (rs.getInt(1) == id) {
+                    payment = new Payment();
+                    payment.setId(id);
+                    payment.setUserId(rs.getInt(2));
+                    payment.setBill(rs.getInt(3));
+                    payment.setStatus(rs.getInt(4));
+                    payment.setBalance(rs.getInt(5));
+                    payment.setType(rs.getString(6));
+                    payment.setDate(rs.getDate(7));
                 }
             }
-        } catch (SQLException e) {
-            connection.rollback();
-        } finally {
-            connection.close();
         }
         return payment;
     }
@@ -45,19 +40,18 @@ public class PaymentsDao implements IPaymentsDao {
     public List<Payment> getAll() throws SQLException, NamingException {
         List<Payment> payments = new ArrayList<>();
         try (Connection connection = ConnectionFactory.getInstance().getConnection();
-             PreparedStatement statement = connection.prepareStatement(SqlQueries.ALL_PAYMENTS.getConstant())) {
-            try (ResultSet resultSet = statement.executeQuery()) {
-                while (resultSet.next()) {
-                    Payment payment = new Payment();
-                    payment.setId(resultSet.getInt(1));
-                    payment.setUserId(resultSet.getInt(2));
-                    payment.setBill(resultSet.getInt(3));
-                    payment.setStatus(resultSet.getInt(4));
-                    payment.setBalance(resultSet.getInt(5));
-                    payment.setType(resultSet.getString(6));
-                    payment.setDate(resultSet.getDate(7));
-                    payments.add(payment);
-                }
+             PreparedStatement statement = connection.prepareStatement(SqlQueries.ALL_PAYMENTS.getConstant());
+             ResultSet resultSet = statement.executeQuery()) {
+            while (resultSet.next()) {
+                Payment payment = new Payment();
+                payment.setId(resultSet.getInt(1));
+                payment.setUserId(resultSet.getInt(2));
+                payment.setBill(resultSet.getInt(3));
+                payment.setStatus(resultSet.getInt(4));
+                payment.setBalance(resultSet.getInt(5));
+                payment.setType(resultSet.getString(6));
+                payment.setDate(resultSet.getDate(7));
+                payments.add(payment);
             }
         } catch (SQLException e) {
             return Collections.emptyList();
@@ -68,7 +62,6 @@ public class PaymentsDao implements IPaymentsDao {
     @Override
     public boolean update(Payment entity) throws SQLException, NamingException {
         Connection connection = ConnectionFactory.getInstance().getConnection();
-        connection.setAutoCommit(false);
         try (PreparedStatement statement = connection.prepareStatement(SqlQueries.UPDATE_PAYMENT.getConstant())) {
             statement.setInt(1, entity.getBill());
             statement.setInt(2, entity.getStatus());
@@ -76,14 +69,12 @@ public class PaymentsDao implements IPaymentsDao {
             statement.setString(4, entity.getType());
             statement.setDate(5, entity.getDate());
             statement.setInt(6, entity.getId());
-
             statement.executeUpdate();
             connection.commit();
         } catch (SQLException e) {
             connection.rollback();
             return false;
         } finally {
-            connection.setAutoCommit(true);
             connection.close();
         }
         return true;
@@ -92,7 +83,6 @@ public class PaymentsDao implements IPaymentsDao {
     @Override
     public boolean delete(Integer id) throws SQLException, NamingException {
         Connection connection = ConnectionFactory.getInstance().getConnection();
-        connection.setAutoCommit(false);
         try (PreparedStatement statement = connection.prepareStatement(SqlQueries.DELETE_FROM_PAYMENT.getConstant())) {
             statement.setInt(1, id);
             statement.executeUpdate();
@@ -101,7 +91,6 @@ public class PaymentsDao implements IPaymentsDao {
             connection.rollback();
             return false;
         } finally {
-            connection.setAutoCommit(true);
             connection.close();
         }
         return true;
@@ -110,7 +99,6 @@ public class PaymentsDao implements IPaymentsDao {
     @Override
     public boolean add(Payment entity) throws SQLException, NamingException {
         Connection connection = ConnectionFactory.getInstance().getConnection();
-        connection.setAutoCommit(false);
         try (PreparedStatement statement = connection.prepareStatement(SqlQueries.INSERT_PAYMENT.getConstant())) {
             statement.setInt(1, entity.getUserId());
             statement.setInt(2, entity.getBill());
@@ -124,7 +112,6 @@ public class PaymentsDao implements IPaymentsDao {
             connection.rollback();
             return false;
         } finally {
-            connection.setAutoCommit(true);
             connection.close();
         }
         return true;
@@ -133,7 +120,8 @@ public class PaymentsDao implements IPaymentsDao {
     @Override
     public List<Payment> getAllById(int id) throws NamingException, SQLException {
         List<Payment> payments = new ArrayList<>();
-        try (Connection connection = ConnectionFactory.getInstance().getConnection(); PreparedStatement statement = connection.prepareStatement(SqlQueries.GET_PAYMENTS_BY_USER_ID.getConstant())) {
+        try (Connection connection = ConnectionFactory.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(SqlQueries.GET_PAYMENTS_BY_USER_ID.getConstant())) {
             statement.setInt(1, id);
             try (ResultSet resultSet = statement.executeQuery()) {
                 Payment payment = new Payment();

@@ -20,23 +20,18 @@ public class TariffDao implements ITariffDao {
     @Override
     public Tariff getById(Integer id) throws SQLException, NamingException {
         Tariff tariff = null;
-        Connection connection = ConnectionFactory.getInstance().getConnection();
-        try (Statement statement = connection.createStatement()) {
-            try (ResultSet rs = statement.executeQuery(SqlQueries.ALL_TARIFFS.getConstant())) {
-                while (rs.next()) {
-                    if (rs.getInt(1) == id) {
-                        tariff = new Tariff();
-                        tariff.setId(id);
-                        tariff.setName(rs.getString(2));
-                        tariff.setDescription(rs.getString(3));
-                        tariff.setPrice(rs.getInt(4));
-                    }
+        try (Connection connection = ConnectionFactory.getInstance().getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet rs = statement.executeQuery(SqlQueries.ALL_TARIFFS.getConstant())) {
+            while (rs.next()) {
+                if (rs.getInt(1) == id) {
+                    tariff = new Tariff();
+                    tariff.setId(id);
+                    tariff.setName(rs.getString(2));
+                    tariff.setDescription(rs.getString(3));
+                    tariff.setPrice(rs.getInt(4));
                 }
             }
-        } catch (SQLException e) {
-            connection.rollback();
-        } finally {
-            connection.close();
         }
         return tariff;
     }
@@ -44,19 +39,12 @@ public class TariffDao implements ITariffDao {
     @Override
     public List<Tariff> getAll() throws SQLException, NamingException {
         List<Tariff> tariffs = new ArrayList<>();
-        Connection connection = ConnectionFactory.getInstance().getConnection();
-        connection.setAutoCommit(false);
-        try (PreparedStatement ps = connection.prepareStatement(SqlQueries.ALL_TARIFFS.getConstant())) {
-            try (ResultSet rs = ps.executeQuery()) {
-                while (rs.next()) {
-                    tariffs.add(getById(rs.getInt(1)));
-                }
+        try (Connection connection = ConnectionFactory.getInstance().getConnection();
+             PreparedStatement ps = connection.prepareStatement(SqlQueries.ALL_TARIFFS.getConstant());
+             ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                tariffs.add(getById(rs.getInt(1)));
             }
-        } catch (SQLException e) {
-            connection.rollback();
-        } finally {
-            connection.setAutoCommit(true);
-            connection.close();
         }
         return tariffs;
     }
@@ -64,7 +52,6 @@ public class TariffDao implements ITariffDao {
     @Override
     public boolean update(Tariff entity) throws SQLException, NamingException {
         Connection connection = ConnectionFactory.getInstance().getConnection();
-        connection.setAutoCommit(false);
         try (PreparedStatement statement = connection.prepareStatement(SqlQueries.UPDATE_TARIFF.getConstant())) {
             statement.setString(1, entity.getName());
             statement.setString(2, entity.getDescription());
@@ -76,7 +63,6 @@ public class TariffDao implements ITariffDao {
             connection.rollback();
             return false;
         } finally {
-            connection.setAutoCommit(true);
             connection.close();
         }
         return true;
@@ -85,7 +71,6 @@ public class TariffDao implements ITariffDao {
     @Override
     public boolean delete(Integer id) throws SQLException, NamingException {
         Connection connection = ConnectionFactory.getInstance().getConnection();
-        connection.setAutoCommit(false);
         try (PreparedStatement statement = connection.prepareStatement(SqlQueries.DELETE_FROM_TARIFF.getConstant())) {
             statement.setInt(1, id);
             statement.executeUpdate();
@@ -94,7 +79,6 @@ public class TariffDao implements ITariffDao {
             connection.rollback();
             return false;
         } finally {
-            connection.setAutoCommit(true);
             connection.close();
         }
         return true;
@@ -103,7 +87,6 @@ public class TariffDao implements ITariffDao {
     @Override
     public boolean add(Tariff entity) throws SQLException, NamingException {
         Connection connection = ConnectionFactory.getInstance().getConnection();
-        connection.setAutoCommit(false);
         try (PreparedStatement statement = connection.prepareStatement(SqlQueries.INSERT_TARIFF.getConstant())) {
             statement.setString(1, entity.getName());
             statement.setString(2, entity.getDescription());
@@ -114,7 +97,6 @@ public class TariffDao implements ITariffDao {
             connection.rollback();
             return false;
         } finally {
-            connection.setAutoCommit(true);
             connection.close();
         }
         return true;
@@ -123,7 +105,6 @@ public class TariffDao implements ITariffDao {
     @Override
     public boolean setServiceTariff(int serviceId, int tariffId) throws SQLException, NamingException {
         Connection connection = ConnectionFactory.getInstance().getConnection();
-        connection.setAutoCommit(false);
         try (PreparedStatement statement = connection.prepareStatement(SqlQueries.INSERT_SERVICE_TARIFF.getConstant())) {
             statement.setInt(1, serviceId);
             statement.setInt(2, getById(tariffId).getId());
@@ -140,19 +121,14 @@ public class TariffDao implements ITariffDao {
 
     @Override
     public List<Tariff> getServiceTariff(int serviceId) throws SQLException, NamingException {
-        Connection connection = ConnectionFactory.getInstance().getConnection();
         List<Tariff> tariffs = new ArrayList<>();
-        try (PreparedStatement statement = connection.prepareStatement(SqlQueries.ALL_SERVICE_TARIFF.getConstant())) {
-            try (ResultSet resultSet = statement.executeQuery()) {
-                while (resultSet.next()) {
-                    if (resultSet.getInt(2) == serviceId) {
-                        tariffs.add(getById(resultSet.getInt(3)));
-                    }
+        try (Connection connection = ConnectionFactory.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(SqlQueries.ALL_SERVICE_TARIFF.getConstant());
+             ResultSet resultSet = statement.executeQuery()) {
+            while (resultSet.next()) {
+                if (resultSet.getInt(2) == serviceId) {
+                    tariffs.add(getById(resultSet.getInt(3)));
                 }
-            } catch (NamingException e) {
-                e.printStackTrace();
-            } finally {
-                connection.close();
             }
         }
         return tariffs;
@@ -161,28 +137,21 @@ public class TariffDao implements ITariffDao {
     @Override
     public Tariff getByName(String name) throws NamingException, SQLException {
         Tariff tariff = null;
-        Connection connection = ConnectionFactory.getInstance().getConnection();
-        try (Statement statement = connection.createStatement()) {
-            try (ResultSet rs = statement.executeQuery(SqlQueries.ALL_TARIFFS.getConstant())) {
-                while (rs.next()) {
-                    if (rs.getString(2).equals(name)) {
-                        tariff = new Tariff();
-                        tariff.setId(rs.getInt(1));
-                        tariff.setName(rs.getString(2));
-                        tariff.setDescription(rs.getString(3));
-                        tariff.setPrice(rs.getInt(4));
-                    }
+        try (Connection connection = ConnectionFactory.getInstance().getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet rs = statement.executeQuery(SqlQueries.ALL_TARIFFS.getConstant())) {
+            while (rs.next()) {
+                if (rs.getString(2).equals(name)) {
+                    tariff = new Tariff();
+                    tariff.setId(rs.getInt(1));
+                    tariff.setName(rs.getString(2));
+                    tariff.setDescription(rs.getString(3));
+                    tariff.setPrice(rs.getInt(4));
                 }
             }
-        } catch (SQLException e) {
-            connection.rollback();
-        } finally {
-            connection.close();
         }
         return tariff;
     }
-
-
 
 
 }

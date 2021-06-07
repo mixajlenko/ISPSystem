@@ -20,42 +20,12 @@ public class UserDao implements IUserDao {
     @Override
     public User getById(Integer id) throws NamingException, SQLException {
         User user = null;
-        Connection connection = ConnectionFactory.getInstance().getConnection();
-        try (Statement statement = connection.createStatement()) {
-            try (ResultSet rs = statement.executeQuery(SqlQueries.ALL_USERS.getConstant())) {
-                while (rs.next()) {
-                    if (rs.getInt(1) == id) {
-                        user = new User();
-                        user.setId(id);
-                        user.setFirstName(rs.getString(2));
-                        user.setSecondName(rs.getString(5));
-                        user.setPhone(rs.getString(3));
-                        user.setEmail(rs.getString(4));
-                        user.setRole(rs.getInt(9));
-                        user.setWallet(rs.getInt(6));
-                        user.setStatus(rs.getInt(7));
-                        user.setPassword(rs.getString(8));
-                    }
-                }
-            }
-        } catch (SQLException e) {
-            connection.rollback();
-        } finally {
-            connection.close();
-        }
-        return user;
-    }
-
-    @Override
-    public List<User> getAll() throws SQLException, NamingException {
-        List<User> users = new ArrayList<>();
-        Connection connection = ConnectionFactory.getInstance().getConnection();
-        connection.setAutoCommit(false);
-        try (PreparedStatement ps = connection.prepareStatement(SqlQueries.ALL_USERS.getConstant())) {
-            try (ResultSet rs = ps.executeQuery()) {
-                while (rs.next()) {
-                    User user = new User();
-                    user.setId(rs.getInt(1));
+        try (Connection connection = ConnectionFactory.getInstance().getConnection(); Statement statement = connection.createStatement();
+             ResultSet rs = statement.executeQuery(SqlQueries.ALL_USERS.getConstant())) {
+            while (rs.next()) {
+                if (rs.getInt(1) == id) {
+                    user = new User();
+                    user.setId(id);
                     user.setFirstName(rs.getString(2));
                     user.setSecondName(rs.getString(5));
                     user.setPhone(rs.getString(3));
@@ -64,14 +34,31 @@ public class UserDao implements IUserDao {
                     user.setWallet(rs.getInt(6));
                     user.setStatus(rs.getInt(7));
                     user.setPassword(rs.getString(8));
-                    users.add(user);
                 }
             }
-        } catch (SQLException e) {
-            connection.rollback();
-        } finally {
-            connection.setAutoCommit(true);
-            connection.close();
+        }
+        return user;
+    }
+
+    @Override
+    public List<User> getAll() throws SQLException, NamingException {
+        List<User> users = new ArrayList<>();
+        Connection connection = ConnectionFactory.getInstance().getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(SqlQueries.ALL_USERS.getConstant());
+             ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                User user = new User();
+                user.setId(rs.getInt(1));
+                user.setFirstName(rs.getString(2));
+                user.setSecondName(rs.getString(5));
+                user.setPhone(rs.getString(3));
+                user.setEmail(rs.getString(4));
+                user.setRole(rs.getInt(9));
+                user.setWallet(rs.getInt(6));
+                user.setStatus(rs.getInt(7));
+                user.setPassword(rs.getString(8));
+                users.add(user);
+            }
         }
         return users;
     }
@@ -79,7 +66,6 @@ public class UserDao implements IUserDao {
     @Override
     public boolean update(User entity) throws SQLException, NamingException {
         Connection connection = ConnectionFactory.getInstance().getConnection();
-        connection.setAutoCommit(false);
         try (PreparedStatement statement = connection.prepareStatement(SqlQueries.UPDATE_USER.getConstant())) {
             statement.setString(1, entity.getFirstName());
             statement.setString(2, entity.getSecondName());
@@ -95,9 +81,6 @@ public class UserDao implements IUserDao {
         } catch (SQLException e) {
             connection.rollback();
             return false;
-        } finally {
-            connection.setAutoCommit(true);
-            connection.close();
         }
         return true;
     }
@@ -105,7 +88,6 @@ public class UserDao implements IUserDao {
     @Override
     public boolean delete(Integer id) throws SQLException, NamingException {
         Connection connection = ConnectionFactory.getInstance().getConnection();
-        connection.setAutoCommit(false);
         try (PreparedStatement statement = connection.prepareStatement(SqlQueries.DELETE_FROM_USER.getConstant())) {
             statement.setInt(1, id);
             statement.executeUpdate();
@@ -113,9 +95,6 @@ public class UserDao implements IUserDao {
         } catch (SQLException e) {
             connection.rollback();
             return false;
-        } finally {
-            connection.setAutoCommit(true);
-            connection.close();
         }
         return true;
     }
@@ -123,7 +102,6 @@ public class UserDao implements IUserDao {
     @Override
     public boolean add(User entity) throws SQLException, NamingException {
         Connection connection = ConnectionFactory.getInstance().getConnection();
-        connection.setAutoCommit(false);
         try (PreparedStatement statement = connection.prepareStatement(SqlQueries.INSERT_USER.getConstant())) {
             statement.setString(1, entity.getFirstName());
             statement.setString(4, entity.getSecondName());
@@ -138,9 +116,6 @@ public class UserDao implements IUserDao {
         } catch (SQLException e) {
             connection.rollback();
             return false;
-        } finally {
-            connection.setAutoCommit(true);
-            connection.close();
         }
         return true;
     }

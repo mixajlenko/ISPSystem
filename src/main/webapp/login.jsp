@@ -7,9 +7,6 @@
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="text"/>
 <html>
-<header>
-    <meta charset="UTF-8">
-</header>
 <head>
     <title><fmt:message key="authorizationTitle"/></title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/style.css" media="screen">
