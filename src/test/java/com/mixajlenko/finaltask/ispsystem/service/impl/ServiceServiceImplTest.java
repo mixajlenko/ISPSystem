@@ -33,27 +33,27 @@ class ServiceServiceImplTest {
     void testGetAll() throws SQLException, NamingException {
         when(serviceDaoMock.getAll()).thenReturn(Collections.singletonList(new Service()));
         List<Service> result = testingInstance.getAll();
-        assertEquals(Collections.singletonList(new Service(0, null, null)), result);
+        assertEquals(Collections.singletonList(new Service.ServiceBuilderImpl().setId(0).setName(null).setDescription(null).build()), result);
     }
 
     @Test
     void testGetById() throws SQLException, NamingException {
         when(serviceDaoMock.getById(any())).thenReturn(new Service());
         Service result = testingInstance.getById(0);
-        assertEquals(new Service(0, null, null), result);
+        assertEquals(new Service.ServiceBuilderImpl().setId(0).setName(null).setDescription(null).build(), result);
     }
 
     @Test
     void testAdd() throws SQLException, NamingException {
         when(serviceDaoMock.add(any())).thenReturn(true);
-        boolean result = testingInstance.add(new Service(0, null, null));
+        boolean result = testingInstance.add(new Service.ServiceBuilderImpl().setId(0).setName(null).setDescription(null).build());
         assertTrue(result);
     }
 
     @Test
     void testUpdate() throws SQLException, NamingException {
         when(serviceDaoMock.update(any())).thenReturn(true);
-        boolean result = testingInstance.update(new Service(0, null, null));
+        boolean result = testingInstance.update(new Service.ServiceBuilderImpl().setId(0).setName(null).setDescription(null).build());
         assertTrue(result);
     }
 
@@ -66,8 +66,8 @@ class ServiceServiceImplTest {
 
     @Test
     void testGetByName() throws SQLException, NamingException {
-        when(serviceDaoMock.getByName(anyString())).thenReturn(new Service(0, null, null));
+        when(serviceDaoMock.getByName(anyString())).thenReturn(new Service.ServiceBuilderImpl().setId(0).setName(null).setDescription(null).build());
         Service result = testingInstance.getByName("name");
-        assertEquals(new Service(0, null, null), result);
+        assertEquals(new Service.ServiceBuilderImpl().setId(0).setName(null).setDescription(null).build(), result);
     }
 }

@@ -57,9 +57,12 @@ public class PaymentSysCommand implements ICommand {
                     userTariffService.update(userTariff);
                     user.setWallet(user.getWallet() - Integer.parseInt(tariffPrice));
                     userService.update(user);
-                    paymentService.add(new Payment(user.getId(), Integer.parseInt(tariffPrice), 0, user.getWallet(), CommandUtil.getDate(), "Pay for service"));
+                    Payment payment = new Payment.PaymentsBuilderImpl().setUserId(user.getId()).setBill(Integer.parseInt(tariffPrice)).setStatus(0).setBalance(user.getWallet()).setDate(CommandUtil.getDate()).setType("Pay for service").build();
+                    System.out.println(payment);
+                    paymentService.add(payment);
                 } else {
-                    Payment payment = new Payment(user.getId(), Integer.parseInt(tariffPrice), 1, user.getWallet(), CommandUtil.getDate(), "Pay for service");
+                    Payment payment = new Payment.PaymentsBuilderImpl().setUserId(user.getId()).setBill(Integer.parseInt(tariffPrice)).setStatus(1).setBalance(user.getWallet()).setDate(CommandUtil.getDate()).setType("Pay for service").build();
+                    System.out.println(payment);
                     paymentService.add(payment);
                 }
                 CommandUtil.goToPage(request, response, "/view/client/mainPageUser");
@@ -71,8 +74,7 @@ public class PaymentSysCommand implements ICommand {
                     user.setStatus(1);
                     userService.update(user);
                 }
-                Payment payment = new Payment(user.getId(), Integer.parseInt(amount), 0, user.getWallet() + Integer.parseInt(amount), CommandUtil.getDate(), "Refund");
-                paymentService.add(payment);
+                paymentService.add(new Payment.PaymentsBuilderImpl().setUserId(user.getId()).setBill(Integer.parseInt(amount)).setStatus(0).setBalance(user.getWallet() + Integer.parseInt(amount)).setDate(CommandUtil.getDate()).setType("Refund").build());
                 user.setWallet(user.getWallet() + Integer.parseInt(amount));
                 userService.update(user);
             }

@@ -1,7 +1,6 @@
 package com.mixajlenko.finaltask.ispsystem.service.impl;
 
 import com.mixajlenko.finaltask.ispsystem.dao.IPaymentsDao;
-import com.mixajlenko.finaltask.ispsystem.exception.DataBaseException;
 import com.mixajlenko.finaltask.ispsystem.exception.ServiceException;
 import com.mixajlenko.finaltask.ispsystem.model.Payment;
 import org.junit.jupiter.api.BeforeEach;
@@ -34,27 +33,34 @@ class PaymentServiceImplTest {
     void testGetAll() throws SQLException, NamingException {
         when(paymentsDaoMock.getAll()).thenReturn(Collections.singletonList(new Payment()));
         List<Payment> result = testingInstance.getAll();
-        assertEquals(Collections.singletonList(new Payment(0, 0, 0, 0, 0, null, null)), result);
+        assertEquals(Collections.singletonList(new Payment.PaymentsBuilderImpl().setId(0).setBill(0).setStatus(0).setBalance(0).setDate(null).setType(null).build()), result);
+
+    }
+
+    @Test
+    void testPay() {
+        Payment payment = new Payment.PaymentsBuilderImpl().setId(1).setUserId(12).setBill(2).setStatus(1).setBalance(2).setDate(null).setType(null).build();
+        System.out.println(payment);
     }
 
     @Test
     void testGetById() throws SQLException, NamingException {
         when(paymentsDaoMock.getById(any())).thenReturn(new Payment());
         Payment result = testingInstance.getById(0);
-        assertEquals(new Payment(0, 0, 0, 0, 0, null, null), result);
+        assertEquals(new Payment.PaymentsBuilderImpl().setId(0).setBill(0).setStatus(0).setBalance(0).setDate(null).setType(null).build(), result);
     }
 
     @Test
     void testAdd() throws SQLException, NamingException {
         when(paymentsDaoMock.add(any())).thenReturn(true);
-        boolean result = testingInstance.add(new Payment(0, 0, 0, 0, 0, null, null));
+        boolean result = testingInstance.add(new Payment.PaymentsBuilderImpl().setId(0).setBill(0).setStatus(0).setBalance(0).setDate(null).setType(null).build());
         assertTrue(result);
     }
 
     @Test
     void testUpdate() throws SQLException, NamingException {
         when(paymentsDaoMock.update(any())).thenReturn(true);
-        boolean result = testingInstance.update(new Payment(0, 0, 0, 0, 0, null, null));
+        boolean result = testingInstance.update(new Payment.PaymentsBuilderImpl().setId(0).setBill(0).setStatus(0).setBalance(0).setDate(null).setType(null).build());
         assertTrue(result);
     }
 
@@ -67,9 +73,9 @@ class PaymentServiceImplTest {
 
     @Test
     void testGetAllById() throws SQLException, NamingException {
-        when(paymentsDaoMock.getAllById(anyInt())).thenReturn(Collections.singletonList(new Payment(0, 0, 0, 0, 0, null, null)));
+        when(paymentsDaoMock.getAllById(anyInt())).thenReturn(Collections.singletonList(new Payment.PaymentsBuilderImpl().setId(0).setBill(0).setStatus(0).setBalance(0).setDate(null).setType(null).build()));
         List<Payment> result = testingInstance.getAllById(0);
-        assertEquals(Collections.singletonList(new Payment(0, 0, 0, 0, 0, null, null)), result);
+        assertEquals(Collections.singletonList(new Payment.PaymentsBuilderImpl().setId(0).setBill(0).setStatus(0).setBalance(0).setDate(null).setType(null).build()), result);
     }
 
     @Test
