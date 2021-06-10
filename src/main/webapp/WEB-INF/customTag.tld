@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<taglib>
+    <tlib-version>1.0</tlib-version>
+    <jsp-version>2.0</jsp-version>
+    <short-name>myTag</short-name>
+
+<!--    <tag>-->
+<!--        <name>idTag</name>-->
+<!--        <tag-class>com.mixajlenko.finaltask.ispsystem.controller.command.utils.CustomTag</tag-class>-->
+<!--        <body-content>empty</body-content>-->
+<!--    </tag>-->
+    <tag>
+        <name>idTag</name>
+        <tag-class>com.mixajlenko.finaltask.ispsystem.controller.command.utils.CustomTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>field</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+</taglib>
