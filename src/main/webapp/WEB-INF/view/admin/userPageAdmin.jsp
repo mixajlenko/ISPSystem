@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/style.css" media="screen">
 </head>
 
-<body style="zoom: 70%">
+<body style="zoom: 80%">
 <div id="home"></div>
 <div class="ournet-inter-area">
     <header id="header" class="header-area">
@@ -158,7 +158,7 @@
                                         <td class="endTdUserInfo">
                                             <a class="deleteButton"
                                                href="${pageContext.request.contextPath}/view/admin/userPageAdmin?command=more&operation=Unsubscribe&Uid=${param.get("Uid")}&Tid=${item.key.id}"
-                                               onclick="return confirm('<fmt:message key="unsubscribeConfirm"/> ${item.key.name} <fmt:message key="payConfirm3"/>')"><fmt:message key="unsubscribe"/></a>
+                                               onclick="return confirm('<fmt:message key="unsubscribeConfirm"/> ${item.key.name} <fmt:message key="payConfirm3"/>')"><fmt:message key="unsubscribeUser"/></a>
                                         </td>
                                     </tr>
                                 </c:forEach>

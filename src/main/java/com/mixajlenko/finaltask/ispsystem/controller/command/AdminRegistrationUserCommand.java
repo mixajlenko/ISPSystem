@@ -8,13 +8,12 @@ import com.mixajlenko.finaltask.ispsystem.exception.WrongDataException;
 import com.mixajlenko.finaltask.ispsystem.model.User;
 import com.mixajlenko.finaltask.ispsystem.service.IUserService;
 import com.mixajlenko.finaltask.ispsystem.service.factory.ServiceFactory;
-//import jakarta.servlet.http.HttpServletRequest;
-//import jakarta.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import javax.naming.NamingException;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Objects;
 
@@ -23,7 +22,7 @@ public class AdminRegistrationUserCommand implements ICommand{
     private static Logger logger = Logger.getLogger(AdminRegistrationUserCommand.class);
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
         logger.info("Start execution registration");
 
         ServiceFactory factory = ServiceFactory.getInstance();
@@ -54,13 +53,21 @@ public class AdminRegistrationUserCommand implements ICommand{
             String fName = request.getParameter("fName");
             String sName = request.getParameter("sName");
 
-            User user = new User(fName, sName, phone, email, 0,0,password);
+            User user = new User.UserBuilderImpl()
+                    .setFirstName(fName)
+                    .setSecondName(sName)
+                    .setPhone(phone)
+                    .setEmail(email)
+                    .setStatus(0)
+                    .setWallet(0)
+                    .setPassword(password)
+                    .build();
 
             logger.info(user.toString());
             user.setRole(1);
             IUserService.add(user);
 
-            CommandUtil.goToPage(request, response, "/view/admin/userPageAdmin");
+            response.sendRedirect("/view/admin/userPageAdmin");
 
         } catch (ServiceException e) {
             request.setAttribute("notFound", true);
@@ -70,7 +77,7 @@ public class AdminRegistrationUserCommand implements ICommand{
             CommandUtil.goToPage(request, response, "/WEB-INF/view/admin/manageUsers.jsp");
         } catch (NotFoundUserException e) {
             logger.error("Not found user");
-        } catch (SQLException | NamingException throwables) {
+        } catch (SQLException | NamingException | IOException throwables) {
             throwables.printStackTrace();
         }
     }

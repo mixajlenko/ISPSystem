@@ -59,6 +59,8 @@ public class UserDao implements IUserDao {
                 user.setPassword(rs.getString(8));
                 users.add(user);
             }
+        } finally {
+            connection.close();
         }
         return users;
     }
@@ -81,6 +83,8 @@ public class UserDao implements IUserDao {
         } catch (SQLException e) {
             connection.rollback();
             return false;
+        } finally {
+            connection.close();
         }
         return true;
     }
@@ -95,6 +99,8 @@ public class UserDao implements IUserDao {
         } catch (SQLException e) {
             connection.rollback();
             return false;
+        } finally {
+            connection.close();
         }
         return true;
     }
@@ -116,6 +122,8 @@ public class UserDao implements IUserDao {
         } catch (SQLException e) {
             connection.rollback();
             return false;
+        } finally {
+            connection.close();
         }
         return true;
     }

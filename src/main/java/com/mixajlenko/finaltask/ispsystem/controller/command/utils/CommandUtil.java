@@ -23,9 +23,10 @@ public abstract class CommandUtil {
 
     private static Logger logger = Logger.getLogger(CommandUtil.class);
 
-    public static void goToPage(HttpServletRequest req, HttpServletResponse resp, String url) {
+    public static void goToPage(HttpServletRequest req, HttpServletResponse resp, String url) throws IOException {
         logger.info("go to page start");
         RequestDispatcher requestDispatcher = req.getRequestDispatcher(url);
+
         logger.info(url);
         try {
             requestDispatcher.forward(req, resp);

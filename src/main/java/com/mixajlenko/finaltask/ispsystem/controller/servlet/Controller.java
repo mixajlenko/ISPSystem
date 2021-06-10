@@ -4,10 +4,6 @@ import com.mixajlenko.finaltask.ispsystem.controller.command.ICommand;
 import com.mixajlenko.finaltask.ispsystem.controller.command.commandfactory.CommandFactory;
 import com.mixajlenko.finaltask.ispsystem.controller.command.utils.CommandUtil;
 import com.mixajlenko.finaltask.ispsystem.exception.NotFoundOperationException;
-//import jakarta.servlet.ServletException;
-//import jakarta.servlet.http.HttpServlet;
-//import jakarta.servlet.http.HttpServletRequest;
-//import jakarta.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,6 +26,7 @@ public class Controller extends HttpServlet {
         resp.setContentType("text/html; charset=UTF-8");
         req.setCharacterEncoding("UTF-8");
         String path = req.getRequestURI();
+
         path = path.substring(path.indexOf("view") - 1);
         logger.info(path);
         ICommand command;

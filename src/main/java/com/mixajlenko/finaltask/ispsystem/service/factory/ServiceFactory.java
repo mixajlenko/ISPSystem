@@ -2,8 +2,6 @@ package com.mixajlenko.finaltask.ispsystem.service.factory;
 
 import com.mixajlenko.finaltask.ispsystem.service.*;
 import com.mixajlenko.finaltask.ispsystem.service.impl.*;
-import com.mixajlenko.finaltask.ispsystem.service.*;
-import com.mixajlenko.finaltask.ispsystem.service.impl.*;
 import org.apache.log4j.Logger;
 
 public class ServiceFactory {

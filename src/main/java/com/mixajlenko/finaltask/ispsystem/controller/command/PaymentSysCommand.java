@@ -7,26 +7,26 @@ import com.mixajlenko.finaltask.ispsystem.model.Payment;
 import com.mixajlenko.finaltask.ispsystem.model.User;
 import com.mixajlenko.finaltask.ispsystem.model.UserTariff;
 import com.mixajlenko.finaltask.ispsystem.service.IPaymentService;
-import com.mixajlenko.finaltask.ispsystem.service.ITariffService;
 import com.mixajlenko.finaltask.ispsystem.service.IUserService;
 import com.mixajlenko.finaltask.ispsystem.service.IUserTariffService;
 import com.mixajlenko.finaltask.ispsystem.service.factory.ServiceFactory;
-//import jakarta.servlet.http.HttpServletRequest;
-//import jakarta.servlet.http.HttpServletResponse;
+import org.apache.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import javax.naming.NamingException;
+import java.io.IOException;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class PaymentSysCommand implements ICommand {
 
+    private static Logger logger = Logger.getLogger(PaymentSysCommand.class);
+
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
 
@@ -44,8 +44,9 @@ public class PaymentSysCommand implements ICommand {
             String tariffId = request.getParameter("id");
             String tariffPrice = request.getParameter("price");
 
-            if (Objects.nonNull(payForTariff) && payForTariff.equals("payForTariff") && Objects.nonNull(tariffId) && Objects.nonNull(tariffPrice)) {
+            String redirect = request.getParameter("redirect");
 
+            if (Objects.nonNull(payForTariff) && payForTariff.equals("payForTariff") && Objects.nonNull(tariffId) && Objects.nonNull(tariffPrice)) {
                 if (user.getWallet() - Integer.parseInt(tariffPrice) >= 0) {
                     if (user.getStatus() == 0) {
                         user.setStatus(1);
@@ -58,19 +59,16 @@ public class PaymentSysCommand implements ICommand {
                     user.setWallet(user.getWallet() - Integer.parseInt(tariffPrice));
                     userService.update(user);
                     Payment payment = new Payment.PaymentsBuilderImpl().setUserId(user.getId()).setBill(Integer.parseInt(tariffPrice)).setStatus(0).setBalance(user.getWallet()).setDate(CommandUtil.getDate()).setType("Pay for service").build();
-                    System.out.println(payment);
                     paymentService.add(payment);
                 } else {
                     Payment payment = new Payment.PaymentsBuilderImpl().setUserId(user.getId()).setBill(Integer.parseInt(tariffPrice)).setStatus(1).setBalance(user.getWallet()).setDate(CommandUtil.getDate()).setType("Pay for service").build();
-                    System.out.println(payment);
                     paymentService.add(payment);
                 }
-                CommandUtil.goToPage(request, response, "/view/client/mainPageUser");
+                response.sendRedirect("/view/client/mainPageUser");
                 return;
             }
-
             if (Objects.nonNull(payCommand) && Objects.nonNull(amount)) {
-                if (userTariffService.getAll().isEmpty()) {
+                if (userTariffService.getAllUserTariffByUserId(user.getId()).isEmpty()) {
                     user.setStatus(1);
                     userService.update(user);
                 }
@@ -78,12 +76,16 @@ public class PaymentSysCommand implements ICommand {
                 user.setWallet(user.getWallet() + Integer.parseInt(amount));
                 userService.update(user);
             }
-
             List<Payment> payments = paymentService.getAll().stream().filter(p -> p.getUserId() == user.getId()).collect(Collectors.toList());
 
             request.setAttribute("paymentHistory", payments);
             request.setAttribute("fund", user.getWallet());
-            CommandUtil.goToPage(request, response, "/WEB-INF/view/client/paymentSystemPage.jsp");
+
+            if (!"true".equals(redirect)) {
+                CommandUtil.goToPage(request, response, "/WEB-INF/view/client/paymentSystemPage.jsp");
+            } else {
+                response.sendRedirect("/view/client/paymentSystemPage");
+            }
         } catch (NotFoundUserException e) {
             request.setAttribute("notFound", true);
             CommandUtil.goToPage(request, response, "/WEB-INF/view/client/paymentSystemPage.jsp");
@@ -92,7 +94,7 @@ public class PaymentSysCommand implements ICommand {
             CommandUtil.goToPage(request, response, "/WEB-INF/view/client/paymentSystemPage.jsp");
 
 
-        } catch (SQLException | NamingException throwables) {
+        } catch (SQLException | NamingException | IOException throwables) {
             throwables.printStackTrace();
         }
     }

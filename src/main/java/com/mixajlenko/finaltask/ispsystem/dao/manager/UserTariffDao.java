@@ -74,6 +74,8 @@ public class UserTariffDao implements IUserTariffDao {
         } catch (SQLException e) {
             connection.rollback();
             return false;
+        } finally {
+            connection.close();
         }
         return true;
     }

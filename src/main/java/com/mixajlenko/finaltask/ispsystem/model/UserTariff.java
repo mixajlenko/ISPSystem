@@ -1,11 +1,12 @@
 package com.mixajlenko.finaltask.ispsystem.model;
 
+import com.mixajlenko.finaltask.ispsystem.model.builder.UserTariffBuilder;
+
 import java.sql.Date;
 import java.util.Objects;
 
 public class UserTariff extends Model {
 
-    private int id;
     private int userId;
     private int tariffId;
     private Date subDate;
@@ -15,26 +16,66 @@ public class UserTariff extends Model {
     public UserTariff() {
     }
 
-    public UserTariff(int userId, int tariffId, Date subDate, int status, Date nextBill) {
-        this.userId = userId;
-        this.tariffId = tariffId;
-        this.subDate = subDate;
-        this.status = status;
-        this.nextBill = nextBill;
+    private UserTariff(UserTariff.UserTariffBuilderImpl builder) {
+
+        super(builder.id);
+        this.userId = builder.userId;
+        this.tariffId = builder.tariffId;
+        this.subDate = builder.subDate;
+        this.status = builder.status;
+        this.nextBill = builder.nextBill;
+
     }
 
-    public UserTariff(int id, int userId, int tariffId,Date subDate, int status, Date nextBill) {
-        super(id);
-        this.userId = userId;
-        this.tariffId = tariffId;
-        this.subDate = subDate;
-        this.status = status;
-        this.nextBill = nextBill;
-    }
+    public static class UserTariffBuilderImpl implements UserTariffBuilder {
 
-    public UserTariff(int userId, int tariffId) {
-        this.userId = userId;
-        this.tariffId = tariffId;
+        private int id;
+        private int userId;
+        private int tariffId;
+        private Date subDate;
+        private int status;
+        private Date nextBill;
+
+        @Override
+        public UserTariffBuilder setId(int id) {
+            this.id = id;
+            return this;
+        }
+
+        @Override
+        public UserTariffBuilder setUserId(int userId) {
+            this.userId = userId;
+            return this;
+        }
+
+        @Override
+        public UserTariffBuilder setTariffId(int tariffId) {
+            this.tariffId = tariffId;
+            return this;
+        }
+
+        @Override
+        public UserTariffBuilder setSubDate(Date subDate) {
+            this.subDate = subDate;
+            return this;
+        }
+
+        @Override
+        public UserTariffBuilder setStatus(int status) {
+            this.status = status;
+            return this;
+        }
+
+        @Override
+        public UserTariffBuilder setNextBill(Date nextBill) {
+            this.nextBill = nextBill;
+            return this;
+        }
+
+        @Override
+        public UserTariff build() {
+            return new UserTariff(this);
+        }
     }
 
     public Date getSubDate() {
@@ -43,16 +84,6 @@ public class UserTariff extends Model {
 
     public void setSubDate(Date subDate) {
         this.subDate = subDate;
-    }
-
-    @Override
-    public int getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getUserId() {
@@ -92,23 +123,22 @@ public class UserTariff extends Model {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserTariff that = (UserTariff) o;
-        return id == that.id && userId == that.userId && tariffId == that.tariffId && status == that.status && Objects.equals(subDate, that.subDate) && Objects.equals(nextBill, that.nextBill);
+        return userId == that.userId && tariffId == that.tariffId && status == that.status && Objects.equals(subDate, that.subDate) && Objects.equals(nextBill, that.nextBill);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, userId, tariffId, subDate, status, nextBill);
+        return Objects.hash(userId, tariffId, subDate, status, nextBill);
     }
 
     @Override
     public String toString() {
         return "UserTariff{" +
-                "id=" + id +
-                ", userId=" + userId +
+                "userId=" + userId +
                 ", tariffId=" + tariffId +
-                ", subDate='" + subDate + '\'' +
+                ", subDate=" + subDate +
                 ", status=" + status +
-                ", nextBill='" + nextBill + '\'' +
+                ", nextBill=" + nextBill +
                 '}';
     }
 }

@@ -3,13 +3,9 @@ package com.mixajlenko.finaltask.ispsystem.controller.filter;
 
 import com.mixajlenko.finaltask.ispsystem.model.Role;
 import com.mixajlenko.finaltask.ispsystem.model.User;
-//import jakarta.servlet.*;
 import javax.servlet.*;
 import org.apache.log4j.Logger;
 
-//import jakarta.servlet.http.HttpServletRequest;
-//import jakarta.servlet.http.HttpServletResponse;
-//import jakarta.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;

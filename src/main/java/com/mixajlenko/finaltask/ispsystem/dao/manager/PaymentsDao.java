@@ -4,6 +4,7 @@ import com.mixajlenko.finaltask.ispsystem.dao.IPaymentsDao;
 import com.mixajlenko.finaltask.ispsystem.dao.connection.ConnectionFactory;
 import com.mixajlenko.finaltask.ispsystem.dao.queries.SqlQueries;
 import com.mixajlenko.finaltask.ispsystem.model.Payment;
+import org.apache.log4j.Logger;
 
 import javax.naming.NamingException;
 import java.sql.*;
@@ -14,8 +15,11 @@ import java.util.List;
 public class PaymentsDao implements IPaymentsDao {
     /* TODO fix code duplicates */
 
+    private static Logger logger = Logger.getLogger(PaymentsDao.class);
+
     @Override
     public Payment getById(Integer id) throws SQLException, NamingException {
+        logger.info("getById with " + id + " argument start");
         Payment payment = null;
         try (Connection connection = ConnectionFactory.getInstance().getConnection();
              Statement statement = connection.createStatement();
@@ -33,11 +37,13 @@ public class PaymentsDao implements IPaymentsDao {
                 }
             }
         }
+        logger.info("getById with " + id + " success");
         return payment;
     }
 
     @Override
     public List<Payment> getAll() throws SQLException, NamingException {
+        logger.info("getAll start");
         List<Payment> payments = new ArrayList<>();
         try (Connection connection = ConnectionFactory.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(SqlQueries.ALL_PAYMENTS.getConstant());
@@ -54,13 +60,16 @@ public class PaymentsDao implements IPaymentsDao {
                 payments.add(payment);
             }
         } catch (SQLException e) {
+            logger.info("getAll fail. Return empty list");
             return Collections.emptyList();
         }
+        logger.info("getAll success");
         return payments;
     }
 
     @Override
     public boolean update(Payment entity) throws SQLException, NamingException {
+        logger.info("update " + entity + " start");
         Connection connection = ConnectionFactory.getInstance().getConnection();
         try (PreparedStatement statement = connection.prepareStatement(SqlQueries.UPDATE_PAYMENT.getConstant())) {
             statement.setInt(1, entity.getBill());
@@ -72,27 +81,32 @@ public class PaymentsDao implements IPaymentsDao {
             statement.executeUpdate();
             connection.commit();
         } catch (SQLException e) {
+            logger.info("update " + entity + " fail. Rollback connection");
             connection.rollback();
             return false;
         } finally {
             connection.close();
         }
+        logger.info("update " + entity + " success");
         return true;
     }
 
     @Override
     public boolean delete(Integer id) throws SQLException, NamingException {
+        logger.info("delete " + id + " start");
         Connection connection = ConnectionFactory.getInstance().getConnection();
         try (PreparedStatement statement = connection.prepareStatement(SqlQueries.DELETE_FROM_PAYMENT.getConstant())) {
             statement.setInt(1, id);
             statement.executeUpdate();
             connection.commit();
         } catch (SQLException e) {
+            logger.info("delete " + id + " fail. Rollback connection");
             connection.rollback();
             return false;
         } finally {
             connection.close();
         }
+        logger.info("delete " + id + " success");
         return true;
     }
 

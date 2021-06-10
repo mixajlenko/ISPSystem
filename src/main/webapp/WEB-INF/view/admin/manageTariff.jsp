@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/style.css" media="screen">
 </head>
 
-<body style="zoom: 70%">
+<body style="zoom: 80%">
 <div id="home"></div>
 <div class="ournet-inter-area">
     <header id="header" class="header-area">
@@ -61,7 +61,7 @@
                     </div>
                     <div class="newTariff">
                         <form method="post"
-                              action="${pageContext.request.contextPath}/view/admin/addTariff?param=${param.get('param')}">
+                              action="${pageContext.request.contextPath}/view/admin/addTariff?param=${param.get('param')}&redirect=true">
                             <p>
                                 <label>
                                     <input class="tariff1" type="text" required placeholder="<fmt:message key="tariffName"/>"

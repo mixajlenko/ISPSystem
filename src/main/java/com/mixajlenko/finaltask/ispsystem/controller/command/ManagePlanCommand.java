@@ -5,13 +5,12 @@ import com.mixajlenko.finaltask.ispsystem.exception.NotFoundUserException;
 import com.mixajlenko.finaltask.ispsystem.model.Tariff;
 import com.mixajlenko.finaltask.ispsystem.service.ITariffService;
 import com.mixajlenko.finaltask.ispsystem.service.factory.ServiceFactory;
-//import jakarta.servlet.http.HttpServletRequest;
-//import jakarta.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import javax.naming.NamingException;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -21,13 +20,13 @@ public class ManagePlanCommand implements ICommand {
     Logger logger = Logger.getLogger(ManagePlanCommand.class);
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
         logger.info("manage plan execute");
 
         String name = request.getParameter("name");
         String description = request.getParameter("description");
         String price = request.getParameter("price");
-
+        String redirect = request.getParameter("redirect");
         try {
             ServiceFactory factory = ServiceFactory.getInstance();
             ITariffService tariffService = factory.getTariffService();
@@ -59,12 +58,19 @@ public class ManagePlanCommand implements ICommand {
             }
             List<Tariff> tariffList = tariffService.getServiceTariff(Integer.parseInt(serviceId));
             request.setAttribute("tariffs", tariffList);
-            CommandUtil.goToPage(request, response, "/WEB-INF/view/admin/managePlan.jsp");
+            if ("true".equals(redirect)){
+                System.out.println(serviceId);
+                response.sendRedirect("/view/admin/managePlan?param=" + serviceId);
+            } else {
+                CommandUtil.goToPage(request, response, "/WEB-INF/view/admin/managePlan.jsp");
+            }
         } catch (NotFoundUserException e) {
             request.setAttribute("notFound", true);
             CommandUtil.goToPage(request, response, "/WEB-INF/view/admin/managePlan.jsp");
         } catch (SQLException | NamingException throwables) {
             throwables.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

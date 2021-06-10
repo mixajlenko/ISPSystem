@@ -7,24 +7,28 @@ import com.mixajlenko.finaltask.ispsystem.exception.WrongDataException;
 import com.mixajlenko.finaltask.ispsystem.model.User;
 import com.mixajlenko.finaltask.ispsystem.service.IUserService;
 import com.mixajlenko.finaltask.ispsystem.service.factory.ServiceFactory;
-//import jakarta.servlet.http.HttpServletRequest;
-//import jakarta.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import javax.naming.NamingException;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Objects;
 
 public class ClientManageProfileCommand implements ICommand {
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
 
         try {
             IUserService userService = serviceFactory.getUserService();
             String change = request.getParameter("change");
+            String isSuccess = request.getParameter("success");
+            if(Objects.nonNull(isSuccess)){
+                request.setAttribute("success", true);
+            }
+
             if(Objects.nonNull(change)){
                 switch (change){
                     case "name" :
@@ -85,8 +89,13 @@ public class ClientManageProfileCommand implements ICommand {
             request.setAttribute("lastName", user.getSecondName());
             request.setAttribute("email", user.getEmail());
             request.setAttribute("phone", user.getPhone());
+            String red = request.getParameter("redirect");
+            if(!"true".equals(red)){
+                CommandUtil.goToPage(request,response,"/WEB-INF/view/client/profile.jsp");
+            } else {
+                response.sendRedirect("/view/client/profile?success=true");
+            }
 
-            CommandUtil.goToPage(request, response, "/WEB-INF/view/client/profile.jsp");
         } catch (NotFoundUserException e) {
             request.setAttribute("notFound", true);
             CommandUtil.goToPage(request, response, "/WEB-INF/view/client/profile.jsp");
@@ -97,6 +106,8 @@ public class ClientManageProfileCommand implements ICommand {
 
         } catch (SQLException | NamingException throwables) {
             throwables.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
     }

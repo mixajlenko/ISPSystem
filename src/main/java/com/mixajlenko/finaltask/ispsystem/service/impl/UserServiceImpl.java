@@ -1,6 +1,5 @@
 package com.mixajlenko.finaltask.ispsystem.service.impl;
 
-import com.mixajlenko.finaltask.ispsystem.controller.command.utils.CommandUtil;
 import com.mixajlenko.finaltask.ispsystem.dao.IUserDao;
 import com.mixajlenko.finaltask.ispsystem.dao.factory.DaoFactory;
 
@@ -58,7 +57,6 @@ public class UserServiceImpl implements IUserService {
     @Override
     public boolean update(User entity) throws SQLException, NamingException {
         try {
-            ;
             return userDao.update(entity);
         } catch (DataBaseException e) {
             throw new ServiceException(e);

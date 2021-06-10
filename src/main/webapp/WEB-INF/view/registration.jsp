@@ -19,9 +19,14 @@
     <div class="slider-bgLogin text-center">
         <div class="container">
             <div class="row">
-                <div class="slidertext"></div>
+                <div class="slidertext">
+                    <h1><fmt:message key="registration"/></h1>
+                    <br>
+                </div>
                 <div class="tableTariffs" id="registerForm">
                     <div class="localRegistrationBlock">
+                        <a class="loginBtn" href="${pageContext.request.contextPath}/"><fmt:message
+                                key="login"/></a>
                         <a class="loginBtn" href="${pageContext.request.contextPath}/view/language/registration?language=RU">RU</a>
                         <a class="loginBtn" href="${pageContext.request.contextPath}/view/language/registration?language=EN">EN</a>
                     </div>

@@ -1,7 +1,6 @@
 package com.mixajlenko.finaltask.ispsystem.dao.factory;
 
 import com.mixajlenko.finaltask.ispsystem.dao.*;
-import com.mixajlenko.finaltask.ispsystem.dao.*;
 
 public abstract class DaoFactory {
 

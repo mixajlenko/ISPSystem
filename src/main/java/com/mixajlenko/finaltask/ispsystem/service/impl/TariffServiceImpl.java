@@ -46,7 +46,6 @@ public class TariffServiceImpl implements ITariffService {
     @Override
     public boolean update(Tariff entity) throws SQLException, NamingException {
         try {
-            ;
             return tariffDao.update(entity);
         } catch (DataBaseException e) {
             throw new ServiceException(e);

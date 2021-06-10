@@ -8,13 +8,12 @@ import com.mixajlenko.finaltask.ispsystem.service.ITariffService;
 import com.mixajlenko.finaltask.ispsystem.service.IUserService;
 import com.mixajlenko.finaltask.ispsystem.service.IUserTariffService;
 import com.mixajlenko.finaltask.ispsystem.service.factory.ServiceFactory;
-//import jakarta.servlet.http.HttpServletRequest;
-//import jakarta.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import javax.naming.NamingException;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
@@ -25,7 +24,7 @@ public class ClientMenuCommand implements ICommand {
     Logger logger = Logger.getLogger(ClientMenuCommand.class);
 
     @Override
-    public void execute(HttpServletRequest req, HttpServletResponse resp) {
+    public void execute(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         ServiceFactory factory = ServiceFactory.getInstance();
         try {
             IUserTariffService userTariffService = factory.getUserTariffService();

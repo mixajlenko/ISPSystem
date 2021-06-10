@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/style.css" media="screen">
 </head>
 
-<body style="zoom: 70%">
+<body style="zoom: 80%">
 <div id="home"></div>
 <div class="ournet-inter-area">
     <header id="header" class="header-area">
@@ -66,7 +66,7 @@
                         </div>
                         <div class="newTariff">
                             <form method="post"
-                                  action="${pageContext.request.contextPath}/view/admin/managePlan?param=${param.get('param')}&id=${param.get("id")}&command=updateCommand">
+                                  action="${pageContext.request.contextPath}/view/admin/managePlan?param=${param.get('param')}&id=${param.get("id")}&command=updateCommand&redirect=true">
                                 <p>
                                     <label>
                                         <input class="tariff1" type="text" value="${param.get("name")}" required

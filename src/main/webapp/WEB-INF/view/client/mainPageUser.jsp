@@ -1,5 +1,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="customTag" uri="/WEB-INF/customTag.tld" %>
 
 <c:set var="language" value="${not empty param.language ? param.language : pageContext.request.locale}"
        scope="application"/>
@@ -16,7 +17,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/style.css" media="screen">
 </head>
 
-<body style="zoom: 70%">
+<body style="zoom: 80%">
 <div id="home"></div>
 <div class="ournet-inter-area">
     <header id="header" class="header-area">
@@ -60,7 +61,7 @@
                             </li>
                             <li>
                                 <a href="${pageContext.request.contextPath}/view/client/profile?change=email"><fmt:message
-                                        key="manageEmail"/></a>
+                                        key="placeholderEmail"/></a>
                             </li>
                             <li>
                                 <a href="${pageContext.request.contextPath}/view/client/profile?change=phone"><fmt:message
@@ -80,7 +81,10 @@
                 </ul>
             </div>
         </div>
-        <div id="time"><span id="datetime"></span></div>
+        <div class ="minInfo">
+            <div id="time"><span id="datetime"></span></div>
+            <div class="customTagId"><customTag:idTag field="${user.id}"/></div>
+        </div>
         <script src="${pageContext.request.contextPath}/styles/js/time.js"></script>
 
     </header>

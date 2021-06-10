@@ -10,18 +10,17 @@ import com.mixajlenko.finaltask.ispsystem.service.ITariffService;
 import com.mixajlenko.finaltask.ispsystem.service.IUserService;
 import com.mixajlenko.finaltask.ispsystem.service.IUserTariffService;
 import com.mixajlenko.finaltask.ispsystem.service.factory.ServiceFactory;
-//import jakarta.servlet.http.HttpServletRequest;
-//import jakarta.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import javax.naming.NamingException;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.*;
 
 public class ClientServiceCommand implements ICommand {
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
         ServiceFactory factory = ServiceFactory.getInstance();
 
         try {
@@ -36,7 +35,7 @@ public class ClientServiceCommand implements ICommand {
             int userId = (int) request.getSession().getAttribute("globalUserId");
             User user = userService.getById(userId);
             if (Objects.nonNull(tariffId) && userId != 0 && user.getStatus()==1) {
-                    userTariffService.add(new UserTariff(userId, Integer.parseInt(tariffId)));
+                    userTariffService.add(new UserTariff.UserTariffBuilderImpl().setUserId(userId).setTariffId(Integer.parseInt(tariffId)).build());
             }
 
             List<Tariff> tariffs = new ArrayList<>();

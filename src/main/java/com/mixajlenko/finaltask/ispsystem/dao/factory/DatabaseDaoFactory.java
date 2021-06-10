@@ -17,31 +17,31 @@ public class DatabaseDaoFactory extends DaoFactory {
 
     @Override
     public IServiceDao getServiceDao() {
-        logger.info("Get ServiceDao");
+        logger.info("Get Service DAO");
         return servicesDao;
     }
 
     @Override
     public ITariffDao getTariffDao() {
-        logger.info("Get TariffDao");
+        logger.info("Get Tariff DAO");
         return tariffDao;
     }
 
     @Override
     public IUserDao getUserDao() {
-        logger.info("Get UserDao");
+        logger.info("Get User DAO");
         return userDao;
     }
 
     @Override
     public IPaymentsDao getPaymentDao() {
-        logger.info("Get PaymentDao");
+        logger.info("Get Payment DAO");
         return paymentDao;
     }
 
     @Override
     public IUserTariffDao getUserTariffDao() {
-        logger.info("Get UserTariffDao");
+        logger.info("Get UserTariff DAO");
         return userTariffDao;
     }
 }

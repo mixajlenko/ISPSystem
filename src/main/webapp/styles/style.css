@@ -26,7 +26,7 @@
 /*
 ====================================================================
 Default Style
-====================================================================
+===============di=====================================================
 */
 
 @import url('https://fonts.googleapis.com/css?family=Barlow:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap');
@@ -40,6 +40,10 @@ body {
 }
 
 .bodyChild {
+}
+
+.bbb {
+    display: inline-block;
 }
 
 img {
@@ -299,7 +303,6 @@ header#header.sticky-header {
 .slider-bg {
     background-color: #cfcbcb;
 }
-
 
 
 .slider-bg {
@@ -653,7 +656,7 @@ input.tariff1 {
 }
 
 .subChange#profChange {
-    margin-left: 32px;
+    margin-left: 10px;
 }
 
 
@@ -806,10 +809,26 @@ input.tariff1 {
     background: #ffffff;
     border-radius: 11px;
     text-align: center;
-    width: 250px;
+    width: max-content;
+    padding: 15px 20px 15px 20px;
     height: 200px;
     margin-left: 100px;
     margin-top: 50px;
+}
+
+.userInfoAdmin{
+
+    display: inline-grid;
+    margin: 30px 100px 30px 100px;
+    align-items: center;
+    border: 2px solid #171717;
+    background: #ffffff;
+    border-radius: 11px;
+    text-align: center;
+    width: max-content;
+    padding: 15px 20px 15px 20px;
+    height: 200px;
+
 }
 
 
@@ -905,14 +924,14 @@ input.tariff1 {
 }
 
 
-.localRegistrationBlock{
+.localRegistrationBlock {
     border: 2px solid;
     border-radius: 11px;
     background-color: #cfcbcb;
     padding: 5px 15px 5px 15px;
 }
 
-.localRegistrationBlock.localization{
+.localRegistrationBlock.localization {
     font-size: 16px;
     border: 2px solid;
     border-radius: 11px;
@@ -933,7 +952,7 @@ input.tariff1 {
     transition: 0.5s ease-in-out;
 }
 
-.loginBtn{
+.loginBtn {
     color: #3b3663;
     border-radius: 11px;
     padding: 15px 20px 15px 20px;
@@ -941,11 +960,11 @@ input.tariff1 {
     margin: 0;
 }
 
-.loginBtn:hover{
+.loginBtn:hover {
     background-color: white;
 }
 
-.profileEditorFields.loginField{
+.profileEditorFields.loginField {
     width: 70%;
     margin: auto;
 }
@@ -990,7 +1009,7 @@ input.tariff1 {
     margin: 20px auto 30px auto
 }
 
-.tableTariffs#registerForm{
+.tableTariffs#registerForm {
     width: 60%;
 }
 
@@ -1015,12 +1034,13 @@ input.tariff1 {
     margin: 20px;
     text-align: left;
 }
+
 .serviceBlock#clientMainPageBlock2 {
     width: 70%;
     margin: 20px;
 }
 
-.mainPageBlocks{
+.mainPageBlocks {
     display: flex;
 }
 
@@ -1038,7 +1058,19 @@ input.tariff1 {
     color: red;
 }
 
-.boldFont{
+.customTagId {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 30px;
+    color: #313b58;
+    font-size: 16px;
+}
+
+.minInfo {
+    display: inline-flex;
+}
+
+.boldFont {
     margin-bottom: 10px;
     font-weight: 500;
 }
@@ -1058,7 +1090,7 @@ input.tariff1 {
     width: 100%;
 }
 
-.tableService#subService{
+.tableService#subService {
     margin: 5% 0 0 0;
 }
 
@@ -1067,6 +1099,22 @@ input.tariff1 {
 }
 
 .table1#paymentTable {
+    width: 600px;
+}
+
+.supportText{
+    font-size: 20px;
+}
+
+.supportInfo {
+    display: grid;
+    align-items: center;
+    border: 2px solid #171717;
+    background: #ffffff;
+    border-radius: 11px;
+    text-align: center;
+    height: 300px;
+    margin: auto;
     width: 600px;
 }
 
@@ -1080,6 +1128,20 @@ input.tariff1 {
 .editForm {
     margin: auto;
 }
+
+.socialNet{
+    align-items: baseline;
+}
+
+.socialIcon{
+    padding: 0 15px 0 15px;
+    transition: 0.3s ease-in-out;
+}
+
+.socialIcon:hover {
+    transform:scale(1.5);
+}
+
 
 .editFormChild {
     display: inline-flex;
@@ -1212,7 +1274,7 @@ input.tariff1 {
     transition: all 0.3s ease-in-out;
 }
 
-.editProfileBtn#loginSubmitBtn{
+.editProfileBtn#loginSubmitBtn {
     padding: 10px 30px 10px 30px;
 }
 
@@ -1226,7 +1288,7 @@ input.tariff1 {
     font-size: 16px;
 }
 
-#moreBtn:hover{
+#moreBtn:hover {
     color: black;
     font-size: 17px;
 }

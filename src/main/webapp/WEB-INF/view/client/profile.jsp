@@ -1,6 +1,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="customTag" uri="/WEB-INF/customTag.tld" %>
 <c:set var="language" value="${not empty param.language ? param.language : pageContext.request.locale}"
        scope="application"/>
 <fmt:setLocale value="${language}"/>
@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/style.css" media="screen">
 </head>
 
-<body style="zoom: 70%">
+<body style="zoom: 80%">
 <div id="home"></div>
 <div class="ournet-inter-area">
     <header id="header" class="header-area">
@@ -60,7 +60,7 @@
                             </li>
                             <li>
                                 <a href="${pageContext.request.contextPath}/view/client/profile?change=email"><fmt:message
-                                        key="manageEmail"/></a>
+                                        key="placeholderEmail"/></a>
                             </li>
                             <li>
                                 <a href="${pageContext.request.contextPath}/view/client/profile?change=phone"><fmt:message
@@ -80,9 +80,10 @@
                 </ul>
             </div>
         </div>
-        <div id="time"><span id="datetime"></span></div>
-        <script src="${pageContext.request.contextPath}/styles/js/time.js"></script>
-
+        <div class ="minInfo">
+            <div id="time"><span id="datetime"></span></div>
+            <div class="customTagId"><customTag:idTag field="${user.id}"/></div>
+        </div>
     </header>
     <!-- Slider area Start -->
     <div class="slider-area">
@@ -107,7 +108,7 @@
                                         <h3><fmt:message
                                                 key="manageName"/></h3>
                                         <form class="editFormChild" method="post"
-                                              action="${pageContext.request.contextPath}/view/client/profile?change=name">
+                                              action="${pageContext.request.contextPath}/view/client/profile?change=name&redirect=true">
                                             <p>
                                                 <label>
                                                     <input class="profileEditorFields" type="text" required
@@ -139,7 +140,7 @@
                                         <h3><fmt:message
                                                 key="managePhone"/></h3>
                                         <form class="editFormChild" method="post"
-                                              action="${pageContext.request.contextPath}/view/client/profile?change=phone">
+                                              action="${pageContext.request.contextPath}/view/client/profile?change=phone&redirect=true">
                                             <p>
                                                 <label>
                                                     <input class="profileEditorFields" type="text" required
@@ -162,7 +163,7 @@
                                         <h3><fmt:message
                                                 key="manageEmail"/></h3>
                                         <form class="editFormChild" method="post"
-                                              action="${pageContext.request.contextPath}/view/client/profile?change=email">
+                                              action="${pageContext.request.contextPath}/view/client/profile?change=email&redirect=true">
                                             <p>
                                                 <label>
                                                     <input class="profileEditorFields" type="email" required
@@ -185,7 +186,7 @@
                                         <h3><fmt:message
                                                 key="managePassword"/></h3>
                                         <form class="editFormChild" method="post"
-                                              action="${pageContext.request.contextPath}/view/client/profile?change=password">
+                                              action="${pageContext.request.contextPath}/view/client/profile?change=password&redirect=true">
                                             <p>
                                                 <label>
                                                     <input class="profileEditorFields" type="password" required
@@ -210,6 +211,9 @@
                                         </form>
                                     </div>
                                 </c:when>
+                                <c:when test="${success}">
+                                    <p>Changes are saved</p>
+                                </c:when>
                             </c:choose>
                         </div>
                     </div>
@@ -218,5 +222,8 @@
         </div>
     </div>
 </div>
+
+<script src="${pageContext.request.contextPath}/styles/js/time.js"></script>
+
 </body>
 </html>

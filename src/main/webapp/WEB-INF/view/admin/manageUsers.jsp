@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/style.css" media="screen">
 </head>
 
-<body style="zoom: 70%">
+<body style="zoom: 80%">
 <div id="home"></div>
 <div class="ournet-inter-area">
     <header id="header" class="header-area">
@@ -56,6 +56,7 @@
                         <div class="slidertext">
                             <h1><fmt:message key="clientRegistration"/></h1>
                             <br>
+                            <p><fmt:message key="registerInfo"/></p>
                         </div>
                     </div>
                     <div class="newTariff">

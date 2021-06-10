@@ -2,7 +2,6 @@ package com.mixajlenko.finaltask.ispsystem.model;
 
 import com.mixajlenko.finaltask.ispsystem.model.builder.PaymentBuilder;
 
-import java.awt.print.Book;
 import java.sql.Date;
 import java.util.Objects;
 

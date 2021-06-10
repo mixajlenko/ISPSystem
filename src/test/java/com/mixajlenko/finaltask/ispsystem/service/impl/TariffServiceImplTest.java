@@ -33,27 +33,27 @@ class TariffServiceImplTest {
     void testGetAll() throws SQLException, NamingException {
         when(tariffDaoMock.getAll()).thenReturn(Collections.singletonList(new Tariff()));
         List<Tariff> result = testingInstance.getAll();
-        assertEquals(Collections.singletonList(new Tariff(0, null, null, 0)), result);
+        assertEquals(Collections.singletonList(new Tariff.TariffBuilderImpl().setId(0).setName(null).setDescription(null).setPrice(0).build()), result);
     }
 
     @Test
     void testGetById() throws SQLException, NamingException {
         when(tariffDaoMock.getById(any())).thenReturn(new Tariff());
         Tariff result = testingInstance.getById(0);
-        assertEquals(new Tariff(0, null, null, 0), result);
+        assertEquals(new Tariff.TariffBuilderImpl().setId(0).setName(null).setDescription(null).setPrice(0).build(), result);
     }
 
     @Test
     void testAdd() throws SQLException, NamingException {
         when(tariffDaoMock.add(any())).thenReturn(true);
-        boolean result = testingInstance.add(new Tariff(0, null, null, 0));
+        boolean result = testingInstance.add(new Tariff.TariffBuilderImpl().setId(0).setName(null).setDescription(null).setPrice(0).build());
         assertTrue(result);
     }
 
     @Test
     void testUpdate() throws SQLException, NamingException {
         when(tariffDaoMock.update(any())).thenReturn(true);
-        boolean result = testingInstance.update(new Tariff(0, null, null, 0));
+        boolean result = testingInstance.update(new Tariff.TariffBuilderImpl().setId(0).setName(null).setDescription(null).setPrice(0).build());
         assertTrue(result);
     }
 
@@ -73,15 +73,15 @@ class TariffServiceImplTest {
 
     @Test
     void testGetServiceTariff() throws SQLException, NamingException {
-        when(tariffDaoMock.getServiceTariff(anyInt())).thenReturn(Collections.singletonList(new Tariff(0, null, null, 0)));
+        when(tariffDaoMock.getServiceTariff(anyInt())).thenReturn(Collections.singletonList(new Tariff.TariffBuilderImpl().setId(0).setName(null).setDescription(null).setPrice(0).build()));
         List<Tariff> result = testingInstance.getServiceTariff(0);
-        assertEquals(Collections.singletonList(new Tariff(0, null, null, 0)), result);
+        assertEquals(Collections.singletonList(new Tariff.TariffBuilderImpl().setId(0).setName(null).setDescription(null).setPrice(0).build()), result);
     }
 
     @Test
     void testGetByName() throws SQLException, NamingException {
-        when(tariffDaoMock.getByName(anyString())).thenReturn(new Tariff(0, null, null, 0));
+        when(tariffDaoMock.getByName(anyString())).thenReturn(new Tariff.TariffBuilderImpl().setId(0).setName(null).setDescription(null).setPrice(0).build());
         Tariff result = testingInstance.getByName("name");
-        assertEquals(new Tariff(0, null, null, 0), result);
+        assertEquals(new Tariff.TariffBuilderImpl().setId(0).setName(null).setDescription(null).setPrice(0).build(), result);
     }
 }

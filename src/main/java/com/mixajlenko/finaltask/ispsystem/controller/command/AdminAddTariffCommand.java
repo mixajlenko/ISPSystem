@@ -6,13 +6,13 @@ import com.mixajlenko.finaltask.ispsystem.exception.WrongDataException;
 import com.mixajlenko.finaltask.ispsystem.model.Tariff;
 import com.mixajlenko.finaltask.ispsystem.service.ITariffService;
 import com.mixajlenko.finaltask.ispsystem.service.factory.ServiceFactory;
-//import jakarta.servlet.http.HttpServletRequest;
-//import jakarta.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.log4j.Logger;
 
 import javax.naming.NamingException;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Objects;
 
@@ -21,7 +21,7 @@ public class AdminAddTariffCommand implements ICommand {
     private static Logger logger = Logger.getLogger(AdminAddTariffCommand.class);
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         ServiceFactory factory = ServiceFactory.getInstance();
 
@@ -29,26 +29,35 @@ public class AdminAddTariffCommand implements ICommand {
         String description = request.getParameter("description");
         String price = request.getParameter("price");
         String serviceId = request.getParameter("param");
+        String redirect = request.getParameter("redirect");
+
         try {
 
             if (Objects.isNull(name) && Objects.isNull(description) && Objects.isNull(price)) {
-                logger.info("error1");
+                logger.info("Name, Description or Price is Null");
                 throw new WrongDataException();
             }
 
             ITariffService tariffService = factory.getTariffService();
 
+            tariffService.add(new Tariff.TariffBuilderImpl().setName(name).setDescription(description).setPrice(Integer.parseInt(price)).build());
+
             int id = tariffService.getByName(name).getId();
 
             tariffService.setServiceTariff(Integer.parseInt(serviceId), id);
-            CommandUtil.goToPage(request, response, "/view/admin/managePlan?param="+serviceId);
-
+            if ("true".equals(redirect)) {
+                response.sendRedirect("/view/admin/managePlan?param=" + serviceId);
+            } else {
+                CommandUtil.goToPage(request, response, "/view/admin/managePlan?param=" + serviceId);
+            }
         } catch (ServiceException e) {
             request.setAttribute("notFound", true);
             CommandUtil.goToPage(request, response, "/WEB-INF/view/admin/manageTariff.jsp");
         } catch (WrongDataException | SQLException | NamingException e) {
             request.setAttribute("wrongData", false);
             CommandUtil.goToPage(request, response, "/WEB-INF/view/admin/manageTariff.jsp");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
