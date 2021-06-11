@@ -10,25 +10,28 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CommandFactory {
-    private static Logger logger = Logger.getLogger(CommandFactory.class);
+    private static final Logger logger = Logger.getLogger(CommandFactory.class);
     private static final Map<String, ICommand> allKnownCommandMap = new HashMap<>();
 
     static {
-        allKnownCommandMap.put(Operation.LOGIN, new LoginCommand());
-        allKnownCommandMap.put(Operation.REGISTRATION, new RegistrationCommand());
-        allKnownCommandMap.put(Operation.LOGOUT, new LogoutCommand());
-        allKnownCommandMap.put(Operation.ADMIN_MENU, new AdminMenuCommand());
-        allKnownCommandMap.put(Operation.ADMIN_SERVICES, new AdminServiceCommand());
-        allKnownCommandMap.put(Operation.CLIENT_MENU, new ClientMenuCommand());
-        allKnownCommandMap.put(Operation.ADMIN_MANAGE_PLAN, new ManagePlanCommand());
-        allKnownCommandMap.put(Operation.CLIENT_MANAGE_PROFILE, new ClientManageProfileCommand());
-        allKnownCommandMap.put(Operation.CLIENT_SERVICES, new ClientServiceCommand());
-        allKnownCommandMap.put(Operation.PAYMENT_SYSTEM_PAGE, new PaymentSysCommand());
-        allKnownCommandMap.put(Operation.SUPPORT_PAGE, new SupportCommand());
-        allKnownCommandMap.put(Operation.ADMIN_USERS, new AdminUserCommand());
-        allKnownCommandMap.put(Operation.ADMIN_MANAGE_TARIFF, new AdminAddTariffCommand());
-        allKnownCommandMap.put(Operation.ADMIN_MANAGE_USER, new AdminRegistrationUserCommand());
-        allKnownCommandMap.put(Operation.DOWNLOAD_SERVICES, new DownloadServiceCommand());
+        allKnownCommandMap.put(Operation.LOGIN.getCommand(), new LoginCommand());
+        allKnownCommandMap.put(Operation.REGISTRATION.getCommand(), new RegistrationCommand());
+        allKnownCommandMap.put(Operation.LOGOUT.getCommand(), new LogoutCommand());
+        allKnownCommandMap.put(Operation.ADMIN_MENU.getCommand(), new AdminMenuCommand());
+        allKnownCommandMap.put(Operation.ADMIN_SERVICES.getCommand(), new AdminServiceCommand());
+        allKnownCommandMap.put(Operation.CLIENT_MENU.getCommand(), new ClientMenuCommand());
+        allKnownCommandMap.put(Operation.ADMIN_MANAGE_PLAN.getCommand(), new ManagePlanCommand());
+        allKnownCommandMap.put(Operation.CLIENT_MANAGE_PROFILE.getCommand(), new ClientManageProfileCommand());
+        allKnownCommandMap.put(Operation.CLIENT_SERVICES.getCommand(), new ClientServiceCommand());
+        allKnownCommandMap.put(Operation.PAYMENT_SYSTEM_PAGE.getCommand(), new PaymentSysCommand());
+        allKnownCommandMap.put(Operation.SUPPORT_PAGE.getCommand(), new SupportCommand());
+        allKnownCommandMap.put(Operation.ADMIN_USERS.getCommand(), new AdminUserCommand());
+        allKnownCommandMap.put(Operation.ADMIN_MANAGE_TARIFF.getCommand(), new AdminAddTariffCommand());
+        allKnownCommandMap.put(Operation.ADMIN_MANAGE_USER.getCommand(), new AdminRegistrationUserCommand());
+        allKnownCommandMap.put(Operation.DOWNLOAD_SERVICES.getCommand(), new DownloadServiceCommand());
+    }
+
+    private CommandFactory() {
     }
 
 

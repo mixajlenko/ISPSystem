@@ -14,12 +14,8 @@ import java.util.Objects;
 
 public class RoleFilter implements Filter {
 
-    private static Logger logger = Logger.getLogger(RoleFilter.class);
+    private static final Logger logger = Logger.getLogger(RoleFilter.class);
 
-    @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-
-    }
 
     @Override
     public void doFilter(ServletRequest servletRequest,
@@ -30,7 +26,7 @@ public class RoleFilter implements Filter {
         final HttpServletResponse resp = (HttpServletResponse) servletResponse;
         final HttpSession session = req.getSession(false);
 
-        User user = (User) session.getAttribute("user");
+        var user = (User) session.getAttribute("user");
 
 
         if (Objects.nonNull(user)) {
@@ -45,8 +41,4 @@ public class RoleFilter implements Filter {
         }
     }
 
-    @Override
-    public void destroy() {
-
-    }
 }

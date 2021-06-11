@@ -10,12 +10,7 @@ import java.io.IOException;
 
 public class AuthorizationFilter implements Filter {
 
-    Logger logger = Logger.getLogger(AuthorizationFilter.class);
-
-    @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-
-    }
+    private static final Logger logger = Logger.getLogger(AuthorizationFilter.class);
 
     @Override
     public void doFilter(ServletRequest servletRequest,
@@ -43,8 +38,4 @@ public class AuthorizationFilter implements Filter {
 
     }
 
-    @Override
-    public void destroy() {
-
-    }
 }

@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 public class UserServiceImpl implements IUserService {
 
-    private static Logger logger = Logger.getLogger(UserServiceImpl.class);
+    private static final Logger logger = Logger.getLogger(UserServiceImpl.class);
 
     private final DaoFactory daoFactory = DaoFactory.getInstance();
     private IUserDao userDao = daoFactory.getUserDao();

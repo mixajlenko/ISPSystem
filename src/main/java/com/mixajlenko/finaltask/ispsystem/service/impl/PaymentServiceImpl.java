@@ -14,10 +14,10 @@ import java.util.List;
 
 public class PaymentServiceImpl implements IPaymentService {
 
-    private static Logger logger = Logger.getLogger(PaymentServiceImpl.class);
+    private static final Logger logger = Logger.getLogger(PaymentServiceImpl.class);
 
     private final DaoFactory daoFactory = DaoFactory.getInstance();
-    private IPaymentsDao paymentsDao = daoFactory.getPaymentDao();
+    private  IPaymentsDao paymentsDao = daoFactory.getPaymentDao();
 
     @Override
     public List<Payment> getAll() throws SQLException, NamingException {

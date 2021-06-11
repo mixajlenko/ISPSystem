@@ -38,12 +38,6 @@ class PaymentServiceImplTest {
     }
 
     @Test
-    void testPay() {
-        Payment payment = new Payment.PaymentsBuilderImpl().setId(1).setUserId(12).setBill(2).setStatus(1).setBalance(2).setDate(null).setType(null).build();
-        System.out.println(payment);
-    }
-
-    @Test
     void testGetById() throws SQLException, NamingException {
         when(paymentsDaoMock.getById(any())).thenReturn(new Payment());
         Payment result = testingInstance.getById(0);

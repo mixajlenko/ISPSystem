@@ -15,12 +15,12 @@ import org.apache.log4j.Logger;
 public class UserDao implements IUserDao {
     /* TODO fix code duplicates */
 
-    private static Logger logger = Logger.getLogger(UserDao.class);
+    private static final Logger logger = Logger.getLogger(UserDao.class);
 
     @Override
     public User getById(Integer id) throws NamingException, SQLException {
         User user = null;
-        try (Connection connection = ConnectionFactory.getInstance().getConnection(); Statement statement = connection.createStatement();
+        try (var connection = ConnectionFactory.getInstance().getConnection(); Statement statement = connection.createStatement();
              ResultSet rs = statement.executeQuery(SqlQueries.ALL_USERS.getConstant())) {
             while (rs.next()) {
                 if (rs.getInt(1) == id) {
@@ -43,11 +43,11 @@ public class UserDao implements IUserDao {
     @Override
     public List<User> getAll() throws SQLException, NamingException {
         List<User> users = new ArrayList<>();
-        Connection connection = ConnectionFactory.getInstance().getConnection();
+        var connection = ConnectionFactory.getInstance().getConnection();
         try (PreparedStatement ps = connection.prepareStatement(SqlQueries.ALL_USERS.getConstant());
              ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
-                User user = new User();
+                var user = new User();
                 user.setId(rs.getInt(1));
                 user.setFirstName(rs.getString(2));
                 user.setSecondName(rs.getString(5));
@@ -67,7 +67,7 @@ public class UserDao implements IUserDao {
 
     @Override
     public boolean update(User entity) throws SQLException, NamingException {
-        Connection connection = ConnectionFactory.getInstance().getConnection();
+        var connection = ConnectionFactory.getInstance().getConnection();
         try (PreparedStatement statement = connection.prepareStatement(SqlQueries.UPDATE_USER.getConstant())) {
             statement.setString(1, entity.getFirstName());
             statement.setString(2, entity.getSecondName());
@@ -91,7 +91,7 @@ public class UserDao implements IUserDao {
 
     @Override
     public boolean delete(Integer id) throws SQLException, NamingException {
-        Connection connection = ConnectionFactory.getInstance().getConnection();
+        var connection = ConnectionFactory.getInstance().getConnection();
         try (PreparedStatement statement = connection.prepareStatement(SqlQueries.DELETE_FROM_USER.getConstant())) {
             statement.setInt(1, id);
             statement.executeUpdate();
@@ -107,7 +107,7 @@ public class UserDao implements IUserDao {
 
     @Override
     public boolean add(User entity) throws SQLException, NamingException {
-        Connection connection = ConnectionFactory.getInstance().getConnection();
+        var connection = ConnectionFactory.getInstance().getConnection();
         try (PreparedStatement statement = connection.prepareStatement(SqlQueries.INSERT_USER.getConstant())) {
             statement.setString(1, entity.getFirstName());
             statement.setString(4, entity.getSecondName());
@@ -131,9 +131,9 @@ public class UserDao implements IUserDao {
     @Override
     public User getUserByName(String name) throws NamingException, SQLException {
         User user = null;
-        try (Connection connection = ConnectionFactory.getInstance().getConnection(); PreparedStatement statement = connection.prepareStatement(SqlQueries.SELECT_USER_BY_NAME.getConstant())) {
+        try (var connection = ConnectionFactory.getInstance().getConnection(); PreparedStatement statement = connection.prepareStatement(SqlQueries.SELECT_USER_BY_NAME.getConstant())) {
             statement.setString(1, name);
-            try (ResultSet resultSet = statement.executeQuery()) {
+            try (var resultSet = statement.executeQuery()) {
                 resultSet.next();
                 user = new User();
                 user.setId(resultSet.getInt(1));
@@ -155,10 +155,10 @@ public class UserDao implements IUserDao {
     @Override
     public User getUserByEmail(String email) throws NamingException, SQLException {
         User user = null;
-        try (Connection connection = ConnectionFactory.getInstance().getConnection();
+        try (var connection = ConnectionFactory.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(SqlQueries.SELECT_USER_BY_EMAIL.getConstant())) {
             statement.setString(1, email);
-            try (ResultSet resultSet = statement.executeQuery()) {
+            try (var resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     user = new User();
                     user.setId(resultSet.getInt(1));

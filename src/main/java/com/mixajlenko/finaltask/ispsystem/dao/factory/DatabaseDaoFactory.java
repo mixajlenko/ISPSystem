@@ -7,13 +7,13 @@ import org.apache.log4j.Logger;
 
 public class DatabaseDaoFactory extends DaoFactory {
 
-    private static Logger logger = Logger.getLogger(DatabaseDaoFactory.class);
+    private static final Logger logger = Logger.getLogger(DatabaseDaoFactory.class);
 
-    private IServiceDao servicesDao = new ServicesDao();
-    private ITariffDao tariffDao = new TariffDao();
-    private IUserDao userDao = new UserDao();
-    private IPaymentsDao paymentDao = new PaymentsDao();
-    private IUserTariffDao userTariffDao = new UserTariffDao();
+    private final IServiceDao servicesDao = new ServicesDao();
+    private final ITariffDao tariffDao = new TariffDao();
+    private final IUserDao userDao = new UserDao();
+    private final IPaymentsDao paymentDao = new PaymentsDao();
+    private final IUserTariffDao userTariffDao = new UserTariffDao();
 
     @Override
     public IServiceDao getServiceDao() {

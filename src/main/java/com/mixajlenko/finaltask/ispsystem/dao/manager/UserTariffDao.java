@@ -5,10 +5,10 @@ import com.mixajlenko.finaltask.ispsystem.dao.IUserTariffDao;
 import com.mixajlenko.finaltask.ispsystem.dao.connection.ConnectionFactory;
 import com.mixajlenko.finaltask.ispsystem.dao.queries.SqlQueries;
 import com.mixajlenko.finaltask.ispsystem.model.UserTariff;
+import org.apache.log4j.Logger;
 
 import javax.naming.NamingException;
 import java.sql.*;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -16,13 +16,15 @@ import java.util.List;
 public class UserTariffDao implements IUserTariffDao {
     /* TODO fix code duplicates */
 
+    private static final Logger logger = Logger.getLogger(UserTariffDao.class);
+
     @Override
     public UserTariff getById(Integer id) throws SQLException, NamingException {
         UserTariff userTariff = null;
-        try (Connection connection = ConnectionFactory.getInstance().getConnection();
+        try (var connection = ConnectionFactory.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(SqlQueries.ALL_USER_TARIFF_BY_ID.getConstant())) {
             statement.setInt(1, id);
-            try (ResultSet resultSet = statement.executeQuery()) {
+            try (var resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     userTariff = new UserTariff();
                     userTariff.setId(id);
@@ -40,11 +42,11 @@ public class UserTariffDao implements IUserTariffDao {
     @Override
     public List<UserTariff> getAll() throws SQLException, NamingException {
         List<UserTariff> userTariffs = new ArrayList<>();
-        try (Connection connection = ConnectionFactory.getInstance().getConnection();
+        try (var connection = ConnectionFactory.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(SqlQueries.ALL_USER_TARIFF.getConstant());
-             ResultSet resultSet = statement.executeQuery()) {
+             var resultSet = statement.executeQuery()) {
             while (resultSet.next()) {
-                UserTariff userTariff = new UserTariff();
+                var userTariff = new UserTariff();
                 userTariff.setId(resultSet.getInt(1));
                 userTariff.setUserId(resultSet.getInt(2));
                 userTariff.setTariffId(resultSet.getInt(3));
@@ -61,7 +63,7 @@ public class UserTariffDao implements IUserTariffDao {
 
     @Override
     public boolean update(UserTariff entity) throws SQLException, NamingException {
-        Connection connection = ConnectionFactory.getInstance().getConnection();
+        var connection = ConnectionFactory.getInstance().getConnection();
         try (PreparedStatement statement = connection.prepareStatement(SqlQueries.UPDATE_USER_TARIFF.getConstant())) {
             statement.setInt(1, entity.getUserId());
             statement.setInt(2, entity.getTariffId());
@@ -82,7 +84,7 @@ public class UserTariffDao implements IUserTariffDao {
 
     @Override
     public boolean delete(Integer id) throws SQLException, NamingException {
-        Connection connection = ConnectionFactory.getInstance().getConnection();
+        var connection = ConnectionFactory.getInstance().getConnection();
         try (PreparedStatement statement = connection.prepareStatement(SqlQueries.DELETE_FROM_USER_PLAN.getConstant())) {
             statement.setInt(1, id);
             statement.executeUpdate();
@@ -98,7 +100,7 @@ public class UserTariffDao implements IUserTariffDao {
 
     @Override
     public boolean add(UserTariff entity) throws SQLException, NamingException {
-        try (Connection connection = ConnectionFactory.getInstance().getConnection();
+        try (var connection = ConnectionFactory.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(SqlQueries.INSERT_USERS_PLAN.getConstant())) {
             statement.setInt(1, entity.getUserId());
             statement.setInt(2, entity.getTariffId());
@@ -113,13 +115,13 @@ public class UserTariffDao implements IUserTariffDao {
 
     @Override
     public List<UserTariff> getAllUserTariffInfoByUserId(int userId) throws NamingException, SQLException {
-        Connection connection = ConnectionFactory.getInstance().getConnection();
+        var connection = ConnectionFactory.getInstance().getConnection();
         List<UserTariff> userTariffs = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(SqlQueries.ALL_USER_TARIFF.getConstant());
-             ResultSet resultSet = statement.executeQuery()) {
+             var resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     if (resultSet.getInt(2) == userId) {
-                        UserTariff userTariff = new UserTariff();
+                        var userTariff = new UserTariff();
                         userTariff.setId(resultSet.getInt(1));
                         userTariff.setUserId(resultSet.getInt(2));
                         userTariff.setTariffId(resultSet.getInt(3));
@@ -140,8 +142,8 @@ public class UserTariffDao implements IUserTariffDao {
     @Override
     public UserTariff getUserTariffByUserId(int userId) throws NamingException, SQLException {
         UserTariff userTariff = null;
-        try (Connection connection = ConnectionFactory.getInstance().getConnection();
-             Statement statement = connection.createStatement();
+        try (var connection = ConnectionFactory.getInstance().getConnection();
+             var statement = connection.createStatement();
              ResultSet rs = statement.executeQuery(SqlQueries.ALL_USER_TARIFF_BY_USER_ID.getConstant())) {
             while (rs.next()) {
                 if (rs.getInt(1) == userId) {
@@ -161,11 +163,11 @@ public class UserTariffDao implements IUserTariffDao {
     @Override
     public UserTariff getUserTariffByTariffIdUserId(int tariffId, int userId) throws NamingException, SQLException {
         UserTariff userTariff = null;
-        Connection connection = ConnectionFactory.getInstance().getConnection();
+        var connection = ConnectionFactory.getInstance().getConnection();
         try (PreparedStatement statement = connection.prepareStatement(SqlQueries.ALL_USER_TARIFF_BY_TARIFF_ID_USER_ID.getConstant())) {
             statement.setInt(1, tariffId);
             statement.setInt(2, userId);
-            try (ResultSet resultSet = statement.executeQuery()) {
+            try (var resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     userTariff = new UserTariff();
                     userTariff.setId(resultSet.getInt(1));
@@ -186,7 +188,7 @@ public class UserTariffDao implements IUserTariffDao {
 
     @Override
     public boolean deleteByUseIdTariffId(int userId, int tariffId) throws NamingException, SQLException {
-        Connection connection = ConnectionFactory.getInstance().getConnection();
+        var connection = ConnectionFactory.getInstance().getConnection();
         try (PreparedStatement statement = connection.prepareStatement(SqlQueries.DELETE_FROM_USER_PLAN_BY_USER_ID_TARIFF_ID.getConstant())) {
             statement.setInt(1, userId);
             statement.setInt(2, tariffId);

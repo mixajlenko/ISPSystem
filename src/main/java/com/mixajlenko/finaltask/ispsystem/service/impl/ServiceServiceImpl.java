@@ -6,12 +6,15 @@ import com.mixajlenko.finaltask.ispsystem.exception.DataBaseException;
 import com.mixajlenko.finaltask.ispsystem.exception.ServiceException;
 import com.mixajlenko.finaltask.ispsystem.model.Service;
 import com.mixajlenko.finaltask.ispsystem.service.IServiceService;
+import org.apache.log4j.Logger;
 
 import javax.naming.NamingException;
 import java.sql.SQLException;
 import java.util.List;
 
 public class ServiceServiceImpl implements IServiceService {
+
+    private static final Logger logger = Logger.getLogger(ServiceServiceImpl.class);
 
     private final DaoFactory daoFactory = DaoFactory.getInstance();
     private IServiceDao serviceDao = daoFactory.getServiceDao();

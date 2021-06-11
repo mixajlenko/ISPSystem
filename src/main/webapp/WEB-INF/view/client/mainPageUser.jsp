@@ -175,9 +175,6 @@
                                                     key="more"/></a>
                                         </td>
                                         <td class="endTdUserInfo" style="width: 50px">
-<%--                                            <a class="deleteButton"--%>
-<%--                                               href="${pageContext.request.contextPath}/view/client/paymentSystemPage?command=payForTariff&id=${item.key.id}&price=${item.key.price}"><fmt:message key="pay1"/>--%>
-<%--                                            </a>--%>
                                             <a class="deleteButton"
                                                href="${pageContext.request.contextPath}/view/client/paymentSystemPage?command=payForTariff&id=${item.key.id}&price=${item.key.price}"><fmt:message
                                                     key="pay1"/></a>
@@ -191,6 +188,9 @@
                                 </c:forEach>
                                 </tbody>
                             </table>
+                            </c:if>
+                            <c:if test="${emptyTariffs}">
+                                <h4 style="margin: 50px 0 0 0"><fmt:message key="emptyTariffListMessage"/></h4>
                             </c:if>
                             <c:if test="${showTariff}">
                                 <div class="serviceBlock" style="width: 50%">

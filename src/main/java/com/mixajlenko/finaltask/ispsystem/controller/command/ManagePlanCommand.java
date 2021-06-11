@@ -5,19 +5,24 @@ import com.mixajlenko.finaltask.ispsystem.exception.NotFoundUserException;
 import com.mixajlenko.finaltask.ispsystem.model.Tariff;
 import com.mixajlenko.finaltask.ispsystem.service.ITariffService;
 import com.mixajlenko.finaltask.ispsystem.service.factory.ServiceFactory;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.log4j.Logger;
 
 import javax.naming.NamingException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Objects;
 
 
 public class ManagePlanCommand implements ICommand {
 
-    Logger logger = Logger.getLogger(ManagePlanCommand.class);
+    private static final Logger logger = Logger.getLogger(ManagePlanCommand.class);
+
+    private static final String COMMAND_INTERFACE = "commandInterface";
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -28,20 +33,20 @@ public class ManagePlanCommand implements ICommand {
         String price = request.getParameter("price");
         String redirect = request.getParameter("redirect");
         try {
-            ServiceFactory factory = ServiceFactory.getInstance();
+            var factory = ServiceFactory.getInstance();
             ITariffService tariffService = factory.getTariffService();
             String serviceId = request.getParameter("param");
             String command = request.getParameter("command");
-            request.setAttribute("commandInterface", false);
+            request.setAttribute(COMMAND_INTERFACE, false);
 
-            if (serviceId == null) {
+            if (Objects.isNull(serviceId)) {
                 serviceId = request.getParameter("id");
             }
-            if (command != null) {
-                if(command.equals("update"))
-                    request.setAttribute("commandInterface", true);
-                int id = Integer.parseInt(request.getParameter("id"));
-                Tariff tariff = tariffService.getById(id);
+            if (Objects.nonNull(command)) {
+                if (Objects.equals("update",command))
+                    request.setAttribute(COMMAND_INTERFACE, true);
+                var id = Integer.parseInt(request.getParameter("id"));
+                var tariff = tariffService.getById(id);
                 switch (command) {
                     case "delete":
                         tariffService.delete(id);
@@ -51,15 +56,14 @@ public class ManagePlanCommand implements ICommand {
                         tariff.setDescription(description);
                         tariff.setPrice(Integer.parseInt(price));
                         tariffService.update(tariff);
-                        request.setAttribute("commandInterface", false);
+                        request.setAttribute(COMMAND_INTERFACE, false);
                         break;
                     default:
                 }
             }
             List<Tariff> tariffList = tariffService.getServiceTariff(Integer.parseInt(serviceId));
             request.setAttribute("tariffs", tariffList);
-            if ("true".equals(redirect)){
-                System.out.println(serviceId);
+            if (Objects.equals("true", redirect)) {
                 response.sendRedirect("/view/admin/managePlan?param=" + serviceId);
             } else {
                 CommandUtil.goToPage(request, response, "/WEB-INF/view/admin/managePlan.jsp");
@@ -67,10 +71,8 @@ public class ManagePlanCommand implements ICommand {
         } catch (NotFoundUserException e) {
             request.setAttribute("notFound", true);
             CommandUtil.goToPage(request, response, "/WEB-INF/view/admin/managePlan.jsp");
-        } catch (SQLException | NamingException throwables) {
+        } catch (SQLException | NamingException | IOException throwables) {
             throwables.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 }

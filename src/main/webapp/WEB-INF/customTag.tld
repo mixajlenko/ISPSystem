@@ -5,11 +5,6 @@
     <jsp-version>2.0</jsp-version>
     <short-name>myTag</short-name>
 
-<!--    <tag>-->
-<!--        <name>idTag</name>-->
-<!--        <tag-class>com.mixajlenko.finaltask.ispsystem.controller.command.utils.CustomTag</tag-class>-->
-<!--        <body-content>empty</body-content>-->
-<!--    </tag>-->
     <tag>
         <name>idTag</name>
         <tag-class>com.mixajlenko.finaltask.ispsystem.controller.command.utils.CustomTag</tag-class>

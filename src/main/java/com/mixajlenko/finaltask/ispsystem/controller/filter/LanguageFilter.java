@@ -11,12 +11,9 @@ import java.io.IOException;
 
 public class LanguageFilter implements Filter {
 
-    private static Logger logger = Logger.getLogger(LanguageFilter.class);
+    private static final Logger logger = Logger.getLogger(LanguageFilter.class);
 
-    @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-
-    }
+    private static final String LANGUAGE = "language";
 
     @Override
     public void doFilter(ServletRequest servletRequest,
@@ -27,7 +24,7 @@ public class LanguageFilter implements Filter {
         final HttpServletResponse resp = (HttpServletResponse) servletResponse;
 
         String path = req.getRequestURI();
-        path = path.replaceAll("language/", "");
+        path = path.replace("language/", "");
         if (path.equals("/view//")) {
             path = "/";
         }
@@ -35,21 +32,17 @@ public class LanguageFilter implements Filter {
         logger.info("uri" + req.getRequestURI());
         logger.info("path" + path);
 
-        String language = req.getParameter("language");
+        String language = req.getParameter(LANGUAGE);
         boolean isEnglish = language.equals("EN");
         boolean isRussian = language.equals("RU");
 
         if (isEnglish) {
-            req.getSession().setAttribute("language", "en-EN");
+            req.getSession().setAttribute(LANGUAGE, "en-EN");
         } else if (isRussian) {
-            req.getSession().setAttribute("language", "ru-RU");
+            req.getSession().setAttribute(LANGUAGE, "ru-RU");
         }
 
         req.getRequestDispatcher(path).forward(req, resp);
     }
 
-    @Override
-    public void destroy() {
-
-    }
 }

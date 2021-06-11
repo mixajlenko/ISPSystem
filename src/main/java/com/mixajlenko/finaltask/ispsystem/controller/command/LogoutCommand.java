@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class LogoutCommand implements ICommand {
 
-    private static Logger logger = Logger.getLogger(LogoutCommand.class);
+    private static final Logger logger = Logger.getLogger(LogoutCommand.class);
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {

@@ -21,12 +21,12 @@ import java.util.Objects;
 
 public class UserTariffService implements IUserTariffService {
 
-    private static Logger logger = Logger.getLogger(UserTariffService.class);
+    private static final Logger logger = Logger.getLogger(UserTariffService.class);
 
     private final DaoFactory daoFactory = DaoFactory.getInstance();
-    private IUserTariffDao userTariffDao = daoFactory.getUserTariffDao();
-    private ITariffDao tariffDao = daoFactory.getTariffDao();
-    private IUserDao userDao = daoFactory.getUserDao();
+    private  IUserTariffDao userTariffDao = daoFactory.getUserTariffDao();
+    private  ITariffDao tariffDao = daoFactory.getTariffDao();
+    private  IUserDao userDao = daoFactory.getUserDao();
 
     @Override
     public List<UserTariff> getAll() throws SQLException, NamingException {

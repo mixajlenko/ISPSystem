@@ -3,13 +3,14 @@ package com.mixajlenko.finaltask.ispsystem.controller.command;
 import com.mixajlenko.finaltask.ispsystem.controller.command.utils.CommandUtil;
 import com.mixajlenko.finaltask.ispsystem.model.Service;
 import com.mixajlenko.finaltask.ispsystem.model.Tariff;
-import com.mixajlenko.finaltask.ispsystem.model.User;
 import com.mixajlenko.finaltask.ispsystem.model.UserTariff;
 import com.mixajlenko.finaltask.ispsystem.service.IServiceService;
 import com.mixajlenko.finaltask.ispsystem.service.ITariffService;
 import com.mixajlenko.finaltask.ispsystem.service.IUserService;
 import com.mixajlenko.finaltask.ispsystem.service.IUserTariffService;
 import com.mixajlenko.finaltask.ispsystem.service.factory.ServiceFactory;
+import org.apache.log4j.Logger;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -19,9 +20,12 @@ import java.sql.SQLException;
 import java.util.*;
 
 public class ClientServiceCommand implements ICommand {
+
+    private static final Logger logger = Logger.getLogger(ClientServiceCommand.class);
+
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        ServiceFactory factory = ServiceFactory.getInstance();
+        var factory = ServiceFactory.getInstance();
 
         try {
             IServiceService serviceService = factory.getServiceService();
@@ -33,13 +37,16 @@ public class ClientServiceCommand implements ICommand {
             String sortAction = request.getParameter("sort");
             String tariffId = request.getParameter("tariffId");
             int userId = (int) request.getSession().getAttribute("globalUserId");
-            User user = userService.getById(userId);
+            var user = userService.getById(userId);
             if (Objects.nonNull(tariffId) && userId != 0 && user.getStatus()==1) {
+                request.setAttribute("subSuccess", true);
                     userTariffService.add(new UserTariff.UserTariffBuilderImpl().setUserId(userId).setTariffId(Integer.parseInt(tariffId)).build());
+            } else if(Objects.nonNull(tariffId) && user.getStatus()==0){
+                request.setAttribute("subFail", true);
             }
 
             List<Tariff> tariffs = new ArrayList<>();
-            if (serviceId != null) {
+            if (Objects.nonNull(serviceId)) {
                 tariffs = tariffService.getServiceTariff(Integer.parseInt(serviceId));
                 if (Objects.nonNull(sortAction) && sortAction.equals("price"))
                     tariffs.sort(new Tariff.PriceComparator());
@@ -49,7 +56,7 @@ public class ClientServiceCommand implements ICommand {
                     tariffs.sort(new Tariff.NameReverseComparator());
             }
 
-            if (item != null) {
+            if (Objects.nonNull(item)) {
                 request.setAttribute("showTariffs", true);
             }
 

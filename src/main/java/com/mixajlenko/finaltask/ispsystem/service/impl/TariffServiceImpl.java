@@ -6,12 +6,15 @@ import com.mixajlenko.finaltask.ispsystem.exception.DataBaseException;
 import com.mixajlenko.finaltask.ispsystem.exception.ServiceException;
 import com.mixajlenko.finaltask.ispsystem.model.Tariff;
 import com.mixajlenko.finaltask.ispsystem.service.ITariffService;
+import org.apache.log4j.Logger;
 
 import javax.naming.NamingException;
 import java.sql.SQLException;
 import java.util.List;
 
 public class TariffServiceImpl implements ITariffService {
+
+    private static final Logger logger = Logger.getLogger(TariffServiceImpl.class);
 
     private final DaoFactory daoFactory = DaoFactory.getInstance();
     private ITariffDao tariffDao = daoFactory.getTariffDao();

@@ -18,14 +18,16 @@ import java.util.Objects;
 
 public class RegistrationCommand implements ICommand {
 
-    private static Logger logger = Logger.getLogger(RegistrationCommand.class);
+    private static final Logger logger = Logger.getLogger(RegistrationCommand.class);
+
+    private static final String DEFAULT_PAGE = "/WEB-INF/view/registration.jsp";
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         logger.info("Start execution registration");
 
-        ServiceFactory factory = ServiceFactory.getInstance();
+        var factory = ServiceFactory.getInstance();
 
         String email = request.getParameter("email");
         String password = request.getParameter("password");
@@ -47,14 +49,14 @@ public class RegistrationCommand implements ICommand {
             String fName = request.getParameter("firstName");
             String sName = request.getParameter("secondName");
 
-            User user = new User.UserBuilderImpl()
+            var user = new User.UserBuilderImpl()
                     .setFirstName(fName)
                     .setSecondName(sName)
                     .setPhone(phone)
                     .setEmail(email)
                     .setStatus(0)
                     .setWallet(0)
-                    .setPassword(CommandUtil.encrypt(password))
+                    .setPassword(CommandUtil.encrypt(password, false).orElseThrow(PasswordGenerationException::new))
                     .setRole(1)
                     .build();
 
@@ -65,18 +67,16 @@ public class RegistrationCommand implements ICommand {
             response.sendRedirect("/");
         } catch (ServiceException e) {
             request.setAttribute("notFound", true);
-            CommandUtil.goToPage(request, response, "/WEB-INF/view/registration.jsp");
+            CommandUtil.goToPage(request, response, DEFAULT_PAGE);
         } catch (WrongDataException e) {
             request.setAttribute("wrongData", false);
-            CommandUtil.goToPage(request, response, "/WEB-INF/view/registration.jsp");
+            CommandUtil.goToPage(request, response, DEFAULT_PAGE);
         } catch (NotFoundUserException e) {
             logger.error("Not found user");
-        } catch (SQLException | NamingException throwables) {
-            throwables.printStackTrace();
         } catch (AlreadyExistUserException e) {
             request.setAttribute("existUser", true);
-            CommandUtil.goToPage(request, response, "/WEB-INF/view/registration.jsp");
-        } catch (IOException e) {
+            CommandUtil.goToPage(request, response, DEFAULT_PAGE);
+        } catch (PasswordGenerationException | NamingException | SQLException e) {
             e.printStackTrace();
         }
     }

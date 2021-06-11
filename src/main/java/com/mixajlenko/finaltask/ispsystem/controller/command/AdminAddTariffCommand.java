@@ -4,8 +4,8 @@ import com.mixajlenko.finaltask.ispsystem.controller.command.utils.CommandUtil;
 import com.mixajlenko.finaltask.ispsystem.exception.ServiceException;
 import com.mixajlenko.finaltask.ispsystem.exception.WrongDataException;
 import com.mixajlenko.finaltask.ispsystem.model.Tariff;
-import com.mixajlenko.finaltask.ispsystem.service.ITariffService;
 import com.mixajlenko.finaltask.ispsystem.service.factory.ServiceFactory;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -18,12 +18,12 @@ import java.util.Objects;
 
 public class AdminAddTariffCommand implements ICommand {
 
-    private static Logger logger = Logger.getLogger(AdminAddTariffCommand.class);
+    private static final Logger logger = Logger.getLogger(AdminAddTariffCommand.class);
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
-        ServiceFactory factory = ServiceFactory.getInstance();
+        logger.info("AdminAddTariffCommand start");
+        var factory = ServiceFactory.getInstance();
 
         String name = request.getParameter("name");
         String description = request.getParameter("description");
@@ -38,26 +38,29 @@ public class AdminAddTariffCommand implements ICommand {
                 throw new WrongDataException();
             }
 
-            ITariffService tariffService = factory.getTariffService();
+            var tariffService = factory.getTariffService();
 
             tariffService.add(new Tariff.TariffBuilderImpl().setName(name).setDescription(description).setPrice(Integer.parseInt(price)).build());
+            tariffService.setServiceTariff(Integer.parseInt(serviceId), tariffService.getByName(name).getId());
 
-            int id = tariffService.getByName(name).getId();
-
-            tariffService.setServiceTariff(Integer.parseInt(serviceId), id);
             if ("true".equals(redirect)) {
+                logger.info("redirection");
                 response.sendRedirect("/view/admin/managePlan?param=" + serviceId);
             } else {
+                logger.info("Go to page managePlan");
                 CommandUtil.goToPage(request, response, "/view/admin/managePlan?param=" + serviceId);
             }
+
         } catch (ServiceException e) {
+            logger.info("notFound exception");
             request.setAttribute("notFound", true);
             CommandUtil.goToPage(request, response, "/WEB-INF/view/admin/manageTariff.jsp");
         } catch (WrongDataException | SQLException | NamingException e) {
+            logger.info("wrongData exception");
             request.setAttribute("wrongData", false);
             CommandUtil.goToPage(request, response, "/WEB-INF/view/admin/manageTariff.jsp");
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.warn(e.getMessage());
         }
     }
 }

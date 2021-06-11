@@ -12,15 +12,18 @@ import java.sql.SQLException;
 
 public class ConnectionFactory {
 
-    Logger logger = Logger.getLogger(ConnectionFactory.class);
+   private static final Logger logger = Logger.getLogger(ConnectionFactory.class);
 
     private static ConnectionFactory pool;
     private final DataSource dataSource;
 
 
     public ConnectionFactory() throws NamingException {
-        Context initialContext = new InitialContext();
-        dataSource = (DataSource) initialContext.lookup("java:comp/env/jdbc/ISPManager");
+//        Context initialContext = new InitialContext();
+//        dataSource = (DataSource) initialContext.lookup("java:comp/env/jdbc/ISPManager");
+        Context initContext = new InitialContext();
+        Context envContext = (Context) initContext.lookup("java:comp/env");
+        dataSource = (DataSource) envContext.lookup("jdbc/ISPManager");
     }
 
     public static synchronized ConnectionFactory getInstance() throws NamingException {

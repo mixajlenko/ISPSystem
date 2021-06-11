@@ -14,11 +14,15 @@ import org.apache.log4j.Logger;
 import java.io.IOException;
 
 public class Controller extends HttpServlet {
-    private static Logger logger = Logger.getLogger(Controller.class);
+    private static final Logger logger = Logger.getLogger(Controller.class);
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doPost(req, resp);
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
+        try {
+            doPost(req, resp);
+        } catch (ServletException | IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

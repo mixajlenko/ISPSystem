@@ -212,7 +212,10 @@
                                     </div>
                                 </c:when>
                                 <c:when test="${success}">
-                                    <p>Changes are saved</p>
+                                    <p><fmt:message key="savedChanges"/></p>
+                                </c:when>
+                                <c:when test="${!success}">
+                                    <p><fmt:message key="passFail"/></p>
                                 </c:when>
                             </c:choose>
                         </div>

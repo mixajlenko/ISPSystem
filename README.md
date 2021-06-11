@@ -1,18 +1,61 @@
 # ISPSystem
 
-²íòåðíåò ïðîâàéäåð
+ÐÐ´Ð¼Ñ–Ð½Ñ–ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€ Ñ€ÐµÑ”ÑÑ‚Ñ€ÑƒÑ” ÐÐ±Ð¾Ð½ÐµÐ½Ñ‚Ð° Ð² ÑÐ¸ÑÑ‚ÐµÐ¼Ñ–.
+ÐÐ±Ð¾Ð½ÐµÐ½Ñ‚Ñƒ Ð½Ð°Ð´Ð°Ð½Ð¾ Ð¿ÐµÑ€ÐµÐ»Ñ–Ðº ÐŸÐ¾ÑÐ»ÑƒÐ³ (Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½, Ð†Ð½Ñ‚ÐµÑ€Ð½ÐµÑ‚, ÐšÐ°Ð±ÐµÐ»ÑŒÐ½Ðµ Ð¢Ð‘, IP-TV  Ñ‚Ð¾Ñ‰Ð¾) Ñ– ÑÐ¿Ð¸ÑÐ¾Ðº Ð¢Ð°Ñ€Ð¸Ñ„Ñ–Ð² Ð´Ð¾ ÐºÐ¾Ð¶Ð½Ð¾Ñ— Ð¿Ð¾ÑÐ»ÑƒÐ³Ð¸.
+Ð ÐµÐ°Ð»Ñ–Ð·ÑƒÐ²Ð°Ñ‚Ð¸ Ð¼Ð¾Ð¶Ð»Ð¸Ð²Ñ–ÑÑ‚ÑŒ ÑÐºÐ°Ñ‡ÑƒÐ²Ð°Ð½Ð½Ñ Ñ‚Ð°Ñ€Ð¸Ñ„Ð½Ð¸Ñ… Ð¿Ð»Ð°Ð½Ñ–Ð² Ð² Ð¾Ð´Ð½Ð¾Ð¼Ñƒ Ð· Ñ„Ð¾Ñ€Ð¼Ð°Ñ‚Ñ–Ð² (Ð½Ð°Ð¿Ñ€Ð¸ÐºÐ»Ð°Ð´, txt, pdf, docx).
+Ð”Ð»Ñ Ð¿ÐµÑ€ÐµÐ»Ñ–ÐºÑƒ Ñ‚Ð°Ñ€Ð¸Ñ„Ñ–Ð² Ñ€ÐµÐ°Ð»Ñ–Ð·ÑƒÐ²Ð°Ñ‚Ð¸ Ð¼Ð¾Ð¶Ð»Ð¸Ð²Ñ–ÑÑ‚ÑŒ ÑÐ¾Ñ€Ñ‚ÑƒÐ²Ð°Ð½Ð½Ñ Ð·Ð°:
+- Ð°Ð»Ñ„Ð°Ð²Ñ–Ñ‚Ð¾Ð¼/Ð² Ð·Ð²Ð¾Ñ€Ð¾Ñ‚Ð½ÑŒÐ¾Ð¼Ñƒ Ð¿Ð¾Ñ€ÑÐ´ÐºÑƒ (a-z, z-a);
+- Ð·Ð° Ñ†Ñ–Ð½Ð¾ÑŽ.
+  ÐÐ±Ð¾Ð½ÐµÐ½Ñ‚ Ð¼Ð¾Ð¶Ðµ Ð¾Ð±Ñ€Ð°Ñ‚Ð¸ Ð¾Ð´Ð½Ñƒ Ð°Ð±Ð¾ ÐºÑ–Ð»ÑŒÐºÐ° Ð¿Ð¾ÑÐ»ÑƒÐ³ Ð·Ð° Ð¿ÐµÐ²Ð½Ð¸Ð¼ Ñ‚Ð°Ñ€Ð¸Ñ„Ð¾Ð¼.
+  Ð£ Ð°Ð±Ð¾Ð½ÐµÐ½Ñ‚Ð° Ñ” Ð Ð°Ñ…ÑƒÐ½Ð¾Ðº, ÑÐºÐ¸Ð¹ Ð²Ñ–Ð½ Ð¼Ð¾Ð¶Ðµ Ð¿Ð¾Ð¿Ð¾Ð²Ð½Ð¸Ñ‚Ð¸.
+  ÐšÐ¾ÑˆÑ‚Ð¸ Ð· Ñ€Ð°Ñ…ÑƒÐ½ÐºÑƒ Ð·Ð½Ñ–Ð¼Ð°ÑŽÑ‚ÑŒÑÑ ÑÐ¸ÑÑ‚ÐµÐ¼Ð¾ÑŽ Ð² Ð·Ð°Ð»ÐµÐ¶Ð½Ð¾ÑÑ‚Ñ– Ð²Ñ–Ð´ Ð¾Ð±Ñ€Ð°Ð½Ð¸Ñ… Ð°Ð±Ð¾Ð½ÐµÐ½Ñ‚Ð¾Ð¼ Ñ‚Ð°Ñ€Ð¸Ñ„Ð½Ð¸Ñ… Ð¿Ð»Ð°Ð½Ñ–Ð².
+  Ð¯ÐºÑ‰Ð¾ ÑÑƒÐ¼Ð¸ Ð½Ð° Ñ€Ð°Ñ…ÑƒÐ½ÐºÑƒ Ð½Ðµ Ð´Ð¾ÑÑ‚Ð°Ñ‚Ð½ÑŒÐ¾, ÑÐ¸ÑÑ‚ÐµÐ¼Ð° Ð±Ð»Ð¾ÐºÑƒÑ” ÐºÐ¾Ñ€Ð¸ÑÑ‚ÑƒÐ²Ð°Ñ‡Ð°.
+  ÐšÐ¾Ñ€Ð¸ÑÑ‚ÑƒÐ²Ð°Ñ‡ Ð°Ð²Ñ‚Ð¾Ð¼Ð°Ñ‚Ð¸Ñ‡Ð½Ð¾ Ñ€Ð¾Ð·Ð±Ð»Ð¾ÐºÑƒÑ”Ñ‚ÑŒÑÑ Ð¿Ð¾ Ð²Ð½ÐµÑÐµÐ½Ð½ÑŽ Ð½ÐµÐ¾Ð±Ñ…Ñ–Ð´Ð½Ð¾Ñ— ÑÑƒÐ¼Ð¸ Ð½Ð° Ñ€Ð°Ñ…ÑƒÐ½Ð¾Ðº.
+  ÐÐ´Ð¼Ñ–Ð½Ñ–ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€ ÑÐ¸ÑÑ‚ÐµÐ¼Ð¸ Ð²Ð¾Ð»Ð¾Ð´Ñ–Ñ” Ð¿Ñ€Ð°Ð²Ð°Ð¼Ð¸:
+- Ð´Ð¾Ð´Ð°Ð²Ð°Ð½Ð½Ñ, Ð²Ð¸Ð´Ð°Ð»ÐµÐ½Ð½Ñ Ð°Ð±Ð¾ Ñ€ÐµÐ´Ð°Ð³ÑƒÐ²Ð°Ð½Ð½Ñ Ñ‚Ð°Ñ€Ð¸Ñ„Ð½Ð¾Ð³Ð¾ Ð¿Ð»Ð°Ð½Ñƒ;
+- Ñ€ÐµÑ”ÑÑ‚Ñ€Ð°Ñ†Ñ–Ñ—, Ð±Ð»Ð¾ÐºÑƒÐ²Ð°Ð½Ð½Ñ Ñ‚Ð° Ñ€Ð¾Ð·Ð±Ð»Ð¾ÐºÑƒÐ²Ð°Ð½Ð½Ñ ÐºÐ¾Ñ€Ð¸ÑÑ‚ÑƒÐ²Ð°Ñ‡Ð°.
 
-Àäì³í³ñòðàòîð ðåºñòðóº Àáîíåíòà â ñèñòåì³.
-Àáîíåíòó íàäàíî ïåðåë³ê Ïîñëóã (Òåëåôîí, ²íòåðíåò, Êàáåëüíå ÒÁ, IP-TV  òîùî) ³ ñïèñîê Òàðèô³â äî êîæíî¿ ïîñëóãè.
-Ðåàë³çóâàòè ìîæëèâ³ñòü ñêà÷óâàííÿ òàðèôíèõ ïëàí³â â îäíîìó ç ôîðìàò³â (íàïðèêëàä, txt, pdf, docx).
-Äëÿ ïåðåë³êó òàðèô³â ðåàë³çóâàòè ìîæëèâ³ñòü ñîðòóâàííÿ çà:
-- àëôàâ³òîì/â çâîðîòíüîìó ïîðÿäêó (a-z, z-a);
-- çà ö³íîþ.
-  Àáîíåíò ìîæå îáðàòè îäíó àáî ê³ëüêà ïîñëóã çà ïåâíèì òàðèôîì.
-  Ó àáîíåíòà º Ðàõóíîê, ÿêèé â³í ìîæå ïîïîâíèòè.
-  Êîøòè ç ðàõóíêó çí³ìàþòüñÿ ñèñòåìîþ â çàëåæíîñò³ â³ä îáðàíèõ àáîíåíòîì òàðèôíèõ ïëàí³â.
-  ßêùî ñóìè íà ðàõóíêó íå äîñòàòíüî, ñèñòåìà áëîêóº êîðèñòóâà÷à.
-  Êîðèñòóâà÷ àâòîìàòè÷íî ðîçáëîêóºòüñÿ ïî âíåñåííþ íåîáõ³äíî¿ ñóìè íà ðàõóíîê.
-  Àäì³í³ñòðàòîð ñèñòåìè âîëîä³º ïðàâàìè:
-- äîäàâàííÿ, âèäàëåííÿ àáî ðåäàãóâàííÿ òàðèôíîãî ïëàíó;
-- ðåºñòðàö³¿, áëîêóâàííÿ òà ðîçáëîêóâàííÿ êîðèñòóâà÷à.
+### For successfully execute the program you should have:
+1. [JDK 10.0.2](https://www.oracle.com/java/technologies/java-archive-javase10-downloads.html) or upper of date.
+
+### Execution
+
+1. You need [download](https://www.postgresql.org/download/) and install PostgreSQL.
+   
+2. Then [download]() TomCat 9.0.41 and store in any place on your computer.
+   
+3. Configure TomCat in IDE as start web service.
+   
+- When configure TomCat in Deployment tab on "Application context" will be "/".
+
+4. Restore database from ISPSystem/src/main/resources/DBBackup/ISPManagerBackup file.
+
+- Your database owner will be "postgres" wih password "postgres".
+- In pgAdmin create database with any name or "ISPManager" name.
+- Right click on database and choose "Restore".
+- Format => Custom or tar.
+- Filename => choose ISPManagerBackup from explorer.
+- Role name => postgres.
+- Click "Restore" button.
+   
+   
+5. Start project with TomCat.
+
+6. You will see that project was deployed. Then is going to open browser page like (image1).
+
+7. Project is running.
+
+
+### For successfully pass the tests you should have JUnit 5.x.x. and Mockito:
+1. [Download JUnit from GitHub](https://github.com/junit-team/junit5/) or use Maven dependency:
+   <br>[JUnit Jupiter](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api)
+   <br>[JUnit Platform](https://mvnrepository.com/artifact/org.junit.platform/junit-platform-launcher)
+   <br>[JUnit Vintage](https://mvnrepository.com/artifact/org.junit.vintage/junit-vintage-engine)
+2. [Mockito](https://mvnrepository.com/artifact/org.mockito/mockito-all).
+
+
+### Program output image:
+
+image1:
+
+![output image](docs/image1.png)

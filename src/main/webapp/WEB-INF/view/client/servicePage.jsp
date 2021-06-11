@@ -131,11 +131,17 @@
                         </div>
                         <div>
                             Download all:
-                            <a href="${pageContext.request.contextPath}/view/client/downloadServices?format=pdf&serviceName=All">PDF</a>
-                            <a href="${pageContext.request.contextPath}/view/client/downloadServices?format=txt&serviceName=All">TXT</a>
-                            <a href="${pageContext.request.contextPath}/view/client/downloadServices?format=docx&serviceName=All">DOCX</a>
-                            <a href="${pageContext.request.contextPath}/view/client/downloadServices?format=csv&serviceName=All">CSV</a>
+                            <a href="${pageContext.request.contextPath}/view/client/downloadServices?format=pdf&serviceName=All&serviceId=empty">PDF</a>
+                            <a href="${pageContext.request.contextPath}/view/client/downloadServices?format=txt&serviceName=All&serviceId=empty">TXT</a>
+                            <a href="${pageContext.request.contextPath}/view/client/downloadServices?format=docx&serviceName=All&serviceId=empty">DOCX</a>
+                            <a href="${pageContext.request.contextPath}/view/client/downloadServices?format=csv&serviceName=All&serviceId=empty">CSV</a>
                         </div>
+                        <c:if test="${subSuccess}">
+                            <h4 style="margin: 50px 0 0 0"><fmt:message key="successfullySub"/></h4>
+                        </c:if>
+                        <c:if test="${subFail}">
+                            <h4 style="margin: 50px 0 0 0"><fmt:message key="failSub"/></h4>
+                        </c:if>
                         <c:choose>
                         <c:when test="${showTariffs}">
                         <div class="serviceBlock">
@@ -180,7 +186,7 @@
                                                           href="${pageContext.request.contextPath}/view/client/servicePage?tariffId=${item.id}"
                                                           onclick="return confirm('
                                                               <fmt:message key="subscribeSubmit1"/> ${item.name}
-                                                              <fmt:message key="subscribeSubmit2"/>')"><fmt:message
+                                                              <fmt:message key="subscribeSubmit2"/>"><fmt:message
                                                 key="subscribe"/></a>
                                         </td>
                                     </tr>

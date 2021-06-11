@@ -15,13 +15,13 @@ import org.apache.log4j.Logger;
 public class ServicesDao implements IServiceDao {
     /* TODO fix code duplicates */
 
-    private static Logger logger = Logger.getLogger(ServicesDao.class);
+    private static final Logger logger = Logger.getLogger(ServicesDao.class);
 
     @Override
     public Service getById(Integer id) throws SQLException, NamingException {
         Service service = null;
-        try (Connection connection = ConnectionFactory.getInstance().getConnection();
-             Statement statement = connection.createStatement();
+        try (var connection = ConnectionFactory.getInstance().getConnection();
+             var statement = connection.createStatement();
              ResultSet rs = statement.executeQuery(SqlQueries.ALL_SERVICE.getConstant())) {
             while (rs.next()) {
                 if (rs.getInt(1) == id) {
@@ -38,11 +38,11 @@ public class ServicesDao implements IServiceDao {
     @Override
     public List<Service> getAll() throws SQLException, NamingException {
         List<Service> images = new ArrayList<>();
-        try (Connection connection = ConnectionFactory.getInstance().getConnection();
+        try (var connection = ConnectionFactory.getInstance().getConnection();
              PreparedStatement ps = connection.prepareStatement(SqlQueries.ALL_SERVICE.getConstant());
              ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
-                Service service = new Service();
+                var service = new Service();
                 service.setId(rs.getInt(1));
                 service.setName(rs.getString(2));
                 service.setDescription(rs.getString(3));
@@ -54,7 +54,7 @@ public class ServicesDao implements IServiceDao {
 
     @Override
     public boolean update(Service entity) throws SQLException, NamingException {
-        Connection connection = ConnectionFactory.getInstance().getConnection();
+        var connection = ConnectionFactory.getInstance().getConnection();
         try (PreparedStatement statement = connection.prepareStatement(SqlQueries.UPDATE_SERVICE.getConstant())) {
             statement.setString(1, entity.getName());
             statement.setString(2, entity.getDescription());
@@ -72,7 +72,7 @@ public class ServicesDao implements IServiceDao {
 
     @Override
     public boolean delete(Integer id) throws SQLException, NamingException {
-        Connection connection = ConnectionFactory.getInstance().getConnection();
+        var connection = ConnectionFactory.getInstance().getConnection();
         try (PreparedStatement statement = connection.prepareStatement(SqlQueries.DELETE_FROM_SERVICE.getConstant())) {
             statement.setInt(1, id);
             statement.executeUpdate();
@@ -88,7 +88,7 @@ public class ServicesDao implements IServiceDao {
 
     @Override
     public boolean add(Service entity) throws SQLException, NamingException {
-        Connection connection = ConnectionFactory.getInstance().getConnection();
+        var connection = ConnectionFactory.getInstance().getConnection();
         try (PreparedStatement statement = connection.prepareStatement(SqlQueries.INSERT_SERVICE.getConstant())) {
             statement.setString(1, entity.getName());
             statement.setString(2, entity.getDescription());
@@ -106,7 +106,7 @@ public class ServicesDao implements IServiceDao {
     @Override
     public Service getByName(String name) throws NamingException, SQLException {
         Service service = null;
-        try (Connection connection = ConnectionFactory.getInstance().getConnection(); Statement statement = connection.createStatement();
+        try (var connection = ConnectionFactory.getInstance().getConnection(); Statement statement = connection.createStatement();
              ResultSet rs = statement.executeQuery(SqlQueries.ALL_SERVICE.getConstant())) {
             while (rs.next()) {
                 if (rs.getString(2).equals(name)) {

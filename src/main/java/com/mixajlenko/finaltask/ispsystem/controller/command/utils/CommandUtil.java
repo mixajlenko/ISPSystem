@@ -1,31 +1,30 @@
 package com.mixajlenko.finaltask.ispsystem.controller.command.utils;
 
-//import jakarta.servlet.RequestDispatcher;
-//import jakarta.servlet.ServletException;
-//import jakarta.servlet.http.HttpServletRequest;
-//import jakarta.servlet.http.HttpServletResponse;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
+import com.mixajlenko.finaltask.ispsystem.model.Tariff;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
+import java.util.Optional;
 
 public abstract class CommandUtil {
 
-    private static Logger logger = Logger.getLogger(CommandUtil.class);
+    private static final Logger logger = Logger.getLogger(CommandUtil.class);
+
+    private CommandUtil() {
+    }
 
     public static void goToPage(HttpServletRequest req, HttpServletResponse resp, String url) throws IOException {
         logger.info("go to page start");
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher(url);
+        var requestDispatcher = req.getRequestDispatcher(url);
 
         logger.info(url);
         try {
@@ -36,7 +35,7 @@ public abstract class CommandUtil {
     }
 
     public static String getUserPageByRole(int accessLevel) {
-        String page = "";
+        var page = "";
         logger.info("user by role");
         switch (accessLevel) {
             case 0:
@@ -53,36 +52,54 @@ public abstract class CommandUtil {
 
 
     public static Date getDate() {
-        Calendar cal = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        var cal = Calendar.getInstance();
+        var sdf = new SimpleDateFormat("yyyy-MM-dd");
         return Date.valueOf(sdf.format(cal.getTime()));
     }
 
     public static Date getNextBill() {
-        Calendar cal = Calendar.getInstance();
+        var cal = Calendar.getInstance();
         cal.add(Calendar.DATE, 30);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        var sdf = new SimpleDateFormat("yyyy-MM-dd");
         return Date.valueOf(sdf.format(cal.getTime()));
     }
 
-    public static String encrypt(String pass) {
-        try {
-            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
-
-            messageDigest.update(pass.getBytes());
-
-            byte[] digest = messageDigest.digest();
-            StringBuilder stringBuilder = new StringBuilder();
-
-            for (byte theByte : digest) {
-                stringBuilder.append(String.format("%02x", theByte & 0xff));
-            }
-            return stringBuilder.toString();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-            logger.info(e.getMessage());
+    public static Optional<String> encrypt(String pass, boolean isVerify) {
+        var bcryptHashString = BCrypt.withDefaults().hashToString(12, pass.toCharArray());
+        if (isVerify) {
+            BCrypt.Result result = BCrypt.verifyer().verify(pass.toCharArray(), bcryptHashString);
+            return Optional.of(String.valueOf(result.verified));
         }
-        return "";
+        return Optional.of(bcryptHashString);
+    }
+
+    public static boolean verifyPass(String pass, String userPass){
+        BCrypt.Result result = BCrypt.verifyer().verify(pass.toCharArray(), userPass);
+        return result.verified;
+    }
+
+    public static StringBuilder generateDownloadFileBuffer(String serviceName, List<Tariff> tariffs) {
+        var writer = new StringBuilder();
+
+        writer.append(serviceName);
+        writer.append('\n');
+        writer.append("Name");
+        writer.append(",");
+        writer.append("Description");
+        writer.append(",");
+        writer.append("Price");
+        writer.append('\n');
+
+        for (Tariff tariff : tariffs) {
+            writer.append(tariff.getName());
+            writer.append(",");
+            writer.append(tariff.getDescription());
+            writer.append(",");
+            writer.append(tariff.getPrice());
+            writer.append('\n');
+        }
+
+        return writer;
     }
 
 }

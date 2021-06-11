@@ -21,25 +21,26 @@ import java.util.Map;
 import java.util.Objects;
 
 public class ClientMenuCommand implements ICommand {
-    Logger logger = Logger.getLogger(ClientMenuCommand.class);
+
+   private static final Logger logger = Logger.getLogger(ClientMenuCommand.class);
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        ServiceFactory factory = ServiceFactory.getInstance();
+        var factory = ServiceFactory.getInstance();
         try {
             IUserTariffService userTariffService = factory.getUserTariffService();
             IUserService userService = factory.getUserService();
             ITariffService tariffService = factory.getTariffService();
-            User userq = (User) req.getSession().getAttribute("user");
+            var userq = (User) req.getSession().getAttribute("user");
             userTariffService.checkForMonthPayment(userq.getId());
-            User user = userService.getById(userq.getId());
+            var user = userService.getById(userq.getId());
             req.getSession().setAttribute("user", user);
             String command = req.getParameter("command");
             String tariffId = req.getParameter("id");
             String tId = req.getParameter("Tid");
 
             if (Objects.nonNull(tId)){
-                Tariff tariff =  tariffService.getById(Integer.valueOf(tId));
+                var tariff =  tariffService.getById(Integer.valueOf(tId));
                 req.setAttribute("tariff", tariff);
                 req.setAttribute("showTariff", true);
             }
@@ -49,8 +50,11 @@ public class ClientMenuCommand implements ICommand {
             Map<Tariff, UserTariff> userTariffMap = new HashMap<>();
             List<Tariff> lll = userTariffService.getUserTariffList(user.getId());
             for (Tariff tariff : lll) {
-                UserTariff sss = userTariffService.getUserTariffByTariffIdUserId(tariff.getId(), user.getId());
-                userTariffMap.put(tariff, sss);
+                var userTariff = userTariffService.getUserTariffByTariffIdUserId(tariff.getId(), user.getId());
+                userTariffMap.put(tariff, userTariff);
+            }
+            if(userTariffMap.isEmpty()){
+                req.setAttribute("emptyTariffs", true);
             }
             req.setAttribute("userTariffs", userTariffMap);
         } catch (SQLException | NamingException throwables) {
