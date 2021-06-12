@@ -28,6 +28,19 @@
    
 - When configure TomCat in Deployment tab on "Application context" will be "/".
 
+P.S. If you use community Intellij IDEA:
+- Setup tomcat on your computer
+- Run Intellij and navigate to : File -> Settings -> Plugins
+- Search for and install ‘smart tomcat’ from the marketplace (restart Intellij IDEA if prompted)
+- Edit run/debug configurations. Add a new configuration of type ‘smart tomcat’ (by clicking on the ‘+’ button). Name the configuration.
+- To add a tomcat server : Configuration -> ‘+’ -> Select the path to the local tomcat folder -> apply
+- tomcat server -> select from the dropdown
+- deployment -> pathToProject/ISPSystem/src/main/webapp
+- Context path -> /
+- Configure the ports as required
+- Configure the steps to be run before launch. Ex: ‘run maven goal’ -> mvn clean install on C:\ISPSystem
+- Apply and save
+
 4. Restore database from ISPSystem/src/main/resources/DBBackup/ISPManagerBackup file.
 
 - Your database owner will be "postgres" wih password "postgres".
