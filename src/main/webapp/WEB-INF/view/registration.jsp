@@ -35,7 +35,7 @@
                           action="${pageContext.request.contextPath}/view/registration">
                         <p>
                             <label>
-                                <input class="profileEditorFields loginField" type="text" required placeholder="<fmt:message key="name"/>"
+                                <input class="profileEditorFields loginField" type="text" required placeholder="<fmt:message key="placeholderFirstName"/>"
                                        name="firstName">
                             </label>
                         </p>
