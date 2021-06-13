@@ -13,43 +13,34 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 public class ServicesDao implements IServiceDao {
-    /* TODO fix code duplicates */
 
     private static final Logger logger = Logger.getLogger(ServicesDao.class);
 
     @Override
     public Service getById(Integer id) throws SQLException, NamingException {
-        Service service = null;
+        List<Service> services;
         try (var connection = ConnectionFactory.getInstance().getConnection();
-             var statement = connection.createStatement();
-             ResultSet rs = statement.executeQuery(SqlQueries.ALL_SERVICE.getConstant())) {
-            while (rs.next()) {
-                if (rs.getInt(1) == id) {
-                    service = new Service();
-                    service.setId(id);
-                    service.setName(rs.getString(2));
-                    service.setDescription(rs.getString(3));
-                }
-            }
+             var preparedStatement = connection.prepareStatement(SqlQueries.SERVICE_BY_ID.getConstant())) {
+
+            preparedStatement.setInt(1, id);
+
+            var rs = preparedStatement.executeQuery();
+
+            services = initServiceList(rs);
+
         }
-        return service;
+        return services.get(0);
     }
 
     @Override
     public List<Service> getAll() throws SQLException, NamingException {
-        List<Service> images = new ArrayList<>();
+        List<Service> services;
         try (var connection = ConnectionFactory.getInstance().getConnection();
              PreparedStatement ps = connection.prepareStatement(SqlQueries.ALL_SERVICE.getConstant());
              ResultSet rs = ps.executeQuery()) {
-            while (rs.next()) {
-                var service = new Service();
-                service.setId(rs.getInt(1));
-                service.setName(rs.getString(2));
-                service.setDescription(rs.getString(3));
-                images.add(service);
-            }
+            services = initServiceList(rs);
         }
-        return images;
+        return services;
     }
 
     @Override
@@ -105,18 +96,30 @@ public class ServicesDao implements IServiceDao {
 
     @Override
     public Service getByName(String name) throws NamingException, SQLException {
-        Service service = null;
-        try (var connection = ConnectionFactory.getInstance().getConnection(); Statement statement = connection.createStatement();
-             ResultSet rs = statement.executeQuery(SqlQueries.ALL_SERVICE.getConstant())) {
-            while (rs.next()) {
-                if (rs.getString(2).equals(name)) {
-                    service = new Service();
-                    service.setId(rs.getInt(1));
-                    service.setName(rs.getString(2));
-                    service.setDescription(rs.getString(3));
-                }
-            }
+        List<Service> services;
+        try (var connection = ConnectionFactory.getInstance().getConnection();
+             var preparedStatement = connection.prepareStatement(SqlQueries.SERVICE_BY_NAME.getConstant())) {
+
+            preparedStatement.setString(1, name);
+
+            var rs = preparedStatement.executeQuery();
+
+            services = initServiceList(rs);
+
         }
-        return service;
+        return services.get(0);
     }
+
+    private List<Service> initServiceList(ResultSet rs) throws SQLException {
+        List<Service> services = new ArrayList<>();
+        while (rs.next()) {
+            var service = new Service();
+            service.setId(rs.getInt(1));
+            service.setName(rs.getString(2));
+            service.setDescription(rs.getString(3));
+            services.add(service);
+        }
+        return services;
+    }
+
 }

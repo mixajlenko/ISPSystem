@@ -28,8 +28,7 @@ public class DownloadServiceCommand implements ICommand {
     private static final String CONTENT_DISPOSITION = "Content-Disposition";
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) {
-        //tell browser program going to return an application file
-        //instead of html page
+
         var factory = ServiceFactory.getInstance();
 
         Optional<String> optionalFormat = Optional.of(request.getParameter("format"));

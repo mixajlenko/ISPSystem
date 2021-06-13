@@ -44,7 +44,7 @@ P.S. If you use community Intellij IDEA:
 4. Restore database from ISPSystem/src/main/resources/DBBackup/ISPManagerBackup file.
 
 - Your database owner will be "postgres" wih password "postgres".
-- In pgAdmin create database with any name or "ISPManager" name.
+- In pgAdmin create database with "ISPManager" name.
 - Right click on database and choose "Restore".
 - Format => Custom or tar.
 - Filename => choose ISPManagerBackup from explorer.

@@ -1,6 +1,5 @@
 package com.mixajlenko.finaltask.ispsystem.service.impl;
 
-import com.mixajlenko.finaltask.ispsystem.controller.command.utils.CommandUtil;
 import com.mixajlenko.finaltask.ispsystem.dao.IUserDao;
 import com.mixajlenko.finaltask.ispsystem.model.User;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,7 +11,6 @@ import org.mockito.MockitoAnnotations;
 import javax.naming.NamingException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

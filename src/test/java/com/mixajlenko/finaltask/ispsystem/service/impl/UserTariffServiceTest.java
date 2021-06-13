@@ -83,15 +83,8 @@ class UserTariffServiceTest {
     }
 
     @Test
-    void shouldReturnListOfUserTariffsByUserId() throws SQLException, NamingException {
-        Mockito.when(userTariffDaoMock.getAllUserTariffInfoByUserId(1)).thenReturn(new ArrayList<>());
-        List<UserTariff> tariffs = testingInstance.getAllUserTariffByUserId(1);
-        assertTrue(tariffs.isEmpty());
-    }
-
-    @Test
     void shouldReturnListOfTariffsByUserId() throws SQLException, NamingException {
-        Mockito.when(userTariffDaoMock.getAllUserTariffInfoByUserId(1)).thenReturn(getUserTariffs());
+        Mockito.when(userTariffDaoMock.getUserTariffByUserId(1)).thenReturn(getUserTariffs());
         for(UserTariff tariff : getUserTariffs()){
             Mockito.when(tariffDaoMock.getById(tariff.getTariffId())).thenReturn(new Tariff());
         }
@@ -99,12 +92,6 @@ class UserTariffServiceTest {
         assertEquals(1,tariffs.size());
     }
 
-    @Test
-    void shouldReturnSingleUserTariffsById() throws SQLException, NamingException {
-        Mockito.when(userTariffDaoMock.getUserTariffByUserId(1)).thenReturn(new UserTariff());
-        userTariffMock = testingInstance.getUserTariffByUserId(1);
-        assertNotNull(tariffMock);
-    }
 
     @Test
     void shouldReturnSingleUserTariffsByUserIdTariffId() throws SQLException, NamingException {
@@ -122,7 +109,7 @@ class UserTariffServiceTest {
 
     @Test
     void testCheckForMonthPayment() throws SQLException, NamingException {
-        Mockito.when(userTariffDaoMock.getAllUserTariffInfoByUserId(1)).thenReturn(getUserTariffs());
+        Mockito.when(userTariffDaoMock.getUserTariffByUserId(1)).thenReturn(getUserTariffs());
         Mockito.when(userTariffDaoMock.getById(1)).thenReturn(new UserTariff.UserTariffBuilderImpl().setUserId(1).setTariffId(1).setSubDate(Date.valueOf("2021-04-04")).setStatus(1).setNextBill(Date.valueOf("2021-05-05")).build());
         Mockito.when(userTariffDaoMock.update(new UserTariff.UserTariffBuilderImpl().setUserId(1).setTariffId(1).setSubDate(Date.valueOf("2021-04-04")).setStatus(0).setNextBill(Date.valueOf("2021-05-05")).build())).thenReturn(true);
         Mockito.when(userDaoMock.getById(1)).thenReturn(new User.UserBuilderImpl()

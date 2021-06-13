@@ -14,47 +14,28 @@ import java.util.Collections;
 import java.util.List;
 
 public class UserTariffDao implements IUserTariffDao {
-    /* TODO fix code duplicates */
 
     private static final Logger logger = Logger.getLogger(UserTariffDao.class);
 
     @Override
     public UserTariff getById(Integer id) throws SQLException, NamingException {
-        UserTariff userTariff = null;
+        List<UserTariff> userTariffs;
         try (var connection = ConnectionFactory.getInstance().getConnection();
-             PreparedStatement statement = connection.prepareStatement(SqlQueries.ALL_USER_TARIFF_BY_ID.getConstant())) {
+             var statement = connection.prepareStatement(SqlQueries.ALL_USER_TARIFF_BY_ID.getConstant())) {
             statement.setInt(1, id);
-            try (var resultSet = statement.executeQuery()) {
-                while (resultSet.next()) {
-                    userTariff = new UserTariff();
-                    userTariff.setId(id);
-                    userTariff.setUserId(resultSet.getInt(2));
-                    userTariff.setTariffId(resultSet.getInt(3));
-                    userTariff.setSubDate(resultSet.getDate(4));
-                    userTariff.setStatus(resultSet.getInt(5));
-                    userTariff.setNextBill(resultSet.getDate(6));
-                }
-            }
+            var resultSet = statement.executeQuery();
+            userTariffs = initUserTariffList(resultSet);
         }
-        return userTariff;
+        return userTariffs.get(0);
     }
 
     @Override
     public List<UserTariff> getAll() throws SQLException, NamingException {
-        List<UserTariff> userTariffs = new ArrayList<>();
+        List<UserTariff> userTariffs;
         try (var connection = ConnectionFactory.getInstance().getConnection();
-             PreparedStatement statement = connection.prepareStatement(SqlQueries.ALL_USER_TARIFF.getConstant());
+             var statement = connection.prepareStatement(SqlQueries.ALL_USER_TARIFF.getConstant());
              var resultSet = statement.executeQuery()) {
-            while (resultSet.next()) {
-                var userTariff = new UserTariff();
-                userTariff.setId(resultSet.getInt(1));
-                userTariff.setUserId(resultSet.getInt(2));
-                userTariff.setTariffId(resultSet.getInt(3));
-                userTariff.setStatus(resultSet.getInt(4));
-                userTariff.setNextBill(resultSet.getDate(5));
-                userTariff.setSubDate(resultSet.getDate(6));
-                userTariffs.add(userTariff);
-            }
+            userTariffs = initUserTariffList(resultSet);
         } catch (SQLException e) {
             return Collections.emptyList();
         }
@@ -64,7 +45,7 @@ public class UserTariffDao implements IUserTariffDao {
     @Override
     public boolean update(UserTariff entity) throws SQLException, NamingException {
         var connection = ConnectionFactory.getInstance().getConnection();
-        try (PreparedStatement statement = connection.prepareStatement(SqlQueries.UPDATE_USER_TARIFF.getConstant())) {
+        try (var statement = connection.prepareStatement(SqlQueries.UPDATE_USER_TARIFF.getConstant())) {
             statement.setInt(1, entity.getUserId());
             statement.setInt(2, entity.getTariffId());
             statement.setDate(3, entity.getSubDate());
@@ -85,7 +66,7 @@ public class UserTariffDao implements IUserTariffDao {
     @Override
     public boolean delete(Integer id) throws SQLException, NamingException {
         var connection = ConnectionFactory.getInstance().getConnection();
-        try (PreparedStatement statement = connection.prepareStatement(SqlQueries.DELETE_FROM_USER_PLAN.getConstant())) {
+        try (var statement = connection.prepareStatement(SqlQueries.DELETE_FROM_USER_PLAN.getConstant())) {
             statement.setInt(1, id);
             statement.executeUpdate();
             connection.commit();
@@ -101,7 +82,7 @@ public class UserTariffDao implements IUserTariffDao {
     @Override
     public boolean add(UserTariff entity) throws SQLException, NamingException {
         try (var connection = ConnectionFactory.getInstance().getConnection();
-             PreparedStatement statement = connection.prepareStatement(SqlQueries.INSERT_USERS_PLAN.getConstant())) {
+             var statement = connection.prepareStatement(SqlQueries.INSERT_USERS_PLAN.getConstant())) {
             statement.setInt(1, entity.getUserId());
             statement.setInt(2, entity.getTariffId());
             statement.setInt(3, 0);
@@ -114,70 +95,26 @@ public class UserTariffDao implements IUserTariffDao {
     }
 
     @Override
-    public List<UserTariff> getAllUserTariffInfoByUserId(int userId) throws NamingException, SQLException {
-        var connection = ConnectionFactory.getInstance().getConnection();
-        List<UserTariff> userTariffs = new ArrayList<>();
-        try (PreparedStatement statement = connection.prepareStatement(SqlQueries.ALL_USER_TARIFF.getConstant());
-             var resultSet = statement.executeQuery()) {
-                while (resultSet.next()) {
-                    if (resultSet.getInt(2) == userId) {
-                        var userTariff = new UserTariff();
-                        userTariff.setId(resultSet.getInt(1));
-                        userTariff.setUserId(resultSet.getInt(2));
-                        userTariff.setTariffId(resultSet.getInt(3));
-                        userTariff.setStatus(resultSet.getInt(4));
-                        userTariff.setNextBill(resultSet.getDate(5));
-                        userTariff.setSubDate(resultSet.getDate(6));
-                        userTariffs.add(userTariff);
-                    }
-                }
-        } catch (SQLException e) {
-            return Collections.emptyList();
-        } finally {
-            connection.close();
+    public List<UserTariff> getUserTariffByUserId(int userId) throws NamingException, SQLException {
+        List<UserTariff> userTariffs;
+        try (var connection = ConnectionFactory.getInstance().getConnection();
+             var statement = connection.prepareStatement(SqlQueries.USER_TARIFF_BY_USER_ID.getConstant())) {
+            statement.setInt(1, userId);
+            ResultSet rs = statement.executeQuery();
+            userTariffs = initUserTariffList(rs);
         }
         return userTariffs;
-    }
-
-    @Override
-    public UserTariff getUserTariffByUserId(int userId) throws NamingException, SQLException {
-        UserTariff userTariff = null;
-        try (var connection = ConnectionFactory.getInstance().getConnection();
-             var statement = connection.createStatement();
-             ResultSet rs = statement.executeQuery(SqlQueries.ALL_USER_TARIFF_BY_USER_ID.getConstant())) {
-            while (rs.next()) {
-                if (rs.getInt(1) == userId) {
-                    userTariff = new UserTariff();
-                    userTariff.setId(rs.getInt(1));
-                    userTariff.setUserId(rs.getInt(2));
-                    userTariff.setTariffId(rs.getInt(3));
-                    userTariff.setStatus(rs.getInt(4));
-                    userTariff.setNextBill(rs.getDate(5));
-                    userTariff.setSubDate(rs.getDate(6));
-                }
-            }
-        }
-        return userTariff;
     }
 
     @Override
     public UserTariff getUserTariffByTariffIdUserId(int tariffId, int userId) throws NamingException, SQLException {
         UserTariff userTariff = null;
         var connection = ConnectionFactory.getInstance().getConnection();
-        try (PreparedStatement statement = connection.prepareStatement(SqlQueries.ALL_USER_TARIFF_BY_TARIFF_ID_USER_ID.getConstant())) {
+        try (var statement = connection.prepareStatement(SqlQueries.ALL_USER_TARIFF_BY_TARIFF_ID_USER_ID.getConstant())) {
             statement.setInt(1, tariffId);
             statement.setInt(2, userId);
-            try (var resultSet = statement.executeQuery()) {
-                while (resultSet.next()) {
-                    userTariff = new UserTariff();
-                    userTariff.setId(resultSet.getInt(1));
-                    userTariff.setUserId(resultSet.getInt(2));
-                    userTariff.setTariffId(resultSet.getInt(3));
-                    userTariff.setStatus(resultSet.getInt(4));
-                    userTariff.setNextBill(resultSet.getDate(5));
-                    userTariff.setSubDate(resultSet.getDate(6));
-                }
-            }
+            var resultSet = statement.executeQuery();
+            userTariff = initUserTariffList(resultSet).get(0);
         } catch (SQLException e) {
             connection.rollback();
         } finally {
@@ -189,7 +126,7 @@ public class UserTariffDao implements IUserTariffDao {
     @Override
     public boolean deleteByUseIdTariffId(int userId, int tariffId) throws NamingException, SQLException {
         var connection = ConnectionFactory.getInstance().getConnection();
-        try (PreparedStatement statement = connection.prepareStatement(SqlQueries.DELETE_FROM_USER_PLAN_BY_USER_ID_TARIFF_ID.getConstant())) {
+        try (var statement = connection.prepareStatement(SqlQueries.DELETE_FROM_USER_PLAN_BY_USER_ID_TARIFF_ID.getConstant())) {
             statement.setInt(1, userId);
             statement.setInt(2, tariffId);
             statement.executeUpdate();
@@ -201,5 +138,20 @@ public class UserTariffDao implements IUserTariffDao {
             connection.close();
         }
         return true;
+    }
+
+    private List<UserTariff> initUserTariffList(ResultSet resultSet) throws SQLException {
+        List<UserTariff> userTariffs = new ArrayList<>();
+        while (resultSet.next()) {
+            var userTariff = new UserTariff();
+            userTariff.setId(resultSet.getInt(1));
+            userTariff.setUserId(resultSet.getInt(2));
+            userTariff.setTariffId(resultSet.getInt(3));
+            userTariff.setStatus(resultSet.getInt(4));
+            userTariff.setNextBill(resultSet.getDate(5));
+            userTariff.setSubDate(resultSet.getDate(6));
+            userTariffs.add(userTariff);
+        }
+        return userTariffs;
     }
 }

@@ -8,7 +8,6 @@ import com.mixajlenko.finaltask.ispsystem.dao.factory.DaoFactory;
 import com.mixajlenko.finaltask.ispsystem.exception.DataBaseException;
 import com.mixajlenko.finaltask.ispsystem.exception.ServiceException;
 import com.mixajlenko.finaltask.ispsystem.model.Tariff;
-import com.mixajlenko.finaltask.ispsystem.model.User;
 import com.mixajlenko.finaltask.ispsystem.model.UserTariff;
 import com.mixajlenko.finaltask.ispsystem.service.IUserTariffService;
 import org.apache.log4j.Logger;
@@ -74,19 +73,10 @@ public class UserTariffService implements IUserTariffService {
     }
 
     @Override
-    public List<UserTariff> getAllUserTariffByUserId(int userId) throws NamingException, SQLException {
-        try {
-            return userTariffDao.getAllUserTariffInfoByUserId(userId);
-        } catch (DataBaseException e) {
-            throw new ServiceException(e);
-        }
-    }
-
-    @Override
     public List<Tariff> getUserTariffList(int userId) throws NamingException, SQLException {
         try {
             List<Tariff> tariffs = new ArrayList<>();
-            for (UserTariff userTariff : userTariffDao.getAllUserTariffInfoByUserId(userId)) {
+            for (UserTariff userTariff : userTariffDao.getUserTariffByUserId(userId)) {
                 tariffs.add(tariffDao.getById(userTariff.getTariffId()));
             }
             return tariffs;
@@ -96,7 +86,7 @@ public class UserTariffService implements IUserTariffService {
     }
 
     @Override
-    public UserTariff getUserTariffByUserId(int userId) throws NamingException, SQLException {
+    public List<UserTariff> getUserTariffByUserId(int userId) throws NamingException, SQLException {
         try {
             return userTariffDao.getUserTariffByUserId(userId);
         } catch (DataBaseException e) {
@@ -124,14 +114,14 @@ public class UserTariffService implements IUserTariffService {
 
     @Override
     public boolean checkForMonthPayment(int userId) throws SQLException, NamingException {
-        List<UserTariff> list = userTariffDao.getAllUserTariffInfoByUserId(userId);
+        List<UserTariff> list = userTariffDao.getUserTariffByUserId(userId);
         list.stream().filter(o -> Objects.nonNull(o.getNextBill()))
                 .filter(o -> CommandUtil.getDate().after(o.getNextBill()))
                 .forEach(o -> {
                     try {
                         o.setStatus(0);
                         userTariffDao.update(o);
-                        User user = userDao.getById(o.getUserId());
+                        var user = userDao.getById(o.getUserId());
                         user.setStatus(0);
                         userDao.update(user);
                     } catch (SQLException | NamingException throwables) {

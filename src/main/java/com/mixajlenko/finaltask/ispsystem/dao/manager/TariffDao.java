@@ -13,38 +13,32 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 public class TariffDao implements ITariffDao {
-    /* TODO fix code duplicates */
 
     private static final Logger logger = Logger.getLogger(TariffDao.class);
 
     @Override
     public Tariff getById(Integer id) throws SQLException, NamingException {
-        Tariff tariff = null;
+        List<Tariff> tariffs;
         try (var connection = ConnectionFactory.getInstance().getConnection();
-             var statement = connection.createStatement();
-             ResultSet rs = statement.executeQuery(SqlQueries.ALL_TARIFFS.getConstant())) {
-            while (rs.next()) {
-                if (rs.getInt(1) == id) {
-                    tariff = new Tariff();
-                    tariff.setId(id);
-                    tariff.setName(rs.getString(2));
-                    tariff.setDescription(rs.getString(3));
-                    tariff.setPrice(rs.getInt(4));
-                }
-            }
+             var preparedStatement = connection.prepareStatement(SqlQueries.TARIFFS_BY_ID.getConstant())) {
+
+            preparedStatement.setInt(1, id);
+
+            var rs = preparedStatement.executeQuery();
+
+            tariffs = initTariffList(rs);
+
         }
-        return tariff;
+        return tariffs.get(0);
     }
 
     @Override
     public List<Tariff> getAll() throws SQLException, NamingException {
-        List<Tariff> tariffs = new ArrayList<>();
+        List<Tariff> tariffs;
         try (var connection = ConnectionFactory.getInstance().getConnection();
-             PreparedStatement ps = connection.prepareStatement(SqlQueries.ALL_TARIFFS.getConstant());
-             ResultSet rs = ps.executeQuery()) {
-            while (rs.next()) {
-                tariffs.add(getById(rs.getInt(1)));
-            }
+             var statement = connection.createStatement();
+             var rs = statement.executeQuery(SqlQueries.ALL_TARIFFS.getConstant())) {
+            tariffs = initTariffList(rs);
         }
         return tariffs;
     }
@@ -52,7 +46,7 @@ public class TariffDao implements ITariffDao {
     @Override
     public boolean update(Tariff entity) throws SQLException, NamingException {
         var connection = ConnectionFactory.getInstance().getConnection();
-        try (PreparedStatement statement = connection.prepareStatement(SqlQueries.UPDATE_TARIFF.getConstant())) {
+        try (var statement = connection.prepareStatement(SqlQueries.UPDATE_TARIFF.getConstant())) {
             statement.setString(1, entity.getName());
             statement.setString(2, entity.getDescription());
             statement.setInt(3, entity.getPrice());
@@ -71,7 +65,7 @@ public class TariffDao implements ITariffDao {
     @Override
     public boolean delete(Integer id) throws SQLException, NamingException {
         var connection = ConnectionFactory.getInstance().getConnection();
-        try (PreparedStatement statement = connection.prepareStatement(SqlQueries.DELETE_FROM_TARIFF.getConstant())) {
+        try (var statement = connection.prepareStatement(SqlQueries.DELETE_FROM_TARIFF.getConstant())) {
             statement.setInt(1, id);
             statement.executeUpdate();
             connection.commit();
@@ -87,7 +81,7 @@ public class TariffDao implements ITariffDao {
     @Override
     public boolean add(Tariff entity) throws SQLException, NamingException {
         var connection = ConnectionFactory.getInstance().getConnection();
-        try (PreparedStatement statement = connection.prepareStatement(SqlQueries.INSERT_TARIFF.getConstant())) {
+        try (var statement = connection.prepareStatement(SqlQueries.INSERT_TARIFF.getConstant())) {
             statement.setString(1, entity.getName());
             statement.setString(2, entity.getDescription());
             statement.setDouble(3, entity.getPrice());
@@ -105,7 +99,7 @@ public class TariffDao implements ITariffDao {
     @Override
     public boolean setServiceTariff(int serviceId, int tariffId) throws SQLException, NamingException {
         var connection = ConnectionFactory.getInstance().getConnection();
-        try (PreparedStatement statement = connection.prepareStatement(SqlQueries.INSERT_SERVICE_TARIFF.getConstant())) {
+        try (var statement = connection.prepareStatement(SqlQueries.INSERT_SERVICE_TARIFF.getConstant())) {
             statement.setInt(1, serviceId);
             statement.setInt(2, getById(tariffId).getId());
             statement.executeUpdate();
@@ -123,7 +117,7 @@ public class TariffDao implements ITariffDao {
     public List<Tariff> getServiceTariff(int serviceId) throws SQLException, NamingException {
         List<Tariff> tariffs = new ArrayList<>();
         try (var connection = ConnectionFactory.getInstance().getConnection();
-             PreparedStatement statement = connection.prepareStatement(SqlQueries.ALL_SERVICE_TARIFF.getConstant());
+             var statement = connection.prepareStatement(SqlQueries.ALL_SERVICE_TARIFF.getConstant());
              var resultSet = statement.executeQuery()) {
             while (resultSet.next()) {
                 if (resultSet.getInt(2) == serviceId) {
@@ -136,22 +130,27 @@ public class TariffDao implements ITariffDao {
 
     @Override
     public Tariff getByName(String name) throws NamingException, SQLException {
-        Tariff tariff = null;
+        List<Tariff> tariffs;
         try (var connection = ConnectionFactory.getInstance().getConnection();
-             var statement = connection.createStatement();
-             ResultSet rs = statement.executeQuery(SqlQueries.ALL_TARIFFS.getConstant())) {
-            while (rs.next()) {
-                if (rs.getString(2).equals(name)) {
-                    tariff = new Tariff();
-                    tariff.setId(rs.getInt(1));
-                    tariff.setName(rs.getString(2));
-                    tariff.setDescription(rs.getString(3));
-                    tariff.setPrice(rs.getInt(4));
-                }
-            }
+             var preparedStatement = connection.prepareStatement(SqlQueries.TARIFFS_BY_NAME.getConstant())) {
+            preparedStatement.setString(1, name);
+            var rs = preparedStatement.executeQuery();
+            tariffs = initTariffList(rs);
         }
-        return tariff;
+        return tariffs.get(0);
     }
 
+    private List<Tariff> initTariffList(ResultSet rs) throws SQLException {
+        List<Tariff> tariffs = new ArrayList<>();
+        while (rs.next()) {
+            var tariff = new Tariff();
+            tariff.setId(rs.getInt(1));
+            tariff.setName(rs.getString(2));
+            tariff.setDescription(rs.getString(3));
+            tariff.setPrice(rs.getInt(4));
+            tariffs.add(tariff);
+        }
+        return tariffs;
+    }
 
 }

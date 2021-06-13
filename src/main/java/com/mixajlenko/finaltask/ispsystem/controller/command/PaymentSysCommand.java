@@ -82,7 +82,7 @@ public class PaymentSysCommand implements ICommand {
                 return;
             }
             if (Objects.nonNull(payCommand) && Objects.nonNull(amount)) {
-                if (userTariffService.getAllUserTariffByUserId(user.getId()).isEmpty()) {
+                if (userTariffService.getUserTariffByUserId(user.getId()).isEmpty()) {
                     user.setStatus(1);
                     userService.update(user);
                 }
