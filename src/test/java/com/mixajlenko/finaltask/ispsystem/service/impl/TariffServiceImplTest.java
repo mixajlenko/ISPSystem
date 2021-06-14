@@ -1,6 +1,8 @@
 package com.mixajlenko.finaltask.ispsystem.service.impl;
 
 import com.mixajlenko.finaltask.ispsystem.dao.ITariffDao;
+import com.mixajlenko.finaltask.ispsystem.exception.NotFoundServiceIdException;
+import com.mixajlenko.finaltask.ispsystem.exception.NotFoundServiceNameException;
 import com.mixajlenko.finaltask.ispsystem.model.Tariff;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -37,7 +39,7 @@ class TariffServiceImplTest {
     }
 
     @Test
-    void testGetById() throws SQLException, NamingException {
+    void testGetById() throws SQLException, NamingException, NotFoundServiceIdException {
         when(tariffDaoMock.getById(any())).thenReturn(new Tariff());
         Tariff result = testingInstance.getById(0);
         assertEquals(new Tariff.TariffBuilderImpl().setId(0).setName(null).setDescription(null).setPrice(0).build(), result);
@@ -79,7 +81,7 @@ class TariffServiceImplTest {
     }
 
     @Test
-    void testGetByName() throws SQLException, NamingException {
+    void testGetByName() throws SQLException, NamingException, NotFoundServiceNameException {
         when(tariffDaoMock.getByName(anyString())).thenReturn(new Tariff.TariffBuilderImpl().setId(0).setName(null).setDescription(null).setPrice(0).build());
         Tariff result = testingInstance.getByName("name");
         assertEquals(new Tariff.TariffBuilderImpl().setId(0).setName(null).setDescription(null).setPrice(0).build(), result);

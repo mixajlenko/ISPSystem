@@ -260,12 +260,6 @@ header#header.sticky-header {
     border-radius: 10px;
 }
 
-.shape-1 {
-    position: absolute;
-    left: 8%;
-    top: 38%;
-}
-
 .slidertext h1 {
     text-transform: capitalize;
 }
@@ -276,13 +270,6 @@ header#header.sticky-header {
 }
 
 
-.shape-2 {
-    position: absolute;
-    top: 35%;
-    left: 14%;
-    -webkit-animation: rotate3d 5s linear infinite;
-    animation: rotate3d 5s linear infinite;
-}
 
 .slider-info img {
     max-width: 30px;
@@ -300,27 +287,6 @@ header#header.sticky-header {
     font-size: 16px;
 }
 
-.shape-3 {
-    position: absolute;
-    left: 30%;
-    top: 39%;
-}
-
-.shape-4 {
-    position: absolute;
-    top: 44%;
-    left: 42%;
-    -webkit-animation: movebounce 3s linear infinite;
-    animation: movebounce 3s linear infinite;
-}
-
-.shape-5 {
-    position: absolute;
-    top: 54%;
-    left: 47.5%;
-    -webkit-animation: animationOne 16s infinite linear;
-    animation: animationOne 16s infinite linear;
-}
 
 input.tariff1 {
     border: 1px solid #000000;
@@ -372,111 +338,35 @@ input.tariff1 {
     height: 150px;
     text-align: center;
     margin: 30px 30px 30px 30px;
-    transition-duration: 0.5s;
+    transition-duration: 0.6s;
 }
 
 .planText {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 200px;
 }
 
 .plan:hover {
-    width: 160px;
+    width: 500px;
     height: 160px;
 }
 
-
-/*input#tariff3{*/
-/*    border: 1px solid #000000;*/
-/*    color: #727272;*/
-/*    padding: 10px;*/
-/*    width: 50%;*/
-/*    border-radius: 10px;*/
-/*}*/
-
-/*input#tariff2{*/
-/*    border: 1px solid #000000;*/
-/*    color: #727272;*/
-/*    padding: 10px;*/
-/*    width: 50%;*/
-/*    border-radius: 10px;*/
-/*}*/
-
-.shape-6 {
-    position: absolute;
-    top: 57%;
-    right: 41%;
+.planText:hover{
+    opacity: 0;
 }
 
-.shape-7 {
-    position: absolute;
-    top: 56%;
-    right: 36%;
-    -webkit-animation: rotate3d 5s linear infinite;
-    animation: rotate3d 5s linear infinite;
+.planInfo{
+    display: flex;
+    opacity: 0;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 0 60px 0;
+    transition: all 1.5s ease-in-out;
 }
 
-.shape-7 {
-    position: absolute;
-    right: 24%;
-    top: 38%;
-}
-
-.shape-8 {
-    position: absolute;
-    right: 38%;
-    top: 44%;
-}
-
-@-webkit-keyframes rotate3d {
-    0% {
-        -webkit-transform: rotateY(0deg);
-        transform: rotateY(0deg);
-    }
-    100% {
-        -webkit-transform: rotateY(360deg);
-        transform: rotateY(360deg);
-    }
-}
-
-@keyframes rotate3d {
-    0% {
-        -webkit-transform: rotateY(0deg);
-        transform: rotateY(0deg);
-    }
-    100% {
-        -webkit-transform: rotateY(360deg);
-        transform: rotateY(360deg);
-    }
-}
-
-@keyframes animationOne {
-    0% {
-        -webkit-transform: translate(0px, 0px) rotate(0deg);
-        transform: translate(0px, 0px) rotate(0deg);
-    }
-    20% {
-        -webkit-transform: translate(73px, -1px) rotate(36deg);
-        transform: translate(73px, -1px) rotate(36deg);
-    }
-    40% {
-        -webkit-transform: translate(141px, 72px) rotate(72deg);
-        transform: translate(141px, 72px) rotate(72deg);
-    }
-    60% {
-        -webkit-transform: translate(83px, 122px) rotate(108deg);
-        transform: translate(83px, 122px) rotate(108deg);
-    }
-    80% {
-        -webkit-transform: translate(-40px, 72px) rotate(100deg);
-        transform: translate(-40px, 72px) rotate(100deg);
-    }
-    100% {
-        -webkit-transform: translate(0px, 0px) rotate(0deg);
-        transform: translate(0px, 0px) rotate(0deg);
-    }
+.planInfo:hover{
+    opacity: 100%;
 }
 
 /*Mainmenu Styls*/
@@ -1207,3 +1097,5 @@ input.tariff1 {
     box-shadow: 2px 2px 8px 0 rgb(128 128 128);
 
 }
+
+

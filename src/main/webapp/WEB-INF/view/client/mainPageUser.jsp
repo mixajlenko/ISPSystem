@@ -189,6 +189,9 @@
                                 </tbody>
                             </table>
                             </c:if>
+                            <c:if test="${failPay}">
+                                <h4 style="margin: 50px 0 0 0">Pay for tariff is failed. Maybe you blocked or insufficient funds on balance</h4>
+                            </c:if>
                             <c:if test="${emptyTariffs}">
                                 <h4 style="margin: 50px 0 0 0"><fmt:message key="emptyTariffListMessage"/></h4>
                             </c:if>

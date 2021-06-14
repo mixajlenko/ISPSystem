@@ -27,6 +27,7 @@ public class PaymentSysCommand implements ICommand {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        logger.info("Start execution PaymentSysCommand");
 
         var serviceFactory = ServiceFactory.getInstance();
 
@@ -67,6 +68,7 @@ public class PaymentSysCommand implements ICommand {
                             .setType("Pay for service")
                             .build();
                     paymentService.add(payment);
+                    request.getSession().setAttribute("failPay", false);
                 } else {
                     var payment = new Payment.PaymentsBuilderImpl()
                             .setUserId(user.getId())
@@ -77,7 +79,9 @@ public class PaymentSysCommand implements ICommand {
                             .setType("Pay for service")
                             .build();
                     paymentService.add(payment);
+                    request.getSession().setAttribute("failPay", true);
                 }
+                logger.info("Redirect to mainPageUser");
                 response.sendRedirect("/view/client/mainPageUser");
                 return;
             }
@@ -103,8 +107,10 @@ public class PaymentSysCommand implements ICommand {
             request.setAttribute("fund", user.getWallet());
 
             if (!"true".equals(redirect)) {
+                logger.info("Go to " + DEFAULT_PAGE);
                 CommandUtil.goToPage(request, response, DEFAULT_PAGE);
             } else {
+                logger.info("Redirect to paymentSystemPage");
                 response.sendRedirect("/view/client/paymentSystemPage");
             }
         } catch (NotFoundUserException e) {

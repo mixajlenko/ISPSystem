@@ -31,6 +31,7 @@ public class ConnectionFactory {
     }
 
     public Connection getConnection() throws SQLException {
+        logger.info("Create connection");
         return dataSource.getConnection();
     }
 }

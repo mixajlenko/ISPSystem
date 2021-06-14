@@ -1,6 +1,7 @@
 package com.mixajlenko.finaltask.ispsystem.service.impl;
 
 import com.mixajlenko.finaltask.ispsystem.dao.IPaymentsDao;
+import com.mixajlenko.finaltask.ispsystem.exception.NotFoundServiceIdException;
 import com.mixajlenko.finaltask.ispsystem.exception.ServiceException;
 import com.mixajlenko.finaltask.ispsystem.model.Payment;
 import org.junit.jupiter.api.BeforeEach;
@@ -38,7 +39,7 @@ class PaymentServiceImplTest {
     }
 
     @Test
-    void testGetById() throws SQLException, NamingException {
+    void testGetById() throws SQLException, NamingException, NotFoundServiceIdException {
         when(paymentsDaoMock.getById(any())).thenReturn(new Payment());
         Payment result = testingInstance.getById(0);
         assertEquals(new Payment.PaymentsBuilderImpl().setId(0).setBill(0).setStatus(0).setBalance(0).setDate(null).setType(null).build(), result);

@@ -1,6 +1,5 @@
 package com.mixajlenko.finaltask.ispsystem.controller.command;
 
-
 import com.mixajlenko.finaltask.ispsystem.controller.command.utils.CommandUtil;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,9 +13,11 @@ public class LogoutCommand implements ICommand {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        logger.info("logout");
+        logger.info("Start execution logout");
 
         request.getSession().invalidate();
+
+        logger.info("go to page login");
 
         CommandUtil.goToPage(request, response, "/login.jsp");
     }

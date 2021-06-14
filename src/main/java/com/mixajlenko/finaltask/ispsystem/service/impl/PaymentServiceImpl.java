@@ -3,6 +3,7 @@ package com.mixajlenko.finaltask.ispsystem.service.impl;
 import com.mixajlenko.finaltask.ispsystem.dao.IPaymentsDao;
 import com.mixajlenko.finaltask.ispsystem.dao.factory.DaoFactory;
 import com.mixajlenko.finaltask.ispsystem.exception.DataBaseException;
+import com.mixajlenko.finaltask.ispsystem.exception.NotFoundServiceIdException;
 import com.mixajlenko.finaltask.ispsystem.exception.ServiceException;
 import com.mixajlenko.finaltask.ispsystem.model.Payment;
 import com.mixajlenko.finaltask.ispsystem.service.IPaymentService;
@@ -13,8 +14,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class PaymentServiceImpl implements IPaymentService {
-
-    private static final Logger logger = Logger.getLogger(PaymentServiceImpl.class);
 
     private final DaoFactory daoFactory = DaoFactory.getInstance();
     private  IPaymentsDao paymentsDao = daoFactory.getPaymentDao();
@@ -32,7 +31,7 @@ public class PaymentServiceImpl implements IPaymentService {
     public Payment getById(Integer id) throws SQLException, NamingException {
         try {
             return paymentsDao.getById(id);
-        } catch (DataBaseException e) {
+        } catch (DataBaseException | NotFoundServiceIdException e) {
             throw new ServiceException(e);
         }
     }

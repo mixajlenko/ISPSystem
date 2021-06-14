@@ -1,6 +1,8 @@
 package com.mixajlenko.finaltask.ispsystem.controller.filter;
 
 import javax.servlet.*;
+
+import com.mixajlenko.finaltask.ispsystem.controller.command.utils.CommandUtil;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +21,7 @@ public class LanguageFilter implements Filter {
     public void doFilter(ServletRequest servletRequest,
                          ServletResponse servletResponse,
                          FilterChain filterChain) throws IOException, ServletException {
-        logger.info("TEST");
+        logger.info("Start execution LanguageFilter");
         final HttpServletRequest req = (HttpServletRequest) servletRequest;
         final HttpServletResponse resp = (HttpServletResponse) servletResponse;
 
@@ -41,8 +43,9 @@ public class LanguageFilter implements Filter {
         } else if (isRussian) {
             req.getSession().setAttribute(LANGUAGE, "ru-RU");
         }
-
-        req.getRequestDispatcher(path).forward(req, resp);
+        logger.info("Go to "+ path +" page");
+        CommandUtil.goToPage(req, resp, path);
+       // req.getRequestDispatcher(path).forward(req, resp);
     }
 
 }

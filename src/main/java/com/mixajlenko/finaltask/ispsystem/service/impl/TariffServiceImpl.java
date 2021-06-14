@@ -3,6 +3,8 @@ package com.mixajlenko.finaltask.ispsystem.service.impl;
 import com.mixajlenko.finaltask.ispsystem.dao.ITariffDao;
 import com.mixajlenko.finaltask.ispsystem.dao.factory.DaoFactory;
 import com.mixajlenko.finaltask.ispsystem.exception.DataBaseException;
+import com.mixajlenko.finaltask.ispsystem.exception.NotFoundServiceIdException;
+import com.mixajlenko.finaltask.ispsystem.exception.NotFoundServiceNameException;
 import com.mixajlenko.finaltask.ispsystem.exception.ServiceException;
 import com.mixajlenko.finaltask.ispsystem.model.Tariff;
 import com.mixajlenko.finaltask.ispsystem.service.ITariffService;
@@ -13,8 +15,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class TariffServiceImpl implements ITariffService {
-
-    private static final Logger logger = Logger.getLogger(TariffServiceImpl.class);
 
     private final DaoFactory daoFactory = DaoFactory.getInstance();
     private ITariffDao tariffDao = daoFactory.getTariffDao();
@@ -32,7 +32,7 @@ public class TariffServiceImpl implements ITariffService {
     public Tariff getById(Integer id) throws SQLException, NamingException {
         try {
             return tariffDao.getById(id);
-        } catch (DataBaseException e) {
+        } catch (DataBaseException | NotFoundServiceIdException e) {
             throw new ServiceException(e);
         }
     }
@@ -88,7 +88,7 @@ public class TariffServiceImpl implements ITariffService {
     public Tariff getByName(String name) throws SQLException, NamingException {
         try {
             return tariffDao.getByName(name);
-        } catch (DataBaseException e) {
+        } catch (DataBaseException | NotFoundServiceNameException e) {
             throw new ServiceException(e);
         }
     }

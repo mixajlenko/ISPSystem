@@ -105,21 +105,11 @@
                         <div class="plansList singePlan">
                             <h4><fmt:message key="complex"/></h4>
                             <c:forEach var="complexTariff" items="${complex}" varStatus="status">
-                                <c:if test="${complexTariff.id == 1}">
-                                    <a class="plan" href="${pageContext.request.contextPath}/view/client/servicePage"
-                                       onclick="return confirm('TEST1')"><p class="planText">${complexTariff.name}</p>
+                                    <a class="plan" href="${pageContext.request.contextPath}/view/client/servicePage?tariffId=${complexTariff.id}"
+                                       onclick="return confirm('<fmt:message key="subscribeSubmit1"/> ${complexTariff.name} <fmt:message key="subscribeSubmit2"/>')">
+                                        <p class="planText">${complexTariff.name}</p>
+                                        <p class="planInfo">${complexTariff.description}, ${complexTariff.price} USD/mo</p>
                                     </a>
-                                </c:if>
-                                <c:if test="${complexTariff.id == 2}">
-                                    <a class="plan" href="${pageContext.request.contextPath}/view/client/servicePage"
-                                       onclick="return confirm('TEST2')"><p class="planText">${complexTariff.name}</p>
-                                    </a>
-                                </c:if>
-                                <c:if test="${complexTariff.id == 3}">
-                                    <a class="plan" href="${pageContext.request.contextPath}/view/client/servicePage"
-                                       onclick="return confirm('TEST3')"><p class="planText">${complexTariff.name}</p>
-                                    </a>
-                                </c:if>
                             </c:forEach>
                         </div>
                         <div class="plansList singePlan">
@@ -136,6 +126,9 @@
                             <a href="${pageContext.request.contextPath}/view/client/downloadServices?format=docx&serviceName=All&serviceId=empty">DOCX</a>
                             <a href="${pageContext.request.contextPath}/view/client/downloadServices?format=csv&serviceName=All&serviceId=empty">CSV</a>
                         </div>
+                        <c:if test="${alreadyExistTariff}">
+                            <h4 style="margin: 50px 0 0 0">You are already subscribed on such plan</h4>
+                        </c:if>
                         <c:if test="${subSuccess}">
                             <h4 style="margin: 50px 0 0 0"><fmt:message key="successfullySub"/></h4>
                         </c:if>
@@ -147,15 +140,14 @@
                         <div class="serviceBlock">
                             <div class="mainmenuSort">
                                 <ul class="topSort">
-                                    <li><a class="btnSort"><fmt:message key="sort"/> ><i
-                                            class="fa fa-angle-down"></i></a>
+                                    <li><a class="btnSort"><fmt:message key="sort"/> ></a>
                                         <ul class="subSort">
                                             <li>
-                                                <a href="${pageContext.request.contextPath}/view/client/servicePage?item=${item}&serviceId=${paramId}&sort=name"><fmt:message
+                                                <a href="${pageContext.request.contextPath}/view/client/servicePage?item=${item}&serviceId=${paramId}&sort=nameR"><fmt:message
                                                         key="az"/></a>
                                             </li>
                                             <li>
-                                                <a href="${pageContext.request.contextPath}/view/client/servicePage?item=${item}&serviceId=${paramId}&sort=nameR"><fmt:message
+                                                <a href="${pageContext.request.contextPath}/view/client/servicePage?item=${item}&serviceId=${paramId}&sort=name"><fmt:message
                                                         key="za"/></a>
                                             </li>
                                             <li>
@@ -184,9 +176,7 @@
                                         <td>${item.price}</td>
                                         <td id="endTd"><a class="updateButton" id="subscribeButton"
                                                           href="${pageContext.request.contextPath}/view/client/servicePage?tariffId=${item.id}"
-                                                          onclick="return confirm('
-                                                              <fmt:message key="subscribeSubmit1"/> ${item.name}
-                                                              <fmt:message key="subscribeSubmit2"/>"><fmt:message
+                                                          onclick="return confirm('<fmt:message key="subscribeSubmit1"/> ${item.name} <fmt:message key="subscribeSubmit2"/>')"><fmt:message
                                                 key="subscribe"/></a>
                                         </td>
                                     </tr>

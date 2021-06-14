@@ -6,8 +6,10 @@ import com.mixajlenko.finaltask.ispsystem.exception.*;
 import com.mixajlenko.finaltask.ispsystem.model.User;
 import com.mixajlenko.finaltask.ispsystem.service.IUserService;
 import com.mixajlenko.finaltask.ispsystem.service.factory.ServiceFactory;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.log4j.Logger;
 
 import javax.naming.NamingException;
@@ -25,7 +27,7 @@ public class RegistrationCommand implements ICommand {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        logger.info("Start execution registration");
+        logger.info("Start execution RegistrationCommand");
 
         var factory = ServiceFactory.getInstance();
 
@@ -35,14 +37,17 @@ public class RegistrationCommand implements ICommand {
 
         try {
             if (Objects.isNull(email) && Objects.isNull(password)) {
+                logger.info("email or password is null");
                 throw new WrongDataException();
             }
             if (!ValidationData.isEmailValid(email)) {
+                logger.info("email is not valid");
                 throw new WrongDataException();
             }
 
             IUserService userService = factory.getUserService();
-            if(Objects.nonNull(userService.getUserByEmail(email))){
+            if (Objects.nonNull(userService.getUserByEmail(email))) {
+                logger.info("email already exist");
                 throw new AlreadyExistUserException();
             }
 
@@ -61,9 +66,11 @@ public class RegistrationCommand implements ICommand {
                     .build();
 
             userService.add(user);
-            if(user.getRole()==0){
+            if (user.getRole() == 0) {
+                logger.info("Go to userPageAdmin");
                 CommandUtil.goToPage(request, response, "/view/admin/userPageAdmin");
             }
+            logger.info("redirect to login page");
             response.sendRedirect("/");
         } catch (ServiceException e) {
             request.setAttribute("notFound", true);

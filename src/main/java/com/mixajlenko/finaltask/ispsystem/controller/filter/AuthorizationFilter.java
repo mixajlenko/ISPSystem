@@ -1,6 +1,8 @@
 package com.mixajlenko.finaltask.ispsystem.controller.filter;
 
 import javax.servlet.*;
+
+import com.mixajlenko.finaltask.ispsystem.controller.command.utils.CommandUtil;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,9 +15,8 @@ public class AuthorizationFilter implements Filter {
     private static final Logger logger = Logger.getLogger(AuthorizationFilter.class);
 
     @Override
-    public void doFilter(ServletRequest servletRequest,
-                         ServletResponse servletResponse,
-                         FilterChain filterChain) throws IOException, ServletException {
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+        logger.info("Start execution AuthorizationFilter");
 
         final HttpServletRequest req = (HttpServletRequest) servletRequest;
         final HttpServletResponse resp = (HttpServletResponse) servletResponse;
@@ -31,9 +32,13 @@ public class AuthorizationFilter implements Filter {
             filterChain.doFilter(req, resp);
 
         } else if (req.getRequestURI().equals("/view/registration")) {
-            req.getRequestDispatcher("/WEB-INF/view/registration.jsp").forward(req, resp);
+            logger.info("Go to registration page");
+            CommandUtil.goToPage(req, resp, "/WEB-INF/view/registration.jsp");
+            //req.getRequestDispatcher("/WEB-INF/view/registration.jsp").forward(req, resp);
         } else {
-            req.getRequestDispatcher("/").forward(req, resp);
+            logger.info("Go to login page");
+            CommandUtil.goToPage(req, resp, "/");
+           // req.getRequestDispatcher("/").forward(req, resp);
         }
 
     }

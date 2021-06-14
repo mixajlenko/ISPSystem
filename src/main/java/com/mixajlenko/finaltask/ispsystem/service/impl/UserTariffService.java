@@ -6,6 +6,7 @@ import com.mixajlenko.finaltask.ispsystem.dao.IUserDao;
 import com.mixajlenko.finaltask.ispsystem.dao.IUserTariffDao;
 import com.mixajlenko.finaltask.ispsystem.dao.factory.DaoFactory;
 import com.mixajlenko.finaltask.ispsystem.exception.DataBaseException;
+import com.mixajlenko.finaltask.ispsystem.exception.NotFoundServiceIdException;
 import com.mixajlenko.finaltask.ispsystem.exception.ServiceException;
 import com.mixajlenko.finaltask.ispsystem.model.Tariff;
 import com.mixajlenko.finaltask.ispsystem.model.UserTariff;
@@ -40,7 +41,7 @@ public class UserTariffService implements IUserTariffService {
     public UserTariff getById(Integer id) throws SQLException, NamingException {
         try {
             return userTariffDao.getById(id);
-        } catch (DataBaseException e) {
+        } catch (DataBaseException | NotFoundServiceIdException e) {
             throw new ServiceException(e);
         }
     }
@@ -80,7 +81,7 @@ public class UserTariffService implements IUserTariffService {
                 tariffs.add(tariffDao.getById(userTariff.getTariffId()));
             }
             return tariffs;
-        } catch (DataBaseException e) {
+        } catch (DataBaseException | NotFoundServiceIdException e) {
             throw new ServiceException(e);
         }
     }
@@ -124,7 +125,7 @@ public class UserTariffService implements IUserTariffService {
                         var user = userDao.getById(o.getUserId());
                         user.setStatus(0);
                         userDao.update(user);
-                    } catch (SQLException | NamingException throwables) {
+                    } catch (SQLException | NamingException | NotFoundServiceIdException throwables) {
                         throwables.printStackTrace();
                     }
                 });

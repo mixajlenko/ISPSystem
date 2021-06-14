@@ -28,7 +28,7 @@ public class DownloadServiceCommand implements ICommand {
     private static final String CONTENT_DISPOSITION = "Content-Disposition";
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) {
-
+        logger.info("Start execution DownloadServiceCommand");
         var factory = ServiceFactory.getInstance();
 
         Optional<String> optionalFormat = Optional.of(request.getParameter("format"));
@@ -44,6 +44,7 @@ public class DownloadServiceCommand implements ICommand {
         switch (format) {
             case "txt":
                 response.setHeader(CONTENT_DISPOSITION, "attachment;filename=Tariffs.txt");
+
                 break;
             case "pdf":
                 response.setHeader(CONTENT_DISPOSITION, "attachment;filename=Tariffs.pdf");
@@ -52,13 +53,10 @@ public class DownloadServiceCommand implements ICommand {
                 response.setContentType("application/msword; charset=UTF-8");
                 response.setHeader(CONTENT_DISPOSITION, "attachment;filename=Tariffs.doc");
                 break;
-            case "csv":
-                response.setHeader(CONTENT_DISPOSITION, "attachment;filename=Tariffs.csv");
-                break;
             default:
                 response.setHeader(CONTENT_DISPOSITION, "attachment;filename=Tariffs.csv");
-
         }
+        logger.info("Download tariffs in " + format + " format");
 
         try {
             ITariffService tariffService = factory.getTariffService();

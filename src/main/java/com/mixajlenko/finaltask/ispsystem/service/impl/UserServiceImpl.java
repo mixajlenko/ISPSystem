@@ -4,6 +4,7 @@ import com.mixajlenko.finaltask.ispsystem.dao.IUserDao;
 import com.mixajlenko.finaltask.ispsystem.dao.factory.DaoFactory;
 
 import com.mixajlenko.finaltask.ispsystem.exception.DataBaseException;
+import com.mixajlenko.finaltask.ispsystem.exception.NotFoundServiceIdException;
 import com.mixajlenko.finaltask.ispsystem.exception.NotFoundUserException;
 import com.mixajlenko.finaltask.ispsystem.exception.ServiceException;
 import com.mixajlenko.finaltask.ispsystem.model.User;
@@ -40,7 +41,7 @@ public class UserServiceImpl implements IUserService {
     public User getById(Integer id) throws SQLException, NamingException {
         try {
             return userDao.getById(id);
-        } catch (DataBaseException e) {
+        } catch (DataBaseException | NotFoundServiceIdException e) {
             throw new ServiceException(e);
         }
     }
@@ -84,7 +85,7 @@ public class UserServiceImpl implements IUserService {
     @Override
     public User getByLoginAndPass(String login, String password) throws SQLException, NamingException {
 
-        User user = userDao.getUserByEmail(login);
+        var user = userDao.getUserByEmail(login);
         if (Objects.isNull(user)) {
             logger.info("LOGIN");
             throw new NotFoundUserException();
@@ -100,7 +101,7 @@ public class UserServiceImpl implements IUserService {
     @Override
     public int blockedAccounts(List<User> users) {
         logger.info("get blockedAccounts");
-        int result = 0;
+        var result = 0;
         for (User user : users) {
             if (user.getStatus() == 0)
                 result++;

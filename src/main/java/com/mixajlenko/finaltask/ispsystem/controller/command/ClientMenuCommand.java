@@ -26,14 +26,15 @@ public class ClientMenuCommand implements ICommand {
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        logger.info("Start execution ClientMenuCommand");
         var factory = ServiceFactory.getInstance();
         try {
             IUserTariffService userTariffService = factory.getUserTariffService();
             IUserService userService = factory.getUserService();
             ITariffService tariffService = factory.getTariffService();
-            var userq = (User) req.getSession().getAttribute("user");
-            userTariffService.checkForMonthPayment(userq.getId());
-            var user = userService.getById(userq.getId());
+            var sessionUser = (User) req.getSession().getAttribute("user");
+            userTariffService.checkForMonthPayment(sessionUser.getId());
+            var user = userService.getById(sessionUser.getId());
             req.getSession().setAttribute("user", user);
             String command = req.getParameter("command");
             String tariffId = req.getParameter("id");
@@ -43,9 +44,11 @@ public class ClientMenuCommand implements ICommand {
                 var tariff =  tariffService.getById(Integer.valueOf(tId));
                 req.setAttribute("tariff", tariff);
                 req.setAttribute("showTariff", true);
+                logger.info("Showed user plans");
             }
             if (Objects.nonNull(command) && command.equals("unsubscribe") && Objects.nonNull(tariffId)) {
                 userTariffService.deleteByUseIdTariffId(user.getId(), Integer.parseInt(tariffId));
+                logger.info("Unsubscribe user from plan");
             }
             Map<Tariff, UserTariff> userTariffMap = new HashMap<>();
             List<Tariff> lll = userTariffService.getUserTariffList(user.getId());
@@ -55,11 +58,13 @@ public class ClientMenuCommand implements ICommand {
             }
             if(userTariffMap.isEmpty()){
                 req.setAttribute("emptyTariffs", true);
+                logger.info("Empty plans list showed");
             }
             req.setAttribute("userTariffs", userTariffMap);
         } catch (SQLException | NamingException throwables) {
             throwables.printStackTrace();
         }
+        logger.info("go to mainPageUser");
         CommandUtil.goToPage(req, resp, "/WEB-INF/view/client/mainPageUser.jsp");
     }
 }

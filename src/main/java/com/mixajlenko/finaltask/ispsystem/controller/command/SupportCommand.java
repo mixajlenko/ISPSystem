@@ -13,6 +13,7 @@ public class SupportCommand implements ICommand {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        logger.info("Start execution RegistrationCommand");
         CommandUtil.goToPage(request, response, "/WEB-INF/view/client/supportPage.jsp");
     }
 }

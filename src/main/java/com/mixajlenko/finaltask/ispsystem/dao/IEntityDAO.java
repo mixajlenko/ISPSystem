@@ -1,5 +1,6 @@
 package com.mixajlenko.finaltask.ispsystem.dao;
 
+import com.mixajlenko.finaltask.ispsystem.exception.NotFoundServiceIdException;
 import com.mixajlenko.finaltask.ispsystem.model.Model;
 
 import javax.naming.NamingException;
@@ -8,7 +9,7 @@ import java.util.List;
 
 public interface IEntityDAO<T, E extends Model> {
 
-    E getById(T id) throws SQLException, NamingException;
+    E getById(T id) throws SQLException, NamingException, NotFoundServiceIdException;
 
     List<E> getAll() throws SQLException, NamingException;
 

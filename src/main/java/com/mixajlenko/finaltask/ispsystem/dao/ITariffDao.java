@@ -1,5 +1,6 @@
 package com.mixajlenko.finaltask.ispsystem.dao;
 
+import com.mixajlenko.finaltask.ispsystem.exception.NotFoundServiceNameException;
 import com.mixajlenko.finaltask.ispsystem.model.Tariff;
 
 import javax.naming.NamingException;
@@ -12,6 +13,6 @@ public interface ITariffDao extends IEntityDAO<Integer, Tariff> {
 
     List<Tariff> getServiceTariff(int serviceId) throws SQLException, NamingException;
 
-    Tariff getByName(String name) throws NamingException, SQLException;
+    Tariff getByName(String name) throws NamingException, SQLException, NotFoundServiceNameException;
 
 }

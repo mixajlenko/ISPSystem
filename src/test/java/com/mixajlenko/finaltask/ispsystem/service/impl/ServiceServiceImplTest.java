@@ -1,6 +1,8 @@
 package com.mixajlenko.finaltask.ispsystem.service.impl;
 
 import com.mixajlenko.finaltask.ispsystem.dao.IServiceDao;
+import com.mixajlenko.finaltask.ispsystem.exception.NotFoundServiceIdException;
+import com.mixajlenko.finaltask.ispsystem.exception.NotFoundServiceNameException;
 import com.mixajlenko.finaltask.ispsystem.model.Service;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -37,7 +39,7 @@ class ServiceServiceImplTest {
     }
 
     @Test
-    void testGetById() throws SQLException, NamingException {
+    void testGetById() throws SQLException, NamingException, NotFoundServiceIdException {
         when(serviceDaoMock.getById(any())).thenReturn(new Service());
         Service result = testingInstance.getById(0);
         assertEquals(new Service.ServiceBuilderImpl().setId(0).setName(null).setDescription(null).build(), result);
@@ -65,7 +67,7 @@ class ServiceServiceImplTest {
     }
 
     @Test
-    void testGetByName() throws SQLException, NamingException {
+    void testGetByName() throws SQLException, NamingException, NotFoundServiceNameException {
         when(serviceDaoMock.getByName(anyString())).thenReturn(new Service.ServiceBuilderImpl().setId(0).setName(null).setDescription(null).build());
         Service result = testingInstance.getByName("name");
         assertEquals(new Service.ServiceBuilderImpl().setId(0).setName(null).setDescription(null).build(), result);

@@ -26,12 +26,13 @@ public class ManagePlanCommand implements ICommand {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        logger.info("manage plan execute");
+        logger.info("Start execution ManagePlanCommand");
 
         String name = request.getParameter("name");
         String description = request.getParameter("description");
         String price = request.getParameter("price");
         String redirect = request.getParameter("redirect");
+
         try {
             var factory = ServiceFactory.getInstance();
             ITariffService tariffService = factory.getTariffService();
@@ -60,12 +61,15 @@ public class ManagePlanCommand implements ICommand {
                         break;
                     default:
                 }
+                logger.info(command + " execute");
             }
             List<Tariff> tariffList = tariffService.getServiceTariff(Integer.parseInt(serviceId));
             request.setAttribute("tariffs", tariffList);
             if (Objects.equals("true", redirect)) {
+                logger.info("Redirection to managePlan");
                 response.sendRedirect("/view/admin/managePlan?param=" + serviceId);
             } else {
+                logger.info("Go to to managePlan");
                 CommandUtil.goToPage(request, response, "/WEB-INF/view/admin/managePlan.jsp");
             }
         } catch (NotFoundUserException e) {

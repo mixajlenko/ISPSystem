@@ -1,6 +1,7 @@
 package com.mixajlenko.finaltask.ispsystem.service.impl;
 
 import com.mixajlenko.finaltask.ispsystem.dao.IUserDao;
+import com.mixajlenko.finaltask.ispsystem.exception.NotFoundServiceIdException;
 import com.mixajlenko.finaltask.ispsystem.model.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -37,7 +38,7 @@ class UserServiceImplTest {
     }
 
     @Test
-    void testGetById() throws SQLException, NamingException {
+    void testGetById() throws SQLException, NamingException, NotFoundServiceIdException {
         when(userDaoMock.getById(any())).thenReturn(new User());
         User result = testingInstance.getById(0);
         assertEquals(new User.UserBuilderImpl()

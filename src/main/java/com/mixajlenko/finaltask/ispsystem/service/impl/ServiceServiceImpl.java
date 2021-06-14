@@ -3,6 +3,8 @@ package com.mixajlenko.finaltask.ispsystem.service.impl;
 import com.mixajlenko.finaltask.ispsystem.dao.IServiceDao;
 import com.mixajlenko.finaltask.ispsystem.dao.factory.DaoFactory;
 import com.mixajlenko.finaltask.ispsystem.exception.DataBaseException;
+import com.mixajlenko.finaltask.ispsystem.exception.NotFoundServiceIdException;
+import com.mixajlenko.finaltask.ispsystem.exception.NotFoundServiceNameException;
 import com.mixajlenko.finaltask.ispsystem.exception.ServiceException;
 import com.mixajlenko.finaltask.ispsystem.model.Service;
 import com.mixajlenko.finaltask.ispsystem.service.IServiceService;
@@ -13,8 +15,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class ServiceServiceImpl implements IServiceService {
-
-    private static final Logger logger = Logger.getLogger(ServiceServiceImpl.class);
 
     private final DaoFactory daoFactory = DaoFactory.getInstance();
     private IServiceDao serviceDao = daoFactory.getServiceDao();
@@ -32,7 +32,7 @@ public class ServiceServiceImpl implements IServiceService {
     public Service getById(Integer id) throws SQLException, NamingException {
         try {
             return serviceDao.getById(id);
-        } catch (DataBaseException e) {
+        } catch (DataBaseException | NotFoundServiceIdException e) {
             throw new ServiceException(e);
         }
     }
@@ -70,7 +70,7 @@ public class ServiceServiceImpl implements IServiceService {
     public Service getByName(String name) throws SQLException, NamingException {
         try {
             return serviceDao.getByName(name);
-        } catch (DataBaseException e) {
+        } catch (DataBaseException | NotFoundServiceNameException e) {
             throw new ServiceException(e);
         }
     }

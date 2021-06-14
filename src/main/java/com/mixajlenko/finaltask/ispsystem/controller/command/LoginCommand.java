@@ -46,8 +46,12 @@ public class LoginCommand implements ICommand {
                 } else {
                     throw new NotFoundUserException();
                 }
-               String page = CommandUtil.getUserPageByRole(user.getRole());
+                String page = CommandUtil.getUserPageByRole(user.getRole());
+
+                logger.info("redirection to " + page);
+
                 resp.sendRedirect(page);
+
             } catch (NotFoundUserException e) {
                 req.setAttribute("notFound", true);
                 CommandUtil.goToPage(req, resp, "/");
