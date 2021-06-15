@@ -30,6 +30,11 @@ figcaption span:before, .sad-mac:before {
     height: 1em;
     transform: translate(-1em,-1em);
 }
+
+.hoverColor:hover{
+    color: red;
+}
+
 figcaption span {
     display: inline-block;
     margin: 0 2em;

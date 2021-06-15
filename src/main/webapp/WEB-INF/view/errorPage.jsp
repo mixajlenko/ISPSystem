@@ -20,22 +20,22 @@
     <div class="sad-mac"></div>
     <figcaption>
         <span class="sr-text">Error 404: Not Found BACK</span>
-        <span class="e"></span>
-        <span class="r"></span>
-        <span class="r"></span>
-        <span class="o"></span>
-        <span class="r"></span>
-        <span class="_4"></span>
-        <span class="_0"></span>
-        <span class="_4"></span>
-        <span class="n"></span>
-        <span class="o"></span>
-        <span class="t"></span>
-        <span class="f"></span>
-        <span class="o"></span>
-        <span class="u"></span>
-        <span class="n"></span>
-        <span class="d"></span>
+        <span class="e hoverColor"></span>
+        <span class="r hoverColor"></span>
+        <span class="r hoverColor"></span>
+        <span class="o hoverColor"></span>
+        <span class="r hoverColor"></span>
+        <span class="_4 hoverColor"></span>
+        <span class="_0 hoverColor"></span>
+        <span class="_4 hoverColor"></span>
+        <span class="n hoverColor"></span>
+        <span class="o hoverColor"></span>
+        <span class="t hoverColor"></span>
+        <span class="f hoverColor"></span>
+        <span class="o hoverColor"></span>
+        <span class="u hoverColor"></span>
+        <span class="n hoverColor"></span>
+        <span class="d hoverColor"></span>
         <div>
             <c:if test="${user.role==0}">
                 <a href="${pageContext.request.contextPath}/view/admin/mainPageAdmin" >
