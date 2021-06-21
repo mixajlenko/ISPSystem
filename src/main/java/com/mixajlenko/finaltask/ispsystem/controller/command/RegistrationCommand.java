@@ -49,6 +49,8 @@ public class RegistrationCommand implements ICommand {
             if (Objects.nonNull(userService.getUserByEmail(email))) {
                 logger.info("email already exist");
                 throw new AlreadyExistUserException();
+            } else {
+
             }
 
             String fName = request.getParameter("firstName");

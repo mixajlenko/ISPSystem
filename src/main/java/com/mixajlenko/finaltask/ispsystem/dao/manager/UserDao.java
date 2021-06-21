@@ -13,13 +13,12 @@ import java.util.Collections;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+
 import static com.mixajlenko.finaltask.ispsystem.dao.manager.crudconstants.Constants.*;
 
 public class UserDao implements IUserDao {
 
     private static final Logger logger = Logger.getLogger(UserDao.class);
-
-
 
 
     @Override
@@ -148,7 +147,7 @@ public class UserDao implements IUserDao {
 
             var resultSet = statement.executeQuery();
 
-            user = initUserList(resultSet).remove(0);
+            user = initUserList(resultSet).get(0);
 
         } catch (SQLException e) {
             logger.info("getByName " + name + " Fail");
@@ -161,16 +160,23 @@ public class UserDao implements IUserDao {
     @Override
     public User getUserByEmail(String email) throws NamingException, SQLException {
         logger.info("getUserByEmail " + email + START);
-        User user;
+        User user = null;
         try (var connection = ConnectionFactory.getInstance().getConnection();
              var statement = connection.prepareStatement(SqlQueries.SELECT_USER_BY_EMAIL.getConstant())) {
-
             statement.setString(1, email);
-
-            var resultSet = statement.executeQuery();
-
-            user = initUserList(resultSet).get(0);
-
+            var rs = statement.executeQuery();
+            while (rs.next()) {
+                user = new User();
+                user.setId(rs.getInt(1));
+                user.setFirstName(rs.getString(2));
+                user.setSecondName(rs.getString(5));
+                user.setPhone(rs.getString(3));
+                user.setEmail(rs.getString(4));
+                user.setRole(rs.getInt(9));
+                user.setWallet(rs.getInt(6));
+                user.setStatus(rs.getInt(7));
+                user.setPassword(rs.getString(8));
+            }
         }
         logger.info("getUserByEmail " + email + SUCCESS);
         return user;
