@@ -143,11 +143,11 @@
                                     <li><a class="btnSort"><fmt:message key="sort"/> ></a>
                                         <ul class="subSort">
                                             <li>
-                                                <a href="${pageContext.request.contextPath}/view/client/servicePage?item=${item}&serviceId=${paramId}&sort=nameR"><fmt:message
+                                                <a href="${pageContext.request.contextPath}/view/client/servicePage?item=${item}&serviceId=${paramId}&sort=name"><fmt:message
                                                         key="az"/></a>
                                             </li>
                                             <li>
-                                                <a href="${pageContext.request.contextPath}/view/client/servicePage?item=${item}&serviceId=${paramId}&sort=name"><fmt:message
+                                                <a href="${pageContext.request.contextPath}/view/client/servicePage?item=${item}&serviceId=${paramId}&sort=nameR"><fmt:message
                                                         key="za"/></a>
                                             </li>
                                             <li>

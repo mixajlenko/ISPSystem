@@ -105,40 +105,6 @@ public class User extends Model {
     }
 
 
-//    public User(String firstName, String secondName, String phone, String email, int status, int wallet, String password, int roleId) {
-//        this.firstName = firstName;
-//        this.secondName = secondName;
-//        this.phone = phone;
-//        this.email = email;
-//        this.status = status;
-//        this.wallet = wallet;
-//        this.password = password;
-//        this.role = roleId;
-//    }
-//
-//    public User(String firstName, String secondName, String phone, String email, int status, int wallet, String password) {
-//        this.firstName = firstName;
-//        this.secondName = secondName;
-//        this.phone = phone;
-//        this.email = email;
-//        this.status = status;
-//        this.wallet = wallet;
-//        this.password = password;
-//    }
-//
-//    public User(int id, String firstName, String secondName, String phone, String email, int status, int wallet, String password, int roleId) {
-//        super(id);
-//        this.firstName = firstName;
-//        this.secondName = secondName;
-//        this.phone = phone;
-//        this.email = email;
-//        this.status = status;
-//        this.wallet = wallet;
-//        this.password = password;
-//        this.role = roleId;
-//    }
-
-
     public String getFirstName() {
         return firstName;
     }
