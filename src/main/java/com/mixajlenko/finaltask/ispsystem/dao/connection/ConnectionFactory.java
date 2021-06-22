@@ -12,7 +12,7 @@ import java.sql.SQLException;
 
 public class ConnectionFactory {
 
-   private static final Logger logger = Logger.getLogger(ConnectionFactory.class);
+    private static final Logger logger = Logger.getLogger(ConnectionFactory.class);
 
     private static ConnectionFactory pool;
     private final DataSource dataSource;

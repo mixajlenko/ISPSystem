@@ -1,6 +1,7 @@
 package com.mixajlenko.finaltask.ispsystem.model;
 
 public enum Role {
+
     ADMIN(0),
     CLIENT(1);
 

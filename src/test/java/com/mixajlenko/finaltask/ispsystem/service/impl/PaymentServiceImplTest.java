@@ -68,8 +68,8 @@ class PaymentServiceImplTest {
 
     @Test
     void testGetAllById() throws SQLException, NamingException {
-        when(paymentsDaoMock.getAllById(anyInt())).thenReturn(Collections.singletonList(new Payment.PaymentsBuilderImpl().setId(0).setBill(0).setStatus(0).setBalance(0).setDate(null).setType(null).build()));
-        List<Payment> result = testingInstance.getAllById(0);
+        when(paymentsDaoMock.getAllByUserId(anyInt())).thenReturn(Collections.singletonList(new Payment.PaymentsBuilderImpl().setId(0).setBill(0).setStatus(0).setBalance(0).setDate(null).setType(null).build()));
+        List<Payment> result = testingInstance.getAllByUserId(0);
         assertEquals(Collections.singletonList(new Payment.PaymentsBuilderImpl().setId(0).setBill(0).setStatus(0).setBalance(0).setDate(null).setType(null).build()), result);
     }
 

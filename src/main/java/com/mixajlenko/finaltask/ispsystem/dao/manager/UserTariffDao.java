@@ -117,6 +117,15 @@ public class UserTariffDao implements IUserTariffDao {
         return true;
     }
 
+    /**
+     * Execute SELECT query.
+     * Get all rows from USERS_PLAN table which user_id is @param
+     *
+     * @param userId - primary key of USER table.
+     * @return - List of UserTariff objects which were found in UserTariff table.
+     * @throws NamingException - if troubles with connection.
+     * @throws SQLException    - if query is incorrect or connection is failed.
+     */
     @Override
     public List<UserTariff> getUserTariffByUserId(int userId) throws NamingException, SQLException {
         List<UserTariff> userTariffs;
@@ -129,6 +138,16 @@ public class UserTariffDao implements IUserTariffDao {
         return userTariffs;
     }
 
+    /**
+     * Execute SELECT query.
+     * Get row from USERS_PLAN table which user_id and tariff_id same with params
+     *
+     * @param userId   - primary key of USER table.
+     * @param tariffId - primary key of TARIFF table.
+     * @return - object of UserTariff which was generated from found info.
+     * @throws NamingException - if troubles with connection.
+     * @throws SQLException    - if query is incorrect or connection is failed.
+     */
     @Override
     public UserTariff getUserTariffByTariffIdUserId(int tariffId, int userId) throws NamingException, SQLException {
         logger.info("getUserTariffByTariffIdUserId " + START);
@@ -147,8 +166,19 @@ public class UserTariffDao implements IUserTariffDao {
 
     }
 
+    /**
+     * Execute DELETE query in USERS_PLAN table row with user_id and tariff_id (primary keys).
+     * As result we have USERS_PLAN table without row which primary kay the same with params
+     * Rollback connection if row with  such @param is not exist.
+     *
+     * @param userId   - USER table primary key.
+     * @param tariffId - TARIFF table primary key.
+     * @return - true if delete is successfully and false if not.
+     * @throws SQLException    - if query is incorrect or connection is failed.
+     * @throws NamingException - if troubles with connection.
+     */
     @Override
-    public boolean deleteByUseIdTariffId(int userId, int tariffId) throws NamingException, SQLException {
+    public boolean deleteByUserIdTariffId(int userId, int tariffId) throws NamingException, SQLException {
         logger.info(DELETE + "with userId: " + userId + " and tariffId: " + tariffId + START);
         var connection = ConnectionFactory.getInstance().getConnection();
         try (var statement = connection.prepareStatement(SqlQueries.DELETE_FROM_USER_PLAN_BY_USER_ID_TARIFF_ID.getConstant())) {

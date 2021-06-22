@@ -83,7 +83,16 @@
                                         <td>${item.phone}</td>
                                         <td>${item.email}</td>
                                         <td>${item.wallet}</td>
-                                        <td>${item.status}</td>
+                                        <c:if test="${item.status == 1}">
+                                            <td>
+                                                <p style="color: green"><fmt:message key="activeUser"/></p>
+                                            </td>
+                                        </c:if>
+                                        <c:if test="${item.status == 0}">
+                                            <td>
+                                                <p style="color: red"><fmt:message key="blocked"/></p>
+                                            </td>
+                                        </c:if>
                                         <c:if test="${item.status == 1}">
                                             <td><a class="deleteButton"
                                                    href="${pageContext.request.contextPath}/view/admin/userPageAdmin?command=block&Uid=${item.id}"

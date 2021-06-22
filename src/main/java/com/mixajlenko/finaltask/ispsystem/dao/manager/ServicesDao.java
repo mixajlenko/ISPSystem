@@ -22,7 +22,16 @@ public class ServicesDao implements IServiceDao {
     private static final Logger logger = Logger.getLogger(ServicesDao.class);
 
 
-
+    /**
+     * Execute SELECT query.
+     * Search Service info in database ISPManager by id (primary key of SERVICE table).
+     * Then and put this data to java object and return as result.
+     *
+     * @param id The primary key of SERVICE table
+     * @return The Service object which was found by id
+     * @throws SQLException    - if query is incorrect or connection is failed.
+     * @throws NamingException - if troubles with connection.
+     */
     @Override
     public Service getById(Integer id) throws SQLException, NamingException, NotFoundServiceIdException {
         logger.info("getById with " + id + " argument start");
@@ -36,7 +45,7 @@ public class ServicesDao implements IServiceDao {
 
             service = initServiceList(rs).get(0);
 
-        } catch (SQLException e){
+        } catch (SQLException e) {
             logger.info("getById " + id + " Fail");
             throw new NotFoundServiceIdException();
         }
@@ -44,6 +53,15 @@ public class ServicesDao implements IServiceDao {
         return service;
     }
 
+    /**
+     * Execute SELECT query.
+     * Get all rows from SERVICE table in database ISPManager
+     * and then put each to List and return as result.
+     *
+     * @return The List of Service objects.
+     * @throws SQLException    - if query is incorrect or connection is failed.
+     * @throws NamingException - if troubles with connection.
+     */
     @Override
     public List<Service> getAll() throws SQLException, NamingException {
         logger.info("getAll" + START);
@@ -65,6 +83,16 @@ public class ServicesDao implements IServiceDao {
 
     }
 
+    /**
+     * Execute UPDATE query in SERVICE table row with same id (primary kay) as entity object id.
+     * As result updated row in SERVICE table.
+     * Rollback connection might be if object is incorrect.
+     *
+     * @param entity - java Service object with new info.
+     * @return - true if update was successfully and false if not.
+     * @throws SQLException    - if query is incorrect or connection is failed.
+     * @throws NamingException - if troubles with connection.
+     */
     @Override
     public boolean update(Service entity) throws SQLException, NamingException {
         logger.info(UPDATE + entity + START);
@@ -88,6 +116,16 @@ public class ServicesDao implements IServiceDao {
 
     }
 
+    /**
+     * Execute DELETE query in SERVICE table row with same id (primary kay) as @param.
+     * As result we have SERVICE table without row which primary kay the same with @param
+     * Rollback connection if row with  such @param is not exist.
+     *
+     * @param id - primary key of row in SERVICE table.
+     * @return true if delete is successfully and false if not.
+     * @throws SQLException    - if query is incorrect or connection is failed.
+     * @throws NamingException - if troubles with connection.
+     */
     @Override
     public boolean delete(Integer id) throws SQLException, NamingException {
         logger.info(DELETE + id + START);
@@ -112,6 +150,16 @@ public class ServicesDao implements IServiceDao {
 
     }
 
+    /**
+     * Execute INSERT query in SERVICE table row with same id (primary kay) as @param.
+     * As result we have SERVICE table without row which  primary kay the same with @param
+     * Rollback connection if row with  such @param is not exist.
+     *
+     * @param entity - java object with info which will be add to SERVICE table.
+     * @return true if add was successfully and false if not.
+     * @throws SQLException    - if query is incorrect or connection is failed.
+     * @throws NamingException - if troubles with connection.
+     */
     @Override
     public boolean add(Service entity) throws SQLException, NamingException {
         logger.info(ADD + START);
@@ -134,6 +182,15 @@ public class ServicesDao implements IServiceDao {
 
     }
 
+    /**
+     * Execute SELECT query.
+     * Get all rows from SERVICE table in database ISPManager with name @param
+     * and then put each to List and return as result.
+     *
+     * @param name - user_id of PAYMENT table.
+     * @return The List of Service objects by name.
+     * @throws NamingException - if troubles with connection.
+     */
     @Override
     public Service getByName(String name) throws NamingException, SQLException, NotFoundServiceNameException {
         logger.info(GET_BY_NAME + name + START);

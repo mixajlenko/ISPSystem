@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CommandFactory {
+
     private static final Logger logger = Logger.getLogger(CommandFactory.class);
     private static final Map<String, ICommand> allKnownCommandMap = new HashMap<>();
 

@@ -13,12 +13,12 @@ import java.util.Collections;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+
 import static com.mixajlenko.finaltask.ispsystem.dao.manager.crudconstants.Constants.*;
 
 public class TariffDao implements ITariffDao {
 
     private static final Logger logger = Logger.getLogger(TariffDao.class);
-
 
 
     @Override
@@ -132,6 +132,17 @@ public class TariffDao implements ITariffDao {
 
     }
 
+    /**
+     * Execute INSERT query in SERVICE_TARIFF table row.
+     * As result we have SERVICE_TARIFF table with new row which have service_id and tariff_id as params.
+     * Rollback connection if row with  such @param is not exist.
+     *
+     * @param serviceId - primary key of SERVICE table
+     * @param tariffId  = primary key of TARIFF table
+     * @return - true if add was successfully and false if not.
+     * @throws SQLException    - if query is incorrect or connection is failed.
+     * @throws NamingException - if troubles with connection.
+     */
     @Override
     public boolean setServiceTariff(int serviceId, int tariffId) throws SQLException, NamingException {
         logger.info(SET_SERVICE_TARIFF + START);
@@ -157,6 +168,16 @@ public class TariffDao implements ITariffDao {
 
     }
 
+    /**
+     * Execute SELECT query.
+     * Search Tariff info in database ISPManager by service_id (primary key of SERVICE table).
+     * Then and put this data to java object, then put each object to List and return as result.
+     *
+     * @param serviceId - primary key of SERVICE table
+     * @return List of Tariff objects
+     * @throws SQLException    - if query is incorrect or connection is failed.
+     * @throws NamingException - if troubles with connection.
+     */
     @Override
     public List<Tariff> getServiceTariff(int serviceId) throws SQLException, NamingException {
         logger.info("getServiceTariff " + START);
@@ -177,6 +198,17 @@ public class TariffDao implements ITariffDao {
 
     }
 
+    /**
+     * Execute SELECT query.
+     * Get all rows from TARIFF table in database ISPManager with name @param
+     * and then put each to List and return as result.
+     *
+     * @param name - name column in TARIFF table
+     * @return - TARIFF object with result info.
+     * @throws SQLException                 - if query is incorrect or connection is failed.
+     * @throws NamingException              - if troubles with connection.
+     * @throws NotFoundServiceNameException - if such name is not exist.
+     */
     @Override
     public Tariff getByName(String name) throws NamingException, SQLException, NotFoundServiceNameException {
         logger.info(GET_BY_NAME + name + START);

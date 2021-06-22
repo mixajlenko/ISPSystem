@@ -8,7 +8,6 @@ import com.mixajlenko.finaltask.ispsystem.exception.NotFoundServiceNameException
 import com.mixajlenko.finaltask.ispsystem.exception.ServiceException;
 import com.mixajlenko.finaltask.ispsystem.model.Tariff;
 import com.mixajlenko.finaltask.ispsystem.service.ITariffService;
-import org.apache.log4j.Logger;
 
 import javax.naming.NamingException;
 import java.sql.SQLException;

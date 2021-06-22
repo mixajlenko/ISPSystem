@@ -82,6 +82,17 @@ public class UserServiceImpl implements IUserService {
         }
     }
 
+    /**
+     * Execute SELECT query.
+     * Search User info in database ISPManager by login and password.
+     * Then generate java object and return as result.
+     *
+     * @param login    - login column name in USER table
+     * @param password - password column name in USER table.
+     * @return - User object which generated from found info
+     * @throws SQLException    - if query is incorrect or connection is failed.
+     * @throws NamingException - if troubles with connection.
+     */
     @Override
     public User getByLoginAndPass(String login, String password) throws SQLException, NamingException {
 
@@ -91,13 +102,19 @@ public class UserServiceImpl implements IUserService {
             throw new NotFoundUserException();
         }
 
-        if(!password.equals(user.getPassword())){
+        if (!password.equals(user.getPassword())) {
             logger.info("PASSWORD");
             throw new NotFoundUserException();
         }
         return user;
     }
 
+    /**
+     * Counting how many user have status 0 (blocked)
+     *
+     * @param users - list of User objects.
+     * @return count of users with blocked status.
+     */
     @Override
     public int blockedAccounts(List<User> users) {
         logger.info("get blockedAccounts");

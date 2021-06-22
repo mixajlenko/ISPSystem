@@ -102,7 +102,7 @@ class UserTariffServiceTest {
 
     @Test
     void shouldReturnTrueAfterDeletingByUserAndTariffId() throws SQLException, NamingException {
-        Mockito.when(userTariffDaoMock.deleteByUseIdTariffId(1, 2)).thenReturn(true);
+        Mockito.when(userTariffDaoMock.deleteByUserIdTariffId(1, 2)).thenReturn(true);
         boolean result = testingInstance.deleteByUseIdTariffId(1, 2);
         assertTrue(result);
     }

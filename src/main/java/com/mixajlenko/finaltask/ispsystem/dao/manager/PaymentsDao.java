@@ -18,7 +18,16 @@ public class PaymentsDao implements IPaymentsDao {
 
     private static final Logger logger = Logger.getLogger(PaymentsDao.class);
 
-
+    /**
+     * Execute SELECT query.
+     * Search Payment info in database ISPManager by id (primary key of PAYMENT table).
+     * Then put this data to java object and return as result.
+     *
+     * @param id The primary key of PAYMENT table
+     * @return The payment object which was found by id
+     * @throws SQLException    - if query is incorrect or connection is failed.
+     * @throws NamingException - if troubles with connection.
+     */
     @Override
     public Payment getById(Integer id) throws SQLException, NamingException {
         logger.info("getById with " + id + " argument start");
@@ -38,6 +47,15 @@ public class PaymentsDao implements IPaymentsDao {
 
     }
 
+    /**
+     * Execute SELECT query.
+     * Get all rows from PAYMENT table in database ISPManager
+     * and then put each to List and return as result.
+     *
+     * @return The List of payment objects.
+     * @throws SQLException    - if query is incorrect or connection is failed.
+     * @throws NamingException - if troubles with connection.
+     */
     @Override
     public List<Payment> getAll() throws SQLException, NamingException {
         logger.info("getAll" + START);
@@ -57,6 +75,16 @@ public class PaymentsDao implements IPaymentsDao {
 
     }
 
+    /**
+     * Execute UPDATE query in PAYMENT table row with same id (primary kay) as entity object id.
+     * As result updated row in PAYMENT table.
+     * Rollback connection might be if object is incorrect.
+     *
+     * @param entity - java Payment object with new info.
+     * @return - true if update was successfully and false if not.
+     * @throws SQLException    - if query is incorrect or connection is failed.
+     * @throws NamingException - if troubles with connection.
+     */
     @Override
     public boolean update(Payment entity) throws SQLException, NamingException {
         logger.info(UPDATE + entity + START);
@@ -83,9 +111,18 @@ public class PaymentsDao implements IPaymentsDao {
         }
         logger.info(UPDATE + entity + SUCCESS);
         return true;
-
     }
 
+    /**
+     * Execute DELETE query in PAYMENT table row with same id (primary kay) as @param.
+     * As result we have PAYMENT table without row which  primary kay the same with @param
+     * Rollback connection if row with  such @param is not exist.
+     *
+     * @param id - primary key of row in PAYMENT table.
+     * @return true if delete is successfully and false if not.
+     * @throws SQLException    - if query is incorrect or connection is failed.
+     * @throws NamingException - if troubles with connection.
+     */
     @Override
     public boolean delete(Integer id) throws SQLException, NamingException {
         logger.info(DELETE + id + START);
@@ -110,6 +147,17 @@ public class PaymentsDao implements IPaymentsDao {
 
     }
 
+
+    /**
+     * Execute INSERT query in PAYMENT table row with same id (primary kay) as @param.
+     * As result we have PAYMENT table without row which  primary kay the same with @param
+     * Rollback connection if row with  such @param is not exist.
+     *
+     * @param entity - java object with info which will be add to PAYMENT table.
+     * @return true if add was successfully and false if not.
+     * @throws SQLException    - if query is incorrect or connection is failed.
+     * @throws NamingException - if troubles with connection.
+     */
     @Override
     public boolean add(Payment entity) throws SQLException, NamingException {
         logger.info(ADD + START);
@@ -139,8 +187,17 @@ public class PaymentsDao implements IPaymentsDao {
 
     }
 
+    /**
+     * Execute SELECT query.
+     * Get all rows from PAYMENT table in database ISPManager with user id @param
+     * and then put each to List and return as result.
+     *
+     * @param id - user_id of PAYMENT table.
+     * @return The List of payment objects by user id.
+     * @throws NamingException - if troubles with connection.
+     */
     @Override
-    public List<Payment> getAllById(int id) throws NamingException {
+    public List<Payment> getAllByUserId(int id) throws NamingException {
         logger.info("getAllById " + START);
         List<Payment> payments;
         try (var connection = ConnectionFactory.getInstance().getConnection();
@@ -160,6 +217,14 @@ public class PaymentsDao implements IPaymentsDao {
 
     }
 
+    /**
+     * Method initPaymentList generate Payment object from PAYMENT table with ResultSet
+     * and then put all results to List.
+     *
+     * @param rs - result set with different query.
+     * @return - List of Payment objects.
+     * @throws SQLException - if query is incorrect or connection is failed.
+     */
     private List<Payment> initPaymentList(ResultSet rs) throws SQLException {
         List<Payment> payments = new ArrayList<>();
         while (rs.next()) {

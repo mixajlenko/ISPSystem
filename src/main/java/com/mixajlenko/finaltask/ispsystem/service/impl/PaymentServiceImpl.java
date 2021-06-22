@@ -7,7 +7,6 @@ import com.mixajlenko.finaltask.ispsystem.exception.NotFoundServiceIdException;
 import com.mixajlenko.finaltask.ispsystem.exception.ServiceException;
 import com.mixajlenko.finaltask.ispsystem.model.Payment;
 import com.mixajlenko.finaltask.ispsystem.service.IPaymentService;
-import org.apache.log4j.Logger;
 
 import javax.naming.NamingException;
 import java.sql.SQLException;
@@ -16,7 +15,7 @@ import java.util.List;
 public class PaymentServiceImpl implements IPaymentService {
 
     private final DaoFactory daoFactory = DaoFactory.getInstance();
-    private  IPaymentsDao paymentsDao = daoFactory.getPaymentDao();
+    private IPaymentsDao paymentsDao = daoFactory.getPaymentDao();
 
     @Override
     public List<Payment> getAll() throws SQLException, NamingException {
@@ -64,9 +63,9 @@ public class PaymentServiceImpl implements IPaymentService {
     }
 
     @Override
-    public List<Payment> getAllById(int id) throws NamingException, SQLException {
+    public List<Payment> getAllByUserId(int id) throws NamingException, SQLException {
         try {
-            return paymentsDao.getAllById(id);
+            return paymentsDao.getAllByUserId(id);
         } catch (DataBaseException e) {
             throw new ServiceException(e);
         }

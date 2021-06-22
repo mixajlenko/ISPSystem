@@ -127,13 +127,13 @@
                             <a href="${pageContext.request.contextPath}/view/client/downloadServices?format=csv&serviceName=All&serviceId=empty">CSV</a>
                         </div>
                         <c:if test="${alreadyExistTariff}">
-                            <h4 style="margin: 50px 0 0 0">You are already subscribed on such plan</h4>
+                            <h4 style="color: red; margin: 50px 0 0 0"><fmt:message key="alreadySub"/></h4>
                         </c:if>
                         <c:if test="${subSuccess}">
-                            <h4 style="margin: 50px 0 0 0"><fmt:message key="successfullySub"/></h4>
+                            <h4 style="color: green; margin: 50px 0 0 0"><fmt:message key="successfullySub"/></h4>
                         </c:if>
                         <c:if test="${subFail}">
-                            <h4 style="margin: 50px 0 0 0"><fmt:message key="failSub"/></h4>
+                            <h4 style="color: red; margin: 50px 0 0 0"><fmt:message key="failSub"/></h4>
                         </c:if>
                         <c:choose>
                         <c:when test="${showTariffs}">

@@ -136,6 +136,16 @@ public class UserDao implements IUserDao {
         return true;
     }
 
+    /**
+     * (Method was implement for future feature)
+     * <p>
+     * Execute SELECT query.
+     * Get row from USER table in database ISPManager with name @param
+     *
+     * @param name - name column in USER table
+     * @return - User object which was generated from found info.
+     * @throws NamingException - if troubles with connection.
+     */
     @Override
     public User getUserByName(String name) throws NamingException {
         logger.info("getUserByName " + name + START);
@@ -157,6 +167,15 @@ public class UserDao implements IUserDao {
         return user;
     }
 
+    /**
+     * Execute SELECT query.
+     * Get row from USER table in database ISPManager with email @param
+     *
+     * @param email - email column in USER table
+     * @return - User object which was generated from found info.
+     * @throws NamingException - if troubles with connection.
+     * @throws SQLException    - if query is incorrect or connection is failed.
+     */
     @Override
     public User getUserByEmail(String email) throws NamingException, SQLException {
         logger.info("getUserByEmail " + email + START);

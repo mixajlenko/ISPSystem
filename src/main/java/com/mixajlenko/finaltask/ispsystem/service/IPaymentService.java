@@ -8,7 +8,6 @@ import java.util.List;
 
 public interface IPaymentService extends ItemService<Integer, Payment> {
 
-    List<Payment> getAllById(int id) throws NamingException, SQLException;
-
+    List<Payment> getAllByUserId(int id) throws NamingException, SQLException;
 
 }
